@@ -154,6 +154,10 @@ p.lead {
     #sideNav {
         box-shadow: 0px 8px 36px rgba(0, 123, 255, 0.5);
     }
+
+    #sideNav .navbar-brand img {
+        height: 30px;
+    }
 }
 
 section.resume-section {
