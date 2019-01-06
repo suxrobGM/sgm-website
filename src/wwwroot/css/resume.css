@@ -107,7 +107,8 @@ p.lead {
     -ms-flex-direction: column;
     flex-direction: column;
     width: 17rem;
-    height: 100vh;
+    height: 100vh;    
+    box-shadow: 7px 7px 36px rgba(0, 123, 255, 0.5);
   }
   #sideNav .navbar-brand {
     display: -webkit-box;
@@ -149,6 +150,12 @@ p.lead {
   }
 }
 
+@media only screen and (max-width : 992px) {
+    #sideNav {
+        box-shadow: 0px 8px 36px rgba(0, 123, 255, 0.5);
+    }
+}
+
 section.resume-section {
   padding-top: 5rem !important;
   padding-bottom: 5rem !important;
@@ -176,7 +183,7 @@ section.resume-section .resume-item .resume-date {
 }
 
 .bg-primary {
-  background-color: #BD5D38 !important;
+    background-color: rgb(23, 162, 184) !important;
 }
 
 .text-primary {
