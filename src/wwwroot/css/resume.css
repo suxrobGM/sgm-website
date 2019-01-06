@@ -156,8 +156,9 @@ p.lead {
     }
 
     #sideNav .navbar-brand img {
-        height: 30px;
-    }
+        height: 40px;
+        margin: 0 !important;
+    }    
 }
 
 section.resume-section {
