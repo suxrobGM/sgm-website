@@ -15,15 +15,13 @@
               crossorigin="anonymous"
               integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
     </environment>
-    <link rel="stylesheet" href="~/css/site.css" />
 
-    <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="~/vendor/font-mfizz-2.4.1/font-mfizz.css" rel="stylesheet">
+    <link href="~/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="~/lib/font-mfizz-2.4.1/font-mfizz.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/resume.css" rel="stylesheet">
 </head>
 
@@ -43,6 +41,9 @@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#about">About</a>
                 </li>
+                @*<li>
+                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                </li>*@
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
                 </li>
@@ -53,7 +54,7 @@
                     <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#sample_projects">Sample Projects</a>
+                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
@@ -63,7 +64,8 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> 
+
     <div class="container">
         <partial name="_CookieConsentPartial" />
         <main role="main" class="pb-3">
@@ -73,7 +75,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - SuxrobGM - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2019 - SuxrobGM
         </div>
     </footer>
 

@@ -1,25 +1,4 @@
-﻿@*<environment include="Development">
-    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-</environment>
-<environment exclude="Development">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"
-            asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.validator"
-            crossorigin="anonymous"
-            integrity="sha256-F6h55Qw6sweK+t7SiOJX+2bpSAa3b/fnlrVCJvmEj1A=">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"
-            asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
-            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive"
-            crossorigin="anonymous"
-            integrity="sha256-9GycpJnliUjJDVDqP0UEu/bsm9U+3dnQUH8+3W10vkY=">
-    </script>
-</environment>
-*@
-
-
-<environment include="Development">
+﻿<environment include="Development">
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
 </environment>
@@ -37,10 +16,6 @@
             integrity="sha256-E/V4cWE4qvAeO5MOhjtGtqDzPndRO1LBk8lJ/PR7CA4=">
     </script>
 </environment>
-<script src="~/js/site.js" asp-append-version="true"></script>
-
-<!-- Plugin JavaScript -->
-<script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-<!-- Custom scripts for this template -->
+<script src="~/lib/jquery-easing/jquery.easing.min.js"></script>
+<script src="~/js/site.js"></script>
 <script src="~/js/resume.min.js"></script>

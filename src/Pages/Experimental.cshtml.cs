@@ -7,10 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SuxrobGM_Resume.Pages
 {
-    public class PrivacyModel : PageModel
+    public class ExperimentalModel : PageModel
     {
         public void OnGet()
         {
+
         }
     }
 }
