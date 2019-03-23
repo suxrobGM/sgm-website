@@ -5,81 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
-              crossorigin="anonymous"
-              integrity="sha256-eSi1q2PG6J7g7ib17yAaWMcrr5GrtohYChqibrV7PBE=" />
-    </environment>
-
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet">
-    <link href="~/lib/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="~/lib/font-mfizz-2.4.1/font-mfizz.css" rel="stylesheet">
-
-    <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/css/resume.css" rel="stylesheet">
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="~/fonts/font-awesome.min.css" rel="stylesheet">
+    <link href="~/fonts/simple-line-icons.css" rel="stylesheet">
+    <link href="~/css/slicknav.css" rel="stylesheet">
+    <link href="~/css/nivo-lightbox.css" rel="stylesheet">
+    <link href="~/css/animate.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/responsive.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-inline d-lg-block">
-                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
-            </span>
-            <span class="d-inline d-lg-none">Ilyosbekov Sukhrobbek</span>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
+
+    <header id="header-wrap">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="icon-menu"></span>
+                        <span class="icon-menu"></span>
+                        <span class="icon-menu"></span>
+                    </button>
+                    @*<a href="/" class="navbar-brand"><img src="~/img/logo.png" alt=""></a>*@
+                </div>
+                <div class="collapse navbar-collapse" id="main-navbar">
+                    <ul class="onepage-nev navbar-nav mr-auto w-100 justify-content-end clearfix">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#hero-area">
+                                Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">
+                                About
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#services">
+                                Services
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#resume">
+                                Resume
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#portfolios">
+                                Work
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">
+                                Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Start -->
+            <ul class="onepage-nev mobile-menu">
+                <li>
+                    <a href="#home">Home</a>
                 </li>
-                @*<li>
-                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
-                </li>*@
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
+                <li>
+                    <a href="#about">about</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#education">Education</a>
+                <li>
+                    <a href="#services">Services</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
+                <li>
+                    <a href="#resume">resume</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                <li>
+                    <a href="#portfolio">Work</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#awards">Awards</a>
+                <li>
+                    <a href="#contact">Contact</a>
                 </li>
             </ul>
+        </nav>
+
+        <!-- Hero Area Start -->
+        <div id="hero-area" class="hero-area-bg">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 text-center">
+                        <div class="contents">
+                            <h5 class="script-font wow fadeInUp" data-wow-delay="0.2s">Hi This is</h5>
+                            <h2 class="head-title wow fadeInUp" data-wow-delay="0.4s">Sukhrob Ilyosbekov</h2>
+                            <p class="script-font wow fadeInUp" data-wow-delay="0.6s">.NET & full-stack web developer</p>
+                            <ul class="social-icon wow fadeInUp" data-wow-delay="0.8s">
+                                <li>
+                                    <a class="facebook" href="https://www.facebook.com/suxrobgm"><i class="icon-social-facebook"></i></a>
+                                </li>                                
+                                <li>
+                                    <a class="instagram" href="https://www.instagram.com/Suxrob_GM"><i class="icon-social-instagram"></i></a>
+                                </li>
+                                <li>
+                                    <a class="linkedin" href="https://www.linkedin.com/in/suxrobgm/"><i class="icon-social-linkedin"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/suxrobGM"><i class="icon-social-github"></i></a>
+                                </li>
+                            </ul>
+                            @*<div class="header-button wow fadeInUp" data-wow-delay="1s">
+                                <a href="#" class="btn btn-common">Get a Free Quote</a>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav> 
+    </header>
 
-    <div class="container">
-        <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+    <main role="main">
+        @RenderBody()
+    </main>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer-area section-padding">
         <div class="container">
-            &copy; 2019 - SuxrobGM
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="footer-text text-center wow fadeInDown" data-wow-delay="0.3s">
+                        <ul class="social-icon">
+                            <li>
+                                <a class="facebook" href="https://www.facebook.com/suxrobgm"><i class="icon-social-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a class="instagram" href="https://www.instagram.com/Suxrob_GM"><i class="icon-social-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a class="linkedin" href="https://www.linkedin.com/in/suxrobgm/"><i class="icon-social-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/suxrobGM"><i class="icon-social-github"></i></a>
+                            </li>
+                        </ul>
+                        <p>Copyright &copy; 2019 </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <partial name="_ValidationScriptsPartial" />
+    <a href="#" class="back-to-top">
+        <i class="icon-arrow-up"></i>
+    </a>
+
+    <script src="~/js/jquery-min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.mixitup.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <script src="~/js/waypoints.min.js"></script>
+    <script src="~/js/wow.js"></script>
+    <script src="~/js/jquery.nav.js"></script>
+    <script src="~/js/jquery.easing.min.js"></script>
+    <script src="~/js/nivo-lightbox.js"></script>
+    <script src="~/js/jquery.slicknav.js"></script>
+    <script src="~/js/main.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
