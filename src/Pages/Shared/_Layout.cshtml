@@ -1,24 +1,37 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <meta name="author" content="Suxrob Ilyosbekov" />
+    <meta name="keywords" content="Suxrob,Sukhrob,Ilyosbekov,SuxrobGM,Suxrob GM" />
+    <meta name="description" content="Suxrob Ilyosbekov's official web site, .NET and Full-Stack Web Developer" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
 
-    <link href="~/css/bootstrap.min.css" rel="stylesheet" >
-    <link href="~/fonts/font-awesome.min.css" rel="stylesheet">
+    <environment include="Development">
+        <link href="~/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/fonts/font-awesome.min.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+              crossorigin="anonymous" />
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" 
+              integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" 
+              crossorigin="anonymous" />       
+    </environment>
+
     <link href="~/fonts/simple-line-icons.css" rel="stylesheet">
     <link href="~/css/slicknav.css" rel="stylesheet">
     <link href="~/css/nivo-lightbox.css" rel="stylesheet">
-    <link href="~/css/animate.css" rel="stylesheet">
-    <link href="~/css/main.css" rel="stylesheet">
+    <link href="~/css/animate.min.css" rel="stylesheet">
+    <link href="~/css/main.min.css" rel="stylesheet">
     <link href="~/css/responsive.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
-
     <header id="header-wrap">
-        <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -73,13 +86,13 @@
                     <a href="#home">Home</a>
                 </li>
                 <li>
-                    <a href="#about">about</a>
+                    <a href="#about">About</a>
                 </li>
                 <li>
                     <a href="#services">Services</a>
                 </li>
                 <li>
-                    <a href="#resume">resume</a>
+                    <a href="#resume">Resume</a>
                 </li>
                 <li>
                     <a href="#portfolio">Work</a>
@@ -89,39 +102,6 @@
                 </li>
             </ul>
         </nav>
-
-        <!-- Hero Area Start -->
-        <div id="hero-area" class="hero-area-bg">
-            <div class="overlay"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 text-center">
-                        <div class="contents">
-                            <h5 class="script-font wow fadeInUp" data-wow-delay="0.2s">Hi This is</h5>
-                            <h2 class="head-title wow fadeInUp" data-wow-delay="0.4s">Sukhrob Ilyosbekov</h2>
-                            <p class="script-font wow fadeInUp" data-wow-delay="0.6s">.NET and full-stack web developer</p>
-                            <ul class="social-icon wow fadeInUp" data-wow-delay="0.8s">
-                                <li>
-                                    <a class="facebook" href="https://www.facebook.com/suxrobgm"><i class="icon-social-facebook"></i></a>
-                                </li>                                
-                                <li>
-                                    <a class="instagram" href="https://www.instagram.com/Suxrob_GM"><i class="icon-social-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a class="linkedin" href="https://www.linkedin.com/in/suxrobgm/"><i class="icon-social-linkedin"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://github.com/suxrobGM"><i class="icon-social-github"></i></a>
-                                </li>
-                            </ul>
-                            @*<div class="header-button wow fadeInUp" data-wow-delay="1s">
-                                <a href="#" class="btn btn-common">Get a Free Quote</a>
-                            </div>*@
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </header>
 
     <main role="main">
@@ -158,20 +138,36 @@
         <i class="icon-arrow-up"></i>
     </a>
 
-    <script src="~/js/jquery-min.js"></script>
-    <script src="~/js/popper.min.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/jquery.mixitup.js"></script>
+    <environment include="Development">
+        <script src="~/js/popper.min.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/jquery-min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+                crossorigin="anonymous">           
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
+                crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
+                crossorigin="anonymous">
+        </script>
+    </environment>
+    
+    <script src="~/js/jquery.mixitup.min.js"></script>
     <script src="~/js/jquery.counterup.min.js"></script>
-    <script src="~/js/waypoints.min.js"></script>
-    <script src="~/js/wow.js"></script>
     <script src="~/js/jquery.nav.js"></script>
     <script src="~/js/jquery.easing.min.js"></script>
-    <script src="~/js/nivo-lightbox.js"></script>
     <script src="~/js/jquery.slicknav.js"></script>
+    <script src="~/js/waypoints.min.js"></script>
+    <script src="~/js/nivo-lightbox.min.js"></script>
+    <script src="~/js/wow.js"></script>
     <script src="~/js/main.js"></script>
 
     @RenderSection("Scripts", required: false)
 </body>
-
 </html>
