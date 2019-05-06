@@ -59,7 +59,7 @@
             }
 
             <div id="@Model.Id" class="reply-commentbox ml-1 d-none">
-                <form asp-page-handler="ReplyToComment" asp-route-commentId="@Model.Id" asp-route-rootCommentId="@ViewData["RootCommentId"]" asp-route-pageIndex="@ViewData["PageIndex"]" class="w-100" method="post">
+                <form asp-page-handler="ReplyToComment" asp-route-commentId="@Model.Id" asp-route-pageIndex="@ViewData["PageIndex"]" class="w-100" method="post">
                     <div class="bg-white border border-dark p-2">
                         <span data-valmsg-for="CommentText" data-valmsg-replace="true" class="text-danger"></span>
                         <textarea id="CommentText" name="CommentText" class="comment_editor"></textarea>

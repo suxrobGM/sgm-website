@@ -85,14 +85,16 @@ namespace SuxrobGM_Resume.Pages.Blogs
             return RedirectToPage("", "", new { pageIndex = pageNumber }, "comment_textbox");
         }
 
-        public async Task<IActionResult> OnPostReplyToCommentAsync(string commentId, string rootCommentId)
+        public async Task<IActionResult> OnPostReplyToCommentAsync(string commentId)
         {
             var blogUrl = RouteData.Values["blogUrl"].ToString();
-            var pageNumber = int.Parse(HttpContext.Request.Query["pageIndex"]);
+            if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out int pageNumber))
+            {
+                pageNumber = 1;
+            }
 
             var blog = _context.Blogs.Where(i => i.GetRelativeUrl() == blogUrl).First();
             var author = _context.Users.Where(i => i.UserName == User.Identity.Name).First();
-            var rootComment = _context.Comments.Where(i => i.Id == rootCommentId).First();  // first main comment
             var comment = _context.Comments.Where(i => i.Id == commentId).FirstOrDefault();
 
             if (string.IsNullOrWhiteSpace(CommentText))
@@ -100,10 +102,7 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 ModelState.AddModelError("CommentText", "Empty comment text");
                 return Page();
             }
-
-            //if (comment == null)            
-            //    comment = FindCommentDeeply(rootComment, commentId);           
-
+           
             var reply = new Comment()
             {               
                 Parent = comment,
@@ -121,30 +120,21 @@ namespace SuxrobGM_Resume.Pages.Blogs
             var blogUrl = RouteData.Values["blogUrl"].ToString();
             var pageNumber = int.Parse(HttpContext.Request.Query["pageIndex"]);
             var comment = _context.Comments.Where(i => i.Id == commentId).FirstOrDefault();
-
+            
+            await RemoveChildrenCommentsAsync(comment);
             _context.Comments.Remove(comment);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("", "", new { pageIndex = pageNumber }, rootCommentId);
+        }       
+
+        private async Task RemoveChildrenCommentsAsync(Comment comment)
+        {
+            foreach (var reply in comment.Replies)
+            {
+                await RemoveChildrenCommentsAsync(reply);
+                _context.Comments.Remove(reply);
+            }
         }
-
-        //private Comment FindCommentDeeply(Comment root, string findingCommentId)
-        //{
-        //    if (root.Id == findingCommentId)
-        //        return root;
-
-        //    foreach (var reply in root.Replies)
-        //    {
-        //        if (reply.Id == findingCommentId)
-        //            return reply;
-
-        //        if (reply.Replies.Count > 0)
-        //        {
-        //            return FindCommentDeeply(reply, findingCommentId);
-        //        }
-        //    }
-
-        //    return null;
-        //}
     }
 }
