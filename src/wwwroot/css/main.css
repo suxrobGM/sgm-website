@@ -237,6 +237,11 @@ button:focus {
     color: white;
 }
 
+.social-icon li .telegram:hover {
+    background-color: deepskyblue;
+    color: white;
+}
+
 /* ScrollToTop */
 a.back-to-top {
   display: none;

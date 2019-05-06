@@ -17,7 +17,7 @@ using SuxrobGM_Resume.Utils;
 
 namespace SuxrobGM_Resume.Pages.Blogs
 {
-    [Authorize(Roles = "SuperAdmin,Admin")]
+    [Authorize(Roles = "SuperAdmin,Admin,Editor")]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _context;
