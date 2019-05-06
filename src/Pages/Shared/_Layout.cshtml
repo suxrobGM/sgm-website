@@ -5,12 +5,16 @@
     <meta name="author" content="Suxrob Ilyosbekov" />
     <meta name="keywords" content="Suxrob,Sukhrob,Ilyosbekov,SuxrobGM,Suxrob GM" />
     <meta name="description" content="Suxrob Ilyosbekov's official web site, .NET and Full-Stack Web Developer" />
+    <meta property="og:title" content="Sukhrob Ilyosbekov" />
+    <meta property="og:description" content="Suxrob Ilyosbekov's official web site, .NET and Full-Stack Web Developer" />
+    <meta property="og:image" content="https://suxrobgm.net/img/hero-area.jpg" />
+    
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
 
     <environment include="Development">
-        <link href="~/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -23,7 +27,7 @@
     <link href="~/css/slicknav.css" rel="stylesheet">
     <link href="~/css/nivo-lightbox.css" rel="stylesheet">
     <link href="~/css/animate.min.css" rel="stylesheet">
-    <link href="~/css/main.min.css" rel="stylesheet">
+    <link href="~/css/main.css" rel="stylesheet">
     <link href="~/css/responsive.css" rel="stylesheet">
 </head>
 
@@ -98,6 +102,8 @@
                     <a href="#contact">Contact</a>
                 </li>
             </ul>
+
+            @RenderSection("Navbar", false)
         </nav>
     </header>
 
@@ -121,7 +127,7 @@
                                 <a class="linkedin" href="https://www.linkedin.com/in/suxrobgm/"><i class="icon-social-linkedin"></i></a>
                             </li>
                             <li>
-                                <a href="https://github.com/suxrobGM"><i class="icon-social-github"></i></a>
+                                <a class="github" href="https://github.com/suxrobGM"><i class="icon-social-github"></i></a>
                             </li>
                         </ul>
                         <p>Copyright &copy; 2019 </p>
@@ -137,7 +143,7 @@
 
     <environment include="Development">
         <script src="~/js/popper.min.js"></script>
-        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
     </environment>
     <environment exclude="Development">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

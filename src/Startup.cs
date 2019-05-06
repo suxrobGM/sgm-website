@@ -6,9 +6,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SuxrobGM_Resume.Data;
+using SuxrobGM_Resume.Models;
 
 namespace SuxrobGM_Resume
 {
@@ -31,12 +36,43 @@ namespace SuxrobGM_Resume
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AddPageRoute("/Blogs/List", "/Blogs");
+                });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                    .UseLazyLoadingProxies();
+            });
+
+            services.AddDefaultIdentity<User>()
+                .AddRoles<UserRole>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddDefaultTokenProviders()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+            
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequiredLength = 8;
+                options.Password.RequireDigit = true;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                
+                //User settings
+                options.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789_.-";
+                options.User.RequireUniqueEmail = true;
+
+                //options.SignIn.RequireConfirmedEmail = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider provider)
         {
             if (env.IsDevelopment())
             {
@@ -49,11 +85,57 @@ namespace SuxrobGM_Resume
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseHttpsRedirection();           
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseAuthentication();
             app.UseMvc();
+
+            //CreateUserRoles(provider);
+            //AddDefaultProfilePhoto(provider, env);
+        }
+
+        private void CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<UserRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+
+            var superAdminRole = roleManager.RoleExistsAsync(Role.SuperAdmin.ToString()).Result;
+            var adminRole = roleManager.RoleExistsAsync(Role.Admin.ToString()).Result;
+            var moderatorRole = roleManager.RoleExistsAsync(Role.Moderator.ToString()).Result;
+            var editorRole = roleManager.RoleExistsAsync(Role.Editor.ToString()).Result;
+
+            if (!superAdminRole)
+            {
+                var roleResult = roleManager.CreateAsync(new UserRole(Role.SuperAdmin)).Result;
+            }
+            if (!adminRole)
+            {
+                var roleResult = roleManager.CreateAsync(new UserRole(Role.Admin)).Result;
+            }
+            if (!moderatorRole)
+            {
+                var roleResult = roleManager.CreateAsync(new UserRole(Role.Moderator)).Result;
+            }           
+            if (!editorRole)
+            {
+                var roleResult = roleManager.CreateAsync(new UserRole(Role.Editor)).Result;
+            }
+
+            User admin = userManager.FindByEmailAsync("suxrobGM@gmail.com").Result;
+            userManager.AddToRoleAsync(admin, Role.SuperAdmin.ToString()).Wait();
+        }
+        private void AddDefaultProfilePhoto(IServiceProvider provider, IHostingEnvironment env)
+        {
+            var db = provider.GetRequiredService<ApplicationDbContext>();
+            var user = db.Users.Where(i => i.UserName.ToLower() == "suxrobgm").First();
+            var defaultUserPhoto = "/img/user_def_icon.png";
+
+            if (string.IsNullOrEmpty(user.ProfilePhotoUrl))
+            {
+                user.ProfilePhotoUrl = defaultUserPhoto;
+            }
+            db.SaveChanges();
         }
     }
 }

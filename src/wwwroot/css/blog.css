@@ -1,0 +1,55 @@
+﻿/* Sticky footer styles
+-------------------------------------------------- */
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: auto;
+}
+
+.footer {
+    flex-shrink: 0;
+    background-color: #e9ecef;
+}
+
+/*-----------------------------------------------*/
+
+.social-icon a {
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50%;
+    color: black;
+    display: block;
+    line-height: 35px;
+    text-align: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -o-transition: all 0.3s ease-in-out 0s;
+}
+
+    .social-icon a.facebook:hover {
+        background-color: #3b5999;
+        color: white;
+    }
+
+    .social-icon a.instagram:hover {
+        background-color: #D6274D;
+        color: white;
+    }
+
+    .social-icon a.linkedin:hover {
+        background-color: #1260A2;
+        color: white;
+    }
+
+    .social-icon a.github:hover {
+        background-color: black;
+        color: white;
+    }

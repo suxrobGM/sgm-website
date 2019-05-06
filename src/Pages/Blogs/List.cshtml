@@ -1,0 +1,82 @@
+﻿@page "/Blogs/List"
+@model SuxrobGM_Resume.Pages.Blogs.BlogsListModel
+@{
+    ViewData["Title"] = "Blogs";
+    Layout = "_BlogLayout";
+}
+
+@section SEO  {
+    <meta name="author" content="Sukhrob Ilyosbekov" />
+    <meta name="description" content="Sukhrob Ilyosbekov's Blogs" />
+}
+
+<div class="row">
+    <span class="h2">Sukhrob Ilyosbekov's blog</span>
+    @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+    {
+        <a role="button" class="btn btn-sm btn-info ml-2 my-auto" asp-page="/Blogs/Create">Create Blog</a>
+    }
+    <hr class="w-100" />
+</div>
+
+<div>
+    @if (Model.Blogs.Count() == 0)
+    {
+        <h4>There have not any blogs ;(</h4>
+    }
+    else
+    {
+        @foreach (var blog in Model.Blogs)
+        {
+            <div class="card shadow-sm my-3">
+                <div class="card-header">
+                    <b>@blog.Title</b>
+                    <b class="float-right">@blog.CreatedTime.ToString("MMM dd yyyy HH:mm")</b>
+                    @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    {
+                        <div class="float-right mx-2">
+                            <a asp-page="/Blogs/Edit" asp-route-id="@blog.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
+                            <a asp-page="/Blogs/Delete" asp-route-Id="@blog.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
+                        </div>
+                    }
+                </div>
+                <div class="card-body">
+                    <p>@blog.Summary</p>
+
+                    @if (!string.IsNullOrEmpty(blog.CoverPhotoUrl))
+                    {
+                        <img class="img-fluid d-block mx-auto" src="@blog.CoverPhotoUrl" alt="Cover photo" />
+                    }
+
+                    <a role="button" class="btn bg-light btn-outline-dark mt-3" asp-page="/Blogs/Index" asp-route-blogUrl="@blog.GetRelativeUrl()">Read More »</a>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        @if (blog.Comments == null)
+                        {
+                            <span>
+                                Comments<span class="badge badge-dark rounded-circle">0</span>
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                Comments <span class="badge badge-dark rounded-circle">@blog.Comments.Count</span>
+                            </span>
+                        }
+
+                    </div>
+                    <div class="my-2">
+                        @foreach (var tag in blog.Tags.Split(","))
+                        {
+                            <span class="badge badge-dark mr-2">@tag</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="pagination" class="d-flex">
+            <pagination class="mx-auto" page-index="@Model.Blogs.PageIndex" total-pages="@Model.Blogs.TotalPages" base-url="/Blogs/List" />
+        </div>
+    }
+</div>

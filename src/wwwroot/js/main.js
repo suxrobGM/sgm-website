@@ -85,10 +85,7 @@
           scrollTop: 0
         }, 600);
         return false;
-      });
-
-
-
+      });    
   });      
 
 }(jQuery));
