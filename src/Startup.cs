@@ -45,7 +45,7 @@ namespace SuxrobGM_Resume
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                options.UseSqlServer(Configuration.GetConnectionString("AzureConnection"))
                     .UseLazyLoadingProxies();
             });
 
@@ -122,7 +122,7 @@ namespace SuxrobGM_Resume
                 var roleResult = roleManager.CreateAsync(new UserRole(Role.Editor)).Result;
             }
 
-            User admin = userManager.FindByEmailAsync("suxrobGM@gmail.com").Result;
+            User admin = userManager.FindByEmailAsync("suxrobgm@gmail.com").Result;
             userManager.AddToRoleAsync(admin, Role.SuperAdmin.ToString()).Wait();
         }
         private void AddDefaultProfilePhoto(IServiceProvider provider, IHostingEnvironment env)

@@ -25,7 +25,7 @@ namespace SuxrobGM_Resume.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
+            {               
                 optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=SGM_BlogsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
                     .UseLazyLoadingProxies();
             }
