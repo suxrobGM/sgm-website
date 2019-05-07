@@ -53,3 +53,10 @@ body {
         background-color: black;
         color: white;
     }
+
+.comment-editor {
+    border: none;
+    width: 100%;
+    outline: 0px !important;
+    -webkit-appearance: none;
+}
