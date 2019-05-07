@@ -74,13 +74,11 @@
     </div>
 }
 
-
-@if (!User.Identity.IsAuthenticated)
-{
-    <form method="post">
-        <div class="col-6 mt-4">
+<div class="col-12 col-sm-10 col-md-8 mt-4">
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <form method="post">
             <h4>Post as a guest or <a asp-area="Identity" asp-page="/Account/Login">Sign In</a></h4>
-
             <div class="form-group">
                 <b><label asp-for="@Model.CommentAuthorName"></label></b>
                 <input class="form-control" asp-for="@Model.CommentAuthorName" required />
@@ -92,27 +90,27 @@
                 <input class="form-control" asp-for="@Model.CommentAuthorEmail" required />
                 <span class="text-danger" asp-validation-for="@Model.CommentAuthorEmail"></span>
             </div>
-        </div>
+            <div id="comment_textbox" class="card card-header shadow-sm my-4 p-2">
+                <label><b>Post a comment</b></label>
+                <span asp-validation-for="@Model.CommentText" class="text-danger"></span>
+                <div class="bg-white p-2">
+                    <textarea asp-for="@Model.CommentText" class="comment-editor" placeholder="Type message..." required></textarea>
+                </div>
+                <input type="submit" class="btn btn-sm btn-info shadow-sm w-25 mt-2" value="Save comment" />
+            </div>
+        </form>
+    }
+    else
+    {
         <div id="comment_textbox" class="card card-header shadow-sm my-4 p-2">
             <label><b>Post a comment</b></label>
             <span asp-validation-for="@Model.CommentText" class="text-danger"></span>
-            <div class="bg-white p-2">
-                <textarea asp-for="@Model.CommentText" class="comment_editor" required></textarea>
-            </div>
-            <input type="submit" class="btn btn-sm btn-info shadow-sm w-25 mt-2" value="Save comment" />
+            <form method="post">
+                <div class="bg-white p-2">
+                    <textarea asp-for="@Model.CommentText" class="comment-editor" placeholder="Type message..." required></textarea>
+                </div>
+                <input type="submit" class="btn btn-sm btn-info shadow-sm mt-2" value="Save comment" />
+            </form>
         </div>
-    </form>
-}
-else
-{
-    <div id="comment_textbox" class="card card-header shadow-sm my-4 p-2">
-        <label><b>Post a comment</b></label>
-        <span asp-validation-for="@Model.CommentText" class="text-danger"></span>
-        <form method="post">
-            <div class="bg-white p-2">
-                <textarea asp-for="@Model.CommentText" class="comment-editor" placeholder="Type message..." required></textarea>
-            </div>
-            <input type="submit" class="btn btn-sm btn-info shadow-sm mt-2" value="Save comment" />
-        </form>
-    </div>
-}
+    }
+</div>
