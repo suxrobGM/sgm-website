@@ -90,11 +90,12 @@
                 <input class="form-control" asp-for="@Model.CommentAuthorEmail" required />
                 <span class="text-danger" asp-validation-for="@Model.CommentAuthorEmail"></span>
             </div>
+
             <div id="comment_textbox" class="card card-header shadow-sm my-4 p-2">
                 <label><b>Post a comment</b></label>
                 <span asp-validation-for="@Model.CommentText" class="text-danger"></span>
                 <div class="bg-white p-2">
-                    <textarea asp-for="@Model.CommentText" class="comment-editor" placeholder="Type message..." required></textarea>
+                    <textarea asp-for="@Model.CommentText" class="comment-editor" rows="4" placeholder="Type message..." required></textarea>
                 </div>
                 <input type="submit" class="btn btn-sm btn-info shadow-sm w-25 mt-2" value="Save comment" />
             </div>
@@ -107,7 +108,7 @@
             <span asp-validation-for="@Model.CommentText" class="text-danger"></span>
             <form method="post">
                 <div class="bg-white p-2">
-                    <textarea asp-for="@Model.CommentText" class="comment-editor" placeholder="Type message..." required></textarea>
+                    <textarea asp-for="@Model.CommentText" class="comment-editor" rows="4" placeholder="Type message..." required></textarea>
                 </div>
                 <input type="submit" class="btn btn-sm btn-info shadow-sm mt-2" value="Save comment" />
             </form>
