@@ -4,6 +4,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: 85px;
 }
 
 .main {
@@ -59,4 +60,8 @@ body {
     width: 100%;
     outline: 0px !important;
     -webkit-appearance: none;
+}
+
+.navbar {
+    background-color: #c7d4e5;
 }

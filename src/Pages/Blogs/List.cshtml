@@ -11,10 +11,10 @@
 }
 
 <div class="row">
-    <span class="h2">Sukhrob Ilyosbekov's blog</span>
+    <span class="h3 mx-auto">Sukhrob Ilyosbekov's blog</span>
     @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
     {
-        <a role="button" class="btn btn-sm btn-info ml-2 my-auto" asp-page="/Blogs/Create">Create Blog</a>
+        <a role="button" class="btn btn-sm btn-info mx-auto my-auto" asp-page="/Blogs/Create">Create Blog</a>
     }
     <hr class="w-100" />
 </div>

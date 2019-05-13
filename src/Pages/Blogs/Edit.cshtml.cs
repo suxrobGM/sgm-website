@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SuxrobGM_Resume.Data;
@@ -33,13 +34,11 @@ namespace SuxrobGM_Resume.Pages.Blogs
         {
             var blogId = RouteData.Values["id"].ToString();
             Blog = _context.Blogs.Where(i => i.Id == blogId).First();
-            BlogRelativeUrl = Blog.GetRelativeUrl();
             return Page();
         }
 
         [BindProperty]
         public Blog Blog { get; set; }
-        public string BlogRelativeUrl { get; set; }
 
         [BindProperty]
         public IFormFile UploadCoverPhoto { get; set; }
@@ -47,6 +46,7 @@ namespace SuxrobGM_Resume.Pages.Blogs
         public async Task<IActionResult> OnPostAsync()
         {
             var blogId = RouteData.Values["id"].ToString();
+            ModelState.Values.First().ValidationState = ModelValidationState.Valid;
 
             if (!ModelState.IsValid)
             {

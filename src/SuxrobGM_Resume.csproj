@@ -20,13 +20,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Reference Include="SuxrobGM.Sdk">
-      <HintPath>..\..\SuxrobGM_SDK\src\bin\Debug\netstandard2.0\SuxrobGM.Sdk.dll</HintPath>
-    </Reference>
+    <PackageReference Include="SuxrobGM.Sdk" Version="0.2.1" />
   </ItemGroup>
 
 </Project>
