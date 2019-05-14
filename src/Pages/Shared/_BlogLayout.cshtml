@@ -46,14 +46,12 @@
         </nav>
     </header>
 
-    <div class="main container">
+    <main role="main" class="container pb-3">
         <partial name="_CookieConsentPartial" />
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        @RenderBody()
+    </main>
 
-    <footer class="footer border-top">
+    <footer class="border-top">
         <div class="d-flex justify-content-center p-2">
             <div class="text-center">
                 <b>Follow on</b>

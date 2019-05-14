@@ -33,7 +33,7 @@
             <div class="card shadow-sm my-3">
                 <div class="card-header">
                     <b>@blog.Title</b>
-                    <b class="float-right">@blog.CreatedTime.ToString("MMM dd yyyy HH:mm")</b>
+                    <span class="float-right" style="font-size: small">@blog.CreatedTime.ToString("dd.MM.yyyy")</span>
                     @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
                     {
                         <div class="float-right mx-2">

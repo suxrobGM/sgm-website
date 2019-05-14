@@ -5,7 +5,7 @@
     Layout = "_BlogLayout";
 }
 
-@section SEO  {
+@section SEO {
     <meta name="author" content="@Model.Blog.Author" />
     <meta name="description" content="@Model.Blog.Summary" />
     <meta name="keywords" content="@Model.Blog.Tags" />
@@ -27,7 +27,7 @@
 <div class="card shadow-sm mb-4">
     <div class="card-header">
         <b>@Model.Blog.Title</b>
-        <b class="float-right">@Model.Blog.CreatedTime.ToString("MMM dd yyyy HH:mm")</b>
+        <span class="float-right" style="font-size: small">@Model.Blog.CreatedTime.ToString("dd.MM.yyyy")</span>
         @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
         {
             <div class="float-right mx-2">
@@ -97,7 +97,7 @@
                 <div class="bg-white p-2">
                     <textarea asp-for="@Model.CommentText" class="comment-editor" rows="4" placeholder="Type message..." required></textarea>
                 </div>
-                <input type="submit" class="btn btn-sm btn-info shadow-sm w-25 mt-2" value="Save comment" />
+                <input type="submit" class="btn btn-sm btn-info shadow-sm mt-2 col-5 col-sm-4 col-md-3" value="Save comment" />
             </div>
         </form>
     }
