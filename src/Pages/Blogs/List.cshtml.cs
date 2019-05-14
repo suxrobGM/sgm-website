@@ -25,7 +25,7 @@ namespace SuxrobGM_Resume.Pages.Blogs
         public async Task OnGetAsync(int pageIndex = 1)
         {
             PageIndex = pageIndex;
-            Blogs = await PaginatedList<Blog>.CreateAsync(_context.Blogs, pageIndex);
+            Blogs = await PaginatedList<Blog>.CreateAsync(_context.Blogs.OrderByDescending(i => i.CreatedTime), pageIndex);
         }
     }
 }
