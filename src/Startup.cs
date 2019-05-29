@@ -8,12 +8,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
+using SuxrobGM_Resume.Services;
 
 namespace SuxrobGM_Resume
 {
@@ -36,6 +38,17 @@ namespace SuxrobGM_Resume
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromDays(5);
+                options.SlidingExpiration = true;
+            });
+
+            services.Configure<DataProtectionTokenProviderOptions>(options =>
+            {
+                options.TokenLifespan = TimeSpan.FromHours(3);
+            });               
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddRazorPagesOptions(options =>
@@ -54,7 +67,9 @@ namespace SuxrobGM_Resume
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            
+
+            services.AddTransient<IEmailSender, EmailSender>();
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings

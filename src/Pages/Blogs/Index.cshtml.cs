@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SuxrobGM.Sdk.Pagination;
@@ -15,10 +17,12 @@ namespace SuxrobGM_Resume.Pages.Blogs
     public class BlogIndexModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        private readonly IEmailSender _emailSender;
 
-        public BlogIndexModel(ApplicationDbContext context)
+        public BlogIndexModel(ApplicationDbContext context, IEmailSender emailSender)
         {
             _context = context;
+            _emailSender = emailSender;
         }
        
         [Required]
@@ -79,10 +83,16 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 comment.AuthorName = CommentAuthorName;
             }
 
+            string htmlMsg = $@"<h3>Good day, <b>{Blog.Author.UserName}</b></h3>
+                                <p>Posted comment in your article in suxrobgm.net <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{Blog.Url}?pageIndex={pageNumber}#{comment.Id}")}'>{Blog.Title}</a></p>
+                                <br />
+                                <p>Sincerely, <b>SuxrobGM</b></p>
+                            ";
+
             Blog.Comments.Add(comment);
             await _context.SaveChangesAsync();
-
-            return RedirectToPage("", "", new { pageIndex = pageNumber }, "comment_textbox");
+            await _emailSender.SendEmailAsync(Blog.Author.Email, "Posted comment in your article", htmlMsg);
+            return RedirectToPage("", "", new { pageIndex = pageNumber }, comment.Id);
         }
 
         public async Task<IActionResult> OnPostReplyToCommentAsync(string commentId)
@@ -110,8 +120,17 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 Text = CommentText,
             };
 
+            string commentAuthor = comment.AuthorId == null ? comment.AuthorName : comment.Author.UserName;                   
+
+            string htmlMsg = $@"<h3>Good day, <b>{commentAuthor}</b></h3>
+                                <p>Replied to your comment in this suxrobgm.net article <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{blog.Url}?pageIndex={pageNumber}#{commentId}")}'>{blog.Title}</a></p>
+                                <br />
+                                <p>Sincerely, <b>SuxrobGM</b></p>
+                            ";
+
             comment.Replies.Add(reply);
             await _context.SaveChangesAsync();
+            await _emailSender.SendEmailAsync(comment.AuthorEmail, "Replied to your comment", htmlMsg);
             return RedirectToPage("", "", new { pageIndex = pageNumber }, commentId);
         }
 
