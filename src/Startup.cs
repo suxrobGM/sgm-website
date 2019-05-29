@@ -58,7 +58,7 @@ namespace SuxrobGM_Resume
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("AzureConnection"))
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                     .UseLazyLoadingProxies();
             });
 

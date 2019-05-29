@@ -8,7 +8,7 @@
 {
     var user = await UserManager.GetUserAsync(User);
     <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-        <img id="user_avatar" class="rounded-circle" width="30" height="30" src="@user.ProfilePhotoUrl" alt="avatar" />
+        <img id="user_avatar" class="rounded-circle" width="30" height="30" src="@user?.ProfilePhotoUrl" alt="avatar" />
         @UserManager.GetUserName(User)
     </a>
     <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">

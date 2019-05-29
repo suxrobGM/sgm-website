@@ -1,7 +1,7 @@
 ﻿@model SuxrobGM_Resume.Models.Comment
 
 
-<div id="@Model.Id" class="d-flex mb-2">
+<div id="@Model.Id" class="d-flex my-2">
     <div>
         @if (Model.Author == null)
         {
@@ -52,7 +52,7 @@
                 @Html.Raw(Model.Text)
             </div>
         </div>
-        <div id="@Model.Id" class="card-footer collapse">
+        <div id="@Model.Id" class="card-footer collapse p-0 p-sm-2">
             @foreach (var reply in Model.Replies)
             {
                 <partial name="_CommentsPartial" model="reply" />

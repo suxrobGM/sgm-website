@@ -120,7 +120,8 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 Text = CommentText,
             };
 
-            string commentAuthor = comment.AuthorId == null ? comment.AuthorName : comment.Author.UserName;                   
+            string commentAuthor = comment.AuthorId == null ? comment.AuthorName : comment.Author.UserName;
+            string commentEmail = comment.AuthorId == null ? comment.AuthorEmail : comment.Author.Email;
 
             string htmlMsg = $@"<h3>Good day, <b>{commentAuthor}</b></h3>
                                 <p>Replied to your comment in this suxrobgm.net article <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{blog.Url}?pageIndex={pageNumber}#{commentId}")}'>{blog.Title}</a></p>
@@ -130,7 +131,7 @@ namespace SuxrobGM_Resume.Pages.Blogs
 
             comment.Replies.Add(reply);
             await _context.SaveChangesAsync();
-            await _emailSender.SendEmailAsync(comment.AuthorEmail, "Replied to your comment", htmlMsg);
+            await _emailSender.SendEmailAsync(commentEmail, "Replied to your comment", htmlMsg);
             return RedirectToPage("", "", new { pageIndex = pageNumber }, commentId);
         }
 
