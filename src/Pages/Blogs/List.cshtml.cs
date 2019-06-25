@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SuxrobGM.Sdk.Pagination;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 
 namespace SuxrobGM_Resume.Pages.Blogs
-{    
+{
     public class BlogsListModel : PageModel
     {
         private ApplicationDbContext _context;
