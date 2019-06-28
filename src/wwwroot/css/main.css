@@ -1138,3 +1138,53 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 #copyright p a:hover {
   color: #00b4d9;
 }
+
+/* ==========================================================================
+  Skills Section
+   ========================================================================== */
+
+#skills {
+    background: #e3e3e3;
+}
+
+.skills-title {
+    color: black;
+    border-bottom: 1px dotted black;
+    padding-left: 0;
+    margin-left: 0;
+    font-size: 1.3rem;
+    line-height: 22px;
+    margin: 0;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    padding-bottom: 5px;
+}
+
+.skills-list {
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+.progress {
+    position: relative;
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.progress-bar > .progress-type {
+    position: absolute;
+    left: 0px;
+    font-size: 13px;
+    padding: 3px 30px 2px 10px;
+    color: #ffffff;
+    background-color: rgba(25, 25, 25, 0.2);
+}
+
+.progress-bar > .progress-completed {
+    position: absolute;
+    right: 0px;
+    font-weight: 800;
+    padding: 3px 10px 2px;
+    color: #888;
+    font-size: 14px;
+}

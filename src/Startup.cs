@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ServerSideAnalytics;
+using ServerSideAnalytics.SqlServer;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 using SuxrobGM_Resume.Services;
@@ -18,6 +20,8 @@ namespace SuxrobGM_Resume
 {
     public class Startup
     {
+        private const string dbConnectSectionName = "AzureConnection";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,24 +32,23 @@ namespace SuxrobGM_Resume
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string connectionString = Configuration.GetConnectionString(dbConnectSectionName);
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
             services.ConfigureApplicationCookie(options =>
             {
                 options.ExpireTimeSpan = TimeSpan.FromDays(5);
                 options.SlidingExpiration = true;
             });
-
             services.Configure<DataProtectionTokenProviderOptions>(options =>
             {
                 options.TokenLifespan = TimeSpan.FromHours(3);
             });               
-
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddRazorPagesOptions(options =>
@@ -55,10 +58,9 @@ namespace SuxrobGM_Resume
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("AzureConnection"))
+                options.UseSqlServer(connectionString)
                     .UseLazyLoadingProxies();
             });
-
             services.AddDefaultIdentity<User>()
                 .AddRoles<UserRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
@@ -66,7 +68,7 @@ namespace SuxrobGM_Resume
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IEmailSender, EmailSender>();
-
+            //services.AddTransient<IAnalyticStore>(_ => GetAnalyticStore(connectionString));
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -102,11 +104,21 @@ namespace SuxrobGM_Resume
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseMvc();
+            //app.UseServerSideAnalytics(GetAnalyticStore(Configuration.GetConnectionString(dbConnectSectionName)));
+                //.ExcludePath("/js", "/lib", "/css") // Request into those url spaces will be not recorded
+                //.ExcludeExtension(".jpg", ".png", ".ico", "robots.txt", "sitemap.xml");  // Request ending with this extension will be not recorded
+                //.ExcludeLoopBack(); // Request coming from local host will be not recorded
 
             //CreateUserRoles(provider);
             //AddDefaultProfilePhoto(provider, env);
         }
 
+        private IAnalyticStore GetAnalyticStore(string connectionString)
+        {
+            return new SqlServerAnalyticStore(connectionString)
+                    .RequestTable("MyRequestTable")
+                    .GeoIpTable("MyGeoIpTable");
+        }
         private void CreateUserRoles(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<UserRole>>();
