@@ -5,49 +5,43 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>http://suxrobgm.net/Blog</loc>
+    <loc>https://suxrobgm.net/Blog</loc>
+    <changefreq>Monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2019-06-25T08:26:17Z</lastmod>
+  </url>
+  <url>
+    <loc>https://suxrobgm.net/</loc>
     <changefreq>Monthly</changefreq>
     <priority>1</priority>
     <lastmod>2019-06-25T08:26:17Z</lastmod>
   </url>
   <url>
-    <loc>http://suxrobgm.net/</loc>
+    <loc>https://suxrobgm.net/Identity/Account/Register</loc>
+    <changefreq>Monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2019-06-25T08:26:17Z</lastmod>
+  </url>
+  <url>
+    <loc>https://suxrobgm.net/Identity/Account/</loc>
+    <changefreq>Monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2019-06-25T08:26:17Z</lastmod>
+  </url>
+  <url>
+    <loc>https://suxrobgm.net/Identity/Account/Login</loc>
+    <changefreq>Monthly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2019-06-25T08:26:17Z</lastmod>
+  </url>
+  <url>
+    <loc>https://suxrobgm.net/Blog/Introducing-NET-5</loc>
     <changefreq>Monthly</changefreq>
     <priority>1</priority>
     <lastmod>2019-06-25T08:26:17Z</lastmod>
   </url>
   <url>
-    <loc>http://suxrobgm.net/Identity/Account/Register</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>1</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>http://suxrobgm.net/Identity/Account/</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>1</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>http://suxrobgm.net/Identity/Account/Login</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>1</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>http://suxrobgm.net/Blog/Introducing-NET-5</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>1</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>http://suxrobgm.net/Blog/</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>1</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>http://suxrobgm.net/Blog/Announcing-ML.NET-1.0-RC</loc>
+    <loc>https://suxrobgm.net/Blog/Announcing-ML.NET-1.0-RC</loc>
     <changefreq>Monthly</changefreq>
     <priority>1</priority>
     <lastmod>2019-06-25T08:26:17Z</lastmod>
