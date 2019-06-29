@@ -5,9 +5,9 @@ using SuxrobGM.Sdk.Utils;
 
 namespace SuxrobGM_Resume.Models
 {
-    public class Blog
+    public class Article
     {
-        public Blog()
+        public Article()
         {
             Id = GeneratorId.GenerateLong();
             CreatedTime = DateTime.Now;
@@ -30,7 +30,7 @@ namespace SuxrobGM_Resume.Models
         public string Content { get; set; }
 
         [Required]
-        [Display(Name = "Blog url")]
+        [Display(Name = "Article url")]
         public string Url { get; set; }
 
         [Required]
@@ -47,7 +47,7 @@ namespace SuxrobGM_Resume.Models
 
         public string GetRelativeUrl()
         {
-            return Url.Remove(0, "/Blogs/".Length);
+            return Url.Remove(0, "/Blog/".Length);
         }     
     }
 }

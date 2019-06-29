@@ -53,7 +53,7 @@ namespace SuxrobGM_Resume
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddRazorPagesOptions(options =>
                 {
-                    options.Conventions.AddPageRoute("/Blogs/List", "/Blogs");
+                    options.Conventions.AddPageRoute("/Blog/List", "/Blog");
                 });
 
             services.AddDbContext<ApplicationDbContext>(options =>

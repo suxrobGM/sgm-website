@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using ImageMagick;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 
 namespace SuxrobGM_Resume.Models
@@ -12,7 +7,7 @@ namespace SuxrobGM_Resume.Models
     {
         public User()
         {
-            Blogs = new List<Blog>();
+            Articles = new List<Article>();
             Comments = new List<Comment>();
         }
 
@@ -20,7 +15,7 @@ namespace SuxrobGM_Resume.Models
         public string LastName { get; set; }
         public string ProfilePhotoUrl { get; set; }
 
-        public virtual ICollection<Blog> Blogs { get; set; }
+        public virtual ICollection<Article> Articles { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }        
     }
 }

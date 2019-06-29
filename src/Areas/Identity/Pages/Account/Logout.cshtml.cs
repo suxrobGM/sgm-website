@@ -27,7 +27,7 @@ namespace SuxrobGM_Resume.Areas.Identity.Pages.Account
         {
         }
 
-        public async Task<IActionResult> OnPost(string returnUrl = "/Blogs")
+        public async Task<IActionResult> OnPost(string returnUrl = "/Blog")
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");

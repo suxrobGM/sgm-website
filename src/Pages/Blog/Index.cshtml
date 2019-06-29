@@ -1,43 +1,43 @@
 ﻿@page "{blogUrl}"
-@model SuxrobGM_Resume.Pages.Blogs.BlogIndexModel
+@model SuxrobGM_Resume.Pages.Blog.BlogIndexModel
 @{
-    ViewData["Title"] = Model.Blog.Title;
+    ViewData["Title"] = Model.Article.Title;
     Layout = "_BlogLayout";
 }
 
 @section SEO {
-    <meta name="author" content="@Model.Blog.Author" />
-    <meta name="description" content="@Model.Blog.Summary" />
-    <meta name="keywords" content="@Model.Blog.Tags" />
-    <meta name="image" content="@Model.Blog.CoverPhotoUrl" />
-    <meta property="og:title" content="@Model.Blog.Title" />
-    <meta property="og:description" content="@Model.Blog.Summary" />
-    <meta property="og:image" content="@Model.Blog.CoverPhotoUrl" />
+    <meta name="author" content="@Model.Article.Author" />
+    <meta name="description" content="@Model.Article.Summary" />
+    <meta name="keywords" content="@Model.Article.Tags" />
+    <meta name="image" content="@Model.Article.CoverPhotoUrl" />
+    <meta property="og:title" content="@Model.Article.Title" />
+    <meta property="og:description" content="@Model.Article.Summary" />
+    <meta property="og:image" content="@Model.Article.CoverPhotoUrl" />
     <meta property='og:type' content='article' />
-    <meta property="article:published_time" content="@Model.Blog.CreatedTime" />
-    <meta property="article:author" content="@Model.Blog.Author" />
-    <meta property="article:tags" content="@Model.Blog.Tags" />
+    <meta property="article:published_time" content="@Model.Article.CreatedTime" />
+    <meta property="article:author" content="@Model.Article.Author" />
+    <meta property="article:tags" content="@Model.Article.Tags" />
 
     @{
-        string blogUrlFull = "https://suxrobgm.net/blogs/" + Model.Blog.GetRelativeUrl();
-        <meta property='og:site_name' content="@blogUrlFull" />
+        string articleAbsUrl = "https://suxrobgm.net/blog/" + Model.Article.GetRelativeUrl();
+        <meta property='og:site_name' content="@articleAbsUrl" />
     }
 }
 
 <div class="card shadow-sm mb-4">
     <div class="card-header">
-        <b>@Model.Blog.Title</b>
-        <span class="float-right" style="font-size: small">@Model.Blog.CreatedTime.ToString("dd.MM.yyyy")</span>
+        <b>@Model.Article.Title</b>
+        <span class="float-right" style="font-size: small">@Model.Article.CreatedTime.ToString("dd.MM.yyyy")</span>
         @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
         {
             <div class="float-right mx-2">
-                <a asp-page="/Blogs/Edit" asp-route-id="@Model.Blog.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
-                <a asp-page="/Blogs/Delete" asp-route-Id="@Model.Blog.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
+                <a asp-page="/Blog/Edit" asp-route-id="@Model.Article.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
+                <a asp-page="/Blog/Delete" asp-route-Id="@Model.Article.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
             </div>
         }
     </div>
     <div class="card-body mb-2">
-        @Html.Raw(Model.Blog.Content)
+        @Html.Raw(Model.Article.Content)
     </div>
     <div class="card-footer">
         <b>Tags</b><br />
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-@if (Model.Blog.Comments.Count > 0)
+@if (Model.Article.Comments.Count > 0)
 {
     <div id="comments" class="mb-2">
         @foreach (var comment in Model.Comments)
@@ -69,7 +69,7 @@
             <pagination class="mx-auto" page-index="@Model.Comments.PageIndex"
                         total-pages="@Model.Comments.TotalPages"
                         page-method="pageIndex" page-fragment="pagination"
-                        base-url="@Model.Blog.Url" />
+                        base-url="@Model.Article.Url" />
         </div>
     </div>
 }

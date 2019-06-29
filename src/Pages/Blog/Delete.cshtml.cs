@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 
-namespace SuxrobGM_Resume.Pages.Blogs
+namespace SuxrobGM_Resume.Pages.Blog
 {
     [Authorize(Roles = "SuperAdmin,Admin")]
     public class DeleteModel : PageModel
@@ -22,8 +19,8 @@ namespace SuxrobGM_Resume.Pages.Blogs
         }
 
         [BindProperty]
-        public Blog Blog { get; set; }
-        public string BlogRelativeUrl { get; set; }
+        public Article Article { get; set; }
+        public string ArticleRelativeUrl { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -32,12 +29,12 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 return NotFound();
             }
 
-            Blog = await _context.Blogs
+            Article = await _context.Articles
                 .Include(b => b.Author).FirstOrDefaultAsync(m => m.Id == id);
 
-            BlogRelativeUrl = Blog.GetRelativeUrl();
+            ArticleRelativeUrl = Article.GetRelativeUrl();
 
-            if (Blog == null)
+            if (Article == null)
             {
                 return NotFound();
             }
@@ -51,15 +48,15 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 return NotFound();
             }
 
-            Blog = await _context.Blogs.FindAsync(id);
+            Article = await _context.Articles.FindAsync(id);
 
-            if (Blog != null)
+            if (Article != null)
             {
-                _context.Blogs.Remove(Blog);
+                _context.Articles.Remove(Article);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("/Blogs/List");
+            return RedirectToPage("/Blog/List");
         }
     }
 }

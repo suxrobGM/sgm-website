@@ -1,0 +1,84 @@
+﻿@page "/Blog/List"
+@model SuxrobGM_Resume.Pages.Blog.BlogListModel
+@{
+    ViewData["Title"] = "Blog";
+    Layout = "_BlogLayout";
+}
+
+@section SEO  {
+    <meta name="author" content="Sukhrob Ilyosbekov" />
+    <meta name="description" content="Sukhrob Ilyosbekov's Blog" />
+}
+
+<div class="row">
+    <div class="mx-auto">
+        <span class="h3 ml-2 ml-sm-0">Sukhrob Ilyosbekov's blog</span>
+        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+        {
+            <a role="button" class="btn btn-sm btn-info ml-2 my-auto" asp-page="/Blog/Create">Create Article</a>
+        }
+    </div>   
+    <hr class="w-100" />
+</div>
+
+<div>
+    @if (Model.Articles.Count() == 0)
+    {
+        <h4>There have not any articles ;(</h4>
+    }
+    else
+    {
+        @foreach (var article in Model.Articles)
+        {
+            <div class="card shadow-sm my-3">
+                <div class="card-header">
+                    <b>@article.Title</b>
+                    <span class="float-right" style="font-size: small">@article.CreatedTime.ToString("dd.MM.yyyy")</span>
+                    @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                    {
+                        <div class="float-right mx-2">
+                            <a asp-page="/Blog/Edit" asp-route-id="@article.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
+                            <a asp-page="/Blog/Delete" asp-route-Id="@article.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
+                        </div>
+                    }
+                </div>
+                <div class="card-body">
+                    <p>@article.Summary</p>
+
+                    @if (!string.IsNullOrEmpty(article.CoverPhotoUrl))
+                    {
+                        <img class="img-fluid d-block mx-auto" src="@article.CoverPhotoUrl" alt="Cover photo" />
+                    }
+
+                    <a role="button" class="btn bg-light btn-outline-dark mt-3" asp-page="/Blog/Index" asp-route-blogUrl="@article.GetRelativeUrl()">Read More »</a>
+                </div>
+                <div class="card-footer">
+                    <div>
+                        @if (article.Comments == null)
+                        {
+                            <span>
+                                Comments<span class="badge badge-dark rounded-circle">0</span>
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                Comments <span class="badge badge-dark rounded-circle">@article.Comments.Count</span>
+                            </span>
+                        }
+
+                    </div>
+                    <div class="my-2">
+                        @foreach (var tag in article.Tags.Split(","))
+                        {
+                            <span class="badge badge-dark mr-2">@tag</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+        <div id="pagination" class="d-flex">
+            <pagination class="mx-auto" page-index="@Model.Articles.PageIndex" total-pages="@Model.Articles.TotalPages" base-url="/Blog/List" />
+        </div>
+    }
+</div>

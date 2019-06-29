@@ -9,7 +9,7 @@ using SuxrobGM.Sdk.Pagination;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 
-namespace SuxrobGM_Resume.Pages.Blogs
+namespace SuxrobGM_Resume.Pages.Blog
 {
     public class BlogIndexModel : PageModel
     {
@@ -36,16 +36,16 @@ namespace SuxrobGM_Resume.Pages.Blogs
         public string CommentAuthorEmail { get; set; }
 
         public int PageIndex { get; set; }
-        public Blog Blog { get; set; }
+        public Article Article { get; set; }
         public PaginatedList<Comment> Comments { get; set; }
         public string[] BlogTags { get; set; }
 
         public void OnGetAsync(int pageIndex = 1)
         {
-            string blogUrl = RouteData.Values["blogUrl"].ToString();
-            Blog = _context.Blogs.Where(i => i.GetRelativeUrl() == blogUrl).First();
-            BlogTags = Blog.Tags.Split(',');
-            Comments = PaginatedList<Comment>.Create(Blog.Comments, pageIndex);
+            string articleUrl = RouteData.Values["blogUrl"].ToString();
+            Article = _context.Articles.Where(i => i.GetRelativeUrl() == articleUrl).First();
+            BlogTags = Article.Tags.Split(',');
+            Comments = PaginatedList<Comment>.Create(Article.Comments, pageIndex);
             PageIndex = pageIndex;
 
             ViewData.Add("PageIndex", PageIndex);
@@ -65,8 +65,8 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 ModelState.AddModelError("CommentText", "Empty comment text");
                 return Page();
             }
-            
-            Blog = _context.Blogs.Where(i => i.GetRelativeUrl() == blogUrl).First();
+
+            Article = _context.Articles.Where(i => i.GetRelativeUrl() == blogUrl).First();
             var comment = new Comment() { Text = CommentText };
 
             if (User.Identity.IsAuthenticated)
@@ -80,15 +80,15 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 comment.AuthorName = CommentAuthorName;
             }
 
-            string htmlMsg = $@"<h3>Good day, <b>{Blog.Author.UserName}</b></h3>
-                                <p>Posted comment in your article in suxrobgm.net <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{Blog.Url}?pageIndex={pageNumber}#{comment.Id}")}'>{Blog.Title}</a></p>
+            string htmlMsg = $@"<h3>Good day, <b>{Article.Author.UserName}</b></h3>
+                                <p>Posted comment in your article in suxrobgm.net <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{Article.Url}?pageIndex={pageNumber}#{comment.Id}")}'>{Article.Title}</a></p>
                                 <br />
                                 <p>Sincerely, <b>SuxrobGM</b></p>
                             ";
 
-            Blog.Comments.Add(comment);
+            Article.Comments.Add(comment);
             await _context.SaveChangesAsync();
-            await _emailSender.SendEmailAsync(Blog.Author.Email, "Posted comment in your article", htmlMsg);
+            await _emailSender.SendEmailAsync(Article.Author.Email, "Posted comment in your article", htmlMsg);
             return RedirectToPage("", "", new { pageIndex = pageNumber }, comment.Id);
         }
 
@@ -100,7 +100,7 @@ namespace SuxrobGM_Resume.Pages.Blogs
                 pageNumber = 1;
             }
 
-            var blog = _context.Blogs.Where(i => i.GetRelativeUrl() == blogUrl).First();
+            var blog = _context.Articles.Where(i => i.GetRelativeUrl() == blogUrl).First();
             var author = _context.Users.Where(i => i.UserName == User.Identity.Name).First();
             var comment = _context.Comments.Where(i => i.Id == commentId).FirstOrDefault();
 

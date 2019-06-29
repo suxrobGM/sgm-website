@@ -26,8 +26,8 @@ namespace SuxrobGM_Resume.Models
         public string ParentId { get; set; }
         public virtual Comment Parent { get; set; }
 
-        public string BlogId { get; set; }
-        public virtual Blog Blog { get; set; }
+        public string ArticleId { get; set; }
+        public virtual Article Article { get; set; }
 
         public virtual ICollection<Comment> Replies { get; set; }
     }

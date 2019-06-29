@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 using SuxrobGM_Resume.Utils;
 
-namespace SuxrobGM_Resume.Pages.Blogs
+namespace SuxrobGM_Resume.Pages.Blog
 {
     [Authorize(Roles = "SuperAdmin,Admin,Editor")]
     public class CreateModel : PageModel
@@ -36,7 +31,7 @@ namespace SuxrobGM_Resume.Pages.Blogs
         }
 
         [BindProperty]
-        public Blog Blog { get; set; }      
+        public Article Article { get; set; }      
 
         [BindProperty]
         public IFormFile UploadCoverPhoto { get; set; }
@@ -44,8 +39,8 @@ namespace SuxrobGM_Resume.Pages.Blogs
         public async Task<IActionResult> OnPostAsync()
         {
             var currentUser = _context.Users.Where(i => i.UserName == User.Identity.Name).First();
-            Blog.Url = "/Blogs/" + Blog.Url.Trim().Replace(" ", "-");
-            Blog.Author = currentUser;
+            Article.Url = "/Blog/" + Article.Url.Trim().Replace(" ", "-");
+            Article.Author = currentUser;
 
             if (!ModelState.IsValid)
             {
@@ -55,22 +50,22 @@ namespace SuxrobGM_Resume.Pages.Blogs
             if (UploadCoverPhoto != null)
             {
                 var image = UploadCoverPhoto;
-                var fileName = $"{Blog.Id}_cover.jpg";
+                var fileName = $"{Article.Id}_cover.jpg";
                 var fileNameAbsPath = Path.Combine(_env.WebRootPath, "db_files", "img", fileName);
                 ImageHelper.ResizeToRectangle(image.OpenReadStream(), fileNameAbsPath);
-                Blog.CoverPhotoUrl = $"/db_files/img/{fileName}";
+                Article.CoverPhotoUrl = $"/db_files/img/{fileName}";
             }
 
-            if (_context.Blogs.Where(i => i.Url == Blog.Url).Any())
+            if (_context.Articles.Where(i => i.Url == Article.Url).Any())
             {
                 ModelState.AddModelError("Blog.Url", "This blog url exists please change it");
                 return Page();
             }
            
-            _context.Blogs.Add(Blog);
+            _context.Articles.Add(Article);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("/Blogs/List");
+            return RedirectToPage("/Blog/List");
         }
     }
 }

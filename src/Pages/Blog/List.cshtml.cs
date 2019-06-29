@@ -7,26 +7,26 @@ using SuxrobGM.Sdk.Pagination;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 
-namespace SuxrobGM_Resume.Pages.Blogs
+namespace SuxrobGM_Resume.Pages.Blog
 {
-    public class BlogsListModel : PageModel
+    public class BlogListModel : PageModel
     {
         private ApplicationDbContext _context;
         //private IAnalyticStore _analyticStore;
 
-        public BlogsListModel(ApplicationDbContext context)
+        public BlogListModel(ApplicationDbContext context)
         {
             _context = context;
             //_analyticStore = analyticStore;
         }
 
-        public PaginatedList<Blog> Blogs { get; set; }
+        public PaginatedList<Article> Articles { get; set; }
         public int PageIndex { get; set; }
 
         public async Task OnGetAsync(int pageIndex = 1)
         {
             PageIndex = pageIndex;
-            Blogs = await PaginatedList<Blog>.CreateAsync(_context.Blogs.OrderByDescending(i => i.CreatedTime), pageIndex);
+            Articles = await PaginatedList<Article>.CreateAsync(_context.Articles.OrderByDescending(i => i.CreatedTime), pageIndex);
             //var t = await _analyticStore.IpAddressesAsync(DateTime.Now);
         }
     }

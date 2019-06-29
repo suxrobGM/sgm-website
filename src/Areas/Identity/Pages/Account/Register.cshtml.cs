@@ -72,7 +72,7 @@ namespace SuxrobGM_Resume.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/Blogs");
+            returnUrl = returnUrl ?? Url.Content("~/Blog");
             var defaultUserPhoto = "/img/user_def_icon.png";
 
             if (ModelState.IsValid)

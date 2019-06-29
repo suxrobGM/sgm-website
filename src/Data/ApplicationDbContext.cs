@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SuxrobGM_Resume.Models;
@@ -19,14 +15,14 @@ namespace SuxrobGM_Resume.Data
         {
         }
 
-        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Article> Articles { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {               
-                optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=SGM_BlogsDB;Trusted_Connection=True;MultipleActiveResultSets=true")
+                optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV13;Database=SGM_BlogDB;Trusted_Connection=True;MultipleActiveResultSets=true")
                     .UseLazyLoadingProxies();
             }
         }
@@ -44,14 +40,14 @@ namespace SuxrobGM_Resume.Data
             builder.Entity<IdentityUserToken<string>>(entity => { entity.ToTable("UserToken"); });
             builder.Entity<IdentityRoleClaim<string>>(entity => { entity.ToTable("RoleClaims"); });
 
-            builder.Entity<Blog>(entity =>
+            builder.Entity<Article>(entity =>
             {
                 entity.HasOne(m => m.Author)
-                    .WithMany(m => m.Blogs)
+                    .WithMany(m => m.Articles)
                     .HasForeignKey(m => m.AuthorId);
 
                 entity.HasMany(m => m.Comments)
-                    .WithOne(m => m.Blog)
+                    .WithOne(m => m.Article)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
