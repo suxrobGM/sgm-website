@@ -346,6 +346,7 @@ a.back-to-top:hover, a.back-to-top:focus {
 
 .counter-section {
   background: url(../img/background/bg-1.jpg);
+  background-size: cover;
   overflow: hidden;
   position: relative;
 }
@@ -1188,3 +1189,28 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
     color: #888;
     font-size: 14px;
 }
+
+.blockquote {
+    margin: 50px auto;
+    font-style: italic;
+    color: white;
+    padding: 1.2em 30px 1.2em 75px;
+    border-left: 8px solid rgba(255, 255, 255, 0.30);
+    line-height: 1.6;
+    position: relative;
+    background-color: rgba(0, 0, 255, 0.15);
+}
+
+    .blockquote::before {
+        font-family: Arial;
+        content: "\201C";
+        color: rgba(255, 255, 255, 0.30);
+        font-size: 4em;
+        position: absolute;
+        left: 10px;
+        top: -10px;
+    }
+
+    .blockquote::after {
+        content: '';
+    }

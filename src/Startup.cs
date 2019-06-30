@@ -20,7 +20,7 @@ namespace SuxrobGM_Resume
 {
     public class Startup
     {
-        private const string dbConnectSectionName = "AzureConnection";
+        private const string dbConnectSectionName = "DefaultConnection";
 
         public Startup(IConfiguration configuration)
         {
