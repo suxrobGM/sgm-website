@@ -16,6 +16,8 @@ using ServerSideAnalytics.Extensions;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 using SuxrobGM_Resume.Services;
+using Microsoft.AspNetCore.HttpOverrides;
+using System.Net;
 
 namespace SuxrobGM_Resume
 {
@@ -36,6 +38,11 @@ namespace SuxrobGM_Resume
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+            services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders = ForwardedHeaders.All;
+                options.KnownProxies.Add(IPAddress.Parse("::ffff:172.16.1.1"));
             });
             services.ConfigureApplicationCookie(options =>
             {
@@ -83,10 +90,12 @@ namespace SuxrobGM_Resume
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider provider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseForwardedHeaders();
+
             if (env.IsDevelopment())
-            {
+            {               
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -95,14 +104,15 @@ namespace SuxrobGM_Resume
                 app.UseHsts(); // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             }
 
+            app.UseServerSideAnalytics(GetAnalyticStore(Configuration.GetConnectionString("AnalyticsAzureConnection")))
+                .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
+                .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
+                .ExcludeLoopBack(); // Request coming from local host will be not recorded
+
             app.UseHttpsRedirection();                                
             app.UseStaticFiles();
             app.UseCookiePolicy();
-            app.UseAuthentication();
-            app.UseServerSideAnalytics(GetAnalyticStore(Configuration.GetConnectionString("AnalyticsAzureConnection")))
-                .ExcludePath("/js", "/lib", "/css") // Request into those url spaces will be not recorded
-                .ExcludeExtension(".jpg", ".png", ".ico", "robots.txt", "sitemap.xml")  // Request ending with this extension will be not recorded
-                .ExcludeLoopBack(); // Request coming from local host will be not recorded
+            app.UseAuthentication();            
             app.UseMvc();
             
             //CreateUserRoles(provider);
@@ -111,10 +121,14 @@ namespace SuxrobGM_Resume
 
         private IAnalyticStore GetAnalyticStore(string connectionString)
         {
-            return new SqlServerAnalyticStore(connectionString)
-                .RequestTable("suxrobgm.net.Requests")
-                .GeoIpTable("suxrobgm.net.GeoIps")
-                .UseIpApiFailOver();
+            var store = new SqlServerAnalyticStore(connectionString)
+                            .RequestTable("suxrobgm.net.Requests")
+                            .GeoIpTable("suxrobgm.net.GeoIps")
+                            .UseIpApiFailOver()
+                            .UseIpInfoFailOver()
+                            .UseIpStackFailOver(Configuration.GetConnectionString("IpStackToken"));
+
+            return store;
         }
         private void CreateUserRoles(IServiceProvider serviceProvider)
         {
