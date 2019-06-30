@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServerSideAnalytics;
 using ServerSideAnalytics.SqlServer;
+using ServerSideAnalytics.Extensions;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 using SuxrobGM_Resume.Services;
@@ -20,8 +21,6 @@ namespace SuxrobGM_Resume
 {
     public class Startup
     {
-        private const string dbConnectSectionName = "AzureConnection";
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -32,8 +31,6 @@ namespace SuxrobGM_Resume
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connectionString = Configuration.GetConnectionString(dbConnectSectionName);
-
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -58,7 +55,7 @@ namespace SuxrobGM_Resume
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(connectionString)
+                options.UseSqlServer(Configuration.GetConnectionString("AzureConnection"))
                     .UseLazyLoadingProxies();
             });
             services.AddDefaultIdentity<User>()
@@ -68,7 +65,7 @@ namespace SuxrobGM_Resume
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IEmailSender, EmailSender>();
-            //services.AddTransient<IAnalyticStore>(_ => GetAnalyticStore(connectionString));
+            //services.AddTransient<IAnalyticStore>(_ => GetAnalyticStore(Configuration.GetConnectionString("AnalyticsAzureConnection")));
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -94,21 +91,20 @@ namespace SuxrobGM_Resume
             }
             else
             {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                app.UseExceptionHandler("/Error");                
+                app.UseHsts(); // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             }
 
-            app.UseHttpsRedirection();           
+            app.UseHttpsRedirection();                                
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseServerSideAnalytics(GetAnalyticStore(Configuration.GetConnectionString("AnalyticsAzureConnection")))
+                .ExcludePath("/js", "/lib", "/css") // Request into those url spaces will be not recorded
+                .ExcludeExtension(".jpg", ".png", ".ico", "robots.txt", "sitemap.xml")  // Request ending with this extension will be not recorded
+                .ExcludeLoopBack(); // Request coming from local host will be not recorded
             app.UseMvc();
-            //app.UseServerSideAnalytics(GetAnalyticStore(Configuration.GetConnectionString(dbConnectSectionName)));
-                //.ExcludePath("/js", "/lib", "/css") // Request into those url spaces will be not recorded
-                //.ExcludeExtension(".jpg", ".png", ".ico", "robots.txt", "sitemap.xml");  // Request ending with this extension will be not recorded
-                //.ExcludeLoopBack(); // Request coming from local host will be not recorded
-
+            
             //CreateUserRoles(provider);
             //AddDefaultProfilePhoto(provider, env);
         }
@@ -116,8 +112,9 @@ namespace SuxrobGM_Resume
         private IAnalyticStore GetAnalyticStore(string connectionString)
         {
             return new SqlServerAnalyticStore(connectionString)
-                    .RequestTable("MyRequestTable")
-                    .GeoIpTable("MyGeoIpTable");
+                .RequestTable("suxrobgm.net.Requests")
+                .GeoIpTable("suxrobgm.net.GeoIps")
+                .UseIpApiFailOver();
         }
         private void CreateUserRoles(IServiceProvider serviceProvider)
         {

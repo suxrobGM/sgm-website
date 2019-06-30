@@ -32,6 +32,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="ServerSideAnalytics" Version="5.1.0" />
+    <PackageReference Include="ServerSideAnalytics.Extensions" Version="2.2.0" />
     <PackageReference Include="ServerSideAnalytics.SqlServer" Version="5.1.2" />
     <PackageReference Include="SuxrobGM.Sdk" Version="0.2.1" />
   </ItemGroup>
