@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,17 +8,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServerSideAnalytics;
 using ServerSideAnalytics.SqlServer;
-using ServerSideAnalytics.Extensions;
 using SuxrobGM_Resume.Data;
 using SuxrobGM_Resume.Models;
 using SuxrobGM_Resume.Services;
-using Microsoft.AspNetCore.HttpOverrides;
-using System.Net;
+using SuxrobGM.Sdk.Extensions;
 
 namespace SuxrobGM_Resume
 {
@@ -72,7 +72,7 @@ namespace SuxrobGM_Resume
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IEmailSender, EmailSender>();
-            //services.AddTransient<IAnalyticStore>(_ => GetAnalyticStore(Configuration.GetConnectionString("AnalyticsAzureConnection")));
+            services.AddTransient<IAnalyticStore>(_ => GetAnalyticStore());
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -104,7 +104,7 @@ namespace SuxrobGM_Resume
                 app.UseHsts(); // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             }
 
-            app.UseServerSideAnalytics(GetAnalyticStore(Configuration.GetConnectionString("AnalyticsAzureConnection")))
+            app.UseServerSideAnalytics(GetAnalyticStore())
                 .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
                 .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
                 .ExcludeLoopBack(); // Request coming from local host will be not recorded
@@ -119,14 +119,14 @@ namespace SuxrobGM_Resume
             //AddDefaultProfilePhoto(provider, env);
         }
 
-        private IAnalyticStore GetAnalyticStore(string connectionString)
+        private IAnalyticStore GetAnalyticStore()
         {
-            var store = new SqlServerAnalyticStore(connectionString)
+            var store = new SqlServerAnalyticStore(Configuration.GetConnectionString("AnalyticsAzureConnection"))
                             .RequestTable("suxrobgm.net.Requests")
                             .GeoIpTable("suxrobgm.net.GeoIps")
-                            .UseIpApiFailOver()
-                            .UseIpInfoFailOver()
-                            .UseIpStackFailOver(Configuration.GetConnectionString("IpStackToken"));
+                            .UseIpApiFailOver();
+                            //.UseIpInfoFailOver()
+                            //.UseIpStackFailOver(Configuration.GetConnectionString("IpStackToken"));
 
             return store;
         }
@@ -160,7 +160,7 @@ namespace SuxrobGM_Resume
             User admin = userManager.FindByEmailAsync("suxrobgm@gmail.com").Result;
             userManager.AddToRoleAsync(admin, Role.SuperAdmin.ToString()).Wait();
         }
-        private void AddDefaultProfilePhoto(IServiceProvider provider, IHostingEnvironment env)
+        private void AddDefaultProfilePhoto(IServiceProvider provider)
         {
             var db = provider.GetRequiredService<ApplicationDbContext>();
             var user = db.Users.Where(i => i.UserName.ToLower() == "suxrobgm").First();
