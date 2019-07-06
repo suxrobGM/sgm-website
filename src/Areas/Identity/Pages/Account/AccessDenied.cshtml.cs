@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SuxrobGM_Resume.Areas.Identity.Pages.Account
+namespace SuxrobGM_Website.Areas.Identity.Pages.Account
 {
     public class AccessDeniedModel : PageModel
     {

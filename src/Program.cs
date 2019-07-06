@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace SuxrobGM_Resume
+namespace SuxrobGM_Website
 {
     public class Program
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SuxrobGM_Resume.Migrations
+namespace SuxrobGM_Website.Migrations
 {
     public partial class added_user_profile_photo : Migration
     {

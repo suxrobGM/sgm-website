@@ -9,8 +9,8 @@ using SuxrobGM_Website.Data;
 namespace SuxrobGM_Website.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190418144430_added_user_profile_photo")]
-    partial class added_user_profile_photo
+    [Migration("20190704110905_str_limits_viewcount")]
+    partial class str_limits_viewcount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,7 +110,7 @@ namespace SuxrobGM_Website.Migrations
                     b.ToTable("UserToken");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Website.Models.Blog", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Article", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -120,25 +120,31 @@ namespace SuxrobGM_Website.Migrations
                     b.Property<string>("Content")
                         .IsRequired();
 
+                    b.Property<string>("CoverPhotoUrl");
+
                     b.Property<DateTime>("CreatedTime");
 
                     b.Property<string>("Summary")
                         .IsRequired()
-                        .HasMaxLength(2000);
+                        .HasMaxLength(200);
 
-                    b.Property<string>("Tags");
+                    b.Property<string>("Tags")
+                        .IsRequired();
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(300);
+                        .HasMaxLength(50);
 
-                    b.Property<string>("Url");
+                    b.Property<string>("Url")
+                        .IsRequired();
+
+                    b.Property<int>("ViewCount");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Blogs");
+                    b.ToTable("Articles");
                 });
 
             modelBuilder.Entity("SuxrobGM_Website.Models.Comment", b =>
@@ -146,23 +152,27 @@ namespace SuxrobGM_Website.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("ArticleId");
+
                     b.Property<string>("AuthorEmail");
 
                     b.Property<string>("AuthorId");
 
                     b.Property<string>("AuthorName");
 
-                    b.Property<string>("BlogId");
-
                     b.Property<DateTime>("CreatedTime");
+
+                    b.Property<string>("ParentId");
 
                     b.Property<string>("Text");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ArticleId");
+
                     b.HasIndex("AuthorId");
 
-                    b.HasIndex("BlogId");
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Comments");
                 });
@@ -202,7 +212,7 @@ namespace SuxrobGM_Website.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("ProfilePhotoSrc");
+                    b.Property<string>("ProfilePhotoUrl");
 
                     b.Property<string>("SecurityStamp");
 
@@ -295,22 +305,27 @@ namespace SuxrobGM_Website.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SuxrobGM_Website.Models.Blog", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Article", b =>
                 {
                     b.HasOne("SuxrobGM_Website.Models.User", "Author")
-                        .WithMany("Blogs")
+                        .WithMany("Articles")
                         .HasForeignKey("AuthorId");
                 });
 
             modelBuilder.Entity("SuxrobGM_Website.Models.Comment", b =>
                 {
+                    b.HasOne("SuxrobGM_Website.Models.Article", "Article")
+                        .WithMany("Comments")
+                        .HasForeignKey("ArticleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("SuxrobGM_Website.Models.User", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId");
 
-                    b.HasOne("SuxrobGM_Website.Models.Blog")
-                        .WithMany("Comments")
-                        .HasForeignKey("BlogId");
+                    b.HasOne("SuxrobGM_Website.Models.Comment", "Parent")
+                        .WithMany("Replies")
+                        .HasForeignKey("ParentId");
                 });
 #pragma warning restore 612, 618
         }

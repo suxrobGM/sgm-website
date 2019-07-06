@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SuxrobGM.Sdk.Utils;
 
-namespace SuxrobGM_Resume.Models
+namespace SuxrobGM_Website.Models
 {
     public class Article
     {
@@ -17,12 +17,12 @@ namespace SuxrobGM_Resume.Models
         public string Id { get; set; }
 
         [Required]
-        [StringLength(300)]
+        [StringLength(50, ErrorMessage = "Characters must be less than 50")]
         public string Title { get; set; }
 
         [Required]
         [DataType(DataType.MultilineText)]
-        [StringLength(2000, ErrorMessage = "Characters must be less than 2000")]
+        [StringLength(200, ErrorMessage = "Characters must be less than 200")]
         public string Summary { get; set; }
 
         [Required]
@@ -38,6 +38,7 @@ namespace SuxrobGM_Resume.Models
 
         public string CoverPhotoUrl { get; set; }
         public DateTime CreatedTime { get; set; }
+        public int ViewCount { get; set; }
 
         [Display(Name = "Author")]
         public string AuthorId { get; set; }

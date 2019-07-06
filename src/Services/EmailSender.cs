@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Security;
 using System.Threading.Tasks;
 
-namespace SuxrobGM_Resume.Services
+namespace SuxrobGM_Website.Services
 {
     public class EmailSender : IEmailSender
     {

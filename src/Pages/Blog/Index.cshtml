@@ -1,5 +1,5 @@
 ﻿@page "{blogUrl}"
-@model SuxrobGM_Resume.Pages.Blog.BlogIndexModel
+@model SuxrobGM_Website.Pages.Blog.BlogIndexModel
 @{
     ViewData["Title"] = Model.Article.Title;
     Layout = "_BlogLayout";
@@ -13,30 +13,41 @@
     <meta property="og:title" content="@Model.Article.Title" />
     <meta property="og:description" content="@Model.Article.Summary" />
     <meta property="og:image" content="@Model.Article.CoverPhotoUrl" />
+    <meta property="og:site_name" content="Blog" />
     <meta property='og:type' content='article' />
     <meta property="article:published_time" content="@Model.Article.CreatedTime" />
     <meta property="article:author" content="@Model.Article.Author" />
     <meta property="article:tags" content="@Model.Article.Tags" />
+    <meta name="twitter:title" content="@Model.Article.Title" />
+    <meta name="twitter:description" content="@Model.Article.Summary" />
+    <meta name="twitter:creator" content="@Model.Article.Author" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="Blog" />
 
     @{
-        string articleAbsUrl = "https://suxrobgm.net/blog/" + Model.Article.GetRelativeUrl();
-        <meta property='og:site_name' content="@articleAbsUrl" />
+        string imgUrl = $"http://suxrobgm.net{Model.Article.CoverPhotoUrl}";
+        <meta property="og:url" content="@imgUrl" />
+        <meta name="twitter:image" content="@imgUrl" />
     }
 }
 
 <div class="card shadow-sm mb-4">
     <div class="card-header">
         <b>@Model.Article.Title</b>
-        <span class="float-right" style="font-size: small">@Model.Article.CreatedTime.ToString("dd.MM.yyyy")</span>
-        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
-        {
-            <div class="float-right mx-2">
-                <a asp-page="/Blog/Edit" asp-route-id="@Model.Article.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
-                <a asp-page="/Blog/Delete" asp-route-Id="@Model.Article.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
-            </div>
-        }
+        <div class="float-right">
+            <span class="font-italic">@Model.Article.CreatedTime.ToString("MMMM dd, yyyy")</span>
+            <span class="mx-3"><i class="fa fa-eye"></i>&nbsp;@Model.Article.ViewCount</span>
+            @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+            {
+                <span class="mx-2">
+                    <a asp-page="/Blog/Edit" asp-route-id="@Model.Article.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
+                    <a asp-page="/Blog/Delete" asp-route-Id="@Model.Article.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
+                </span>
+            }
+        </div>
+
     </div>
-    <div class="card-body mb-2">
+    <div class="card-body mb-2 p-2 p-sm-3 p-lg-4">
         @Html.Raw(Model.Article.Content)
     </div>
     <div class="card-footer">

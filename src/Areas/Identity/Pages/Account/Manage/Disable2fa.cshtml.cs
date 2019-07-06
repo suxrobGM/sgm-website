@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using SuxrobGM_Resume.Models;
+using SuxrobGM_Website.Models;
 
-namespace SuxrobGM_Resume.Areas.Identity.Pages.Account.Manage
+namespace SuxrobGM_Website.Areas.Identity.Pages.Account.Manage
 {
     public class Disable2faModel : PageModel
     {

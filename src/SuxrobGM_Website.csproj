@@ -13,17 +13,6 @@
     <None Remove="wwwroot\vendor\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Migrations\20190629075845_rename_blogs_to_article.cs" />
-    <Compile Remove="Migrations\20190629075845_rename_blogs_to_article.Designer.cs" />
-    <Compile Remove="Migrations\20190629080433_rename_blogs_to_article.cs" />
-    <Compile Remove="Migrations\20190629080433_rename_blogs_to_article.Designer.cs" />
-    <Compile Remove="Migrations\20190629081117_renamed_blogs_to_articles.cs" />
-    <Compile Remove="Migrations\20190629081117_renamed_blogs_to_articles.Designer.cs" />
-    <Compile Remove="Migrations\20190629081230_renamed_blogs_to_articles.cs" />
-    <Compile Remove="Migrations\20190629081230_renamed_blogs_to_articles.Designer.cs" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.14.0.2" />

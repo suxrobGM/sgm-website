@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace SuxrobGM_Resume.TagHelpers
+namespace SuxrobGM_Website.TagHelpers
 {
     [HtmlTargetElement("pagination")]
     public class PaginationTagHelper : TagHelper

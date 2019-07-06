@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using SuxrobGM_Resume.Models
+@using SuxrobGM_Website.Models
 @inject SignInManager<User> SignInManager
 @inject UserManager<User> UserManager
 
@@ -7,7 +7,7 @@
 @if (SignInManager.IsSignedIn(User))
 {
     var user = await UserManager.GetUserAsync(User);
-    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+    <a id="manage" class="nav-link text-dark mt-1" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
         <img id="user_avatar" class="rounded-circle" width="30" height="30" src="@user?.ProfilePhotoUrl" alt="avatar" />
         @UserManager.GetUserName(User)
     </a>
@@ -18,10 +18,10 @@
 }
 else
 {
-    <a class="nav-link text-dark d-none d-sm-block" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    <a class="nav-link text-dark d-inline d-sm-none" id="register" asp-area="Identity" asp-page="/Account/Register" data-toggle="tooltip" data-placement="top" title="Register"><i class="fa fa-user-plus"></i></a>
+    <a class="nav-link d-none d-sm-block" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+    <a class="nav-link d-inline d-sm-none" id="register" asp-area="Identity" asp-page="/Account/Register" data-toggle="tooltip" data-placement="top" title="Register"><i class="fa fa-user-plus"></i></a>
 
-    <a class="nav-link text-dark d-none d-sm-block" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    <a class="nav-link text-dark d-inline d-sm-none" id="login" asp-area="Identity" asp-page="/Account/Login" data-toggle="tooltip" data-placement="top" title="Login"><i class="fa fa-sign-in-alt"></i></a>
+    <a class="nav-link d-none d-sm-block" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+    <a class="nav-link d-inline d-sm-none" id="login" asp-area="Identity" asp-page="/Account/Login" data-toggle="tooltip" data-placement="top" title="Login"><i class="fa fa-sign-in-alt"></i></a>
 }
 

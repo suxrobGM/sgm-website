@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace SuxrobGM_Resume.Models
+namespace SuxrobGM_Website.Models
 {
     public enum Role
     {

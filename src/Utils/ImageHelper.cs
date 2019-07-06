@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.IO;
 using ImageMagick;
 
-namespace SuxrobGM_Resume.Utils
+namespace SuxrobGM_Website.Utils
 {
     public static class ImageHelper
     {

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using SuxrobGM_Resume.Data;
-using SuxrobGM_Resume.Models;
+using SuxrobGM_Website.Data;
+using SuxrobGM_Website.Models;
 
-namespace SuxrobGM_Resume.Pages.Blog
+namespace SuxrobGM_Website.Pages.Blog
 {
     [Authorize(Roles = "SuperAdmin,Admin")]
     public class DeleteModel : PageModel

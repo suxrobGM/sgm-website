@@ -1,4 +1,4 @@
-﻿@model SuxrobGM_Resume.Models.Comment
+﻿@model SuxrobGM_Website.Models.Comment
 
 
 <div id="@Model.Id" class="d-flex my-2">
@@ -32,19 +32,19 @@
                     @if (Model.Replies.Any())
                     {
                         string targetElement = $"#{@Model.Id}.card-footer";
-                        <button class="btn" onclick="collapseElement('@targetElement')"><i class="fa fa-angle-down fa-lg"></i></button>
+                        <button class="btn btn-sm" onclick="collapseElement('@targetElement')"><i class="fa fa-angle-down fa-lg"></i></button>
                     }
 
                     @if (Model.Author != null && User.Identity.Name == Model.Author.UserName || User.IsInRole("SuperAdmin") || User.IsInRole("Admin") || User.IsInRole("Moderator"))
                     {
-                        <form asp-page-handler="DeleteComment" asp-route-commentId="@Model.Id" asp-route-rootCommentId="@ViewData["RootCommentId"]" asp-route-pageIndex="@ViewData["PageIndex"]" class="float-right mx-1" method="post">
-                            <button class="btn delete-item" data-toggle="tooltip" data-placement="top" title="Delete comment"><i class="fa fa-times"></i></button>
+                        <form asp-page-handler="DeleteComment" asp-route-commentId="@Model.Id" asp-route-rootCommentId="@ViewData["RootCommentId"]" asp-route-pageIndex="@ViewData["PageIndex"]" class="float-right" method="post">
+                            <button class="btn btn-sm delete-item" data-toggle="tooltip" data-placement="top" title="Delete comment"><i class="fa fa-times"></i></button>
                         </form>
                     }
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <button id="@Model.Id" class="btn float-right" data-toggle="tooltip" data-placement="top" title="Reply to this comment" onclick="showReplyCommentBox('@Model.Id')"><i class="fa fa-reply"></i></button>
+                        <button id="@Model.Id" class="btn btn-sm float-right" data-toggle="tooltip" data-placement="top" title="Reply to this comment" onclick="showReplyCommentBox('@Model.Id')"><i class="fa fa-reply"></i></button>
                     }
                 </div>
             </div>

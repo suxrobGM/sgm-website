@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SuxrobGM_Resume.Data;
-using SuxrobGM_Resume.Models;
-using SuxrobGM_Resume.Utils;
+using SuxrobGM_Website.Data;
+using SuxrobGM_Website.Models;
+using SuxrobGM_Website.Utils;
 
-namespace SuxrobGM_Resume.Pages.Blog
+namespace SuxrobGM_Website.Pages.Blog
 {
     [Authorize(Roles = "SuperAdmin,Admin,Editor")]
     public class CreateModel : PageModel

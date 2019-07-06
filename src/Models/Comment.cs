@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using SuxrobGM.Sdk.Utils;
 
-namespace SuxrobGM_Resume.Models
+namespace SuxrobGM_Website.Models
 {
     public class Comment
     {

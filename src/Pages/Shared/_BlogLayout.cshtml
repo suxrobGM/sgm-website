@@ -19,26 +19,26 @@
               crossorigin="anonymous" />
     </environment>
     <link href="~/css/blog.css" rel="stylesheet" />
-
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js" async="async"></script>
     @RenderSection("CSS", required: false)
 </head>
-<body class="bg-light">
+<body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light fixed-top shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light shadow mb-3">
             <div class="container-fluid justify-content-end">
-                @*<a class="navbar-brand flex-sm-grow-0 flex-grow-1" asp-area="" asp-page="/Index">SuxrobGM</a>*@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Index">Home</a>
+                            <a class="nav-link" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Blog/List">Blog</a>
+                            <a class="nav-link" asp-page="/Blog/List">Blog</a>
                         </li>
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                        data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -51,17 +51,17 @@
         @RenderBody()
     </main>
 
-    <footer class="border-top">
+    <footer>
         <div class="d-flex justify-content-center p-2">
             <div class="text-center">
-                <b>Follow on</b>
-                <div class="social-icon d-flex flex-row mb-1">
+                <p class="mb-3"><b>Follow on</b></p>
+                <div class="social-icon d-flex flex-row">
                     <a class="facebook" href="https://www.facebook.com/suxrobgm"><i class="fab fa-facebook-f"></i></a>
                     <a class="instagram" href="https://www.instagram.com/Suxrob_GM"><i class="fab fa-instagram"></i></a>
                     <a class="linkedin" href="https://www.linkedin.com/in/suxrobgm/"><i class="fab fa-linkedin-in"></i></a>
                     <a class="github" href="https://github.com/suxrobGM"><i class="fab fa-github"></i></a>
                 </div>
-                <p>Copyright &copy; 2019 </p>
+                <p class="mt-4">Copyright &copy; 2019 </p>
             </div>
         </div>
     </footer>

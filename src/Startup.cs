@@ -14,12 +14,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServerSideAnalytics;
 using ServerSideAnalytics.SqlServer;
-using SuxrobGM_Resume.Data;
-using SuxrobGM_Resume.Models;
-using SuxrobGM_Resume.Services;
+using SuxrobGM_Website.Data;
+using SuxrobGM_Website.Models;
+using SuxrobGM_Website.Services;
 using SuxrobGM.Sdk.Extensions;
 
-namespace SuxrobGM_Resume
+namespace SuxrobGM_Website
 {
     public class Startup
     {
@@ -62,7 +62,7 @@ namespace SuxrobGM_Resume
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("AzureConnection"))
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                     .UseLazyLoadingProxies();
             });
             services.AddDefaultIdentity<User>()
@@ -84,13 +84,12 @@ namespace SuxrobGM_Resume
                 //User settings
                 options.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789_.-";
                 options.User.RequireUniqueEmail = true;
-
                 //options.SignIn.RequireConfirmedEmail = true;
             });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider provider)
         {
             app.UseForwardedHeaders();
 
@@ -107,7 +106,8 @@ namespace SuxrobGM_Resume
             app.UseServerSideAnalytics(GetAnalyticStore())
                 .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
                 .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
-                .ExcludeLoopBack(); // Request coming from local host will be not recorded
+                .ExcludeLoopBack()  // Request coming from local host will be not recorded
+                .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will be not recorded
 
             app.UseHttpsRedirection();                                
             app.UseStaticFiles();
@@ -116,12 +116,12 @@ namespace SuxrobGM_Resume
             app.UseMvc();
             
             //CreateUserRoles(provider);
-            //AddDefaultProfilePhoto(provider, env);
+            //AddDefaultProfilePhoto(provider);
         }
 
         private IAnalyticStore GetAnalyticStore()
         {
-            var store = new SqlServerAnalyticStore(Configuration.GetConnectionString("AnalyticsAzureConnection"))
+            var store = new SqlServerAnalyticStore(Configuration.GetConnectionString("AnalyticsLocalConnection"))
                             .RequestTable("suxrobgm.net.Requests")
                             .GeoIpTable("suxrobgm.net.GeoIps")
                             .UseIpApiFailOver();

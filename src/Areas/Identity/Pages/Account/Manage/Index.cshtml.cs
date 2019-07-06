@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
-using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -11,10 +9,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SuxrobGM_Resume.Models;
-using SuxrobGM_Resume.Utils;
+using SuxrobGM_Website.Models;
+using SuxrobGM_Website.Utils;
 
-namespace SuxrobGM_Resume.Areas.Identity.Pages.Account.Manage
+namespace SuxrobGM_Website.Areas.Identity.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {

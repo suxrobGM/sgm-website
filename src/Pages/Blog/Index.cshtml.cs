@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SuxrobGM.Sdk.Pagination;
-using SuxrobGM_Resume.Data;
-using SuxrobGM_Resume.Models;
+using SuxrobGM_Website.Data;
+using SuxrobGM_Website.Models;
 
-namespace SuxrobGM_Resume.Pages.Blog
+namespace SuxrobGM_Website.Pages.Blog
 {
     public class BlogIndexModel : PageModel
     {
@@ -36,18 +36,27 @@ namespace SuxrobGM_Resume.Pages.Blog
         public string CommentAuthorEmail { get; set; }
 
         public int PageIndex { get; set; }
+        public string ArticleAbsUrl { get; set; }
         public Article Article { get; set; }
         public PaginatedList<Comment> Comments { get; set; }
         public string[] BlogTags { get; set; }
 
-        public void OnGetAsync(int pageIndex = 1)
+        public async Task OnGetAsync(int pageIndex = 1)
         {
             string articleUrl = RouteData.Values["blogUrl"].ToString();
             Article = _context.Articles.Where(i => i.GetRelativeUrl() == articleUrl).First();
+
+            if (!Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"))
+            {
+                Article.ViewCount++;
+            }
+
+            ArticleAbsUrl = $"https://suxrobgm.net{Article.Url}";
+            await _context.SaveChangesAsync();
+
             BlogTags = Article.Tags.Split(',');
             Comments = PaginatedList<Comment>.Create(Article.Comments, pageIndex);
             PageIndex = pageIndex;
-
             ViewData.Add("PageIndex", PageIndex);
         }
 
@@ -83,8 +92,7 @@ namespace SuxrobGM_Resume.Pages.Blog
             string htmlMsg = $@"<h3>Good day, <b>{Article.Author.UserName}</b></h3>
                                 <p>Posted comment in your article in suxrobgm.net <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{Article.Url}?pageIndex={pageNumber}#{comment.Id}")}'>{Article.Title}</a></p>
                                 <br />
-                                <p>Sincerely, <b>SuxrobGM</b></p>
-                            ";
+                                <p>Sincerely, <b>SuxrobGM</b></p>";
 
             Article.Comments.Add(comment);
             await _context.SaveChangesAsync();
@@ -123,8 +131,7 @@ namespace SuxrobGM_Resume.Pages.Blog
             string htmlMsg = $@"<h3>Good day, <b>{commentAuthor}</b></h3>
                                 <p>Replied to your comment in this suxrobgm.net article <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{blog.Url}?pageIndex={pageNumber}#{commentId}")}'>{blog.Title}</a></p>
                                 <br />
-                                <p>Sincerely, <b>SuxrobGM</b></p>
-                            ";
+                                <p>Sincerely, <b>SuxrobGM</b></p>";
 
             comment.Replies.Add(reply);
             await _context.SaveChangesAsync();

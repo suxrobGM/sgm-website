@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SuxrobGM_Resume.Migrations
+namespace SuxrobGM_Website.Migrations
 {
     public partial class renamed_blogs_to_articles : Migration
     {

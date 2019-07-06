@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using SuxrobGM_Resume.Models;
+using SuxrobGM_Website.Models;
 
-namespace SuxrobGM_Resume.Areas.Identity.Pages.Account.Manage
+namespace SuxrobGM_Website.Areas.Identity.Pages.Account.Manage
 {
     public class DownloadPersonalDataModel : PageModel
     {

@@ -4,10 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SuxrobGM_Resume.Data;
+using SuxrobGM_Website.Data;
 
-namespace SuxrobGM_Resume.Migrations
+namespace SuxrobGM_Website.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20190406144227_created_database")]
@@ -21,7 +20,7 @@ namespace SuxrobGM_Resume.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.Blog", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Blog", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -37,7 +36,7 @@ namespace SuxrobGM_Resume.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.Comment", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Comment", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -59,9 +58,9 @@ namespace SuxrobGM_Resume.Migrations
                     b.ToTable("Comment");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.Comment", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Comment", b =>
                 {
-                    b.HasOne("SuxrobGM_Resume.Models.Blog")
+                    b.HasOne("SuxrobGM_Website.Models.Blog")
                         .WithMany("Comments")
                         .HasForeignKey("BlogId");
                 });

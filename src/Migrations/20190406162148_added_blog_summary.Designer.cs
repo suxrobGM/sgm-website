@@ -4,10 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SuxrobGM_Resume.Data;
+using SuxrobGM_Website.Data;
 
-namespace SuxrobGM_Resume.Migrations
+namespace SuxrobGM_Website.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20190406162148_added_blog_summary")]
@@ -111,7 +110,7 @@ namespace SuxrobGM_Resume.Migrations
                     b.ToTable("UserToken");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.Blog", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Blog", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -135,7 +134,7 @@ namespace SuxrobGM_Resume.Migrations
                     b.ToTable("Blogs");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.Comment", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Comment", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -161,7 +160,7 @@ namespace SuxrobGM_Resume.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.User", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -216,7 +215,7 @@ namespace SuxrobGM_Resume.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.UserRole", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.UserRole", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -244,7 +243,7 @@ namespace SuxrobGM_Resume.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("SuxrobGM_Resume.Models.UserRole")
+                    b.HasOne("SuxrobGM_Website.Models.UserRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -252,7 +251,7 @@ namespace SuxrobGM_Resume.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("SuxrobGM_Resume.Models.User")
+                    b.HasOne("SuxrobGM_Website.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -260,7 +259,7 @@ namespace SuxrobGM_Resume.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("SuxrobGM_Resume.Models.User")
+                    b.HasOne("SuxrobGM_Website.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -268,12 +267,12 @@ namespace SuxrobGM_Resume.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("SuxrobGM_Resume.Models.UserRole")
+                    b.HasOne("SuxrobGM_Website.Models.UserRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SuxrobGM_Resume.Models.User")
+                    b.HasOne("SuxrobGM_Website.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -281,26 +280,26 @@ namespace SuxrobGM_Resume.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("SuxrobGM_Resume.Models.User")
+                    b.HasOne("SuxrobGM_Website.Models.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.Blog", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Blog", b =>
                 {
-                    b.HasOne("SuxrobGM_Resume.Models.User", "Author")
+                    b.HasOne("SuxrobGM_Website.Models.User", "Author")
                         .WithMany("Blogs")
                         .HasForeignKey("AuthorId");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Resume.Models.Comment", b =>
+            modelBuilder.Entity("SuxrobGM_Website.Models.Comment", b =>
                 {
-                    b.HasOne("SuxrobGM_Resume.Models.User", "Author")
+                    b.HasOne("SuxrobGM_Website.Models.User", "Author")
                         .WithMany("Comments")
                         .HasForeignKey("AuthorId");
 
-                    b.HasOne("SuxrobGM_Resume.Models.Blog")
+                    b.HasOne("SuxrobGM_Website.Models.Blog")
                         .WithMany("Comments")
                         .HasForeignKey("BlogId");
                 });

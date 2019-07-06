@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SuxrobGM_Resume.Pages
+namespace SuxrobGM_Website.Pages
 {
     public class IndexModel : PageModel
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace SuxrobGM_Resume.Areas.Identity.Pages.Account.Manage
+namespace SuxrobGM_Website.Areas.Identity.Pages.Account.Manage
 {
     public static class ManageNavPages
     {

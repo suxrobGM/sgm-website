@@ -4,7 +4,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 85px;
+    background: #ecf0f5;
 }
 
 main {
@@ -13,7 +13,8 @@ main {
 
 footer {
     flex-shrink: 0;
-    background-color: #e9ecef;
+    background-color: #1C1C20;
+    color: white;
 }
 
 /*-----------------------------------------------*/
@@ -62,10 +63,6 @@ footer {
     -webkit-appearance: none;
 }
 
-.navbar {
-    background-color: #c7d4e5;
-}
-
 @media (max-device-width : 576px) {
     .container {
         padding-left: 0;
@@ -76,4 +73,8 @@ footer {
         margin-left: 0;
         margin-right: 0;
     }
+}
+
+.card-shadow {
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
 }

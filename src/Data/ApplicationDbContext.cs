@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SuxrobGM_Resume.Models;
+using SuxrobGM_Website.Models;
 
-namespace SuxrobGM_Resume.Data
+namespace SuxrobGM_Website.Data
 {
     public class ApplicationDbContext : IdentityDbContext<User, UserRole, string>
     {

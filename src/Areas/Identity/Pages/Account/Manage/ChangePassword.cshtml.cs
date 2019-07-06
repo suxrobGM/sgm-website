@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using SuxrobGM_Resume.Models;
-namespace SuxrobGM_Resume.Areas.Identity.Pages.Account.Manage
+using SuxrobGM_Website.Models;
+
+namespace SuxrobGM_Website.Areas.Identity.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
     {
