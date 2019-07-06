@@ -13,6 +13,11 @@
     <None Remove="wwwroot\vendor\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20190706122810_t.cs" />
+    <Compile Remove="Migrations\20190706122810_t.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.14.0.2" />
@@ -20,9 +25,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-    <PackageReference Include="ServerSideAnalytics" Version="5.1.0" />
-    <PackageReference Include="ServerSideAnalytics.Extensions" Version="2.2.0" />
-    <PackageReference Include="ServerSideAnalytics.SqlServer" Version="5.1.2" />
+    <PackageReference Include="ServerSideAnalytics" Version="6.0.0" />
+    <PackageReference Include="ServerSideAnalytics.Extensions" Version="3.0.0" />
+    <PackageReference Include="ServerSideAnalytics.SqlServer" Version="6.0.0" />
     <PackageReference Include="SuxrobGM.Sdk" Version="0.2.2" />
   </ItemGroup>
 

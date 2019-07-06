@@ -62,7 +62,7 @@ namespace SuxrobGM_Website
 
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                options.UseSqlServer(Configuration.GetConnectionString("RemoteConnection"))
                     .UseLazyLoadingProxies();
             });
             services.AddDefaultIdentity<User>()
@@ -72,7 +72,6 @@ namespace SuxrobGM_Website
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddTransient<IAnalyticStore>(_ => GetAnalyticStore());
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -89,7 +88,7 @@ namespace SuxrobGM_Website
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider provider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseForwardedHeaders();
 
@@ -103,11 +102,11 @@ namespace SuxrobGM_Website
                 app.UseHsts(); // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             }
 
-            app.UseServerSideAnalytics(GetAnalyticStore())
-                .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
-                .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
-                .ExcludeLoopBack()  // Request coming from local host will be not recorded
-                .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will be not recorded
+            //app.UseServerSideAnalytics(GetAnalyticStore())
+            //    .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
+            //    .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
+            //    .ExcludeLoopBack()  // Request coming from local host will be not recorded
+            //    .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will be not recorded
 
             app.UseHttpsRedirection();                                
             app.UseStaticFiles();
@@ -123,7 +122,6 @@ namespace SuxrobGM_Website
         {
             var store = new SqlServerAnalyticStore(Configuration.GetConnectionString("AnalyticsLocalConnection"))
                             .RequestTable("suxrobgm.net.Requests")
-                            .GeoIpTable("suxrobgm.net.GeoIps")
                             .UseIpApiFailOver();
                             //.UseIpInfoFailOver()
                             //.UseIpStackFailOver(Configuration.GetConnectionString("IpStackToken"));
