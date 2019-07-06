@@ -9,12 +9,10 @@
     <meta name="author" content="@Model.Article.Author" />
     <meta name="description" content="@Model.Article.Summary" />
     <meta name="keywords" content="@Model.Article.Tags" />
-    <meta name="image" content="@Model.Article.CoverPhotoUrl" />
     <meta property="og:title" content="@Model.Article.Title" />
     <meta property="og:description" content="@Model.Article.Summary" />
-    <meta property="og:image" content="@Model.Article.CoverPhotoUrl" />
     <meta property="og:site_name" content="Blog" />
-    <meta property='og:type' content='article' />
+    <meta property="og:type" content="article" />
     <meta property="article:published_time" content="@Model.Article.CreatedTime" />
     <meta property="article:author" content="@Model.Article.Author" />
     <meta property="article:tags" content="@Model.Article.Tags" />
@@ -25,10 +23,15 @@
     <meta name="twitter:site" content="Blog" />
 
     @{
-        string imgUrl = $"http://suxrobgm.net{Model.Article.CoverPhotoUrl}";
-        <meta property="og:url" content="@imgUrl" />
+        string imgUrl = $"http://www.suxrobgm.net{Model.Article.CoverPhotoUrl}";
+        string articleUrl = $"http://www.suxrobgm.net{Model.Article.Url}";
+        <meta name="image" content="@imgUrl" />
         <meta name="twitter:image" content="@imgUrl" />
+        <meta property="og:image" content="@imgUrl" />
+        <meta property="og:url" content="@articleUrl" />
     }
+
+    <script async src="https://platform-api.sharethis.com/js/sharethis.js#property=5d20ee636d20a10012251ae5"></script>
 }
 
 <div class="card shadow-sm mb-4">

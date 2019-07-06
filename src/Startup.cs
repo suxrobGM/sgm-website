@@ -18,6 +18,7 @@ using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
 using SuxrobGM_Website.Services;
 using SuxrobGM.Sdk.Extensions;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace SuxrobGM_Website
 {
@@ -108,7 +109,9 @@ namespace SuxrobGM_Website
             //    .ExcludeLoopBack()  // Request coming from local host will be not recorded
             //    .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will be not recorded
 
-            app.UseHttpsRedirection();                                
+            app.UseRewriter(new RewriteOptions()
+                .AddRedirectToWww()
+                .AddRedirect("^https", "http"));                              
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();            
