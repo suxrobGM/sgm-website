@@ -7,17 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\vendor\**" />
-    <Content Remove="wwwroot\vendor\**" />
-    <EmbeddedResource Remove="wwwroot\vendor\**" />
-    <None Remove="wwwroot\vendor\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Migrations\20190706122810_t.cs" />
     <Compile Remove="Migrations\20190706122810_t.Designer.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+	  <Content Update="wwwroot\lib\bootstrap\**\*" CopyToPublishDirectory="Never" />
+	  <Content Update="wwwroot\lib\fontawesome\**\*" CopyToPublishDirectory="Never" />
+	  <Content Update="wwwroot\lib\jquery\**\*" CopyToPublishDirectory="Never" />
+	  <Content Update="wwwroot\lib\summernote\**\*" CopyToPublishDirectory="Never" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.14.0.2" />

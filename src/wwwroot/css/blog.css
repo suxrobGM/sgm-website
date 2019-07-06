@@ -78,3 +78,14 @@ footer {
 .card-shadow {
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
 }
+
+.navbar-nav .nav-link {
+    font-weight: 700;
+    padding: 0 17px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: transparent;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
