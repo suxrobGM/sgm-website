@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +19,7 @@ using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
 using SuxrobGM_Website.Services;
 using SuxrobGM.Sdk.Extensions;
-using Microsoft.AspNetCore.Rewrite;
+using Syncfusion.Licensing;
 
 namespace SuxrobGM_Website
 {
@@ -34,6 +35,8 @@ namespace SuxrobGM_Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            SyncfusionLicenseProvider.RegisterLicense(Configuration.GetConnectionString("SynLicenseKey"));
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.

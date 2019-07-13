@@ -26,7 +26,6 @@ namespace SuxrobGM_Website.Pages.Blog
 
         public IActionResult OnGet()
         {
-            //ViewData["AuthorId"] = new SelectList(_context.Users, "Id", "UserName");
             return Page();
         }
 

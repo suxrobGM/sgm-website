@@ -52,10 +52,10 @@
                     <h5 class="card-title">@article.Summary &nbsp;<span class="font-italic" style="color:grey; font-size:smaller">@article.CreatedTime.ToString("MMMM dd, yyyy")</span></h5>
                     <p id="shorttext_@article.Id" class="card-text mt-3">
                         <script>
-                                var el = document.createElement('html');
-                                el.innerHTML = '@Html.Raw(article.Content.Replace('\'', '\"'))';
-                                document.getElementById('shorttext_@article.Id').innerText = el.innerText.substring(0, 500).trim() + '...';
-                                delete window.el;
+                            var el = document.createElement('html');
+                            el.innerHTML = '@Html.Raw(Model.GetShortContent(article.Content))';
+                            document.getElementById('shorttext_@article.Id').innerText = el.innerText.substring(0, 500).trim() + '...';
+                            delete window.el;
                         </script>
                     </p>
                     <div>

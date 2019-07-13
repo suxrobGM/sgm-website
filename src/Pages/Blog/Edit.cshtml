@@ -7,9 +7,9 @@
 }
 
 @section CSS {
-    <partial name="_CodemirrorStylesheetsPartial" />
-    <partial name="_SummernoteStylesheetsPartial" />
     <link rel="stylesheet" href="~/lib/fileupload/fileupload.css" />
+    <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
 }
 
 <h1>Edit Article</h1>
@@ -63,7 +63,7 @@
             <div class="form-group">
                 <label asp-for="Article.Content" class="control-label"></label>
                 <span asp-validation-for="Article.Content" class="text-danger"></span>
-                <textarea id="blog_editor" asp-for="Article.Content" class="form-control"></textarea>
+                <ejs-richtexteditor id="rich_texteditor" ejs-for="Article.Content" height="300"></ejs-richtexteditor>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
@@ -77,8 +77,6 @@
 </div>
 
 @section Scripts {
-    <partial name="_CodermirrorScriptsPartial" />
-    <partial name="_SummernoteScriptsPartial" />
     <script src="~/lib/fileupload/fileupload.js"></script>
 
     @if (!string.IsNullOrEmpty(Model.Article.CoverPhotoUrl))
@@ -88,4 +86,7 @@
             $('.image-upload-wrap').hide();
         </script>
     }
+
+    <!-- Syncfusion Essential JS 2 ScriptManager -->
+    <ejs-scripts></ejs-scripts>
 }
