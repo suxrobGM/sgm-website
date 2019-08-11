@@ -29,6 +29,17 @@ namespace SuxrobGM_Website.Pages.Blog
         {
             var blogId = RouteData.Values["id"].ToString();
             Article = _context.Articles.Where(i => i.Id == blogId).First();
+            ViewData.Add("toolbars", new string[] 
+            {
+                "Bold", "Italic", "Underline", "StrikeThrough",
+                "FontName", "FontSize", "FontColor", "BackgroundColor",
+                "LowerCase", "UpperCase", "|",
+                "Formats", "Alignments", "OrderedList", "UnorderedList",
+                "Outdent", "Indent", "|",
+                "CreateTable", "CreateLink", "Image", "|", "ClearFormat", "Print",
+                "SourceCode", "FullScreen", "|", "Undo", "Redo"
+            });
+
             return Page();
         }
 

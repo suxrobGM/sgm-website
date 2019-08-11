@@ -14,12 +14,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ServerSideAnalytics;
-using ServerSideAnalytics.SqlServer;
+using ServerSideAnalytics.SqLite;
+using Syncfusion.Licensing;
 using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
 using SuxrobGM_Website.Services;
-using SuxrobGM.Sdk.Extensions;
-using Syncfusion.Licensing;
 
 namespace SuxrobGM_Website
 {
@@ -106,11 +105,11 @@ namespace SuxrobGM_Website
                 app.UseHsts(); // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
             }
 
-            //app.UseServerSideAnalytics(GetAnalyticStore())
-            //    .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
-            //    .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
-            //    .ExcludeLoopBack()  // Request coming from local host will be not recorded
-            //    .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will be not recorded
+            app.UseServerSideAnalytics(GetAnalyticStore())
+                .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
+                .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
+                .ExcludeLoopBack()  // Request coming from local host will be not recorded
+                .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will not be recorded
 
             app.UseRewriter(new RewriteOptions()
                 .AddRedirectToWww()
@@ -126,9 +125,9 @@ namespace SuxrobGM_Website
 
         private IAnalyticStore GetAnalyticStore()
         {
-            var store = new SqlServerAnalyticStore(Configuration.GetConnectionString("AnalyticsLocalConnection"))
-                            .RequestTable("suxrobgm.net.Requests")
-                            .UseIpApiFailOver();
+            var store = new SqLiteAnalyticStore(Configuration.GetConnectionString("AnalyticsLocalConnection"))
+                            .RequestTable("suxrobgm.net_Requests");
+                            //.UseIpApiFailOver();
                             //.UseIpInfoFailOver()
                             //.UseIpStackFailOver(Configuration.GetConnectionString("IpStackToken"));
 

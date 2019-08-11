@@ -18,16 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.14.0.2" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.14.2" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="ServerSideAnalytics" Version="6.0.0" />
     <PackageReference Include="ServerSideAnalytics.Extensions" Version="3.0.0" />
-    <PackageReference Include="ServerSideAnalytics.SqlServer" Version="6.0.0" />
-    <PackageReference Include="SuxrobGM.Sdk" Version="0.2.2" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.2.0.34" />
+    <PackageReference Include="ServerSideAnalytics.SqLite" Version="6.0.0" />
+    <PackageReference Include="SuxrobGM.Sdk" Version="0.2.3" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.2.0.40" />
   </ItemGroup>
 
 </Project>
