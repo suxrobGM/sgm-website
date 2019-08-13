@@ -52,12 +52,12 @@
 
     wow.init();
 
-    /* Nivo Lightbox 
-    ========================================================*/
-    $('.lightbox').nivoLightbox({
-        effect: 'fadeScale',
-        keyboardNav: true,
-      });
+    ///* Nivo Lightbox 
+    //========================================================*/
+    //$('.lightbox').nivoLightbox({
+    //    effect: 'fadeScale',
+    //    keyboardNav: true,
+    //  });
 
     /* Counter
     ========================================================*/
@@ -85,7 +85,72 @@
           scrollTop: 0
         }, 600);
         return false;
-      });    
+      });
   });      
 
 }(jQuery));
+
+const openImageModal = (id, imagesSource, title = 'modal title', description = 'modal description') => {
+
+    let modalEl = document.createElement('div');
+    modalEl.setAttribute('id', id);
+    modalEl.setAttribute('class', 'modal fade');  
+
+    let modalDialogEl = document.createElement('div');
+    modalDialogEl.className = 'modal-dialog modal-dialog-centered';
+
+    let modalContentEl = document.createElement('div');
+    modalContentEl.className = 'modal-content';
+
+    let modalBody = document.createElement('div');
+    modalBody.className = 'modal-body';
+
+    let modalFooter = document.createElement('div');
+    modalFooter.className = 'modal-footer';
+    modalFooter.innerHTML = `<button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>`;  
+
+    // Carousel
+    let carouselEl = document.createElement('div');
+    carouselEl.setAttribute('id', `${id}_carousel`);
+    carouselEl.setAttribute('class', 'carousel slide');
+    carouselEl.setAttribute('data-ride', 'carousel');
+
+    let carouselIndicators = document.createElement('ul');
+    carouselIndicators.className = 'carousel-indicators';
+    carouselIndicators.innerHTML = `<li data-target='#${id}_carousel' data-slide-to='0' class='active'></li>`;
+
+    for (let i = 1; i < imagesSource.length; i++) {
+        carouselIndicators.insertAdjacentHTML('beforeend', `<li data-target='#${id}_carousel' data-slide-to='${i}'></li>`);
+    }
+
+    let carouselInnerEl = document.createElement('div');
+    carouselInnerEl.className = 'carousel-inner';
+    let isFirstItem = true;
+
+    for (let i = 0; i < imagesSource.length; i++) {
+        if (isFirstItem) {
+            carouselInnerEl.insertAdjacentHTML('beforeend', `<div class='carousel-item active'><img class='img-fluid' src='${imagesSource[i]}' alt='image'></div>`);
+            isFirstItem = false;
+        }
+        else {
+            carouselInnerEl.insertAdjacentHTML('beforeend', `<div class='carousel-item'><img class='img-fluid' src='${imagesSource[i]}' alt='image'></div>`);
+        }
+    }
+
+    carouselEl.append(carouselIndicators);
+    carouselEl.append(carouselInnerEl);
+    carouselEl.insertAdjacentHTML('beforeend', `<a class='carousel-control-prev' href='#${id}_carousel' data-slide='prev'><span class='carousel-control-prev-icon'></span></a>`);
+    carouselEl.insertAdjacentHTML('beforeend', `<a class='carousel-control-next' href='#${id}_carousel' data-slide='next'><span class='carousel-control-next-icon'></span></a>`);
+
+    modalEl.append(modalDialogEl);
+    modalDialogEl.append(modalContentEl);  
+    modalContentEl.append(carouselEl);
+    modalContentEl.append(modalBody);
+    modalContentEl.append(modalFooter);
+
+    modalBody.insertAdjacentHTML('beforeend', `<h4 class='my-2'>${title}</h4>`);
+    modalBody.insertAdjacentHTML('beforeend', `<p>${description}</p>`);
+
+    let modalWrapperEl = document.getElementById('modal-wrapper');
+    modalWrapperEl.replaceChild(modalEl, modalWrapperEl.firstChild);
+}

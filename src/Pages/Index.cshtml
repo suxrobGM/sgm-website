@@ -4,7 +4,21 @@
     ViewData["Title"] = "SuxrobGM";
 }
 
-<!---->
+<section id="modal-wrapper">
+    @*<div class="modal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="modal-wrapper-content" class="card">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button>
+            </div>
+        </div>
+    </div>*@
+</section>
+
 <section id="hero-area" class="hero-area-bg">
     <div class="overlay"></div>
     <div class="container">
@@ -62,6 +76,7 @@
                         </ul>
                     </div>
                     <a href="~/Resume_RU.pdf" class="btn btn-common"><i class="icon-paper-clip"></i> Download Resume (RU)</a>
+                    <a href="~/Resume_EN.pdf" class="btn btn-common"><i class="icon-paper-clip"></i> Download Resume (EN)</a>
                     <a href="mailto:suxrobGM@gmail.com" class="btn btn-danger"><i class="icon-speech"></i> Contact Me</a>
                 </div>
             </div>
@@ -468,9 +483,11 @@
                             <img src="~/img/gallery/ec_background.jpg" alt="" />
                             <div class="overlay">
                                 <div class="icons">
-                                    <a class="lightbox preview" href="~/img/gallery/ec_background.jpg">
+                                    <a role="button" data-toggle="modal" data-target="#ec_modal" 
+                                       onclick="openImageModal('ec_modal', ['/img/gallery/ec_background.jpg'])">
                                         <i class="icon-eye"></i>
-                                    </a>
+                                    </a>                                    
+
                                     <a class="link" href="https://vk.com/ec_hoi_mod">
                                         <i class="icon-link"></i>
                                     </a>
@@ -718,9 +735,6 @@
                                     <a class="lightbox preview" href="~/img/gallery/img-6.jpg">
                                         <i class="icon-eye"></i>
                                     </a>
-                                    @*<a class="link" href="#">
-                                        <i class="icon-link"></i>
-                                    </a>*@
                                 </div>
                             </div>
                         </div>
