@@ -94,10 +94,10 @@ const openImageModal = (id, imagesSource, title = 'modal title', description = '
 
     let modalEl = document.createElement('div');
     modalEl.setAttribute('id', id);
-    modalEl.setAttribute('class', 'modal fade');  
+    modalEl.setAttribute('class', 'modal fade mt-5');  
 
     let modalDialogEl = document.createElement('div');
-    modalDialogEl.className = 'modal-dialog modal-dialog-centered';
+    modalDialogEl.className = 'modal-dialog modal-lg modal-dialog-centered ';
 
     let modalContentEl = document.createElement('div');
     modalContentEl.className = 'modal-content';
@@ -129,11 +129,11 @@ const openImageModal = (id, imagesSource, title = 'modal title', description = '
 
     for (let i = 0; i < imagesSource.length; i++) {
         if (isFirstItem) {
-            carouselInnerEl.insertAdjacentHTML('beforeend', `<div class='carousel-item active'><img class='img-fluid' src='${imagesSource[i]}' alt='image'></div>`);
+            carouselInnerEl.insertAdjacentHTML('beforeend', `<div class='carousel-item active'><img class='img-fluid w-100' src='${imagesSource[i]}' alt='image'></div>`);
             isFirstItem = false;
         }
         else {
-            carouselInnerEl.insertAdjacentHTML('beforeend', `<div class='carousel-item'><img class='img-fluid' src='${imagesSource[i]}' alt='image'></div>`);
+            carouselInnerEl.insertAdjacentHTML('beforeend', `<div class='carousel-item'><img class='img-fluid w-100' src='${imagesSource[i]}' alt='image'></div>`);
         }
     }
 
@@ -148,7 +148,7 @@ const openImageModal = (id, imagesSource, title = 'modal title', description = '
     modalContentEl.append(modalBody);
     modalContentEl.append(modalFooter);
 
-    modalBody.insertAdjacentHTML('beforeend', `<h4 class='my-2'>${title}</h4>`);
+    modalBody.insertAdjacentHTML('beforeend', `<h5 class='my-2'>${title}</h5><hr />`);
     modalBody.insertAdjacentHTML('beforeend', `<p>${description}</p>`);
 
     let modalWrapperEl = document.getElementById('modal-wrapper');
