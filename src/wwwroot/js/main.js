@@ -51,14 +51,7 @@
     });
 
     wow.init();
-
-    ///* Nivo Lightbox 
-    //========================================================*/
-    //$('.lightbox').nivoLightbox({
-    //    effect: 'fadeScale',
-    //    keyboardNav: true,
-    //  });
-
+    
     /* Counter
     ========================================================*/
     $('.counterUp').counterUp({
