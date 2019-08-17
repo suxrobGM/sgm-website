@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -110,10 +109,7 @@ namespace SuxrobGM_Website
                 .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
                 .ExcludeLoopBack()  // Request coming from local host will be not recorded
                 .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will not be recorded
-
-            app.UseRewriter(new RewriteOptions()
-                .AddRedirectToWww()
-                .AddRedirect("^https", "http"));                              
+                            
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();            
