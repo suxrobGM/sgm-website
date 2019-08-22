@@ -87,7 +87,7 @@
             </div>
 
             <!-- Mobile Menu Start -->
-            <ul class="onepage-nev mobile-menu">              
+            <ul class="onepage-nev mobile-menu">
                 <li>
                     <a asp-page="/Blog/List">Blog</a>
                 </li>
@@ -164,6 +164,16 @@
     <script src="~/js/waypoints.min.js"></script>
     <script src="~/js/wow.js"></script>
     <script src="~/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(() => {
+            navigator.geolocation.getCurrentPosition(position => {
+                coords = position.coords.latitude + ',' + position.coords.longitude;
+                
+            });
+        });
+    </script>
 
     <environment include="Development">
         <script src="~/js/popper.min.js"></script>

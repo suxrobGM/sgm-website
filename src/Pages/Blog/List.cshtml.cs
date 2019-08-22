@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SuxrobGM.Sdk.Pagination;
 using SuxrobGM_Website.Data;
@@ -22,10 +21,10 @@ namespace SuxrobGM_Website.Pages.Blog
         public List<Article> PopularArticles { get; set; }
         public int PageIndex { get; set; }
 
-        public async Task OnGetAsync(int pageIndex = 1)
+        public void OnGet(int pageIndex = 1)
         {
             PageIndex = pageIndex;
-            Articles = await PaginatedList<Article>.CreateAsync(_context.Articles.OrderByDescending(i => i.CreatedTime), pageIndex, 5);
+            Articles = PaginatedList<Article>.Create(_context.Articles.OrderByDescending(i => i.CreatedTime), pageIndex, 5);
             PopularArticles = _context.Articles.OrderByDescending(i => i.ViewCount).Take(5).ToList();
         }
 
@@ -34,7 +33,7 @@ namespace SuxrobGM_Website.Pages.Blog
             articleContent = articleContent.Replace('\'', '\"').Replace("\r\n", " ");
             var re = new Regex("(src|srcset|href)=\".+?\"");
             var matchedSrc = re.Matches(articleContent).ToArray();
-
+            
             foreach (var match in matchedSrc)
             {
                 articleContent = articleContent.Replace(match.Value, "");

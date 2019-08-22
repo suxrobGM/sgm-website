@@ -12,9 +12,9 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ServerSideAnalytics;
-using ServerSideAnalytics.SqLite;
 using Syncfusion.Licensing;
+using SuxrobGM.Sdk.ServerAnalytics;
+using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
 using SuxrobGM_Website.Services;
@@ -101,13 +101,13 @@ namespace SuxrobGM_Website
             else
             {
                 app.UseExceptionHandler("/Error");                
-                app.UseHsts(); // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
 
-            app.UseServerSideAnalytics(GetAnalyticStore())
+            app.UseServerAnalytics(new SqliteAnalyticsRepository())
                 .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
                 .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
-                .ExcludeLoopBack()  // Request coming from local host will be not recorded
+                //.ExcludeLoopBack()  // Request coming from local host will be not recorded
                 .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will not be recorded
                             
             app.UseStaticFiles();
@@ -117,18 +117,8 @@ namespace SuxrobGM_Website
             
             //CreateUserRoles(provider);
             //AddDefaultProfilePhoto(provider);
-        }
+        }       
 
-        private IAnalyticStore GetAnalyticStore()
-        {
-            var store = new SqLiteAnalyticStore(Configuration.GetConnectionString("AnalyticsLocalConnection"))
-                            .RequestTable("suxrobgm.net_Requests");
-                            //.UseIpApiFailOver();
-                            //.UseIpInfoFailOver()
-                            //.UseIpStackFailOver(Configuration.GetConnectionString("IpStackToken"));
-
-            return store;
-        }
         private void CreateUserRoles(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<UserRole>>();

@@ -1,5 +1,6 @@
 ﻿@page "/Blog/List"
 @model SuxrobGM_Website.Pages.Blog.BlogListModel
+
 @{
     ViewData["Title"] = "Blog";
     Layout = "_BlogLayout";
@@ -18,7 +19,7 @@
         {
             <a role="button" class="btn btn-sm btn-dark ml-2 my-auto" asp-page="/Blog/Create" data-toggle="tooltip" data-placement="bottom" title="Add new article"><i class="fa fa-plus"></i></a>
         }
-    </div>   
+    </div>
     <hr class="w-100" />
 </div>
 
@@ -29,85 +30,85 @@
     }
     else
     {
-    <div class="col-12 col-md-7 col-lg-8">
-        @foreach (var article in Model.Articles)
-        {
-            <div class="card card-shadow my-4">
+        <div class="col-12 col-md-7 col-lg-8">
+            @foreach (var article in Model.Articles)
+            {
+                <div class="card card-shadow my-4">
 
-                @if (!string.IsNullOrEmpty(article.CoverPhotoUrl))
-                {
-                    <img class="card-img-top" src="@article.CoverPhotoUrl" alt="Cover photo" />
-                }
-                <div class="card-body">
-                    <h4 class="card-title">
-                        @article.Title
-                        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
-                        {
-                            <span class="float-right mx-2">
-                                <a asp-page="/Blog/Edit" asp-route-id="@article.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
-                                <a asp-page="/Blog/Delete" asp-route-Id="@article.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
-                            </span>
-                        }
-                    </h4>
-                    <h5 class="card-title">@article.Summary &nbsp;<span class="font-italic" style="color:grey; font-size:smaller">@article.CreatedTime.ToString("MMMM dd, yyyy")</span></h5>
-                    <p id="shorttext_@article.Id" class="card-text mt-3">
-                        <script>
+                    @if (!string.IsNullOrEmpty(article.CoverPhotoUrl))
+                    {
+                        <img class="card-img-top" src="@article.CoverPhotoUrl" alt="Cover photo" />
+                    }
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            @article.Title
+                            @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                            {
+                                <span class="float-right mx-2">
+                                    <a asp-page="/Blog/Edit" asp-route-id="@article.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
+                                    <a asp-page="/Blog/Delete" asp-route-Id="@article.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
+                                </span>
+                            }
+                        </h4>
+                        <h5 class="card-title">@article.Summary &nbsp;<span class="font-italic" style="color:grey; font-size:smaller">@article.CreatedTime.ToString("MMMM dd, yyyy")</span></h5>
+                        <p id="shorttext_@article.Id" class="card-text mt-3">
+                            <script>
                             var el = document.createElement('html');
                             el.innerHTML = '@Html.Raw(Model.GetShortContent(article.Content))';
                             document.getElementById('shorttext_@article.Id').innerText = el.innerText.substring(0, 500).trim() + '...';
                             delete window.el;
-                        </script>
-                    </p>
-                    <div>
-                        <a role="button" class="btn bg-light btn-outline-dark text-dark font-weight-bolder mt-3" asp-page="/Blog/Index" asp-route-blogUrl="@article.GetRelativeUrl()">Read More »</a>
-                        <span class="float-right mt-3">
-                            <span class="mx-3"><i class="fa fa-eye"></i>&nbsp;@article.ViewCount</span>                            
-                            @if (article.Comments == null)
-                            {
-                                <span>
-                                    Comments <span class="badge badge-dark">0</span>
-                                </span>
-                            }
-                            else
-                            {
-                                <span>
-                                    Comments <span class="badge badge-dark rounded-circle">@article.Comments.Count</span>
-                                </span>
-                            }
-                        </span>
+                            </script>
+                        </p>
+                        <div>
+                            <a role="button" class="btn bg-light btn-outline-dark text-dark font-weight-bolder mt-3" asp-page="/Blog/Index" asp-route-blogUrl="@article.GetRelativeUrl()">Read More »</a>
+                            <span class="float-right mt-3">
+                                <span class="mx-3"><i class="fa fa-eye"></i>&nbsp;@article.ViewCount</span>
+                                @if (article.Comments == null)
+                                {
+                                    <span>
+                                        Comments <span class="badge badge-dark">0</span>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        Comments <span class="badge badge-dark rounded-circle">@article.Comments.Count</span>
+                                    </span>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div id="pagination" class="d-flex">
+                <pagination class="mx-auto" page-index="@Model.Articles.PageIndex" total-pages="@Model.Articles.TotalPages" base-url="/Blog/List" />
+            </div>
+        </div>
+        <div class="col-12 col-md-5 col-lg-4">
+            <div class="card card-shadow my-4">
+                <img class="card-img-top" src="~/db_files/img/SuxrobGM_blog_photo.jpg" />
+                <div class="card-body">
+                    <h4 class="card-title">Sukhrob</h4>
+                    <p>Software Engineer</p>
+                </div>
+            </div>
+
+            <div class="card card-shadow my-4">
+                <div class="card-header">
+                    Popular posts
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group">
+                        @foreach (var article in Model.PopularArticles)
+                        {
+                            <a asp-page="/Blog/Index" asp-route-blogUrl="@article.GetRelativeUrl()" class="list-group-item list-group-item-action">
+                                <img class="rounded" style="width: 75px; height: 50px" src="@article.CoverPhotoUrl" />
+                                <span class="ml-2" style="font-size:smaller">@article.Title</span>
+                            </a>
+                        }
                     </div>
                 </div>
             </div>
-        }
-        <div id="pagination" class="d-flex">
-            <pagination class="mx-auto" page-index="@Model.Articles.PageIndex" total-pages="@Model.Articles.TotalPages" base-url="/Blog/List" />
         </div>
-    </div>
-    <div class="col-12 col-md-5 col-lg-4">
-        <div class="card card-shadow my-4">
-            <img class="card-img-top" src="~/db_files/img/SuxrobGM_blog_photo.jpg" />
-            <div class="card-body">
-                <h4 class="card-title">Sukhrob</h4>
-                <p>.NET &amp; Full-Stack Web Developer</p>
-            </div>
-        </div>
-
-        <div class="card card-shadow my-4">
-            <div class="card-header">
-                Popular posts
-            </div>
-            <div class="card-body p-0">
-                <div class="list-group">
-                    @foreach (var article in Model.PopularArticles)
-                    {
-                        <a asp-page="/Blog/Index" asp-route-blogUrl="@article.GetRelativeUrl()" class="list-group-item list-group-item-action">
-                            <img class="rounded" style="width: 75px; height: 50px" src="@article.CoverPhotoUrl" />
-                            <span class="ml-2" style="font-size:smaller">@article.Title</span>                            
-                        </a>
-                    }
-                </div>
-            </div>         
-        </div>
-    </div>
     }
 </div>
