@@ -7,27 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20190706122810_t.cs" />
-    <Compile Remove="Migrations\20190706122810_t.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
 	  <Content Update="wwwroot\lib\bootstrap\**\*" CopyToPublishDirectory="Never" />
 	  <Content Update="wwwroot\lib\fontawesome\**\*" CopyToPublishDirectory="Never" />
 	  <Content Update="wwwroot\lib\jquery\**\*" CopyToPublishDirectory="Never" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.14.2" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.14.3" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
-    <PackageReference Include="SuxrobGM.Sdk" Version="0.3.0" />
-    <PackageReference Include="SuxrobGM.Sdk.AspNetCore" Version="0.3.0" />
-    <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics" Version="0.3.0" />
-    <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.3.0" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.2.0.46" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="SuxrobGM.Sdk" Version="0.3.2" />
+    <PackageReference Include="SuxrobGM.Sdk.AspNetCore" Version="0.3.2" />
+    <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics" Version="0.3.2" />
+    <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.3.2" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.2.0.49" />
   </ItemGroup>
 
 </Project>

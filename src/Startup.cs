@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Syncfusion.Licensing;
 using SuxrobGM.Sdk.ServerAnalytics;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
@@ -103,11 +104,11 @@ namespace SuxrobGM_Website
                 app.UseExceptionHandler("/Error");                
                 app.UseHsts();
             }
-
+          
             app.UseServerAnalytics(new SqliteAnalyticsRepository())
                 .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
                 .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
-                //.ExcludeLoopBack()  // Request coming from local host will be not recorded
+                .ExcludeLoopBack()  // Request coming from local host will be not recorded
                 .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will not be recorded
                             
             app.UseStaticFiles();
