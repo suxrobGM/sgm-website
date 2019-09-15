@@ -19,20 +19,17 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
         private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly IHostingEnvironment _env;
 
         public RegisterModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender,
-            IHostingEnvironment env)
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _env = env;
         }
 
         [BindProperty]
@@ -71,7 +68,6 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl = returnUrl ?? Url.Content("~/Blog");
-            var defaultUserPhoto = "/img/user_def_icon.png";
 
             if (ModelState.IsValid)
             {
@@ -79,7 +75,7 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
                 {
                     UserName = Input.UserName,
                     Email = Input.Email,
-                    ProfilePhotoUrl = defaultUserPhoto
+                    ProfilePhotoUrl = "/img/user_def_icon.png"
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
