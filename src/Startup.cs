@@ -34,7 +34,7 @@ namespace SuxrobGM_Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            SyncfusionLicenseProvider.RegisterLicense(Configuration.GetConnectionString("SynLicenseKey"));
+            SyncfusionLicenseProvider.RegisterLicense(Configuration.GetSection("SynLicenseKey").Value);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
