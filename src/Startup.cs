@@ -1,24 +1,21 @@
 using System;
 using System.Linq;
-using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using Syncfusion.Licensing;
 using SuxrobGM.Sdk.ServerAnalytics;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
 using SuxrobGM_Website.Services;
+
 
 namespace SuxrobGM_Website
 {
@@ -38,14 +35,8 @@ namespace SuxrobGM_Website
 
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.ForwardedHeaders = ForwardedHeaders.All;
-                options.KnownProxies.Add(IPAddress.Parse("::ffff:172.16.1.1"));
             });
             services.ConfigureApplicationCookie(options =>
             {
@@ -56,21 +47,14 @@ namespace SuxrobGM_Website
             {
                 options.TokenLifespan = TimeSpan.FromHours(3);
             });               
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddRazorPagesOptions(options =>
-                {
-                    options.Conventions.AddPageRoute("/Blog/List", "/Blog");
-                });
-
             services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("RemoteConnection"))
                     .UseLazyLoadingProxies();
             });
+
             services.AddDefaultIdentity<User>()
                 .AddRoles<UserRole>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -88,16 +72,21 @@ namespace SuxrobGM_Website
                 options.User.RequireUniqueEmail = true;
                 //options.SignIn.RequireConfirmedEmail = true;
             });
+
+            services.AddRazorPages()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.Conventions.AddPageRoute("/Blog/List", "/Blog");
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseForwardedHeaders();
-
             if (env.IsDevelopment())
             {               
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -112,10 +101,15 @@ namespace SuxrobGM_Website
                 .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will not be recorded
                             
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseCookiePolicy();
-            app.UseAuthentication();            
-            app.UseMvc();
-            
+            app.UseAuthentication();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints => {
+                endpoints.MapRazorPages();
+            });
+
             //CreateUserRoles(provider);
             //AddDefaultProfilePhoto(provider);
         }       
