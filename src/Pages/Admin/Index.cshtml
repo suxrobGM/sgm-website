@@ -1,0 +1,39 @@
+﻿@page
+@model SuxrobGM_Website.Pages.Admin.AdminIndexModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_BlogLayout";
+}
+
+@section CSS {
+    <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+}
+
+<h1>Administration Dashboard</h1>
+
+<div class="row">
+    @*<ejs-grid id="Grid" dataSource="@Model.DataSouce" allowPaging="true" enableVirtualization="true">
+            <e-grid-pagesettings pageCount="5"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column field="RemoteIpAddress" headerText="Remote Ip Address" textAlign="Right" width="120"></e-grid-column>
+                <e-grid-column field="Method" headerText="Method" width="40"></e-grid-column>
+                <e-grid-column field="Path" headerText="Path" width="130"></e-grid-column>
+                <e-grid-column field="UserAgent" headerText="UserAgent" width="120"></e-grid-column>
+                <e-grid-column field="Country" headerText="Country" width="140"></e-grid-column>
+                <e-grid-column field="RegionName" headerText="RegionName" width="150"></e-grid-column>
+                <e-grid-column field="City" headerText="City" width="150"></e-grid-column>
+                <e-grid-column field="Latitude" headerText="Latitude" width="150"></e-grid-column>
+                <e-grid-column field="Longitude" headerText="Longitude" width="150"></e-grid-column>
+                <e-grid-column field="Timezone" headerText="Timezone" width="150"></e-grid-column>
+                <e-grid-column field="Isp" headerText="Isp" width="150"></e-grid-column>
+                <e-grid-column field="Org" headerText="Org" width="150"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>*@
+    <ejs-grid id="Grid" dataSource="Model.DataSouce">
+        <e-grid-columns>
+            <e-grid-column field="Name" headerText="Name"></e-grid-column>
+            <e-grid-column field="Age" headerText="Age"></e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
+</div>

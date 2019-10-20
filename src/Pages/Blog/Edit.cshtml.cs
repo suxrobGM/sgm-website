@@ -17,9 +17,9 @@ namespace SuxrobGM_Website.Pages.Blog
     public class EditModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        private readonly IHostingEnvironment _env;
+        private readonly IWebHostEnvironment _env;
 
-        public EditModel(ApplicationDbContext context, IHostingEnvironment env)
+        public EditModel(ApplicationDbContext context, IWebHostEnvironment env)
         {
             _context = context;
             _env = env;

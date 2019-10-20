@@ -31,10 +31,16 @@
                         <li class="nav-item">
                             <a class="nav-link p-2" asp-page="/Blog/List">Blog</a>
                         </li>
+                        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link p-2" asp-page="/Admin/Index">Dashboard</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <partial name="_LoginPartial" />
-                <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -85,5 +91,8 @@
     @RenderSection("Scripts", required: false)
 
     <script src="~/js/blog.js"></script>
+
+    <!-- Syncfusion Essential JS 2 ScriptManager -->
+    <ejs-scripts></ejs-scripts>
 </body>
 </html>

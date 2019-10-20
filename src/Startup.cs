@@ -73,6 +73,8 @@ namespace SuxrobGM_Website
                 //options.SignIn.RequireConfirmedEmail = true;
             });
 
+
+            services.AddServerSideBlazor();
             services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
@@ -95,10 +97,10 @@ namespace SuxrobGM_Website
             }
           
             app.UseServerAnalytics(new SqliteAnalyticsRepository())
-                .ExcludePath("/js", "/lib", "/css", "/fonts") // Request into those url spaces will be not recorded
-                .ExcludeExtension(".jpg", ".png", ".ico", ".txt", "sitemap.xml", "sitemap.xsl")  // Request ending with this extension will be not recorded
-                .ExcludeLoopBack()  // Request coming from local host will be not recorded
-                .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); // Request coming from search engine bots will not be recorded
+                .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin")
+                .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")  
+                .ExcludeLoopBack() 
+                .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); 
                             
             app.UseStaticFiles();
             app.UseRouting();
