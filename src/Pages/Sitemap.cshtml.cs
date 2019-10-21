@@ -5,11 +5,11 @@ namespace SuxrobGM_Website.Pages
 {
     public class SitemapModel : PageModel
     {
-        private IHostingEnvironment _env;
+        private IWebHostEnvironment _env;
 
         public string SitemapContent { get; set; }
 
-        public SitemapModel(IHostingEnvironment env)
+        public SitemapModel(IWebHostEnvironment env)
         {
             _env = env;
         }
