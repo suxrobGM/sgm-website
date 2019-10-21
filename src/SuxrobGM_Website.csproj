@@ -30,7 +30,12 @@
     <PackageReference Include="SuxrobGM.Sdk.AspNetCore" Version="0.3.2" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics" Version="0.3.2" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.3.2" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.3.0.14" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="17.3.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="wwwroot\lib\syncfusion\" />
   </ItemGroup>
 
 </Project>

@@ -73,8 +73,6 @@ namespace SuxrobGM_Website
                 //options.SignIn.RequireConfirmedEmail = true;
             });
 
-
-            services.AddServerSideBlazor();
             services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
