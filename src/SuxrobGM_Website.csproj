@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Content Remove="Components\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <None Remove="Components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <Content Update="wwwroot\lib\bootstrap\**\*" CopyToPublishDirectory="Never" />
 	  <Content Update="wwwroot\lib\fontawesome\**\*" CopyToPublishDirectory="Never" />
 	  <Content Update="wwwroot\lib\jquery\**\*" CopyToPublishDirectory="Never" />
@@ -34,7 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\" />
     <Folder Include="wwwroot\lib\syncfusion\" />
   </ItemGroup>
 
