@@ -6,28 +6,30 @@
 }
 
 @section CSS {
-    <link rel="stylesheet" href="~/lib/syncfusion/material.css"  />
+    <link rel="stylesheet" href="~/lib/syncfusion/material.css" />
     <script src="~/lib/syncfusion/ej2.min.js"></script>
 }
 
-<h1>Administration Dashboard</h1>
+@section FluidContainer {
+    <h3>Administration Dashboard</h3>
 
-<div class="row">
-    <ejs-grid id="Grid" dataSource="@Model.ViewData["dataSource"]" allowPaging="true" allowSorting="true" allowResizing="true">
-        <e-grid-pagesettings pageCount="15" pageSize="100" pageSizes="new[] { 25, 50, 75, 100 }"></e-grid-pagesettings>
-        <e-grid-columns>
-            <e-grid-column field="RemoteIpAddress" headerText="Remote Ip Address"></e-grid-column>
-            <e-grid-column field="Method" headerText="Method"></e-grid-column>
-            <e-grid-column field="Path" headerText="Path"></e-grid-column>
-            <e-grid-column field="UserAgent" headerText="UserAgent"></e-grid-column>
-            <e-grid-column field="Country" headerText="Country"></e-grid-column>
-            <e-grid-column field="RegionName" headerText="RegionName"></e-grid-column>
-            <e-grid-column field="City" headerText="City"></e-grid-column>
-            <e-grid-column field="Latitude" headerText="Latitude"></e-grid-column>
-            <e-grid-column field="Longitude" headerText="Longitude"></e-grid-column>
-            <e-grid-column field="Timezone" headerText="Timezone"></e-grid-column>
-            <e-grid-column field="Isp" headerText="Isp"></e-grid-column>
-            <e-grid-column field="Org" headerText="Org"></e-grid-column>
-        </e-grid-columns>
-    </ejs-grid>
-</div>
+    <div class="row">
+        <ejs-grid id="Grid" dataSource="@Model.ViewData["dataSource"]" allowPaging="true" allowSorting="true" allowResizing="true">
+            <e-grid-pagesettings pageCount="15" pageSize="100" pageSizes="new[] { 25, 50, 75, 100 }"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column field="RemoteIpAddress" headerText="Remote Ip Address" width="150"></e-grid-column>
+                <e-grid-column field="Method" headerText="Method" width="75"></e-grid-column>
+                <e-grid-column field="Path" headerText="Path" width="150"></e-grid-column>
+                <e-grid-column field="UserAgent" headerText="UserAgent" width="200"></e-grid-column>
+                <e-grid-column field="Country" headerText="Country" width="150"></e-grid-column>
+                <e-grid-column field="RegionName" headerText="RegionName" width="150"></e-grid-column>
+                <e-grid-column field="City" headerText="City" width="150"></e-grid-column>
+                <e-grid-column field="Latitude" headerText="Latitude" width="100"></e-grid-column>
+                <e-grid-column field="Longitude" headerText="Longitude" width="100"></e-grid-column>
+                <e-grid-column field="Timezone" headerText="Timezone" width="150"></e-grid-column>
+                <e-grid-column field="Isp" headerText="Isp" width="150"></e-grid-column>
+                <e-grid-column field="Org" headerText="Org" width="150"></e-grid-column>
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+}

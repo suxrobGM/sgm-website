@@ -95,7 +95,7 @@ namespace SuxrobGM_Website
             }
           
             app.UseServerAnalytics(new SqliteAnalyticsRepository())
-                .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin")
+                .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin", "/wp-includes/")
                 .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")  
                 .ExcludeLoopBack() 
                 .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); 

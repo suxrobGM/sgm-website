@@ -44,7 +44,7 @@ namespace SuxrobGM_Website.Pages.Blog
         public async Task OnGetAsync(int pageIndex = 1)
         {
             string articleUrl = RouteData.Values["blogUrl"].ToString();
-            Article = _context.Articles.Where(i => i.GetRelativeUrl() == articleUrl).First();
+            Article = _context.Articles.Where(i => i.Url.Contains(articleUrl)).First();
 
             if (!Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"))
             {
@@ -75,7 +75,7 @@ namespace SuxrobGM_Website.Pages.Blog
                 return Page();
             }
 
-            Article = _context.Articles.Where(i => i.GetRelativeUrl() == blogUrl).First();
+            Article = _context.Articles.Where(i => i.Url.Contains(blogUrl)).First();
             var comment = new Comment() { Text = CommentText };
 
             if (User.Identity.IsAuthenticated)
@@ -108,7 +108,7 @@ namespace SuxrobGM_Website.Pages.Blog
                 pageNumber = 1;
             }
 
-            var blog = _context.Articles.Where(i => i.GetRelativeUrl() == blogUrl).First();
+            var blog = _context.Articles.Where(i => i.Url.Contains(blogUrl)).First();
             var author = _context.Users.Where(i => i.UserName == User.Identity.Name).First();
             var comment = _context.Comments.Where(i => i.Id == commentId).FirstOrDefault();
 

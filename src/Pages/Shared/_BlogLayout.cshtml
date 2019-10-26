@@ -50,9 +50,14 @@
         </nav>
     </header>
 
-    <main role="main" class="container pb-3">
+    <main role="main">
         <partial name="_CookieConsentPartial" />
-        @RenderBody()
+        <div class="container-fluid mx-2">
+            @RenderSection("FluidContainer", required: false)
+        </div>
+        <div class="container pb-3">
+            @RenderBody()
+        </div>
     </main>
 
     <footer>

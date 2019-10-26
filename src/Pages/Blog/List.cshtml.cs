@@ -10,7 +10,7 @@ namespace SuxrobGM_Website.Pages.Blog
 {
     public class BlogListModel : PageModel
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public BlogListModel(ApplicationDbContext context)
         {
