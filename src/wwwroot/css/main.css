@@ -82,12 +82,10 @@ ul li, ol li {
   display: inline;
   font-size: 115px;
   font-weight: 700;
-  height: 100%;
   left: -173px;
   opacity: 0.1;
   position: absolute;
   top: -14px;
-  width: 100%;
   text-align: center;
 }
 
@@ -616,7 +614,6 @@ a.back-to-top:hover, a.back-to-top:focus {
   border-bottom: 1px solid #f1f1f1;
   text-decoration: none;
   display: inline-block;
-  float: left;
   clear: both;
   position: relative;
   outline: 0;
@@ -1210,13 +1207,16 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   content: '';
 }
 
-.filter {
+.filter-photo {
   position: relative;
   -webkit-filter: contrast(120%) saturate(125%);
   filter: contrast(120%) saturate(125%);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  background: rgba(127, 187, 227, 0.2);
 }
 
-.filter::before {
+.filter-photo::before {
   content: "";
   display: block;
   height: 100%;
