@@ -49,7 +49,7 @@ namespace SuxrobGM_Website
             });               
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("RemoteConnection"))
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                     .UseLazyLoadingProxies();
             });
 
