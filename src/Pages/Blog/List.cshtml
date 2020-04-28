@@ -24,7 +24,7 @@
 </div>
 
 <div class="row">
-    @if (Model.Articles.Count() == 0)
+    @if (!Model.Articles.Any())
     {
         <h4>There have not any articles ;(</h4>
     }
@@ -50,31 +50,24 @@
                                 </span>
                             }
                         </h4>
-                        <h5 class="card-title">@article.Summary &nbsp;<span class="font-italic" style="color:grey; font-size:smaller">@article.CreatedTime.ToString("MMMM dd, yyyy")</span></h5>
+                        <h5 class="card-title">@article.Summary &nbsp;<span class="font-italic" style="color:grey; font-size:smaller">@article.Timestamp.ToString("MMMM dd, yyyy")</span></h5>
                         <p id="shorttext_@article.Id" class="card-text mt-3">
                             <script>
-                            var el = document.createElement('html');
-                            el.innerHTML = '@Html.Raw(Model.GetShortContent(article.Content))';
-                            document.getElementById('shorttext_@article.Id').innerText = el.innerText.substring(0, 500).trim() + '...';
-                            delete window.el;
+                                var el = document.createElement('html');
+                                el.innerHTML = '@Html.Raw(Model.GetShortContent(article.Content))';
+                                document.getElementById('shorttext_@article.Id').innerText = el.innerText.substring(0, 500).trim() + '...';
+                                delete window.el;
                             </script>
                         </p>
                         <div>
-                            <a role="button" class="btn bg-light btn-outline-dark text-dark font-weight-bolder mt-3" asp-page="/Blog/Index" asp-route-blogUrl="@article.GetRelativeUrl()">Read More »</a>
+                            <a role="button" class="btn bg-light btn-outline-dark text-dark font-weight-bolder mt-3" asp-page="/Blog/Index" asp-route-slug="@article.Slug">Read More »</a>
                             <span class="float-right mt-3">
                                 <span class="mx-3"><i class="fa fa-eye"></i>&nbsp;@article.ViewCount</span>
-                                @if (article.Comments == null)
-                                {
-                                    <span>
-                                        Comments <span class="badge badge-dark">0</span>
-                                    </span>
-                                }
-                                else
-                                {
+                                <a class="text-dark" asp-page="/Article/Index" asp-route-slug="@article.Slug" asp-fragment="comments">
                                     <span>
                                         Comments <span class="badge badge-dark rounded-circle">@article.Comments.Count</span>
                                     </span>
-                                }
+                                </a>
                             </span>
                         </div>
                     </div>
@@ -101,8 +94,8 @@
                     <div class="list-group">
                         @foreach (var article in Model.PopularArticles)
                         {
-                            <a asp-page="/Blog/Index" asp-route-blogUrl="@article.GetRelativeUrl()" class="list-group-item list-group-item-action">
-                                <img class="rounded" style="width: 75px; height: 50px" src="@article.CoverPhotoUrl" />
+                            <a asp-page="/Blog/Index" asp-route-slug="@article.Slug" class="list-group-item list-group-item-action">
+                                <img class="rounded" style="width: 75px; height: 50px" src="@article.CoverPhotoUrl" alt="cover photo" />
                                 <span class="ml-2" style="font-size:smaller">@article.Title</span>
                             </a>
                         }

@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
 using SuxrobGM_Website.Utils;
@@ -25,11 +25,19 @@ namespace SuxrobGM_Website.Pages.Blog
             _env = env;
         }
 
-        public IActionResult OnGet()
+        [BindProperty]
+        public Article Article { get; set; }
+
+        [BindProperty]
+        public IFormFile UploadCoverPhoto { get; set; }
+
+        public string ArticleTags { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(string id)
         {
-            var blogId = RouteData.Values["id"].ToString();
-            Article = _context.Articles.Where(i => i.Id == blogId).First();
-            ViewData.Add("toolbars", new string[] 
+            Article = await _context.Articles.FirstAsync(i => i.Id == id);
+            ArticleTags = string.Join(',', Article.Tags);
+            ViewData.Add("toolbars", new[]
             {
                 "Bold", "Italic", "Underline", "StrikeThrough",
                 "FontName", "FontSize", "FontColor", "BackgroundColor",
@@ -43,27 +51,19 @@ namespace SuxrobGM_Website.Pages.Blog
             return Page();
         }
 
-        [BindProperty]
-        public Article Article { get; set; }
-
-        [BindProperty]
-        public IFormFile UploadCoverPhoto { get; set; }
-
         public async Task<IActionResult> OnPostAsync()
         {
-            var blogId = RouteData.Values["id"].ToString();
-            ModelState.Values.First().ValidationState = ModelValidationState.Valid;
-
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            var article = _context.Articles.Where(i => i.Id == blogId).First();
+            var article = await _context.Articles.FirstAsync(i => i.Id == Article.Id);
             article.Title = Article.Title;
             article.Summary = Article.Summary;
             article.Content = Article.Content;
             article.Tags = Article.Tags;
+            article.Slug = Article.CreateSlug(Article.Title);
 
             if (UploadCoverPhoto != null)
             {
@@ -75,8 +75,7 @@ namespace SuxrobGM_Website.Pages.Blog
             }
 
             await _context.SaveChangesAsync();
-
-            return RedirectToPage("/Blog/List");
+            return RedirectToPage("/Blog/Index", new { slug = Article.Slug });
         }
     }
 }

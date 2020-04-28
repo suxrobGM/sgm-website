@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @RenderSection("SEO", required: false)
+    @await RenderSectionAsync("SEO", required: false).ConfigureAwait(false)
     <title>@ViewData["Title"]</title>
 
     <environment include="Development">
@@ -15,10 +15,11 @@
               crossorigin="anonymous">
     </environment>
 
+    <link rel="shortcut icon" href="~/favicon.ico" />
     <link href="~/css/blog.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/6627613fa4.js"></script>
 
-    @RenderSection("CSS", required: false)
+    @await RenderSectionAsync("CSS", required: false).ConfigureAwait(false)
 </head>
 <body>
     <header>
@@ -53,7 +54,7 @@
     <main role="main">
         <partial name="_CookieConsentPartial" />
         <div class="container-fluid mx-2">
-            @RenderSection("FluidContainer", required: false)
+            @await RenderSectionAsync("FluidContainer", required: false).ConfigureAwait(false)
         </div>
         <div class="container pb-3">
             @RenderBody()
@@ -94,7 +95,7 @@
         </script>
     </environment>
 
-    @RenderSection("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false).ConfigureAwait(false)
 
     <script src="~/js/blog.js"></script>
 

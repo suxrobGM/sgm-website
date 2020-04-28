@@ -60,7 +60,7 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            returnUrl = returnUrl ?? Url.Content("~/Blog");
+            returnUrl ??= Url.Content("~/Blog");
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -72,14 +72,14 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/Blog");
+            returnUrl ??= Url.Content("~/Blog");
 
             // Match input is username or email
             if (Input.Username.IndexOf('@') > -1)
             {
                 //Validate email format
-                string emailRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
-                                       @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                const string emailRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                                          @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
                                           @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
                 var re = new Regex(emailRegex);
                 if (!re.IsMatch(Input.Username))
@@ -90,7 +90,7 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
             else
             {
                 //validate Username format
-                string emailRegex = @"^[a-zA-Z0-9]*$";
+                const string emailRegex = @"^[a-zA-Z0-9]*$";
                 var re = new Regex(emailRegex);
                 if (!re.IsMatch(Input.Username))
                 {
@@ -98,47 +98,42 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
                 }
             }
 
-            if (ModelState.IsValid)
-            {
-                var userName = Input.Username;
-                if (userName.IndexOf('@') > -1)
-                {
-                    var user = await _userManager.FindByEmailAsync(Input.Username);
-                    if (user == null)
-                    {
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                        return Page();
-                    }
-                    else
-                    {
-                        userName = user.UserName;
-                    }
-                }
+            if (!ModelState.IsValid) 
+                return Page();
 
-                var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
-                else
+            var userName = Input.Username;
+            if (userName.IndexOf('@') > -1)
+            {
+                var user = await _userManager.FindByEmailAsync(Input.Username);
+                if (user == null)
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
+
+                userName = user.UserName;
             }
 
-            // If we got this far, something failed, redisplay form
-            return Page();
+            var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, true);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User logged in.");
+                return LocalRedirect(returnUrl);
+            }
+            if (result.RequiresTwoFactor)
+            {
+                return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+            }
+            if (result.IsLockedOut)
+            {
+                _logger.LogWarning("User account locked out.");
+                return RedirectToPage("./Lockout");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return Page();
+            }
         }
     }
 }

@@ -20,7 +20,6 @@ namespace SuxrobGM_Website.Pages.Blog
 
         [BindProperty]
         public Article Article { get; set; }
-        public string ArticleRelativeUrl { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -31,8 +30,6 @@ namespace SuxrobGM_Website.Pages.Blog
 
             Article = await _context.Articles
                 .Include(b => b.Author).FirstOrDefaultAsync(m => m.Id == id);
-
-            ArticleRelativeUrl = Article.GetRelativeUrl();
 
             if (Article == null)
             {
@@ -52,11 +49,27 @@ namespace SuxrobGM_Website.Pages.Blog
 
             if (Article != null)
             {
+                // remove comments before deleting article
+                foreach (var comment in Article.Comments)
+                {
+                    await RemoveChildrenCommentsAsync(comment);
+                    _context.Comments.Remove(comment);
+                }
+
                 _context.Articles.Remove(Article);
                 await _context.SaveChangesAsync();
             }
 
             return RedirectToPage("/Blog/List");
+        }
+
+        private async Task RemoveChildrenCommentsAsync(Comment rootComment)
+        {
+            foreach (var reply in rootComment.Replies)
+            {
+                await RemoveChildrenCommentsAsync(reply);
+                _context.Comments.Remove(reply);
+            }
         }
     }
 }

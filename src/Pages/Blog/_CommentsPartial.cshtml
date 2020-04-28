@@ -5,11 +5,11 @@
     <div>
         @if (Model.Author == null)
         {
-            <img class="rounded-circle mr-2" width="50" height="50" src="~/img/user_def_icon.png" />
+            <img class="rounded-circle mr-2" width="50" height="50" src="~/img/user_def_icon.png" alt="user avatar" />
         }
         else
         {
-            <img class="rounded-circle mr-2" width="50" height="50" src="@Model.Author.ProfilePhotoUrl" />
+            <img class="rounded-circle mr-2" width="50" height="50" src="@Model.Author.ProfilePhotoUrl" alt="user avatar" />
         }
     </div>
     <div class="card shadow-sm flex-grow-1">
@@ -26,12 +26,12 @@
                     }                  
                 </span>
                 <span class="text-muted font-weight-light" style="font-size: small">
-                    @Model.CreatedTime
+                    @Model.Timestamp
                 </span>
                 <div class="float-right">
                     @if (Model.Replies.Any())
                     {
-                        string targetElement = $"#{@Model.Id}.card-footer";
+                        var targetElement = $"#{Model.Id}.card-footer";
                         <button class="btn btn-sm" onclick="collapseElement('@targetElement')"><i class="fa fa-angle-down fa-lg"></i></button>
                     }
 

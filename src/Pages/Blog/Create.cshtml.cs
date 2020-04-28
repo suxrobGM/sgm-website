@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
 using SuxrobGM_Website.Utils;
@@ -26,7 +27,7 @@ namespace SuxrobGM_Website.Pages.Blog
 
         public IActionResult OnGet()
         {
-            ViewData.Add("toolbars", new string[]
+            ViewData.Add("toolbars", new[]
             {
                 "Bold", "Italic", "Underline", "StrikeThrough",
                 "FontName", "FontSize", "FontColor", "BackgroundColor",
@@ -47,8 +48,8 @@ namespace SuxrobGM_Website.Pages.Blog
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var currentUser = _context.Users.Where(i => i.UserName == User.Identity.Name).First();
-            Article.Url = "/Blog/" + Article.Url.Trim().Replace(" ", "-");
+            var currentUser = await _context.Users.FirstAsync(i => i.UserName == User.Identity.Name);
+            Article.Slug = Article.CreateSlug(Article.Title);
             Article.Author = currentUser;
 
             if (!ModelState.IsValid)
@@ -65,16 +66,15 @@ namespace SuxrobGM_Website.Pages.Blog
                 Article.CoverPhotoUrl = $"/db_files/img/{fileName}";
             }
 
-            if (_context.Articles.Where(i => i.Url == Article.Url).Any())
+            if (_context.Articles.Any(i => i.Slug == Article.Slug))
             {
-                ModelState.AddModelError("Blog.Url", "This blog url exists please change it");
+                ModelState.AddModelError("Blog.Slug", "This blog slug exists please change title");
                 return Page();
             }
            
             _context.Articles.Add(Article);
             await _context.SaveChangesAsync();
-
-            return RedirectToPage("/Blog/List");
+            return RedirectToPage("/Blog/Index", new { slug = Article.Slug });
         }
     }
 }

@@ -24,7 +24,7 @@ namespace SuxrobGM_Website.Pages.Blog
         public void OnGet(int pageIndex = 1)
         {
             PageIndex = pageIndex;
-            Articles = PaginatedList<Article>.Create(_context.Articles.OrderByDescending(i => i.CreatedTime), pageIndex, 5);
+            Articles = PaginatedList<Article>.Create(_context.Articles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
             PopularArticles = _context.Articles.OrderByDescending(i => i.ViewCount).Take(5).ToList();
         }
 
@@ -33,13 +33,8 @@ namespace SuxrobGM_Website.Pages.Blog
             articleContent = articleContent.Replace('\'', '\"').Replace("\r\n", " ");
             var re = new Regex("(src|srcset|href)=\".+?\"");
             var matchedSrc = re.Matches(articleContent).ToArray();
-            
-            foreach (var match in matchedSrc)
-            {
-                articleContent = articleContent.Replace(match.Value, "");
-            }
 
-            return articleContent;
+            return matchedSrc.Aggregate(articleContent, (current, match) => current.Replace(match.Value, ""));
         }
     }
 }

@@ -34,7 +34,8 @@
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
               crossorigin="anonymous" />
     </environment>
-
+    
+    <link rel="shortcut icon" href="~/favicon.ico"/>
     <link rel="stylesheet" href="~/fonts/simple-line-icons.css" />
     <link rel="stylesheet" href="~/css/slicknav.css" />
     <link rel="stylesheet" href="~/css/animate.min.css" />
@@ -195,6 +196,6 @@
         </script>
     </environment>
 
-    @RenderSection("Scripts", required: false)
+    @await RenderSectionAsync("Scripts", required: false).ConfigureAwait(false)
 </body>
 </html>

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using SuxrobGM.Sdk.Pagination;
 using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
@@ -36,25 +37,24 @@ namespace SuxrobGM_Website.Pages.Blog
         public string CommentAuthorEmail { get; set; }
 
         public int PageIndex { get; set; }
-        public string ArticleAbsUrl { get; set; }
+        public string ArticleTags { get; set; }
         public Article Article { get; set; }
         public PaginatedList<Comment> Comments { get; set; }
-        public string[] BlogTags { get; set; }
+        
 
         public async Task OnGetAsync(int pageIndex = 1)
         {
-            string articleUrl = RouteData.Values["blogUrl"].ToString();
-            Article = _context.Articles.Where(i => i.Url.Contains(articleUrl)).First();
+            var articleSlug = RouteData.Values["slug"].ToString();
+            Article = await _context.Articles.FirstAsync(i => i.Slug == articleSlug);
 
             if (!Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"))
             {
                 Article.ViewCount++;
             }
 
-            ArticleAbsUrl = $"https://suxrobgm.net{Article.Url}";
             await _context.SaveChangesAsync();
 
-            BlogTags = Article.Tags.Split(',');
+            ArticleTags = string.Join(',', Article.Tags);
             Comments = PaginatedList<Comment>.Create(Article.Comments, pageIndex);
             PageIndex = pageIndex;
             ViewData.Add("PageIndex", PageIndex);
@@ -62,9 +62,9 @@ namespace SuxrobGM_Website.Pages.Blog
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var blogUrl = RouteData.Values["blogUrl"].ToString();
+            var articleSlug = RouteData.Values["slug"].ToString();
 
-            if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out int pageNumber))
+            if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out var pageNumber))
             {
                 pageNumber = 1;
             }
@@ -75,12 +75,12 @@ namespace SuxrobGM_Website.Pages.Blog
                 return Page();
             }
 
-            Article = _context.Articles.Where(i => i.Url.Contains(blogUrl)).First();
+            Article = await _context.Articles.FirstAsync(i => i.Slug == articleSlug);
             var comment = new Comment() { Text = CommentText };
 
             if (User.Identity.IsAuthenticated)
             {
-                var user = _context.Users.Where(i => i.UserName == User.Identity.Name).First();
+                var user = _context.Users.First(i => i.UserName == User.Identity.Name);
                 comment.Author = user;
             }
             else
@@ -89,8 +89,8 @@ namespace SuxrobGM_Website.Pages.Blog
                 comment.AuthorName = CommentAuthorName;
             }
 
-            string htmlMsg = $@"<h3>Good day, <b>{Article.Author.UserName}</b></h3>
-                                <p>Posted comment in your article in suxrobgm.net <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{Article.Url}?pageIndex={pageNumber}#{comment.Id}")}'>{Article.Title}</a></p>
+            var htmlMsg = $@"<h3>Good day, <b>{Article.Author.UserName}</b></h3>
+                                <p>Posted comment in your article in suxrobgm.net <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net/{Article.Slug}?pageIndex={pageNumber}#{comment.Id}")}'>{Article.Title}</a></p>
                                 <br />
                                 <p>Sincerely, <b>SuxrobGM</b></p>";
 
@@ -102,15 +102,15 @@ namespace SuxrobGM_Website.Pages.Blog
 
         public async Task<IActionResult> OnPostReplyToCommentAsync(string commentId)
         {
-            var blogUrl = RouteData.Values["blogUrl"].ToString();
-            if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out int pageNumber))
+            var articleSlug = RouteData.Values["slug"].ToString();
+            if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out var pageNumber))
             {
                 pageNumber = 1;
             }
 
-            var blog = _context.Articles.Where(i => i.Url.Contains(blogUrl)).First();
-            var author = _context.Users.Where(i => i.UserName == User.Identity.Name).First();
-            var comment = _context.Comments.Where(i => i.Id == commentId).FirstOrDefault();
+            var blog = await _context.Articles.FirstAsync(i => i.Slug == articleSlug);
+            var author = await _context.Users.FirstAsync(i => i.UserName == User.Identity.Name);
+            var comment = await _context.Comments.FirstOrDefaultAsync(i => i.Id == commentId);
 
             if (string.IsNullOrWhiteSpace(CommentText))
             {
@@ -125,11 +125,11 @@ namespace SuxrobGM_Website.Pages.Blog
                 Text = CommentText,
             };
 
-            string commentAuthor = comment.AuthorId == null ? comment.AuthorName : comment.Author.UserName;
-            string commentEmail = comment.AuthorId == null ? comment.AuthorEmail : comment.Author.Email;
+            var commentAuthor = comment.AuthorId == null ? comment.AuthorName : comment.Author.UserName;
+            var commentEmail = comment.AuthorId == null ? comment.AuthorEmail : comment.Author.Email;
 
-            string htmlMsg = $@"<h3>Good day, <b>{commentAuthor}</b></h3>
-                                <p>Replied to your comment in this suxrobgm.net article <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net{blog.Url}?pageIndex={pageNumber}#{commentId}")}'>{blog.Title}</a></p>
+            var htmlMsg = $@"<h3>Good day, <b>{commentAuthor}</b></h3>
+                                <p>Replied to your comment in this suxrobgm.net article <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net/blog/{blog.Slug}?pageIndex={pageNumber}#{commentId}")}'>{blog.Title}</a></p>
                                 <br />
                                 <p>Sincerely, <b>SuxrobGM</b></p>";
 
@@ -141,9 +141,12 @@ namespace SuxrobGM_Website.Pages.Blog
 
         public async Task<IActionResult> OnPostDeleteCommentAsync(string commentId, string rootCommentId)
         {
-            var blogUrl = RouteData.Values["blogUrl"].ToString();
-            var pageNumber = int.Parse(HttpContext.Request.Query["pageIndex"]);
-            var comment = _context.Comments.Where(i => i.Id == commentId).FirstOrDefault();
+            if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out var pageNumber))
+            {
+                pageNumber = 1;
+            }
+
+            var comment = await _context.Comments.FirstOrDefaultAsync(i => i.Id == commentId);
             
             await RemoveChildrenCommentsAsync(comment);
             _context.Comments.Remove(comment);

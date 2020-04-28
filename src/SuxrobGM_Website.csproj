@@ -39,7 +39,7 @@
     <PackageReference Include="SuxrobGM.Sdk.AspNetCore" Version="0.3.5" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics" Version="0.3.5" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.3.5" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.1.0.42" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.1.0.43" />
   </ItemGroup>
 
   <ItemGroup>

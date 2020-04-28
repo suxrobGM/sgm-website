@@ -1,5 +1,5 @@
 using System;
-using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +28,6 @@ namespace SuxrobGM_Website
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             SyncfusionLicenseProvider.RegisterLicense(Configuration.GetSection("SynLicenseKey").Value);
@@ -49,7 +48,7 @@ namespace SuxrobGM_Website
             });               
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("RemoteConnection"))
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                     .UseLazyLoadingProxies();
             });
 
@@ -80,8 +79,7 @@ namespace SuxrobGM_Website
                 });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
         {
             if (env.IsDevelopment())
             {               
@@ -93,14 +91,28 @@ namespace SuxrobGM_Website
                 app.UseExceptionHandler("/Error");                
                 app.UseHsts();
             }
-          
+
+            app.UseHttpsRedirection();
             app.UseServerAnalytics(new SqliteAnalyticsRepository())
                 .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin", "/wp-includes/")
-                .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")  
-                .ExcludeLoopBack() 
-                .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot")); 
-                            
-            app.UseStaticFiles();
+                .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")
+                .ExcludeLoopBack()
+                .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"));
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                HttpsCompression = Microsoft.AspNetCore.Http.Features.HttpsCompressionMode.Compress,
+                OnPrepareResponse = (context) =>
+                {
+                    var headers = context.Context.Response.GetTypedHeaders();
+                    headers.CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue
+                    {
+                        Public = true,
+                        MaxAge = TimeSpan.FromDays(30)
+                    };
+
+                }
+            });
             app.UseRouting();
             app.UseCookiePolicy();
             app.UseAuthentication();
@@ -110,51 +122,38 @@ namespace SuxrobGM_Website
                 endpoints.MapRazorPages();
             });
 
-            //CreateUserRoles(provider);
-            //AddDefaultProfilePhoto(provider);
+            //CreateUserRolesAsync(provider).Wait();
         }       
 
-        private void CreateUserRoles(IServiceProvider serviceProvider)
+        private async Task CreateUserRolesAsync(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<UserRole>>();
             var userManager = serviceProvider.GetRequiredService<UserManager<User>>();
 
-            var superAdminRole = roleManager.RoleExistsAsync(Role.SuperAdmin.ToString()).Result;
-            var adminRole = roleManager.RoleExistsAsync(Role.Admin.ToString()).Result;
-            var moderatorRole = roleManager.RoleExistsAsync(Role.Moderator.ToString()).Result;
-            var editorRole = roleManager.RoleExistsAsync(Role.Editor.ToString()).Result;
+            var superAdminRole = await roleManager.RoleExistsAsync(Role.SuperAdmin.ToString());
+            var adminRole = await roleManager.RoleExistsAsync(Role.Admin.ToString());
+            var moderatorRole = await roleManager.RoleExistsAsync(Role.Moderator.ToString());
+            var editorRole = await roleManager.RoleExistsAsync(Role.Editor.ToString());
 
             if (!superAdminRole)
             {
-                var roleResult = roleManager.CreateAsync(new UserRole(Role.SuperAdmin)).Result;
+                var roleResult = await roleManager.CreateAsync(new UserRole(Role.SuperAdmin));
             }
             if (!adminRole)
             {
-                var roleResult = roleManager.CreateAsync(new UserRole(Role.Admin)).Result;
+                var roleResult = await roleManager.CreateAsync(new UserRole(Role.Admin));
             }
             if (!moderatorRole)
             {
-                var roleResult = roleManager.CreateAsync(new UserRole(Role.Moderator)).Result;
+                var roleResult = await roleManager.CreateAsync(new UserRole(Role.Moderator));
             }           
             if (!editorRole)
             {
-                var roleResult = roleManager.CreateAsync(new UserRole(Role.Editor)).Result;
+                var roleResult = await roleManager.CreateAsync(new UserRole(Role.Editor));
             }
 
-            User admin = userManager.FindByEmailAsync("suxrobgm@gmail.com").Result;
-            userManager.AddToRoleAsync(admin, Role.SuperAdmin.ToString()).Wait();
-        }
-        private void AddDefaultProfilePhoto(IServiceProvider provider)
-        {
-            var db = provider.GetRequiredService<ApplicationDbContext>();
-            var user = db.Users.Where(i => i.UserName.ToLower() == "suxrobgm").First();
-            var defaultUserPhoto = "/img/user_def_icon.png";
-
-            if (string.IsNullOrEmpty(user.ProfilePhotoUrl))
-            {
-                user.ProfilePhotoUrl = defaultUserPhoto;
-            }
-            db.SaveChanges();
+            var admin = await userManager.FindByEmailAsync("suxrobgm@gmail.com");
+            await userManager.AddToRoleAsync(admin, Role.SuperAdmin.ToString());
         }
     }
 }

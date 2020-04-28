@@ -1,50 +1,12 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SuxrobGM_Website.Migrations
 {
-    public partial class added_user : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Comment_Blogs_BlogId",
-                table: "Comment");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Comment",
-                table: "Comment");
-
-            migrationBuilder.RenameTable(
-                name: "Comment",
-                newName: "Comments");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Comment_BlogId",
-                table: "Comments",
-                newName: "IX_Comments_BlogId");
-
-            migrationBuilder.AddColumn<string>(
-                name: "AuthorId",
-                table: "Blogs",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "Tags",
-                table: "Blogs",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "AuthorId",
-                table: "Comments",
-                nullable: true);
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Comments",
-                table: "Comments",
-                column: "Id");
-
             migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
@@ -64,7 +26,7 @@ namespace SuxrobGM_Website.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<string>(maxLength: 32, nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
@@ -79,8 +41,9 @@ namespace SuxrobGM_Website.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true)
+                    FirstName = table.Column<string>(maxLength: 64, nullable: true),
+                    LastName = table.Column<string>(maxLength: 64, nullable: true),
+                    ProfilePhotoUrl = table.Column<string>(maxLength: 64, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -92,7 +55,7 @@ namespace SuxrobGM_Website.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -109,11 +72,37 @@ namespace SuxrobGM_Website.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Articles",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Title = table.Column<string>(maxLength: 64, nullable: false),
+                    Summary = table.Column<string>(maxLength: 200, nullable: false),
+                    Content = table.Column<string>(nullable: false),
+                    Slug = table.Column<string>(maxLength: 64, nullable: true),
+                    CoverPhotoUrl = table.Column<string>(maxLength: 64, nullable: true),
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    ViewCount = table.Column<int>(nullable: false),
+                    AuthorId = table.Column<string>(maxLength: 32, nullable: true),
+                    Tags = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Articles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Articles_Users_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -193,15 +182,61 @@ namespace SuxrobGM_Website.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Text = table.Column<string>(nullable: true),
+                    AuthorName = table.Column<string>(maxLength: 64, nullable: true),
+                    Timestamp = table.Column<DateTime>(nullable: false),
+                    AuthorEmail = table.Column<string>(maxLength: 64, nullable: true),
+                    AuthorId = table.Column<string>(maxLength: 32, nullable: true),
+                    ParentId = table.Column<string>(maxLength: 32, nullable: true),
+                    ArticleId = table.Column<string>(maxLength: 32, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_Articles_ArticleId",
+                        column: x => x.ArticleId,
+                        principalTable: "Articles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Users_AuthorId",
+                        column: x => x.AuthorId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Comments_Comments_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "Comments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Blogs_AuthorId",
-                table: "Blogs",
+                name: "IX_Articles_AuthorId",
+                table: "Articles",
                 column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ArticleId",
+                table: "Comments",
+                column: "ArticleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_AuthorId",
                 table: "Comments",
                 column: "AuthorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ParentId",
+                table: "Comments",
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -241,45 +276,12 @@ namespace SuxrobGM_Website.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Blogs_Users_AuthorId",
-                table: "Blogs",
-                column: "AuthorId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Comments_Users_AuthorId",
-                table: "Comments",
-                column: "AuthorId",
-                principalTable: "Users",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Comments_Blogs_BlogId",
-                table: "Comments",
-                column: "BlogId",
-                principalTable: "Blogs",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Blogs_Users_AuthorId",
-                table: "Blogs");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Comments_Users_AuthorId",
-                table: "Comments");
-
-            migrationBuilder.DropForeignKey(
-                name: "FK_Comments_Blogs_BlogId",
-                table: "Comments");
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "RoleClaims");
@@ -297,56 +299,13 @@ namespace SuxrobGM_Website.Migrations
                 name: "UserToken");
 
             migrationBuilder.DropTable(
+                name: "Articles");
+
+            migrationBuilder.DropTable(
                 name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Users");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Blogs_AuthorId",
-                table: "Blogs");
-
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_Comments",
-                table: "Comments");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Comments_AuthorId",
-                table: "Comments");
-
-            migrationBuilder.DropColumn(
-                name: "AuthorId",
-                table: "Blogs");
-
-            migrationBuilder.DropColumn(
-                name: "Tags",
-                table: "Blogs");
-
-            migrationBuilder.DropColumn(
-                name: "AuthorId",
-                table: "Comments");
-
-            migrationBuilder.RenameTable(
-                name: "Comments",
-                newName: "Comment");
-
-            migrationBuilder.RenameIndex(
-                name: "IX_Comments_BlogId",
-                table: "Comment",
-                newName: "IX_Comment_BlogId");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_Comment",
-                table: "Comment",
-                column: "Id");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Comment_Blogs_BlogId",
-                table: "Comment",
-                column: "BlogId",
-                principalTable: "Blogs",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
     }
 }

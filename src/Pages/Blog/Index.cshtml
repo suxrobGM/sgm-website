@@ -1,4 +1,4 @@
-﻿@page "{blogUrl}"
+﻿@page "{slug}"
 @model SuxrobGM_Website.Pages.Blog.BlogIndexModel
 @{
     ViewData["Title"] = Model.Article.Title;
@@ -8,12 +8,12 @@
 @section SEO {
     <meta name="author" content="@Model.Article.Author" />
     <meta name="description" content="@Model.Article.Summary" />
-    <meta name="keywords" content="@Model.Article.Tags" />
+    <meta name="keywords" content="@Model.ArticleTags" />
     <meta property="og:title" content="@Model.Article.Title" />
     <meta property="og:description" content="@Model.Article.Summary" />
     <meta property="og:site_name" content="Blog" />
     <meta property="og:type" content="article" />
-    <meta property="article:published_time" content="@Model.Article.CreatedTime" />
+    <meta property="article:published_time" content="@Model.Article.Timestamp" />
     <meta property="article:author" content="@Model.Article.Author" />
     <meta property="article:tags" content="@Model.Article.Tags" />
     <meta name="twitter:title" content="@Model.Article.Title" />
@@ -23,8 +23,8 @@
     <meta name="twitter:site" content="Blog" />
 
     @{
-        string imgUrl = $"http://www.suxrobgm.net{Model.Article.CoverPhotoUrl}";
-        string articleUrl = $"http://www.suxrobgm.net{Model.Article.Url}";
+        var imgUrl = $"https://www.suxrobgm.net{Model.Article.CoverPhotoUrl}";
+        var articleUrl = $"https://www.suxrobgm.net/blog/{Model.Article.Slug}";
         <meta name="image" content="@imgUrl" />
         <meta name="twitter:image" content="@imgUrl" />
         <meta property="og:image" content="@imgUrl" />
@@ -38,7 +38,7 @@
     <div class="card-header">
         <b>@Model.Article.Title</b>
         <div class="float-right">
-            <span class="font-italic">@Model.Article.CreatedTime.ToString("MMMM dd, yyyy")</span>
+            <span class="font-italic">@Model.Article.Timestamp.ToString("MMMM dd, yyyy")</span>
             <span class="mx-3"><i class="fa fa-eye"></i>&nbsp;@Model.Article.ViewCount</span>
             @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
             {
@@ -55,7 +55,7 @@
     </div>
     <div class="card-footer">
         <b>Tags</b><br />
-        @foreach (var tag in Model.BlogTags)
+        @foreach (var tag in Model.Article.Tags)
         {
             <span class="badge badge-dark mr-2">@tag</span>
         }
@@ -83,7 +83,7 @@
             <pagination class="mx-auto" page-index="@Model.Comments.PageIndex"
                         total-pages="@Model.Comments.TotalPages"
                         page-method="pageIndex" page-fragment="pagination"
-                        base-url="@Model.Article.Url" />
+                        base-url="@Model.Article.Slug" />
         </div>
     </div>
 }

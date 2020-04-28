@@ -32,11 +32,11 @@
             @Html.Raw(Model.Article.Content)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Url)
+            @Html.DisplayNameFor(model => model.Article.Slug)
         </dt>
         <dd class="col-sm-10">
             <span>https://suxrobgm.net/blog/</span>
-            @Html.DisplayFor(model => model.ArticleRelativeUrl)
+            @Html.DisplayFor(model => model.Article.Slug)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Article.Tags)
@@ -45,10 +45,10 @@
             @Html.DisplayFor(model => model.Article.Tags)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.CreatedTime)
+            @Html.DisplayNameFor(model => model.Article.Timestamp)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Article.CreatedTime)
+            @Html.DisplayFor(model => model.Article.Timestamp)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Article.Author)

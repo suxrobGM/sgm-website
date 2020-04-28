@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SuxrobGM_Website.Models;
@@ -31,7 +32,7 @@ namespace SuxrobGM_Website.Data
         {
             base.OnModelCreating(builder);
 
-            // Changed standart identity table names
+            // Change standard identity table names
             builder.Entity<User>(entity => { entity.ToTable(name: "Users"); });
             builder.Entity<UserRole>(entity => { entity.ToTable(name: "Roles"); });
             builder.Entity<IdentityUserRole<string>>(entity => { entity.ToTable("UserRoles"); });
@@ -48,7 +49,12 @@ namespace SuxrobGM_Website.Data
 
                 entity.HasMany(m => m.Comments)
                     .WithOne(m => m.Article)
-                    .OnDelete(DeleteBehavior.Cascade);
+                    .HasForeignKey(m => m.ArticleId);
+
+                entity.Property(m => m.Tags)
+                    .HasConversion(
+                        v => string.Join(',', v),
+                        v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
             });
 
             builder.Entity<Comment>(entity =>

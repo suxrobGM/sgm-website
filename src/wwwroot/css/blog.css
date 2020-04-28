@@ -89,3 +89,10 @@ footer {
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
+
+@media screen and (max-width: 576px) {
+    .container {
+        padding-right: 3px !important;
+        padding-left: 3px !important;
+    }
+}

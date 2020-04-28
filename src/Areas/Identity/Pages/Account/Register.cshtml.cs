@@ -67,42 +67,41 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/Blog");
+            returnUrl ??= Url.Content("~/Blog");
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) 
+                return Page();
+
+            var user = new User
             {
-                var user = new User
-                {
-                    UserName = Input.UserName,
-                    Email = Input.Email,
-                    ProfilePhotoUrl = "/img/user_def_icon.png"
-                };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                UserName = Input.UserName,
+                Email = Input.Email,
+                ProfilePhotoUrl = "/img/user_def_icon.png"
+            };
+            var result = await _userManager.CreateAsync(user, Input.Password);
 
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("User created a new account with password.");
 
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { userId = user.Id, code = code },
-                        protocol: Request.Scheme);
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var callbackUrl = Url.Page(
+                    "/Account/ConfirmEmail",
+                    null,
+                    new { userId = user.Id, code },
+                    Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return LocalRedirect(returnUrl);
+            }
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
             }
 
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }
