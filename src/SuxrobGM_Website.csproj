@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.15.5" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.16.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.3" />
@@ -39,7 +39,7 @@
     <PackageReference Include="SuxrobGM.Sdk.AspNetCore" Version="0.3.5" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics" Version="0.3.5" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.3.5" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.1.0.43" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.1.0.46" />
   </ItemGroup>
 
   <ItemGroup>
