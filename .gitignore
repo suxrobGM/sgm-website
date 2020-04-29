@@ -13,6 +13,7 @@
 appsettings.json
 appsettings.Development.json
 app_analytics.sqlite
+db_files/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
