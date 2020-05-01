@@ -2,14 +2,17 @@
 @model SuxrobGM_Website.Pages.Blog.BlogListModel
 
 @{
-    ViewData["Title"] = "Blog";
+    ViewData["Title"] = "Sukhrob Ilyosbekov's Blog";
     Layout = "_BlogLayout";
 }
 
 @section SEO  {
     <meta name="author" content="Sukhrob Ilyosbekov" />
-    <meta name="description" content="Sukhrob Ilyosbekov's Blog" />
-    <meta name="keywords" content="Suxrob,Sukhrob,Ilyosbekov,SuxrobGM,Suxrob GM,Sukhrob Ilyosbekov,Suxrob Ilyosbekov,Blog" />
+    <meta name="description" content="Sukhrob Ilyosbekov's official blog, funny software developer who loves to explore the world of unknown." />
+    <meta name="keywords" content="Suxrob, Sukhrob, Ilyosbekov, SuxrobGM, Suxrob GM, Sukhrob Ilyosbekov, Suxrobbek, Suxrobbek Ilyosbekov,
+          Suxrob Ilyosbekov, Sukhrobbek, Sukhrobbek Ilyosbekov, suxrob_gm, Stephen, Software Enginer, Software Developer, Developer, Software, SGM, .NET, .NET Expert, Freelancer, Freelance,
+          development, game, skills, software, application, mobile, desktop, programmer, programming, C#, C++, Python, JavaScript, full-stack developer, uzbekistan, samarkand, blog" />
+    <meta name="image" content="http://www.suxrobgm.net/img/about/profile_2.jpg" />
 }
 
 <div class="row">
@@ -79,16 +82,35 @@
         </div>
         <div class="col-12 col-md-5 col-lg-4">
             <div class="card card-shadow my-4">
-                <img class="card-img-top" src="~/db_files/img/SuxrobGM_blog_photo.jpg" />
+                <img class="card-img-top" src="~/img/about/profile_2.jpg" alt="blog author's photo" />
                 <div class="card-body">
-                    <h4 class="card-title">Sukhrob</h4>
-                    <p>Software Engineer</p>
+                    <h4 class="card-title">Sukhrob Ilyosbekov</h4>
+                    <h6>Software Developer <br />Traveler</h6>
+                    <p>I am just a fun software developer who loves to explore the world of unknown.</p>
+                    <p class="font-italic">&quot;Every failure is one step closer to success&quot;</p>
                 </div>
             </div>
 
             <div class="card card-shadow my-4">
                 <div class="card-header">
                     Popular posts
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group">
+                        @foreach (var article in Model.PopularArticles)
+                        {
+                            <a asp-page="/Blog/Index" asp-route-slug="@article.Slug" class="list-group-item list-group-item-action">
+                                <img class="rounded" style="width: 75px; height: 50px" src="@article.CoverPhotoUrl" alt="cover photo" />
+                                <span class="ml-2" style="font-size:smaller">@article.Title</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-shadow my-4">
+                <div class="card-header">
+                    Popular tags
                 </div>
                 <div class="card-body p-0">
                     <div class="list-group">

@@ -1,28 +1,28 @@
-﻿$('[data-toggle="tooltip"]').tooltip();
+﻿$("[data-toggle=\"tooltip\"]").tooltip();
 
-$('.delete-item').click((e) => {
-    let result = confirm('Do you want to delete this item? \nWARNING! this non refundable operation!');
-    if (result == false) {
-        e.preventDefault()
+$(".delete-item").click((e) => {
+    const result = confirm("Do you want to delete this item? \nWARNING! this non refundable operation!");
+    if (result === false) {
+        e.preventDefault();
     }
 });
 
-function showReplyCommentBox(commentId = '') {
+function showReplyCommentBox(commentId = "") {
     collapseElement(`#${commentId}.card-footer`);
     $(`button#${commentId}`).hide();
-    $(`#${commentId}.reply-commentbox`).removeClass('d-none');
+    $(`#${commentId}.reply-commentbox`).removeClass("d-none");
 }
 
-function hideReplyCommentBox(commentId = '') {
+function hideReplyCommentBox(commentId = "") {
     $(`button#${commentId}`).show();
-    $(`#${commentId}.reply-commentbox`).addClass('d-none');
+    $(`#${commentId}.reply-commentbox`).addClass("d-none");
 }
 
-function collapseElement(targetElement = '') {
-    if ($(targetElement).hasClass('show')) {
-        $(targetElement).collapse('hide').removeClass('show');
+function collapseElement(targetElement = "") {
+    if ($(targetElement).hasClass("show")) {
+        $(targetElement).collapse("hide").removeClass("show");
     }
     else {
-        $(targetElement).collapse('show').addClass('show');
+        $(targetElement).collapse("show").addClass("show");
     }
 }

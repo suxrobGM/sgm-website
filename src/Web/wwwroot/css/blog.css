@@ -1,4 +1,10 @@
-﻿/* Sticky footer styles
+﻿@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+body h1, h2, h3, h4, h5, h6, p {
+    font-family: "Raleway", sans-serif !important;
+}
+
+/* Sticky footer styles
 -------------------------------------------------- */
 body {
     height: 100vh;
@@ -30,13 +36,13 @@ footer {
     text-align: center;
     margin-right: 5px;
     margin-left: 5px;
-    transition: all 0.3s ease-in-out 0s;
     -moz-transition: all 0.3s ease-in-out 0s;
     -webkit-transition: all 0.3s ease-in-out 0s;
     -o-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
 }
 
-    .social-icon a.facebook:hover {
+.social-icon a.facebook:hover {
         background-color: #3b5999;
         color: white;
     }
@@ -59,7 +65,7 @@ footer {
 .comment-editor {
     border: none;
     width: 100%;
-    outline: 0px !important;
+    outline: 0 !important;
     -webkit-appearance: none;
 }
 
@@ -76,6 +82,7 @@ footer {
 }
 
 .card-shadow {
+    box-shadow: 0 4px 10px 0 #000000, 0 4px 20px 0 #000000;
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
 }
 

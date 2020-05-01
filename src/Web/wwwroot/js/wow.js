@@ -26,8 +26,8 @@
 
   this.WOW = (function() {
     WOW.prototype.defaults = {
-      boxClass: 'wow',
-      animateClass: 'animated',
+      boxClass: "wow",
+      animateClass: "animated",
       offset: 0,
       mobile: true
     };
@@ -54,7 +54,7 @@
           if ((_ref = document.readyState) === "interactive" || _ref === "complete") {
             return this.start();
           } else {
-            return document.addEventListener('DOMContentLoaded', this.start);
+            return document.addEventListener("DOMContentLoaded", this.start);
           }
         }
       }
@@ -67,14 +67,14 @@
         box = _ref[_i];
         this.applyStyle(box, true);
       }
-      window.addEventListener('scroll', this.scrollHandler, false);
-      window.addEventListener('resize', this.scrollHandler, false);
+      window.addEventListener("scroll", this.scrollHandler, false);
+      window.addEventListener("resize", this.scrollHandler, false);
       return this.interval = setInterval(this.scrollCallback, 50);
     };
 
     WOW.prototype.stop = function() {
-      window.removeEventListener('scroll', this.scrollHandler, false);
-      window.removeEventListener('resize', this.scrollHandler, false);
+      window.removeEventListener("scroll", this.scrollHandler, false);
+      window.removeEventListener("resize", this.scrollHandler, false);
       if (this.interval != null) {
         return clearInterval(this.interval);
       }
@@ -82,15 +82,15 @@
 
     WOW.prototype.show = function(box) {
       this.applyStyle(box);
-      return box.className = "" + box.className + " " + this.config.animateClass;
+      return box.className = `${box.className} ${this.config.animateClass}`;
     };
 
     WOW.prototype.applyStyle = function(box, hidden) {
       var delay, duration, iteration;
-      duration = box.getAttribute('data-wow-duration');
-      delay = box.getAttribute('data-wow-delay');
-      iteration = box.getAttribute('data-wow-iteration');
-      return box.setAttribute('style', this.customStyle(hidden, duration, delay, iteration));
+      duration = box.getAttribute("data-wow-duration");
+      delay = box.getAttribute("data-wow-delay");
+      iteration = box.getAttribute("data-wow-iteration");
+      return box.setAttribute("style", this.customStyle(hidden, duration, delay, iteration));
     };
 
     WOW.prototype.resetStyle = function() {
@@ -99,7 +99,7 @@
       _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         box = _ref[_i];
-        _results.push(box.setAttribute('style', 'visibility: visible;'));
+        _results.push(box.setAttribute("style", "visibility: visible;"));
       }
       return _results;
     };
@@ -153,7 +153,7 @@
     WOW.prototype.offsetTop = function(element) {
       var top;
       top = element.offsetTop;
-      while (element = element.offsetParent) {
+      while (element === element.offsetParent) {
         top += element.offsetTop;
       }
       return top;
@@ -161,7 +161,7 @@
 
     WOW.prototype.isVisible = function(box) {
       var bottom, offset, top, viewBottom, viewTop;
-      offset = box.getAttribute('data-wow-offset') || this.config.offset;
+      offset = box.getAttribute("data-wow-offset") || this.config.offset;
       viewTop = window.pageYOffset;
       viewBottom = viewTop + this.element.clientHeight - offset;
       top = this.offsetTop(box);
