@@ -17,12 +17,13 @@
         <ejs-grid id="Grid" dataSource="@Model.ViewData["dataSource"]" allowPaging="true" allowSorting="true" allowResizing="true">
             <e-grid-pagesettings pageCount="15" pageSize="100" pageSizes="new[] { 25, 50, 75, 100 }"></e-grid-pagesettings>
             <e-grid-columns>
+                <e-grid-column field="Timestamp" headerText="Timestamp" width="170" customFormat="@(new {type = "date", format = "dd/MM/yyyy hh:mm:ss"})"></e-grid-column>
                 <e-grid-column field="RemoteIpAddress" headerText="Remote Ip Address" width="150"></e-grid-column>
                 <e-grid-column field="Method" headerText="Method" width="75"></e-grid-column>
                 <e-grid-column field="Path" headerText="Path" width="150"></e-grid-column>
-                <e-grid-column field="UserAgent" headerText="UserAgent" width="200"></e-grid-column>
+                <e-grid-column field="UserAgent" headerText="User Agent" width="200"></e-grid-column>
                 <e-grid-column field="Country" headerText="Country" width="150"></e-grid-column>
-                <e-grid-column field="RegionName" headerText="RegionName" width="150"></e-grid-column>
+                <e-grid-column field="RegionName" headerText="Region" width="150"></e-grid-column>
                 <e-grid-column field="City" headerText="City" width="150"></e-grid-column>
                 <e-grid-column field="Latitude" headerText="Latitude" width="100"></e-grid-column>
                 <e-grid-column field="Longitude" headerText="Longitude" width="100"></e-grid-column>
