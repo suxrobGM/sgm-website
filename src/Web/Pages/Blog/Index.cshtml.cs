@@ -37,7 +37,6 @@ namespace SuxrobGM_Website.Pages.Blog
         public string CommentAuthorEmail { get; set; }
 
         public int PageIndex { get; set; }
-        public string ArticleTags { get; set; }
         public Article Article { get; set; }
         public PaginatedList<Comment> Comments { get; set; }
         
@@ -53,8 +52,6 @@ namespace SuxrobGM_Website.Pages.Blog
             }
 
             await _context.SaveChangesAsync();
-
-            ArticleTags = string.Join(',', Article.Tags);
             Comments = PaginatedList<Comment>.Create(Article.Comments, pageIndex);
             PageIndex = pageIndex;
             ViewData.Add("PageIndex", PageIndex);

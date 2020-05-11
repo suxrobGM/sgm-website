@@ -113,13 +113,10 @@
                     Popular Tags
                 </div>
                 <div class="card-body p-0">
-                    <div class="list-group">
-                        @foreach (var article in Model.PopularArticles)
+                    <div class="p-2">
+                        @foreach (var tag in Model.PopularTags)
                         {
-                            <a asp-page="/Blog/Index" asp-route-slug="@article.Slug" class="list-group-item list-group-item-action">
-                                <img class="rounded" style="width: 75px; height: 50px" src="@article.CoverPhotoUrl" alt="cover photo" />
-                                <span class="ml-2" style="font-size:smaller">@article.Title</span>
-                            </a>
+                            <a asp-page="/Blog/List" asp-route-tag="@tag.Trim()"><span class="badge badge-dark text-white">@tag</span></a>
                         }
                     </div>
                 </div>

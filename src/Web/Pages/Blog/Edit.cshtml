@@ -19,6 +19,7 @@
     <div class="px-5">
         <form enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Article.Id" />
             <div class="form-group">
                 <label asp-for="Article.Title" class="control-label"></label>
                 <input asp-for="Article.Title" class="form-control" />
@@ -47,9 +48,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="ArticleTags" class="control-label"></label>
-                <input asp-for="ArticleTags" class="form-control" />
-                <span asp-validation-for="ArticleTags" class="text-danger"></span>
+                <label asp-for="Article.Tags" class="control-label"></label>
+                <label class="font-weight-light">&nbsp;(<span class="font-weight-bold text-danger">*</span>Do not duplicate tag names)</label>
+                <input asp-for="Article.Tags" class="form-control" />
+                <span asp-validation-for="Article.Tags" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Article.Content" class="control-label"></label>

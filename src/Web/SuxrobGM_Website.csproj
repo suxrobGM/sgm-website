@@ -14,6 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200510220649_a.cs" />
+    <Compile Remove="Migrations\20200510220649_a.Designer.cs" />
+    <Compile Remove="Migrations\20200511005111_a.cs" />
+    <Compile Remove="Migrations\20200511005111_a.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <Content Update="wwwroot\lib\bootstrap\**\*" CopyToPublishDirectory="Never" />
 	  <Content Update="wwwroot\lib\fontawesome\**\*" CopyToPublishDirectory="Never" />
 	  <Content Update="wwwroot\lib\jquery\**\*" CopyToPublishDirectory="Never" />

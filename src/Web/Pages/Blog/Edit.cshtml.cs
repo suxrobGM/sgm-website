@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -31,12 +30,9 @@ namespace SuxrobGM_Website.Pages.Blog
         [BindProperty]
         public IFormFile UploadCoverPhoto { get; set; }
 
-        public string ArticleTags { get; set; }
-
         public async Task<IActionResult> OnGetAsync(string id)
         {
             Article = await _context.Articles.FirstAsync(i => i.Id == id);
-            ArticleTags = string.Join(',', Article.Tags);
             ViewData.Add("toolbars", new[]
             {
                 "Bold", "Italic", "Underline", "StrikeThrough",
@@ -75,7 +71,7 @@ namespace SuxrobGM_Website.Pages.Blog
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToPage("/Blog/Index", new { slug = Article.Slug });
+            return RedirectToPage("/Blog/Index", new { slug = article.Slug });
         }
     }
 }

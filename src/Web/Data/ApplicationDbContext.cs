@@ -50,17 +50,10 @@ namespace SuxrobGM_Website.Data
                 entity.HasMany(m => m.Comments)
                     .WithOne(m => m.Article)
                     .HasForeignKey(m => m.ArticleId);
-
-                entity.Property(m => m.Tags)
-                    .HasConversion(
-                        v => string.Join(',', v),
-                        v => v.Split(',', StringSplitOptions.RemoveEmptyEntries));
             });
 
             builder.Entity<Comment>(entity =>
             {
-                entity.ToTable("Comments");
-
                 entity.HasOne(m => m.Author)
                     .WithMany(m => m.Comments)
                     .HasForeignKey(m => m.AuthorId);

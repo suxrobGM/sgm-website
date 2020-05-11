@@ -8,7 +8,7 @@
 @section SEO {
     <meta name="author" content="@Model.Article.Author" />
     <meta name="description" content="@Model.Article.Summary" />
-    <meta name="keywords" content="@Model.ArticleTags" />
+    <meta name="keywords" content="@Model.Article.Tags" />
     <meta property="og:title" content="@Model.Article.Title" />
     <meta property="og:description" content="@Model.Article.Summary" />
     <meta property="og:site_name" content="Blog" />
@@ -55,9 +55,12 @@
     </div>
     <div class="card-footer">
         <b>Tags</b><br />
-        @foreach (var tag in Model.Article.Tags)
-        {
-            <span class="badge badge-dark mr-2">@tag</span>
+        @{
+            var tags = Model.Article.GetTags();
+            foreach (var tag in tags)
+            {
+                <span class="badge badge-dark mr-2">@tag</span>
+            }
         }
     </div>
 </div>

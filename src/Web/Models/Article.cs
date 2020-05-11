@@ -38,10 +38,15 @@ namespace SuxrobGM_Website.Models
         [Display(Name = "Author")]
         [StringLength(32)]
         public string AuthorId { get; set; }
-        public virtual User Author { get; set; }
+        public string Tags { get; set; }
 
-        public virtual ICollection<string> Tags { get; set; } = new List<string>();
+        public virtual User Author { get; set; }
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
+        public string[] GetTags()
+        {
+            return Tags.Split(',');
+        }
 
         public static string CreateSlug(string title, bool useHypen = true, bool useLowerLetters = true)
         {

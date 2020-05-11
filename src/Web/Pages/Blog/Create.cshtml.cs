@@ -72,7 +72,7 @@ namespace SuxrobGM_Website.Pages.Blog
                 return Page();
             }
            
-            _context.Articles.Add(Article);
+            await _context.Articles.AddAsync(Article);
             await _context.SaveChangesAsync();
             return RedirectToPage("/Blog/Index", new { slug = Article.Slug });
         }
