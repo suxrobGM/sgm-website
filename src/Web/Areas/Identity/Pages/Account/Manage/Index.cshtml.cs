@@ -14,7 +14,7 @@ using SuxrobGM_Website.Utils;
 
 namespace SuxrobGM_Website.Areas.Identity.Pages.Account.Manage
 {
-    public partial class IndexModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
