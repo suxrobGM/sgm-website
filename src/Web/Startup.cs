@@ -56,6 +56,20 @@ namespace SuxrobGM_Website
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    var googleAuthSection = Configuration.GetSection("Authentication:Google");
+                    options.ClientId = googleAuthSection["ClientId"];
+                    options.ClientSecret = googleAuthSection["ClientSecret"];
+                })
+                .AddFacebook(options =>
+                {
+                    var facebookAuthSection = Configuration.GetSection("Authentication:Facebook");
+                    options.AppId = facebookAuthSection["AppId"];
+                    options.AppSecret = facebookAuthSection["AppSecret"];
+                });
+
             services.AddTransient<IEmailSender, EmailSender>(_ => new EmailSender(Configuration));
 
             services.Configure<IdentityOptions>(options =>
