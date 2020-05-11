@@ -5,7 +5,7 @@
     Layout = "_BlogLayout";
 }
 
-@section SEO {
+@section Head {
     <meta name="author" content="@Model.Article.Author" />
     <meta name="description" content="@Model.Article.Summary" />
     <meta name="keywords" content="@Model.Article.Tags" />
@@ -19,8 +19,8 @@
     <meta name="twitter:title" content="@Model.Article.Title" />
     <meta name="twitter:description" content="@Model.Article.Summary" />
     <meta name="twitter:creator" content="@Model.Article.Author" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="Blog" />
+    <meta name="twitter:card" content="@Model.Article.Summary" />
+    <meta name="twitter:site" content="Sukhrob Ilyosbekov's Blog" />
 
     @{
         var imgUrl = $"http://www.suxrobgm.net{Model.Article.CoverPhotoUrl}";

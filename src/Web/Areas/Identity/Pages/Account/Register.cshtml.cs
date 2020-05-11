@@ -1,13 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Net.Http;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using SuxrobGM_Website.Models;
 
 namespace SuxrobGM_Website.Areas.Identity.Pages.Account
@@ -19,17 +23,20 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
         private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IConfiguration _configuration;
 
         public RegisterModel(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _configuration = configuration;
         }
 
         [BindProperty]
@@ -67,7 +74,13 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            // ReSharper disable once Html.PathError
             returnUrl ??= Url.Content("~/Blog");
+
+            var validCaptcha = await CheckCaptchaResponseAsync();
+
+            if (!validCaptcha)
+                ModelState.AddModelError("captcha", "Invalid captcha verification");
 
             if (!ModelState.IsValid) 
                 return Page();
@@ -103,6 +116,26 @@ namespace SuxrobGM_Website.Areas.Identity.Pages.Account
             }
 
             return Page();
+        }
+
+        private async Task<bool> CheckCaptchaResponseAsync()
+        {
+            const string captchaApiUrl = "https://www.google.com/recaptcha/api/siteverify";
+            var captchaResponse = HttpContext.Request.Form["g-Recaptcha-Response"].ToString();
+            var secretKey = _configuration.GetSection("GoogleRecaptchaV2:SecretKey").Value;
+            var httpClient = new HttpClient();
+            var postQueries = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("secret", secretKey),
+                new KeyValuePair<string, string>("response", captchaResponse)
+            };
+
+            var response = await httpClient.PostAsync(new Uri(captchaApiUrl), new FormUrlEncodedContent(postQueries));
+            var responseContent = await response.Content.ReadAsStringAsync();
+            var jsonData = JObject.Parse(responseContent);
+
+            // ReSharper disable once PossibleNullReferenceException
+            return bool.Parse(jsonData["success"].ToString());
         }
     }
 }
