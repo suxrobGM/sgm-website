@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using SuxrobGM.Sdk.Pagination;
 using SuxrobGM_Website.Data;
 using SuxrobGM_Website.Models;
@@ -20,24 +23,25 @@ namespace SuxrobGM_Website.Pages.Blog
         public PaginatedList<Article> Articles { get; set; }
         public Article[] PopularArticles { get; set; }
         public string[] PopularTags { get; set; }
-        public int PageIndex { get; set; }
 
-        public void OnGet(int pageIndex = 1, string tag = null)
+        public async Task<IActionResult> OnGetAsync(int pageIndex = 1, string tag = null)
         {
-            PageIndex = pageIndex;
+            _context.ChangeTracker.LazyLoadingEnabled = false;
+            var articles = _context.Articles.Include(i => i.Comments).AsNoTracking();
 
             if (tag != null)
             {
-                var taggedArticles = _context.Articles.Where(i => i.Tags.Contains(tag));
-                Articles = PaginatedList<Article>.Create(taggedArticles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
+                var taggedArticles = articles.Where(i => i.Tags.ToLower().Contains(tag.ToLower()));
+                Articles = await PaginatedList<Article>.CreateAsync(taggedArticles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
             }
             else
             {
-                Articles = PaginatedList<Article>.Create(_context.Articles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
+                Articles = await PaginatedList<Article>.CreateAsync(articles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
             }
             
-            PopularArticles = _context.Articles.OrderByDescending(i => i.ViewCount).Take(5).ToArray();
-            PopularTags = GetPopularTags();
+            PopularArticles = articles.OrderByDescending(i => i.ViewCount).Take(5).ToArray();
+            PopularTags = await GetPopularTagsAsync(articles);
+            return Page();
         }
 
         public string GetShortContent(string articleContent)
@@ -49,21 +53,23 @@ namespace SuxrobGM_Website.Pages.Blog
             return matchedSrc.Aggregate(articleContent, (current, match) => current.Replace(match.Value, ""));
         }
 
-        public string[] GetPopularTags()
+        public async Task<string[]> GetPopularTagsAsync(IQueryable<Article> articles)
         {
-            var articles = _context.Articles;
-            var tags = new List<string>();
-
-            foreach (var article in articles)
+            return await Task.Run(() =>
             {
-                tags.AddRange(article.GetTags());
-            }
+                var tags = new List<string>();
 
-            var popularTags = tags.GroupBy(str => str)
-                .Select(i => new { Name = i.Key, Count = i.Count() })
-                .OrderByDescending(k => k.Count).Select(i => i.Name).Take(10).ToArray();
+                foreach (var article in articles)
+                {
+                    tags.AddRange(article.GetTags());
+                }
 
-            return popularTags;
+                var popularTags = tags.GroupBy(str => str)
+                    .Select(i => new {Name = i.Key, Count = i.Count()})
+                    .OrderByDescending(k => k.Count).Select(i => i.Name).Take(10).ToArray();
+
+                return popularTags;
+            });
         }
     }
 }

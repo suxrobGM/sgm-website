@@ -47,7 +47,7 @@ namespace SuxrobGM_Website
             });               
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("RemoteConnection"))
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
                     .UseLazyLoadingProxies();
             });
 
@@ -70,8 +70,6 @@ namespace SuxrobGM_Website
                     options.AppSecret = facebookAuthSection["AppSecret"];
                 });
 
-            services.AddTransient<IEmailSender, EmailSender>(_ => new EmailSender(Configuration));
-
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -86,6 +84,8 @@ namespace SuxrobGM_Website
                 //options.SignIn.RequireConfirmedEmail = true;
             });
 
+            services.AddTransient<IEmailSender, EmailSender>(_ => new EmailSender(Configuration));
+            services.AddRouting(options => options.LowercaseUrls = true);
             services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
@@ -116,7 +116,7 @@ namespace SuxrobGM_Website
             app.UseStaticFiles(new StaticFileOptions()
             {
                 HttpsCompression = Microsoft.AspNetCore.Http.Features.HttpsCompressionMode.Compress,
-                OnPrepareResponse = (context) =>
+                OnPrepareResponse = context =>
                 {
                     var headers = context.Context.Response.GetTypedHeaders();
                     headers.CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue
@@ -124,7 +124,6 @@ namespace SuxrobGM_Website
                         Public = true,
                         MaxAge = TimeSpan.FromDays(30)
                     };
-
                 }
             });
             app.UseRouting();
