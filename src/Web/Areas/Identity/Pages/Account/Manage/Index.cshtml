@@ -7,6 +7,7 @@
 
 <h4>@ViewData["Title"]</h4>
 <partial name="_StatusMessage" for="StatusMessage" />
+
 <form id="profile-form" enctype="multipart/form-data" method="post">
     <div class="row flex-column-reverse flex-sm-row">       
         <div class="col-12 col-sm-7">
@@ -15,8 +16,8 @@
 
             </div>
             <div class="form-group">
-                <label asp-for="Username"></label>
-                <input asp-for="Username" class="form-control" disabled />
+                <label asp-for="Input.Username"></label>
+                <input asp-for="Input.Username" class="form-control" />
             </div>
             <div class="form-group">
                 <label asp-for="Input.FirstName"></label>
@@ -32,7 +33,7 @@
                 {
                     <div class="input-group">
                         <input asp-for="Input.Email" class="form-control" />
-                        <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+                        <span class="input-group-addon" aria-hidden="true"><span class="text-success"></span></span>
                     </div>
                 }
                 else
@@ -53,7 +54,8 @@
             <fieldset>
                 <legend>Photo</legend>
                 <div>
-                    <img id="profile_photo" class="rounded" width="225" height="225" src="@Model.PhotoUrl" alt="Image" />
+                    <input type="hidden" asp-for="Input.ProfilePhotoUrl"/>
+                    <img id="profile_photo" class="rounded" width="225" height="225" src="@Model.Input.ProfilePhotoUrl" alt="Image"/>
                 </div>
                 <div class="my-2">
                     <input id="select_photo" class="btn" onchange="checkExtension(event)" accept="image/*" asp-for="Input.UploadPhoto" type="file" />
