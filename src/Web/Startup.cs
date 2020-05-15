@@ -86,6 +86,7 @@ namespace SuxrobGM_Website
 
             services.AddTransient<IEmailSender, EmailSender>(_ => new EmailSender(Configuration));
             services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddControllers();
             services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
@@ -131,7 +132,9 @@ namespace SuxrobGM_Website
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
 
