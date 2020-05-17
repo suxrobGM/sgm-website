@@ -6,8 +6,14 @@
 }
 
 @section CSS {
-    <link rel="stylesheet" href="~/lib/syncfusion/material.css" />
-    <script src="~/lib/syncfusion/ej2.min.js"></script>
+    <environment include="Development">
+        <link href="~/lib/syncfusion/material.css" rel="stylesheet" />
+        <script src="~/lib/syncfusion/ej2.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+        <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+    </environment>
 }
 
 @section FluidContainer {

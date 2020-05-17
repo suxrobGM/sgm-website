@@ -7,9 +7,15 @@
 }
 
 @section CSS {
-    <link rel="stylesheet" href="~/lib/fileupload/fileupload.css" />
-    <link rel="stylesheet" href="~/lib/syncfusion/material.css" />
-    <script src="~/lib/syncfusion/ej2.min.js"></script>
+    <link href="~/lib/fileupload/fileupload.css" rel="stylesheet" />
+    <environment include="Development">
+        <link href="~/lib/syncfusion/material.css" rel="stylesheet" />
+        <script src="~/lib/syncfusion/ej2.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet"/>
+        <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+    </environment>
 }
 
 <h1>Create</h1>
@@ -31,7 +37,7 @@
             </div>
             <div>
                 <label>Cover image</label>
-                <div class="file-upload mb-2">                   
+                <div class="file-upload mb-2">
                     <div class="image-upload-wrap">
                         <input class="file-upload-input" asp-for="UploadCoverPhoto" type="file" onchange="readURL(this);" accept="image/*" />
                         <div class="drag-text">

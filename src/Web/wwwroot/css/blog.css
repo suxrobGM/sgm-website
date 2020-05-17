@@ -69,18 +69,6 @@ footer {
     -webkit-appearance: none;
 }
 
-@media (max-device-width : 576px) {
-    .container {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .row {
-        margin-left: 0;
-        margin-right: 0;
-    }
-}
-
 .card-shadow {
     box-shadow: 0 4px 10px 0 #000000, 0 4px 20px 0 #000000;
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
@@ -95,6 +83,11 @@ footer {
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+
+.e-rte-image {
+    max-width: 100%;
+    height: auto;
 }
 
 @media screen and (max-width: 576px) {
