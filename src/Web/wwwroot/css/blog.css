@@ -85,11 +85,6 @@ footer {
     transition: all 0.3s ease-in-out;
 }
 
-.e-rte-image {
-    max-width: 100%;
-    height: auto;
-}
-
 @media screen and (max-width: 576px) {
     .container {
         padding-right: 3px !important;
