@@ -14,10 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <Content Update="wwwroot\lib\bootstrap\**\*" CopyToPublishDirectory="Never" />
-	  <Content Update="wwwroot\lib\fontawesome\**\*" CopyToPublishDirectory="Never" />
-	  <Content Update="wwwroot\lib\jquery\**\*" CopyToPublishDirectory="Never" />
-	  <Content Update="wwwroot\db_files\**\*" CopyToPublishDirectory="Never" />
+    <Content Update="wwwroot\lib\fontawesome\**\*" CopyToPublishDirectory="Never" />
+    <Content Update="wwwroot\db_files\**\*" CopyToPublishDirectory="Never" />
   </ItemGroup>
 
   <ItemGroup>
