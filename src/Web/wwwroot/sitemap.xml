@@ -5,39 +5,45 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
-    <loc>http://www.suxrobgm.net/</loc>
+    <loc>https://suxrobgm.net/</loc>
     <changefreq>Monthly</changefreq>
     <priority>1</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
+    <lastmod>2020-06-01T08:26:17Z</lastmod>
   </url>
   <url>
-    <loc>http://www.suxrobgm.net/Blog</loc>
+    <loc>https://suxrobgm.net/blog</loc>
     <changefreq>Monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
+    <lastmod>2020-06-01T08:26:17Z</lastmod>
   </url>
   <url>
-    <loc>http://www.suxrobgm.net/Identity/Account/Register</loc>
+    <loc>https://suxrobgm.net/Identity/Account/Register</loc>
     <changefreq>Monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
+    <lastmod>2020-06-01T08:26:17Z</lastmod>
   </url>
   <url>
-    <loc>http://www.suxrobgm.net/Identity/Account/Login</loc>
+    <loc>https://suxrobgm.net/Identity/Account/Login</loc>
     <changefreq>Monthly</changefreq>
     <priority>0.5</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
+    <lastmod>2020-06-01T08:26:17Z</lastmod>
   </url>
   <url>
-    <loc>http://www.suxrobgm.net/Blog/Introducing-NET-5</loc>
+    <loc>https://suxrobgm.net/blog/introducing-net-5</loc>
     <changefreq>Monthly</changefreq>
     <priority>1</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
+    <lastmod>2020-06-01T08:26:17Z</lastmod>
   </url>
   <url>
-    <loc>http://www.suxrobgm.net/Blog/Announcing-ML.NET-1.0-RC</loc>
+    <loc>https://suxrobgm.net/blog/mlnet-machine-learning-for-net</loc>
     <changefreq>Monthly</changefreq>
     <priority>1</priority>
-    <lastmod>2019-06-25T08:26:17Z</lastmod>
+    <lastmod>2020-06-01T08:26:17Z</lastmod>
+  </url>
+  <url>
+    <loc>https://suxrobgm.net/blog/travel-in-thailand</loc>
+    <changefreq>Monthly</changefreq>
+    <priority>1</priority>
+    <lastmod>2020-06-01T08:26:17Z</lastmod>
   </url>
 </urlset>
