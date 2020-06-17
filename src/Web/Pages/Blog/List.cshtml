@@ -1,4 +1,4 @@
-﻿@page "/Blog/List"
+﻿@page
 @model SuxrobGM_Website.Pages.Blog.BlogListModel
 
 @{
@@ -40,7 +40,7 @@
 
                     @if (!string.IsNullOrEmpty(article.CoverPhotoUrl))
                     {
-                        <img class="card-img-top" src="@article.CoverPhotoUrl" alt="Cover photo" />
+                        <img class="card-img-top" src="@article.CoverPhotoUrl" alt="@article.Title cover photo" />
                     }
                     <div class="card-body">
                         <h4 class="card-title">

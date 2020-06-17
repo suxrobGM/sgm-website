@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 
@@ -7,14 +9,29 @@ namespace SuxrobGM_Website.Pages.Admin
     [Authorize(Roles = "SuperAdmin,Admin")]
     public class AdminIndexModel : PageModel
     {
-        private SqliteDbContext _context;
+        private readonly SqliteDbContext _context;
 
-        public void OnGet()
+        public AdminIndexModel(SqliteDbContext context)
         {
-            _context = new SqliteDbContext("Data Source = app_analytics.sqlite");
+            _context = context;
+        }
+
+        public IActionResult OnGet()
+        {
             var dataSource = _context.Traffics;
             
             ViewData.Add("dataSource", dataSource);
+
+            return Page();
+        }
+
+        public async Task<IActionResult> OnGetRemoveItemsAsync()
+        {
+            var items = _context.Traffics;
+            _context.Traffics.RemoveRange(items);
+            
+            await _context.SaveChangesAsync();
+            return Page();
         }
     }
 }

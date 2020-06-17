@@ -36,5 +36,13 @@ namespace SuxrobGM_Website.Utils
             using var image = new MagickImage(imageStream);
             image.Write(outputFile);
         }
+
+        public static void DeleteImage(string imagePath)
+        {
+            if (File.Exists(imagePath))
+            {
+                File.Delete(imagePath);
+            }
+        }
     }
 }
