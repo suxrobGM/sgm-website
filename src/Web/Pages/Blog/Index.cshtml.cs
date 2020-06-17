@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -150,7 +151,7 @@ namespace SuxrobGM_Website.Pages.Blog
             await _context.SaveChangesAsync();
 
             return RedirectToPage("", "", new { pageIndex = pageNumber }, rootCommentId);
-        }       
+        }
 
         private async Task RemoveChildrenCommentsAsync(Comment comment)
         {

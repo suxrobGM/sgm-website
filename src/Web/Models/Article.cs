@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web;
 using SuxrobGM.Sdk.Extensions;
 using SuxrobGM.Sdk.Utils;
 
@@ -64,6 +65,14 @@ namespace SuxrobGM_Website.Models
                 url = url.ToLower();
 
             return url;
+        }
+
+        public static string GetShortContent(string articleContent, int length)
+        {
+            var content = HttpUtility.HtmlDecode(articleContent);
+            content = Regex.Replace(content, @"<(.|\n)*?>", "");            
+            content = content.Substring(0, length).Trim() + "...";
+            return content;
         }
     }
 }

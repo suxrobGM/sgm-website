@@ -1,35 +1,38 @@
 ﻿@page "{slug}"
 @model SuxrobGM_Website.Pages.Blog.BlogIndexModel
+@namespace SuxrobGM_Website.Models
+
 @{
     ViewData["Title"] = Model.Article.Title;
     Layout = "_BlogLayout";
 }
 
 @section Head {
+    @{
+        var imgUrl = $"https://suxrobgm.net{Model.Article.CoverPhotoUrl}";
+        var articleUrl = $"https://suxrobgm.net/blog/{Model.Article.Slug}";
+        var shortContent = Article.GetShortContent(Model.Article.Content, 200);
+    }
+
     <meta name="author" content="@Model.Article.Author" />
-    <meta name="description" content="@Model.Article.Summary" />
+    <meta name="description" content="@shortContent" />
     <meta name="keywords" content="@Model.Article.Tags" />
+    <meta name="image" content="@imgUrl" />
     <meta property="og:title" content="@Model.Article.Title" />
-    <meta property="og:description" content="@Model.Article.Summary" />
-    <meta property="og:site_name" content="Blog" />
+    <meta property="og:description" content="@shortContent" />
+    <meta property="og:site_name" content="Sukhrob Ilyosbekov's Blog" />
     <meta property="og:type" content="article" />
+    <meta property="og:image" content="@imgUrl" />
+    <meta property="og:url" content="@articleUrl" />
     <meta property="article:published_time" content="@Model.Article.Timestamp" />
     <meta property="article:author" content="@Model.Article.Author" />
     <meta property="article:tags" content="@Model.Article.Tags" />
     <meta name="twitter:title" content="@Model.Article.Title" />
-    <meta name="twitter:description" content="@Model.Article.Summary" />
+    <meta name="twitter:description" content="@shortContent" />
     <meta name="twitter:creator" content="@Model.Article.Author" />
     <meta name="twitter:card" content="@Model.Article.Summary" />
     <meta name="twitter:site" content="Sukhrob Ilyosbekov's Blog" />
-
-    @{
-        var imgUrl = $"http://www.suxrobgm.net{Model.Article.CoverPhotoUrl}";
-        var articleUrl = $"http://www.suxrobgm.net/blog/{Model.Article.Slug}";
-        <meta name="image" content="@imgUrl" />
-        <meta name="twitter:image" content="@imgUrl" />
-        <meta property="og:image" content="@imgUrl" />
-        <meta property="og:url" content="@articleUrl" />
-    }
+    <meta name="twitter:image" content="@imgUrl" />
 }
 
 @section CSS {

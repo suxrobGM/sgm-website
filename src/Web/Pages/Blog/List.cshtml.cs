@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -42,15 +41,6 @@ namespace SuxrobGM_Website.Pages.Blog
             PopularArticles = articles.OrderByDescending(i => i.ViewCount).Take(5).ToArray();
             PopularTags = await GetPopularTagsAsync(articles);
             return Page();
-        }
-
-        public string GetShortContent(string articleContent)
-        {
-            articleContent = articleContent.Replace('\'', '\"').Replace("\r\n", " ");
-            var re = new Regex("(src|srcset|href)=\".+?\"");
-            var matchedSrc = re.Matches(articleContent).ToArray();
-
-            return matchedSrc.Aggregate(articleContent, (current, match) => current.Replace(match.Value, ""));
         }
 
         public async Task<string[]> GetPopularTagsAsync(IQueryable<Article> articles)
