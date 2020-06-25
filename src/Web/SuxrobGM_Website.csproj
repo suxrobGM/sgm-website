@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>1ea545c2-664d-4d63-a25f-6d51bb432ab7</UserSecretsId>
     <StartupObject>SuxrobGM_Website.Program</StartupObject>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
   <ItemGroup>
