@@ -123,7 +123,7 @@ namespace SuxrobGM_Website
                     headers.CacheControl = new Microsoft.Net.Http.Headers.CacheControlHeaderValue
                     {
                         Public = true,
-                        MaxAge = TimeSpan.FromDays(30)
+                        MaxAge = TimeSpan.FromDays(1)
                     };
                 }
             });
