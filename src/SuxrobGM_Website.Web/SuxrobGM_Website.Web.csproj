@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>1ea545c2-664d-4d63-a25f-6d51bb432ab7</UserSecretsId>
+    <StartupObject>SuxrobGM_Website.Web.Program</StartupObject>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <AssemblyName>SuxrobGM_Website.Web</AssemblyName>
+    <RootNamespace>SuxrobGM_Website.Web</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Content Remove="Components\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <None Remove="Components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\lib\fontawesome\**\*" CopyToPublishDirectory="Never" />
+    <Content Update="wwwroot\db_files\**\*" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.21.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="SuxrobGM.Sdk.AspNetCore" Version="0.3.9" />
+    <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics" Version="0.3.7" />
+    <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.3.7" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.2.0.48" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\syncfusion\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SuxrobGM_Website.Infrastructure\SuxrobGM_Website.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

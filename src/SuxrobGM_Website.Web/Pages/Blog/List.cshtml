@@ -1,0 +1,122 @@
+﻿@page
+@model SuxrobGM_Website.Web.Pages.Blog.ListModel
+@namespace SuxrobGM_Website.Models
+
+@{
+    ViewData["Title"] = "Sukhrob Ilyosbekov's Blog";
+    Layout = "_BlogLayout";
+}
+
+@section Head {
+    <meta name="author" content="Sukhrob Ilyosbekov" />
+    <meta name="description" content="Sukhrob Ilyosbekov's official blog, funny software developer who loves to explore the world of unknown." />
+    <meta name="keywords" content="Suxrob, Sukhrob, Ilyosbekov, SuxrobGM, Suxrob GM, Sukhrob Ilyosbekov, Suxrobbek, Suxrobbek Ilyosbekov,
+          Suxrob Ilyosbekov, Sukhrobbek, Sukhrobbek Ilyosbekov, suxrob_gm, Stephen, Software Enginer, Software Developer, Developer, Software, SGM, .NET, .NET Expert, Freelancer, Freelance,
+          development, game, skills, software, application, mobile, desktop, programmer, programming, C#, C++, Python, JavaScript, full-stack developer, uzbekistan, samarkand, blog" />
+    <meta name="image" content="http://www.suxrobgm.net/img/about/profile_2.jpg" />
+}
+
+<div class="row">
+    <div class="d-flex mx-auto">
+        <h1>Blog</h1>
+        @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+        {
+            <a role="button" class="btn btn-sm btn-dark ml-2 my-auto" asp-page="/Blog/Create" data-toggle="tooltip" data-placement="bottom" title="Add new article"><i class="fa fa-plus"></i></a>
+        }
+    </div>
+    <hr class="w-100" />
+</div>
+
+<div class="row">
+    @if (!Model.Articles.Any())
+    {
+        <h4>There have not any articles ;(</h4>
+    }
+    else
+    {
+        <div class="col-12 col-md-7 col-lg-8">
+            @foreach (var article in Model.Articles)
+            {
+                <div class="card card-shadow my-4">
+
+                    @if (!string.IsNullOrEmpty(article.CoverPhotoUrl))
+                    {
+                        <img class="card-img-top" src="@article.CoverPhotoUrl" alt="@article.Title cover photo" />
+                    }
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            @article.Title
+                            @if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                            {
+                                <span class="float-right mx-2">
+                                    <a asp-page="/Blog/Edit" asp-route-id="@article.Id" data-toggle="tooltip" data-placement="top" title="Edit this article" style="color: black"><i class="fa fa-wrench"></i></a>
+                                    <a asp-page="/Blog/Delete" asp-route-Id="@article.Id" data-toggle="tooltip" data-placement="top" title="Delete this article" style="color: black"><i class="fa fa-times"></i></a>
+                                </span>
+                            }
+                        </h4>
+                        <h5 class="card-title">@article.Summary &nbsp;<span class="font-italic" style="color:grey; font-size:smaller">@article.Timestamp.ToString("MMMM dd, yyyy")</span></h5>
+                        <p id="shorttext_@article.Id" class="card-text mt-3">
+                            @Article.GetShortContent(article.Content, 500)
+                        </p>
+                        <div>
+                            <a role="button" class="btn bg-light btn-outline-dark text-dark font-weight-bolder mt-3" asp-page="/Blog/Index" asp-route-slug="@article.Slug">Read More »</a>
+                            <span class="float-right mt-3">
+                                <span class="mx-3"><i class="fa fa-eye"></i>&nbsp;@article.ViewCount</span>
+                                <a class="text-dark" asp-page="/Article/Index" asp-route-slug="@article.Slug" asp-fragment="comments">
+                                    <span>
+                                        Comments <span class="badge badge-dark rounded-circle">@article.Comments.Count</span>
+                                    </span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div id="pagination" class="d-flex">
+                <pagination class="mx-auto" page-index="@Model.Articles.PageIndex" total-pages="@Model.Articles.TotalPages" base-url="/Blog/List" />
+            </div>
+        </div>
+        <div class="col-12 col-md-5 col-lg-4">
+            <div class="card card-shadow my-4">
+                <img class="card-img-top" src="~/img/about/profile_2.jpg" alt="blog author's photo" />
+                <div class="card-body">
+                    <h4 class="card-title">Sukhrob Ilyosbekov</h4>
+                    <h6>Software Developer <br />Traveler</h6>
+                    <p>I am just funny software developer who loves to explore the world of unknown.</p>
+                    <p class="font-italic">&quot;Every failure is one step closer to success&quot;</p>
+                </div>
+            </div>
+
+            <div class="card card-shadow my-4">
+                <div class="card-header">
+                    Popular Posts
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group">
+                        @foreach (var article in Model.PopularArticles)
+                        {
+                            <a asp-page="/Blog/Index" asp-route-slug="@article.Slug" class="list-group-item list-group-item-action">
+                                <img class="rounded" style="width: 75px; height: 50px" src="@article.CoverPhotoUrl" alt="cover photo" />
+                                <span class="ml-2" style="font-size:smaller">@article.Title</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-shadow my-4">
+                <div class="card-header">
+                    Popular Tags
+                </div>
+                <div class="card-body p-0">
+                    <div class="p-2">
+                        @foreach (var tag in Model.PopularTags)
+                        {
+                            <a asp-page="/Blog/List" asp-route-tag="@tag.Trim()"><span class="badge badge-dark text-white">@tag</span></a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

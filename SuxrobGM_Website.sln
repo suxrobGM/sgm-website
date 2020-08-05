@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website", "src\Web\SuxrobGM_Website.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Web", "src\SuxrobGM_Website.Web\SuxrobGM_Website.Web.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuxrobGM_Website.Test", "src\Test\SuxrobGM_Website.Test.csproj", "{924CBA55-F1B4-436E-951B-A307F890E7CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Tests", "tests\SuxrobGM_Website.Tests\SuxrobGM_Website.Tests.csproj", "{924CBA55-F1B4-436E-951B-A307F890E7CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Core", "src\SuxrobGM_Website.Core\SuxrobGM_Website.Core.csproj", "{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Infrastructure", "src\SuxrobGM_Website.Infrastructure\SuxrobGM_Website.Infrastructure.csproj", "{572B48A9-6DE9-4617-9E0A-4756738DBC22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{924CBA55-F1B4-436E-951B-A307F890E7CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{924CBA55-F1B4-436E-951B-A307F890E7CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{924CBA55-F1B4-436E-951B-A307F890E7CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{572B48A9-6DE9-4617-9E0A-4756738DBC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{572B48A9-6DE9-4617-9E0A-4756738DBC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{572B48A9-6DE9-4617-9E0A-4756738DBC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{572B48A9-6DE9-4617-9E0A-4756738DBC22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
