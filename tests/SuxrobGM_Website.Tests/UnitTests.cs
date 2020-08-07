@@ -19,26 +19,26 @@ namespace SuxrobGM_Website.Tests
         }
 
         [Fact]
-        public void TestPopularTags()
-        {
-            var dbOptions = new DbContextOptionsBuilder<ApplicationDbContext>();
-            dbOptions.UseSqlServer(GetAppConfiguration().GetConnectionString("RemoteConnection"))
-                .UseLazyLoadingProxies();
+        //public void TestPopularTags()
+        //{
+        //    var dbOptions = new DbContextOptionsBuilder<ApplicationDbContext>();
+        //    dbOptions.UseSqlServer(GetAppConfiguration().GetConnectionString("RemoteConnection"))
+        //        .UseLazyLoadingProxies();
 
-            var context = new ApplicationDbContext(dbOptions.Options);
+        //    var context = new ApplicationDbContext(dbOptions.Options);
 
-            var articles = context.Articles;
-            var tags = new List<string>();
+        //    var articles = context;
+        //    var tags = new List<string>();
 
-            foreach (var article in articles)
-            {
-                tags.AddRange(article.GetTags());
-            }
+        //    foreach (var article in articles)
+        //    {
+        //        tags.AddRange(article.GetTags());
+        //    }
 
-            var popularTags = tags.GroupBy(str => str)
-                .Select(i => new { Name = i.Key, Count = i.Count() })
-                .OrderByDescending(k => k.Count);
-        }
+        //    var popularTags = tags.GroupBy(str => str)
+        //        .Select(i => new { Name = i.Key, Count = i.Count() })
+        //        .OrderByDescending(k => k.Count);
+        //}
 
         private IConfigurationRoot GetAppConfiguration()
         {

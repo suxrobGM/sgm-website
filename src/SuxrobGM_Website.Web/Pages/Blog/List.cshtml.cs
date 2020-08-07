@@ -4,50 +4,49 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SuxrobGM.Sdk.AspNetCore.Pagination;
-using SuxrobGM_Website.Infrastructure.Data;
+using SuxrobGM_Website.Core.Interfaces.Repositories;
 
 namespace SuxrobGM_Website.Web.Pages.Blog
 {
     public class ListModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IBlogRepository _blogRepository;
 
-        public ListModel(ApplicationDbContext context)
+        public ListModel(IBlogRepository blogRepository)
         {
-            _context = context;
+            _blogRepository = blogRepository;
         }
 
-        public PaginatedList<Core.Entities.BlogEntities.Blog> Articles { get; set; }
+        public PaginatedList<Core.Entities.BlogEntities.Blog> Blogs { get; set; }
         public Core.Entities.BlogEntities.Blog[] PopularArticles { get; set; }
         public string[] PopularTags { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int pageIndex = 1, string tag = null)
         {
-            _context.ChangeTracker.LazyLoadingEnabled = false;
-            var articles = _context.Articles.Include(i => i.Comments).AsNoTracking();
+            var blogs = _blogRepository.GetAll<Core.Entities.BlogEntities.Blog>();
 
             if (tag != null)
             {
-                var taggedArticles = articles.Where(i => i.Tags.ToLower().Contains(tag.ToLower()));
-                Articles = await PaginatedList<Article>.CreateAsync(taggedArticles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
+                var taggedArticles = blogs.Where(i => i.Tags.ToLower().Contains(tag.ToLower()));
+                Blogs = PaginatedList<Core.Entities.BlogEntities.Blog>.Create(taggedArticles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
             }
             else
             {
-                Articles = await PaginatedList<Article>.CreateAsync(articles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
+                Blogs = PaginatedList<Core.Entities.BlogEntities.Blog>.Create(blogs.OrderByDescending(i => i.Timestamp), pageIndex, 5);
             }
             
-            PopularArticles = articles.OrderByDescending(i => i.ViewCount).Take(5).ToArray();
-            PopularTags = await GetPopularTagsAsync(articles);
+            PopularArticles = blogs.OrderByDescending(i => i.ViewCount).Take(5).ToArray();
+            PopularTags = await GetPopularTagsAsync(blogs);
             return Page();
         }
 
-        public Task<string[]> GetPopularTagsAsync(IQueryable<Article> articles)
+        public Task<string[]> GetPopularTagsAsync(IQueryable<Core.Entities.BlogEntities.Blog> blogs)
         {
             return Task.Run(() =>
             {
                 var tags = new List<string>();
 
-                foreach (var article in articles)
+                foreach (var article in blogs)
                 {
                     tags.AddRange(article.GetTags());
                 }

@@ -14,52 +14,52 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Title)
+            @Html.DisplayNameFor(model => model.Blog.Title)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Article.Title)
+            @Html.DisplayFor(model => model.Blog.Title)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Summary)
+            @Html.DisplayNameFor(model => model.Blog.Summary)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Article.Summary)
+            @Html.DisplayFor(model => model.Blog.Summary)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Content)
+            @Html.DisplayNameFor(model => model.Blog.Content)
         </dt>
         <dd class="col-sm-10">
-            @Html.Raw(Model.Article.Content)
+            @Html.Raw(Model.Blog.Content)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Slug)
+            @Html.DisplayNameFor(model => model.Blog.Slug)
         </dt>
         <dd class="col-sm-10">
             <span>https://suxrobgm.net/blog/</span>
-            @Html.DisplayFor(model => model.Article.Slug)
+            @Html.DisplayFor(model => model.Blog.Slug)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Tags)
+            @Html.DisplayNameFor(model => model.Blog.Tags)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Article.Tags)
+            @Html.DisplayFor(model => model.Blog.Tags)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Timestamp)
+            @Html.DisplayNameFor(model => model.Blog.Timestamp)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Article.Timestamp)
+            @Html.DisplayFor(model => model.Blog.Timestamp)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Article.Author)
+            @Html.DisplayNameFor(model => model.Blog.Author)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Article.Author.UserName)
+            @Html.DisplayFor(model => model.Blog.Author.UserName)
         </dd>
     </dl>
     
     <form method="post">
-        <input type="hidden" asp-for="Article.Id" />
+        <input type="hidden" asp-for="Blog.Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="/Blog/List">Back to List</a>
     </form>

@@ -1,31 +1,34 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using SuxrobGM.Sdk.AspNetCore.Pagination;
 using SuxrobGM_Website.Core.Entities.BlogEntities;
-using SuxrobGM_Website.Infrastructure.Data;
+using SuxrobGM_Website.Core.Entities.UserEntities;
+using SuxrobGM_Website.Core.Interfaces.Repositories;
 
 namespace SuxrobGM_Website.Web.Pages.Blog
 {
     public class BlogIndexModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IBlogRepository _blogRepository;
         private readonly IEmailSender _emailSender;
 
-        public BlogIndexModel(ApplicationDbContext context, IEmailSender emailSender)
+        public BlogIndexModel(UserManager<ApplicationUser> userManager,
+            IBlogRepository blogRepository, IEmailSender emailSender)
         {
-            _context = context;
+            _userManager = userManager;
+            _blogRepository = blogRepository;
             _emailSender = emailSender;
         }
        
         [Required]
         [BindProperty] 
-        public string CommentText { get; set; }
+        public string CommentContent { get; set; }
 
         [BindProperty]
         [Display(Name = "Name:")]
@@ -37,47 +40,47 @@ namespace SuxrobGM_Website.Web.Pages.Blog
         public string CommentAuthorEmail { get; set; }
 
         public int PageIndex { get; set; }
-        public Core.Entities.BlogEntities.Blog Article { get; set; }
+        public Core.Entities.BlogEntities.Blog Blog { get; set; }
         public PaginatedList<Comment> Comments { get; set; }
         
 
         public async Task OnGetAsync(int pageIndex = 1)
         {
-            var articleSlug = RouteData.Values["slug"].ToString();
-            Article = await _context.Articles.FirstAsync(i => i.Slug == articleSlug);
+            var blogSlug = RouteData.Values["slug"].ToString();
+            Blog = await _blogRepository.GetAsync<Core.Entities.BlogEntities.Blog>(i => i.Slug == blogSlug);
 
             if (!Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"))
             {
-                Article.ViewCount++;
+                Blog.ViewCount++;
             }
 
-            await _context.SaveChangesAsync();
-            Comments = PaginatedList<Comment>.Create(Article.Comments, pageIndex);
+            await _blogRepository.UpdateBlogAsync(Blog);
+            Comments = PaginatedList<Comment>.Create(Blog.Comments, pageIndex);
             PageIndex = pageIndex;
             ViewData.Add("PageIndex", PageIndex);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var articleSlug = RouteData.Values["slug"].ToString();
+            var blogSlug = RouteData.Values["slug"].ToString();
 
             if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out var pageNumber))
             {
                 pageNumber = 1;
             }
 
-            if (string.IsNullOrWhiteSpace(CommentText))
+            if (string.IsNullOrWhiteSpace(CommentContent))
             {
-                ModelState.AddModelError("CommentText", "Empty comment text");
+                ModelState.AddModelError("CommentContent", "Empty comment content");
                 return Page();
             }
 
-            Article = await _context.Articles.FirstAsync(i => i.Slug == articleSlug);
-            var comment = new Comment() { Text = CommentText };
+            Blog = await _blogRepository.GetAsync<Core.Entities.BlogEntities.Blog>(i => i.Slug == blogSlug);
+            var comment = new Comment() { Content = CommentContent };
 
             if (User.Identity.IsAuthenticated)
             {
-                var user = _context.Users.First(i => i.UserName == User.Identity.Name);
+                var user = await _userManager.GetUserAsync(User);
                 comment.Author = user;
             }
             else
@@ -86,52 +89,50 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 comment.AuthorName = CommentAuthorName;
             }
 
-            var htmlMsg = $@"<h3>Good day, <b>{Article.Author.UserName}</b></h3>
-                                <p>Posted comment in your article in suxrobgm.net <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net/{Article.Slug}?pageIndex={pageNumber}#{comment.Id}")}'>{Article.Title}</a></p>
+            var htmlMsg = $@"<h3>Good day, <b>{Blog.Author.UserName}</b></h3>
+                                <p>Posted comment in your blog in suxrobgm.net <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net/{Blog.Slug}?pageIndex={pageNumber}#{comment.Id}")}'>{Blog.Title}</a></p>
                                 <br />
-                                <p>Sincerely, <b>SuxrobGM</b></p>";
+                                ";
 
-            Article.Comments.Add(comment);
-            await _context.SaveChangesAsync();
-            await _emailSender.SendEmailAsync(Article.Author.Email, "Posted comment in your article", htmlMsg);
+            await _blogRepository.AddCommentAsync(Blog, comment);
+            await _emailSender.SendEmailAsync(Blog.Author.Email, "Posted comment in your blog", htmlMsg);
             return RedirectToPage("", "", new { pageIndex = pageNumber }, comment.Id);
         }
 
         public async Task<IActionResult> OnPostReplyToCommentAsync(string commentId)
         {
-            var articleSlug = RouteData.Values["slug"].ToString();
+            var blogSlug = RouteData.Values["slug"].ToString();
             if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out var pageNumber))
             {
                 pageNumber = 1;
             }
 
-            var blog = await _context.Articles.FirstAsync(i => i.Slug == articleSlug);
-            var author = await _context.Users.FirstAsync(i => i.UserName == User.Identity.Name);
-            var comment = await _context.Comments.FirstOrDefaultAsync(i => i.Id == commentId);
+            var blog = await _blogRepository.GetAsync<Core.Entities.BlogEntities.Blog>(i => i.Slug == blogSlug);
+            var author = await _userManager.GetUserAsync(User);
+            var parentComment = await _blogRepository.GetAsync<Comment>(i => i.Id == commentId);
 
-            if (string.IsNullOrWhiteSpace(CommentText))
+            if (string.IsNullOrWhiteSpace(CommentContent))
             {
-                ModelState.AddModelError("CommentText", "Empty comment text");
+                ModelState.AddModelError("CommentContent", "Empty comment content");
                 return Page();
             }
            
-            var reply = new Comment()
+            var childComment = new Comment()
             {               
-                ParentComment = comment,
+                ParentComment = parentComment,
                 Author = author,
-                Content = CommentText,
+                Content = CommentContent,
             };
 
-            var commentAuthor = comment.AuthorId == null ? comment.AuthorName : comment.Author.UserName;
-            var commentEmail = comment.AuthorId == null ? comment.AuthorEmail : comment.Author.Email;
+            var commentAuthor = parentComment.Author == null ? parentComment.AuthorName : parentComment.Author.UserName;
+            var commentEmail = parentComment.Author == null ? parentComment.AuthorEmail : parentComment.Author.Email;
 
             var htmlMsg = $@"<h3>Good day, <b>{commentAuthor}</b></h3>
-                                <p>Replied to your comment in this suxrobgm.net article <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net/blog/{blog.Slug}?pageIndex={pageNumber}#{commentId}")}'>{blog.Title}</a></p>
+                                <p>Replied to your comment in this suxrobgm.net blog <a href='{HtmlEncoder.Default.Encode($"http://suxrobgm.net/blog/{blog.Slug}?pageIndex={pageNumber}#{commentId}")}'>{blog.Title}</a></p>
                                 <br />
-                                <p>Sincerely, <b>SuxrobGM</b></p>";
+                                ";
 
-            comment.Replies.Add(reply);
-            await _context.SaveChangesAsync();
+            await _blogRepository.AddReplyToCommentAsync(parentComment, childComment);
             await _emailSender.SendEmailAsync(commentEmail, "Replied to your comment", htmlMsg);
             return RedirectToPage("", "", new { pageIndex = pageNumber }, commentId);
         }
@@ -143,22 +144,9 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 pageNumber = 1;
             }
 
-            var comment = await _context.Comments.FirstOrDefaultAsync(i => i.Id == commentId);
-            
-            await RemoveChildrenCommentsAsync(comment);
-            _context.Comments.Remove(comment);
-            await _context.SaveChangesAsync();
-
+            var comment = await _blogRepository.GetAsync<Comment>(i => i.Id == commentId);
+            await _blogRepository.DeleteCommentAsync(comment);
             return RedirectToPage("", "", new { pageIndex = pageNumber }, rootCommentId);
-        }
-
-        private async Task RemoveChildrenCommentsAsync(Comment comment)
-        {
-            foreach (var reply in comment.Replies)
-            {
-                await RemoveChildrenCommentsAsync(reply);
-                _context.Comments.Remove(reply);
-            }
         }
     }
 }

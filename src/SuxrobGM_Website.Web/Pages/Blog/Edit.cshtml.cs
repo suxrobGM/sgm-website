@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SuxrobGM_Website.Core.Interfaces.Repositories;
 using SuxrobGM_Website.Infrastructure.Data;
 using SuxrobGM_Website.Web.Utils;
 
@@ -13,24 +14,25 @@ namespace SuxrobGM_Website.Web.Pages.Blog
     [Authorize(Roles = "SuperAdmin,Admin,Editor")]
     public class EditModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IBlogRepository _blogRepository;
         private readonly IWebHostEnvironment _env;
 
-        public EditModel(ApplicationDbContext context, IWebHostEnvironment env)
+        public EditModel(IBlogRepository blogRepository, IWebHostEnvironment env)
         {
-            _context = context;
+            _blogRepository = blogRepository;
             _env = env;
         }
 
         [BindProperty]
-        public Core.Entities.BlogEntities.Blog Article { get; set; }
+        public Core.Entities.BlogEntities.Blog Blog { get; set; }
 
         [BindProperty]
         public IFormFile UploadCoverPhoto { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            Article = await _context.Articles.FirstAsync(i => i.Id == id);
+            Blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(id);
+
             ViewData.Add("toolbars", new[]
             {
                 "Bold", "Italic", "Underline", "StrikeThrough",
@@ -52,24 +54,24 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 return Page();
             }
 
-            var article = await _context.Articles.FirstAsync(i => i.Id == Article.Id);
-            article.Title = Article.Title;
-            article.Summary = Article.Summary;
-            article.Content = Article.Content;
-            article.Tags = Article.Tags;
-            article.Slug = Article.CreateSlug(Article.Title);
+            var blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(Blog.Id);
+            blog.Title = Blog.Title;
+            blog.Summary = Blog.Summary;
+            blog.Content = Blog.Content;
+            blog.Tags = Blog.Tags;
+            blog.Slug = Blog.CreateSlug(Blog.Title);
 
             if (UploadCoverPhoto != null)
             {
                 var image = UploadCoverPhoto;
-                var fileName = $"{article.Id}_cover.jpg";
+                var fileName = $"{blog.Id}_cover.jpg";
                 var fileNameAbsPath = Path.Combine(_env.WebRootPath, "db_files", "img", fileName);
                 ImageHelper.ResizeToRectangle(image.OpenReadStream(), fileNameAbsPath);
-                article.CoverPhotoUrl = $"/db_files/img/{fileName}";
+                blog.CoverPhotoPath = $"/db_files/img/{fileName}";
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToPage("/Blog/Index", new { slug = article.Slug });
+            await _blogRepository.UpdateBlogAsync(blog);
+            return RedirectToPage("/Blog/Index", new { slug = blog.Slug });
         }
     }
 }

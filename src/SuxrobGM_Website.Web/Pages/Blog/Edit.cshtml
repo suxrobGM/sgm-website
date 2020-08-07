@@ -2,7 +2,7 @@
 @model SuxrobGM_Website.Web.Pages.Blog.EditModel
 
 @{
-    ViewData["Title"] = "Edit " + Model.Article.Title;
+    ViewData["Title"] = "Edit " + Model.Blog.Title;
     Layout = "_BlogLayout";
 }
 
@@ -19,22 +19,22 @@
 }
 
 <h1>Edit Article</h1>
-<h3>@Model.Article.Title</h3>
+<h3>@Model.Blog.Title</h3>
 <hr />
 <div class="row">
     <div class="px-5">
         <form enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Article.Id" />
+            <input type="hidden" asp-for="Blog.Id" />
             <div class="form-group">
-                <label asp-for="Article.Title" class="control-label"></label>
-                <input asp-for="Article.Title" class="form-control" />
-                <span asp-validation-for="Article.Title" class="text-danger"></span>
+                <label asp-for="Blog.Title" class="control-label"></label>
+                <input asp-for="Blog.Title" class="form-control" />
+                <span asp-validation-for="Blog.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Article.Summary" class="control-label"></label>
-                <textarea rows="3" asp-for="Article.Summary" class="form-control"></textarea>
-                <span asp-validation-for="Article.Summary" class="text-danger"></span>
+                <label asp-for="Blog.Summary" class="control-label"></label>
+                <textarea rows="3" asp-for="Blog.Summary" class="form-control"></textarea>
+                <span asp-validation-for="Blog.Summary" class="text-danger"></span>
             </div>
             <div>
                 <label>Cover image</label>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="file-upload-content">
-                        <img class="file-upload-image" src="@Model.Article.CoverPhotoUrl" alt="your image" />
+                        <img class="file-upload-image" src="@Model.Blog.CoverPhotoPath" alt="your image" />
                         <div class="image-title-wrap">
                             <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
                         </div>
@@ -54,15 +54,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="Article.Tags" class="control-label"></label>
+                <label asp-for="Blog.Tags" class="control-label"></label>
                 <label class="font-weight-light">&nbsp;(<span class="font-weight-bold text-danger">*</span>Do not duplicate tag names)</label>
-                <input asp-for="Article.Tags" class="form-control" />
-                <span asp-validation-for="Article.Tags" class="text-danger"></span>
+                <input asp-for="Blog.Tags" class="form-control" />
+                <span asp-validation-for="Blog.Tags" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Article.Content" class="control-label"></label>
-                <span asp-validation-for="Article.Content" class="text-danger"></span>
-                <ejs-richtexteditor id="rich_texteditor" ejs-for="Article.Content" height="300">
+                <label asp-for="Blog.Content" class="control-label"></label>
+                <span asp-validation-for="Blog.Content" class="text-danger"></span>
+                <ejs-richtexteditor id="rich_texteditor" ejs-for="Blog.Content" height="300">
                     <e-richtexteditor-toolbarsettings items="@ViewData["toolbars"]" enableFloating="true">
                     </e-richtexteditor-toolbarsettings>
                 </ejs-richtexteditor>
@@ -81,7 +81,7 @@
 @section Scripts {
     <script src="~/lib/fileupload/fileupload.js"></script>
 
-    @if (!string.IsNullOrEmpty(Model.Article.CoverPhotoUrl))
+    @if (!string.IsNullOrEmpty(Model.Blog.CoverPhotoUrl))
     {
         <script>
             $('.file-upload-content').show();

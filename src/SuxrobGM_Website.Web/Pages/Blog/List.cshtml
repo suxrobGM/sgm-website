@@ -28,14 +28,14 @@
 </div>
 
 <div class="row">
-    @if (!Model.Articles.Any())
+    @if (!Model.Blogs.Any())
     {
         <h4>There have not any articles ;(</h4>
     }
     else
     {
         <div class="col-12 col-md-7 col-lg-8">
-            @foreach (var article in Model.Articles)
+            @foreach (var article in Model.Blogs)
             {
                 <div class="card card-shadow my-4">
 
@@ -73,7 +73,7 @@
                 </div>
             }
             <div id="pagination" class="d-flex">
-                <pagination class="mx-auto" page-index="@Model.Articles.PageIndex" total-pages="@Model.Articles.TotalPages" base-url="/Blog/List" />
+                <pagination class="mx-auto" page-index="@Model.Blogs.PageIndex" total-pages="@Model.Blogs.TotalPages" base-url="/Blog/List" />
             </div>
         </div>
         <div class="col-12 col-md-5 col-lg-4">
