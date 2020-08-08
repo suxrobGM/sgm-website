@@ -1,12 +1,14 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SuxrobGM.Sdk.Extensions;
+using SuxrobGM_Website.Core.Entities.BlogEntities;
 using SuxrobGM_Website.Core.Interfaces.Repositories;
-using SuxrobGM_Website.Infrastructure.Data;
 using SuxrobGM_Website.Web.Utils;
 
 namespace SuxrobGM_Website.Web.Pages.Blog
@@ -23,15 +25,25 @@ namespace SuxrobGM_Website.Web.Pages.Blog
             _env = env;
         }
 
-        [BindProperty]
-        public Core.Entities.BlogEntities.Blog Blog { get; set; }
+        public class InputModel
+        {
+            public Core.Entities.BlogEntities.Blog Blog { get; set; }
+            public IFormFile UploadCoverPhoto { get; set; }
+            public string Tags { get; set; }
+        }
 
         [BindProperty]
-        public IFormFile UploadCoverPhoto { get; set; }
+        public InputModel Input { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            Blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(id);
+            var blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(id);
+
+            Input = new InputModel()
+            {
+                Blog = blog,
+                Tags = Tag.JoinTags(blog.BlogTags.Select(i => i.Tag))
+            };
 
             ViewData.Add("toolbars", new[]
             {
@@ -54,22 +66,23 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 return Page();
             }
 
-            var blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(Blog.Id);
-            blog.Title = Blog.Title;
-            blog.Summary = Blog.Summary;
-            blog.Content = Blog.Content;
-            blog.Tags = Blog.Tags;
-            blog.Slug = Blog.CreateSlug(Blog.Title);
+            var blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(Input.Blog.Id);
+            blog.Title = Input.Blog.Title;
+            blog.Summary = Input.Blog.Summary;
+            blog.Content = Input.Blog.Content;
+            blog.Slug = Input.Blog.Title.Slugify();
+            var tags = Tag.ParseTags(Input.Tags);
 
-            if (UploadCoverPhoto != null)
+            if (Input.UploadCoverPhoto != null)
             {
-                var image = UploadCoverPhoto;
+                var image = Input.UploadCoverPhoto;
                 var fileName = $"{blog.Id}_cover.jpg";
                 var fileNameAbsPath = Path.Combine(_env.WebRootPath, "db_files", "img", fileName);
                 ImageHelper.ResizeToRectangle(image.OpenReadStream(), fileNameAbsPath);
                 blog.CoverPhotoPath = $"/db_files/img/{fileName}";
             }
 
+            await _blogRepository.UpdateTagsAsync(blog, false, tags);
             await _blogRepository.UpdateBlogAsync(blog);
             return RedirectToPage("/Blog/Index", new { slug = blog.Slug });
         }

@@ -1,14 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@using SuxrobGM_Website.Models
-@inject SignInManager<User> SignInManager
-@inject UserManager<User> UserManager
+@using SuxrobGM_Website.Core.Entities.UserEntities
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 
 @if (SignInManager.IsSignedIn(User))
 {
     var user = await UserManager.GetUserAsync(User);
     <a id="manage" class="nav-link text-dark mt-1" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
-        <img id="user_avatar" class="rounded-circle" width="30" height="30" src="@user?.ProfilePhotoUrl" alt="avatar" />
+        <img id="user_avatar" class="rounded-circle" width="30" height="30" src="@user?.ProfilePhotoPath" alt="avatar" />
         @UserManager.GetUserName(User)
     </a>
     <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/Blog">

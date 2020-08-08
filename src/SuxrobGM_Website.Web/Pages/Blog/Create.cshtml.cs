@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SuxrobGM.Sdk.Extensions;
+using SuxrobGM_Website.Core.Entities.BlogEntities;
 using SuxrobGM_Website.Core.Entities.UserEntities;
 using SuxrobGM_Website.Core.Interfaces.Repositories;
 using SuxrobGM_Website.Web.Utils;
@@ -41,34 +43,40 @@ namespace SuxrobGM_Website.Web.Pages.Blog
             return Page();
         }
 
-        [BindProperty]
-        public Core.Entities.BlogEntities.Blog Blog { get; set; }      
+        public class InputModel
+        {
+            public Core.Entities.BlogEntities.Blog Blog { get; set; }
+            public IFormFile UploadCoverPhoto { get; set; }
+            public string Tags { get; set; }
+        }
 
         [BindProperty]
-        public IFormFile UploadCoverPhoto { get; set; }
+        public InputModel Input { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
             var currentUser = await _userManager.GetUserAsync(User);
-            Blog.Slug = Core.Entities.BlogEntities.Blog.CreateSlug(Blog.Title);
-            Blog.Author = currentUser;
+            var tags = Tag.ParseTags(Input.Tags);
+            Input.Blog.Slug = Input.Blog.Title.Slugify();
+            Input.Blog.Author = currentUser;
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            if (UploadCoverPhoto != null)
+            if (Input.UploadCoverPhoto != null)
             {
-                var image = UploadCoverPhoto;
-                var fileName = $"{Blog.Id}_cover.jpg";
+                var image = Input.UploadCoverPhoto;
+                var fileName = $"{Input.Blog.Id}_cover.jpg";
                 var fileNameAbsPath = Path.Combine(_env.WebRootPath, "db_files", "img", fileName);
                 ImageHelper.ResizeToRectangle(image.OpenReadStream(), fileNameAbsPath);
-                Blog.CoverPhotoPath = $"/db_files/img/{fileName}";
+                Input.Blog.CoverPhotoPath = $"/db_files/img/{fileName}";
             }
 
-            await _blogRepository.AddBlogAsync(Blog);
-            return RedirectToPage("/Blog/Index", new { slug = Blog.Slug });
+            await _blogRepository.UpdateTagsAsync(Input.Blog, false, tags);
+            await _blogRepository.AddBlogAsync(Input.Blog);
+            return RedirectToPage("/Blog/Index", new { slug = Input.Blog.Slug });
         }
     }
 }

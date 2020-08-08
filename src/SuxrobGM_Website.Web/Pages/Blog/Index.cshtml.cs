@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -12,13 +13,13 @@ using SuxrobGM_Website.Core.Interfaces.Repositories;
 
 namespace SuxrobGM_Website.Web.Pages.Blog
 {
-    public class BlogIndexModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IBlogRepository _blogRepository;
         private readonly IEmailSender _emailSender;
 
-        public BlogIndexModel(UserManager<ApplicationUser> userManager,
+        public IndexModel(UserManager<ApplicationUser> userManager,
             IBlogRepository blogRepository, IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -39,6 +40,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
         [DataType(DataType.EmailAddress, ErrorMessage = "Invalid email address")]
         public string CommentAuthorEmail { get; set; }
 
+        public string Tags { get; set; }
         public int PageIndex { get; set; }
         public Core.Entities.BlogEntities.Blog Blog { get; set; }
         public PaginatedList<Comment> Comments { get; set; }
@@ -48,6 +50,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
         {
             var blogSlug = RouteData.Values["slug"].ToString();
             Blog = await _blogRepository.GetAsync<Core.Entities.BlogEntities.Blog>(i => i.Slug == blogSlug);
+            Tags = Tag.JoinTags(Blog.BlogTags.Select(i => i.Tag));
 
             if (!Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"))
             {

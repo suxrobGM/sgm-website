@@ -27,8 +27,11 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
             if (tag != null)
             {
-                var taggedArticles = blogs.Where(i => i.Tags.ToLower().Contains(tag.ToLower()));
-                Blogs = PaginatedList<Core.Entities.BlogEntities.Blog>.Create(taggedArticles.OrderByDescending(i => i.Timestamp), pageIndex, 5);
+                var taggedBlogs = (await _blogRepository.GetListAsync<Core.Entities.BlogEntities.Blog>())
+                    .SelectMany(i => i.BlogTags).Where(i => i.Tag.Name.ToLower() == tag.ToLower())
+                    .OrderByDescending(i => i.Blog.Timestamp).Select(i => i.Blog);
+
+                Blogs = PaginatedList<Core.Entities.BlogEntities.Blog>.Create(taggedBlogs, pageIndex, 5);
             }
             else
             {
@@ -46,9 +49,9 @@ namespace SuxrobGM_Website.Web.Pages.Blog
             {
                 var tags = new List<string>();
 
-                foreach (var article in blogs)
+                foreach (var blog in blogs)
                 {
-                    tags.AddRange(article.GetTags());
+                    tags.AddRange(blog.BlogTags.Select(i => i.Tag.Name));
                 }
 
                 var popularTags = tags.GroupBy(str => str)

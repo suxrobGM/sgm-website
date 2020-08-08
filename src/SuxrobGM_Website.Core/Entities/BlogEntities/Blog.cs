@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
-using SuxrobGM.Sdk.Extensions;
 using SuxrobGM_Website.Core.Entities.Base;
 
 namespace SuxrobGM_Website.Core.Entities.BlogEntities
@@ -24,24 +22,6 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
 
         public virtual ICollection<BlogTag> BlogTags { get; set; } = new List<BlogTag>();
         public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
-
-        public static string CreateSlug(string title, bool useHypen = true, bool useLowerLetters = true)
-        {
-            var url = title.TranslateToLatin();
-            
-            // invalid chars           
-            url = Regex.Replace(url, @"[^A-Za-z0-9\s-]", "");
-
-            // convert multiple spaces into one space 
-            url = Regex.Replace(url, @"\s+", " ").Trim();
-            var words = url.Split().Where(str => !string.IsNullOrWhiteSpace(str));
-            url = string.Join(useHypen ? '-' : '_', words);
-
-            if (useLowerLetters)
-                url = url.ToLower();
-
-            return url;
-        }
 
         public static string GetShortContent(string articleContent, int length)
         {
