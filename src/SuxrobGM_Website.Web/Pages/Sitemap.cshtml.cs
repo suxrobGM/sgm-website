@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace SuxrobGM_Website.Pages
+namespace SuxrobGM_Website.Web.Pages
 {
     public class SitemapModel : PageModel
     {

@@ -19,4 +19,8 @@
     <ProjectReference Include="..\SuxrobGM_Website.Core\SuxrobGM_Website.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
 </Project>
