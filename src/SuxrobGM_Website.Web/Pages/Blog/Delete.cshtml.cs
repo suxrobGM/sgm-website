@@ -1,24 +1,24 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SuxrobGM_Website.Core.Entities.BlogEntities;
 using SuxrobGM_Website.Core.Interfaces.Repositories;
+using SuxrobGM_Website.Web.Utils;
 
 namespace SuxrobGM_Website.Web.Pages.Blog
 {
     [Authorize(Roles = "SuperAdmin,Admin")]
     public class DeleteModel : PageModel
     {
+        private readonly ImageHelper _imageHelper;
         private readonly IBlogRepository _blogRepository;
-        private readonly IWebHostEnvironment _env;
 
-        public DeleteModel(IBlogRepository blogRepository, IWebHostEnvironment env)
+        public DeleteModel(ImageHelper imageHelper, IBlogRepository blogRepository)
         {
             _blogRepository = blogRepository;
-            _env = env;
+            _imageHelper = imageHelper;
         }
 
         [BindProperty]
@@ -52,7 +52,12 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
             Blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(id);
 
-            await _blogRepository.DeleteBlogAsync(Blog);
+            if (Blog != null)
+            {
+                await _blogRepository.DeleteBlogAsync(Blog);
+                _imageHelper.RemoveImage(Blog.CoverPhotoPath);
+            }
+
             return RedirectToPage("/Blog/List");
         }
     }

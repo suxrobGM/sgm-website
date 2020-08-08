@@ -8,6 +8,8 @@ namespace SuxrobGM_Website.Web.Utils
     public class ImageHelper
     {
         private readonly IWebHostEnvironment _env;
+        public const string DefaultUserAvatarPath = "/img/default_user_avatar.png";
+        public const string DefaultBlogCoverPhotoPath = "/img/default_blog_cover.png";
 
         public ImageHelper(IWebHostEnvironment env)
         {
@@ -71,12 +73,17 @@ namespace SuxrobGM_Website.Web.Utils
             }
             catch (MagickException)
             {
-                return "/img/default_user_avatar.jpg";
+                return DefaultUserAvatarPath;
             }
         }
 
         public void RemoveImage(string imgPath)
         {
+            if (imgPath == DefaultUserAvatarPath || imgPath == DefaultBlogCoverPhotoPath)
+            {
+                return;
+            }
+
             var imgFileName = Path.GetFileName(imgPath);
             var imgFullPath = Path.Combine(_env.WebRootPath, "db_files", "img", imgFileName);
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SuxrobGM_Website.Core.Entities.UserEntities;
+using SuxrobGM_Website.Web.Utils;
 
 namespace SuxrobGM_Website.Web.Areas.Identity.Pages.Account.Manage
 {
@@ -13,15 +14,18 @@ namespace SuxrobGM_Website.Web.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ImageHelper _imageHelper;
         private readonly ILogger<DeletePersonalDataModel> _logger;
 
         public DeletePersonalDataModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            ImageHelper imageHelper,
             ILogger<DeletePersonalDataModel> logger)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _imageHelper = imageHelper;
             _logger = logger;
         }
 
@@ -74,6 +78,7 @@ namespace SuxrobGM_Website.Web.Areas.Identity.Pages.Account.Manage
                 throw new InvalidOperationException($"Unexpected error occurred deleteing user with ID '{userId}'.");
             }
 
+            _imageHelper.RemoveImage(user.ProfilePhotoPath);
             await _signInManager.SignOutAsync();
 
             _logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);

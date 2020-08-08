@@ -10,7 +10,7 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
     {
         public Blog()
         {
-            CoverPhotoPath = "";
+            CoverPhotoPath = "/img/default_blog_cover.png";
         }
 
         [StringLength(64)]
