@@ -1,8 +1,6 @@
-﻿using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -16,13 +14,13 @@ namespace SuxrobGM_Website.Web.Pages.Blog
     [Authorize(Roles = "SuperAdmin,Admin,Editor")]
     public class EditModel : PageModel
     {
+        private readonly ImageHelper _imageHelper;
         private readonly IBlogRepository _blogRepository;
-        private readonly IWebHostEnvironment _env;
 
-        public EditModel(IBlogRepository blogRepository, IWebHostEnvironment env)
+        public EditModel(ImageHelper imageHelper, IBlogRepository blogRepository)
         {
             _blogRepository = blogRepository;
-            _env = env;
+            _imageHelper = imageHelper;
         }
 
         public class InputModel
@@ -75,11 +73,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
             if (Input.UploadCoverPhoto != null)
             {
-                var image = Input.UploadCoverPhoto;
-                var fileName = $"{blog.Id}_cover.jpg";
-                var fileNameAbsPath = Path.Combine(_env.WebRootPath, "db_files", "img", fileName);
-                ImageHelper.ResizeToRectangle(image.OpenReadStream(), fileNameAbsPath);
-                blog.CoverPhotoPath = $"/db_files/img/{fileName}";
+                Input.Blog.CoverPhotoPath = _imageHelper.UploadImage(Input.UploadCoverPhoto, $"{blog.Id}_blog_cover", resizeToRectangle: true);
             }
 
             await _blogRepository.UpdateTagsAsync(blog, false, tags);

@@ -8,6 +8,11 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
 {
     public class Blog : ArticleBase
     {
+        public Blog()
+        {
+            CoverPhotoPath = "";
+        }
+
         [StringLength(64)]
         [Display(Name = "Cover Photo Path")]
         public string CoverPhotoPath { get; set; }

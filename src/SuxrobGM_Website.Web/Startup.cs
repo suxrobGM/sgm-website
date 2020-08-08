@@ -16,6 +16,7 @@ using SuxrobGM_Website.Core.Interfaces.Services;
 using SuxrobGM_Website.Infrastructure.Data;
 using SuxrobGM_Website.Infrastructure.Repositories;
 using SuxrobGM_Website.Infrastructure.Services;
+using SuxrobGM_Website.Web.Utils;
 
 namespace SuxrobGM_Website.Web
 {
@@ -42,6 +43,7 @@ namespace SuxrobGM_Website.Web
 
             // Web layer
             ConfigureIdentity(services);
+            services.AddScoped<ImageHelper>();
             services.AddScoped(_ => new SqliteDbContext(Configuration.GetConnectionString("AnalyticsSqliteDbConnection")));
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -56,7 +58,6 @@ namespace SuxrobGM_Website.Web
             });
 
             services.AddRouting(options => options.LowercaseUrls = true);
-            services.AddControllers();
             services.AddRazorPages(options =>
             {
                 options.Conventions.AddPageRoute("/Blog/List", "/Blog");
@@ -91,7 +92,6 @@ namespace SuxrobGM_Website.Web
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }

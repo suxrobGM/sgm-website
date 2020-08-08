@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.IO;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -18,19 +16,19 @@ namespace SuxrobGM_Website.Web.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ImageHelper _imageHelper;
         private readonly IEmailSender _emailSender;
-        private readonly IWebHostEnvironment _env;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender,
-            IWebHostEnvironment env)
+            ImageHelper imageHelper,
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-            _env = env;
+            _imageHelper = imageHelper;
         }
 
         public bool IsEmailConfirmed { get; set; }
@@ -105,11 +103,7 @@ namespace SuxrobGM_Website.Web.Areas.Identity.Pages.Account.Manage
 
             if (Input.UploadPhoto != null)
             {
-                var image = Input.UploadPhoto;
-                var fileName = $"{GeneratorId.GenerateLong()}_profile.jpg";
-                var fileNameAbsPath = Path.Combine(_env.WebRootPath, "db_files", "img", fileName);
-                ImageHelper.ResizeToQuadratic(image.OpenReadStream(), fileNameAbsPath);
-                user.ProfilePhotoPath = $"/db_files/img/{fileName}";
+                user.ProfilePhotoPath = _imageHelper.UploadImage(Input.UploadPhoto, $"{user.Id}_profile", true);
             }
 
             var result = await _userManager.UpdateAsync(user);
@@ -147,9 +141,9 @@ namespace SuxrobGM_Website.Web.Areas.Identity.Pages.Account.Manage
 
             var callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
-                pageHandler: null,
-                values: new { userId = user.Id, code },
-                protocol: Request.Scheme);
+                null,
+                new { userId = user.Id, code },
+                Request.Scheme);
 
             await _emailSender.SendEmailAsync(
                 user.Email,

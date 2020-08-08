@@ -1,7 +1,5 @@
-﻿using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,14 +16,16 @@ namespace SuxrobGM_Website.Web.Pages.Blog
     public class CreateModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ImageHelper _imageHelper;
         private readonly IBlogRepository _blogRepository;
-        private readonly IWebHostEnvironment _env;
 
         public CreateModel(UserManager<ApplicationUser> userManager,
-            IBlogRepository blogRepository, IWebHostEnvironment env)
+            ImageHelper imageHelper,
+            IBlogRepository blogRepository)
         {
             _blogRepository = blogRepository;
             _userManager = userManager;
+            _imageHelper = imageHelper;
         }
 
         public IActionResult OnGet()
@@ -55,23 +55,19 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var currentUser = await _userManager.GetUserAsync(User);
-            var tags = Tag.ParseTags(Input.Tags);
-            Input.Blog.Slug = Input.Blog.Title.Slugify();
-            Input.Blog.Author = currentUser;
-
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
+            var currentUser = await _userManager.GetUserAsync(User);
+            var tags = Tag.ParseTags(Input.Tags);
+            Input.Blog.Slug = Input.Blog.Title.Slugify();
+            Input.Blog.Author = currentUser;
+
             if (Input.UploadCoverPhoto != null)
             {
-                var image = Input.UploadCoverPhoto;
-                var fileName = $"{Input.Blog.Id}_cover.jpg";
-                var fileNameAbsPath = Path.Combine(_env.WebRootPath, "db_files", "img", fileName);
-                ImageHelper.ResizeToRectangle(image.OpenReadStream(), fileNameAbsPath);
-                Input.Blog.CoverPhotoPath = $"/db_files/img/{fileName}";
+                Input.Blog.CoverPhotoPath = _imageHelper.UploadImage(Input.UploadCoverPhoto, $"{Input.Blog.Id}_blog_cover", resizeToRectangle: true);
             }
 
             await _blogRepository.UpdateTagsAsync(Input.Blog, false, tags);
