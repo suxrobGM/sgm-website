@@ -25,8 +25,8 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
         [Display(Name = "View Count")]
         public int ViewCount { get; set; }
 
-        public virtual ICollection<BlogTag> BlogTags { get; set; } = new List<BlogTag>();
-        public virtual ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public virtual IList<BlogTag> BlogTags { get; set; } = new List<BlogTag>();
+        public virtual IList<Comment> Comments { get; set; } = new List<Comment>();
 
         public static string GetShortContent(string articleContent, int length)
         {

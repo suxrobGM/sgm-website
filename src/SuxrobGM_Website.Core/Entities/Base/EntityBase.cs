@@ -13,7 +13,6 @@ namespace SuxrobGM_Website.Core.Entities.Base
             Timestamp = DateTime.Now;
         }
 
-        [StringLength(32)]
         [Display(Name = "ID")]
         public string Id { get; set; }
 

@@ -20,7 +20,7 @@ namespace SuxrobGM_Website.Infrastructure.Data
         {
             if (!optionsBuilder.IsConfigured)
             {               
-                optionsBuilder.UseSqlServer("Server=(localdb)\\ProjectsV14;Database=SGM_BlogDB; AttachDbFilename=C:\\Users\\suxrobgm\\Databases\\SGM_BlogDB.mdf; Trusted_Connection=True; MultipleActiveResultSets=true")
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS; Initial Catalog=SGM_BlogDB; Trusted_Connection=True")
                     .UseLazyLoadingProxies();
             }
         }

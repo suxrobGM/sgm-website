@@ -23,7 +23,7 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        public virtual ICollection<BlogTag> BlogTags { get; set; }
+        public virtual IList<BlogTag> BlogTags { get; set; }
 
         public override string ToString() => Name;
         public static implicit operator Tag(string tagName) => new Tag(tagName);

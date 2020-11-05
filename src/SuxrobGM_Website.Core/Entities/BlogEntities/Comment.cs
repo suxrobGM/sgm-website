@@ -27,6 +27,6 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
         [Display(Name = "Blog")]
         public virtual Blog Blog { get; set; }
 
-        public virtual ICollection<Comment> Replies { get; set; }
+        public virtual IList<Comment> Replies { get; set; }
     }
 }

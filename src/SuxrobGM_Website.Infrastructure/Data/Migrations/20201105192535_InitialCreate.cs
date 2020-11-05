@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SuxrobGM_Website.Infrastructure.Data.Migrations
+namespace SuxrobGM_Website.Infrastructure.Migrations
 {
     public partial class InitialCreate : Migration
     {
@@ -11,7 +11,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
                 name: "Roles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
@@ -28,7 +28,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
                 name: "Tag",
                 columns: table => new
                 {
-                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     Timestamp = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(maxLength: 40, nullable: false)
                 },
@@ -41,7 +41,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
@@ -90,7 +90,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
                 name: "Blog",
                 columns: table => new
                 {
-                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     Timestamp = table.Column<DateTime>(nullable: false),
                     Slug = table.Column<string>(maxLength: 80, nullable: true),
                     Title = table.Column<string>(maxLength: 80, nullable: false),
@@ -200,8 +200,8 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
                 name: "BlogTag",
                 columns: table => new
                 {
-                    BlogId = table.Column<string>(maxLength: 32, nullable: false),
-                    TagId = table.Column<string>(maxLength: 32, nullable: false)
+                    BlogId = table.Column<string>(nullable: false),
+                    TagId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -224,7 +224,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
                 name: "Comment",
                 columns: table => new
                 {
-                    Id = table.Column<string>(maxLength: 32, nullable: false),
+                    Id = table.Column<string>(nullable: false),
                     Timestamp = table.Column<DateTime>(nullable: false),
                     Content = table.Column<string>(nullable: false),
                     AuthorName = table.Column<string>(maxLength: 64, nullable: true),

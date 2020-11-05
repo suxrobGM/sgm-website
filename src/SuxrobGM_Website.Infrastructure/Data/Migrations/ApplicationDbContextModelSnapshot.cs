@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SuxrobGM_Website.Infrastructure.Data;
 
-namespace SuxrobGM_Website.Infrastructure.Data.Migrations
+namespace SuxrobGM_Website.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -34,7 +34,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -58,7 +58,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -80,7 +80,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -92,10 +92,10 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -107,7 +107,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -126,11 +126,10 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.Blog", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -170,12 +169,10 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.BlogTag", b =>
                 {
                     b.Property<string>("BlogId")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("TagId")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("BlogId", "TagId");
 
@@ -187,29 +184,28 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.Comment", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AuthorEmail")
                         .HasColumnType("nvarchar(64)")
                         .HasMaxLength(64);
 
                     b.Property<string>("AuthorId")
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AuthorName")
                         .HasColumnType("nvarchar(64)")
                         .HasMaxLength(64);
 
                     b.Property<string>("BlogId")
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ParentCommentId")
-                        .HasColumnType("nvarchar(32)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
@@ -228,8 +224,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.Tag", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -247,8 +242,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.UserEntities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
@@ -325,8 +319,7 @@ namespace SuxrobGM_Website.Infrastructure.Data.Migrations
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.UserEntities.UserRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()

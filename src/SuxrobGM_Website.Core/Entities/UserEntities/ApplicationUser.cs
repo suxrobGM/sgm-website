@@ -12,7 +12,6 @@ namespace SuxrobGM_Website.Core.Entities.UserEntities
             ProfilePhotoPath = "/img/default_user_avatar.png";
         }
 
-        [StringLength(32)]
         [Display(Name = "ID")]
         public override string Id { get; set; } = GeneratorId.GenerateComplex();
 

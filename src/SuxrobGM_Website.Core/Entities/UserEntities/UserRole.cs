@@ -20,9 +20,8 @@ namespace SuxrobGM_Website.Core.Entities.UserEntities
             Role = role;
         }
 
-        [StringLength(32)]
         [Display(Name = "ID")]
-        public sealed override string Id { get; set; }
+        public override string Id { get; set; }
 
         public Role Role { get; set; }
 
