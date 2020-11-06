@@ -20,7 +20,7 @@ namespace SuxrobGM_Website.Infrastructure.Data
         {
             if (!optionsBuilder.IsConfigured)
             {               
-                optionsBuilder.UseSqlServer("Server=mssql.u1002275.plsk.regruhosting.ru;Database=u1002275_SGM_BlogDB;User Id=u1002275_SuxrobGM;Password=Suxrobbek0729#")
+                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS; Initial Catalog=SGM_BlogDB; Trusted_Connection=True")
                     .UseLazyLoadingProxies();
             }
         }
