@@ -48,8 +48,9 @@ namespace SuxrobGM_Website.Web.Pages.Blog
             return Task.Run(() =>
             {
                 var tags = new List<string>();
+                var blogsList = blogs.ToList();
 
-                foreach (var blog in blogs)
+                foreach (var blog in blogsList)
                 {
                     tags.AddRange(blog.BlogTags.Select(i => i.Tag.Name));
                 }

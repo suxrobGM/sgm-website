@@ -100,7 +100,7 @@ namespace SuxrobGM_Website.Web
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                        Configuration.GetConnectionString("LocalDbConnection"))
+                        Configuration.GetConnectionString("RemoteDbConnection"))
                     .UseLazyLoadingProxies());
         }
 

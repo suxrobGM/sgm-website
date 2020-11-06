@@ -31,9 +31,14 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
         public static string GetShortContent(string articleContent, int length)
         {
             var content = HttpUtility.HtmlDecode(articleContent);
-            content = Regex.Replace(content, @"<(.|\n)*?>", "");            
-            content = content.Substring(0, length).Trim() + "...";
-            return content;
+            content = Regex.Replace(content, @"<(.|\n)*?>", ""); 
+            
+            if (content.Length < length)
+            {
+                return content;
+            }
+
+            return content.Substring(0, length).Trim() + "...";
         }
     }
 }
