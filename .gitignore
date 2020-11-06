@@ -9,11 +9,13 @@
 *.userosscache
 *.sln.docstates
 .vscode/
+.config/
 
 appsettings.json
 appsettings.Development.json
 app_analytics.sqlite
 db_files/
+*.pdf
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
