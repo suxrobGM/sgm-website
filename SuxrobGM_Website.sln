@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Core", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Infrastructure", "src\SuxrobGM_Website.Infrastructure\SuxrobGM_Website.Infrastructure.csproj", "{572B48A9-6DE9-4617-9E0A-4756738DBC22}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{394C224B-A6DF-4988-A196-63F2CC035077}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{924CBA55-F1B4-436E-951B-A307F890E7CE} = {394C224B-A6DF-4988-A196-63F2CC035077}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {20D3389A-DDCD-43F4-919C-81E26FF2C100}
