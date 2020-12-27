@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SuxrobGM.Sdk.AspNetCore.Pagination;
+using SuxrobGM_Website.Core.Entities.BlogEntities;
 using SuxrobGM_Website.Core.Interfaces.Repositories;
 
 namespace SuxrobGM_Website.Web.Pages.Blog
@@ -23,13 +24,11 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
         public async Task<IActionResult> OnGetAsync(int pageIndex = 1, string tag = null)
         {
-            var blogs = _blogRepository.GetAll<Core.Entities.BlogEntities.Blog>();
+            var blogs = _blogRepository.GetQuery();
 
             if (tag != null)
             {
-                var taggedBlogs = (await _blogRepository.GetListAsync<Core.Entities.BlogEntities.Blog>())
-                    .SelectMany(i => i.BlogTags).Where(i => i.Tag.Name.ToLower() == tag.ToLower())
-                    .OrderByDescending(i => i.Blog.Timestamp).Select(i => i.Blog);
+                var taggedBlogs = _blogRepository.GetQuery(i => i.Tags.Contains(new Tag(tag)));
 
                 Blogs = PaginatedList<Core.Entities.BlogEntities.Blog>.Create(taggedBlogs, pageIndex, 5);
             }
@@ -52,7 +51,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
                 foreach (var blog in blogsList)
                 {
-                    tags.AddRange(blog.BlogTags.Select(i => i.Tag.Name));
+                    tags.AddRange(blog.Tags.Select(i => i.Name));
                 }
 
                 var popularTags = tags.GroupBy(str => str)

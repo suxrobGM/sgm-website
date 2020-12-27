@@ -42,26 +42,12 @@ namespace SuxrobGM_Website.Infrastructure.Data
             {
                 entity.HasMany(m => m.Comments)
                     .WithOne(m => m.Blog);
-
             });
 
             builder.Entity<Comment>(entity =>
             {
                 entity.HasMany(m => m.Replies)
                     .WithOne(m => m.ParentComment);
-            });
-
-            builder.Entity<BlogTag>(entity =>
-            {
-                entity.HasKey(k => new {k.BlogId, k.TagId});
-
-                entity.HasOne(m => m.Blog)
-                    .WithMany(m => m.BlogTags)
-                    .HasForeignKey(m => m.BlogId);
-
-                entity.HasOne(m => m.Tag)
-                    .WithMany(m => m.BlogTags)
-                    .HasForeignKey(m => m.TagId);
             });
         }
     }

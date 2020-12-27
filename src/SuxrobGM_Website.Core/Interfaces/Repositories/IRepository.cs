@@ -7,15 +7,18 @@ using SuxrobGM_Website.Core.Interfaces.Entities;
 
 namespace SuxrobGM_Website.Core.Interfaces.Repositories
 {
-    public interface IRepository
+    /// <summary>
+    /// Generic repository interface
+    /// </summary>
+    public interface IRepository<TEntity> where TEntity: class, IEntityBase
     {
-        Task<TEntity> GetByIdAsync<TEntity>(string id) where TEntity: class, IEntity<string>;
-        Task<TEntity> GetAsync<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity: class, IEntity<string>;
-        Task<List<TEntity>> GetListAsync<TEntity>() where TEntity: class, IEntity<string>;
-        Task<List<TEntity>> GetListAsync<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity: class, IEntity<string>;
-        IQueryable<TEntity> GetAll<TEntity>(Expression<Func<TEntity, bool>> predicate = null) where TEntity: class, IEntity<string>;
-        Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity: class, IEntity<string>;
-        Task UpdateAsync<TEntity>(TEntity entity) where TEntity: class, IEntity<string>;
-        Task DeleteAsync<TEntity>(TEntity entity) where TEntity: class, IEntity<string>;
+        Task<TEntity> GetByIdAsync(object id);
+        Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate = null);
+        IQueryable<TEntity> GetQuery(Expression<Func<TEntity, bool>> predicate = null);
+        Task AddAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
+        Task DeleteByIdAsync(object id);
+        Task DeleteAsync(TEntity entity);
     }
 }

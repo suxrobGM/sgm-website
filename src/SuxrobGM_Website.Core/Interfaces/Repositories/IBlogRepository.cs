@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using SuxrobGM_Website.Core.Entities.BlogEntities;
-using SuxrobGM_Website.Core.Entities.UserEntities;
 
 namespace SuxrobGM_Website.Core.Interfaces.Repositories
 {
-    public interface IBlogRepository : IRepository
+    public interface IBlogRepository : IRepository<Blog>
     {
+        Task<Comment> GetCommentById(string commentId);
         Task AddBlogAsync(Blog blog);
         Task AddCommentAsync(Blog blog, Comment comment);
         Task AddReplyToCommentAsync(Comment parentComment, Comment childComment);

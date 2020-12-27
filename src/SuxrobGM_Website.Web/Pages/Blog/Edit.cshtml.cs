@@ -35,12 +35,12 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
-            var blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(id);
+            var blog = await _blogRepository.GetByIdAsync(id);
 
             Input = new InputModel()
             {
                 Blog = blog,
-                Tags = Tag.JoinTags(blog.BlogTags.Select(i => i.Tag))
+                Tags = Tag.ConvertTagsToString(blog.Tags)
             };
 
             ViewData.Add("toolbars", new[]
@@ -64,7 +64,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 return Page();
             }
 
-            var blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(Input.Blog.Id);
+            var blog = await _blogRepository.GetByIdAsync(Input.Blog.Id);
             blog.Title = Input.Blog.Title;
             blog.Summary = Input.Blog.Summary;
             blog.Content = Input.Blog.Content;

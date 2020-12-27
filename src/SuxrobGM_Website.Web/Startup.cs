@@ -37,7 +37,7 @@ namespace SuxrobGM_Website.Web
             // Infrastructure layer
             ConfigureDatabases(services);
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddScoped<IRepository, Repository>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 

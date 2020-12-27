@@ -70,7 +70,6 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 Input.Blog.CoverPhotoPath = _imageHelper.UploadImage(Input.UploadCoverPhoto, $"{Input.Blog.Id}_blog_cover", resizeToRectangle: true);
             }
 
-            await _blogRepository.UpdateTagsAsync(Input.Blog, false, tags);
             await _blogRepository.AddBlogAsync(Input.Blog);
             return RedirectToPage("/Blog/Index", new { slug = Input.Blog.Slug });
         }

@@ -33,8 +33,8 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 return NotFound();
             }
 
-            Blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(id);
-            Tags = Tag.JoinTags(Blog.BlogTags.Select(i => i.Tag));
+            Blog = await _blogRepository.GetByIdAsync(id);
+            Tags = Tag.ConvertTagsToString(Blog.Tags);
 
             if (Blog == null)
             {
@@ -50,7 +50,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 return NotFound();
             }
 
-            Blog = await _blogRepository.GetByIdAsync<Core.Entities.BlogEntities.Blog>(id);
+            Blog = await _blogRepository.GetByIdAsync(id);
 
             if (Blog != null)
             {

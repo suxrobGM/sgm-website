@@ -7,13 +7,24 @@ using SuxrobGM_Website.Infrastructure.Data;
 
 namespace SuxrobGM_Website.Infrastructure.Repositories
 {
-    public class BlogRepository : Repository, IBlogRepository
+    public class BlogRepository : Repository<Blog>, IBlogRepository
     {
         private readonly ApplicationDbContext _context;
+        private readonly IRepository<Comment> _commentRepository;
+        private readonly IRepository<Tag> _tagRepository;
 
-        public BlogRepository(ApplicationDbContext context) : base(context)
+        public BlogRepository(ApplicationDbContext context,
+            IRepository<Comment> commentRepository, 
+            IRepository<Tag> tagRepository) : base(context)
         {
             _context = context;
+            _commentRepository = commentRepository;
+            _tagRepository = tagRepository;
+        }
+
+        public Task<Comment> GetCommentById(string commentId)
+        {
+            return _commentRepository.GetByIdAsync(commentId);
         }
 
         public Task AddBlogAsync(Blog blog)
@@ -31,7 +42,7 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
         public Task AddReplyToCommentAsync(Comment parentComment, Comment childComment)
         {
             parentComment.Replies.Add(childComment);
-            return UpdateAsync(parentComment);
+            return _commentRepository.UpdateAsync(parentComment);
         }
 
         public Task UpdateBlogAsync(Blog blog)
@@ -45,24 +56,21 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
             foreach (var tag in tags)
             {
                 // ReSharper disable once SpecifyStringComparison
-                var originTag = await GetAsync<Tag>(i => i.Name.ToLower() == tag.Name.ToLower());
+                var originTag = await _tagRepository.GetAsync(i => i.Name.ToLower() == tag.Name.ToLower());
 
                 if (originTag == null)
                 {
                     originTag = new Tag(tag);
-                    await _context.Set<Tag>().AddAsync(originTag);
+                    await _tagRepository.AddAsync(originTag);
                 }
 
                 // ReSharper disable once SpecifyStringComparison
-                if (blog.BlogTags.Any(i => i.Tag.Name.ToLower() == originTag.Name.ToLower()))
+                if (blog.Tags.Any(i => i.Name.ToLower() == originTag.Name.ToLower()))
                 {
                     continue;
                 }
 
-                blog.BlogTags.Add(new BlogTag
-                {
-                    Tag = originTag
-                });
+                blog.Tags.Add(originTag);
             }
 
             if (saveChanges)
@@ -84,7 +92,7 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
         public async Task DeleteCommentAsync(Comment comment, bool saveChanges = true)
         {
             await RemoveChildrenCommentsAsync(comment);
-            var rootComment = _context.Set<Comment>().FirstOrDefault(i => i.Id == comment.Id);
+            var rootComment = _commentRepository.GetAsync(i => i.Id == comment.Id);
 
             if (rootComment != null)
             {
@@ -110,13 +118,13 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
         {
             var slug = slugifiedEntity.Slug;
             var verifiedSlug = slug;
-            var hasSameSlug = _context.Set<Blog>().Any(i => i.Slug == verifiedSlug);
+            var alreadyExistsSlug = _context.Set<Blog>().Any(i => i.Slug == verifiedSlug && i.Id != slugifiedEntity.Id);
 
             var count = 0;
-            while (hasSameSlug)
+            while (alreadyExistsSlug)
             {
                 verifiedSlug = slug.Insert(0, $"{++count}-");
-                hasSameSlug = _context.Set<Blog>().Any(i => i.Slug == verifiedSlug);
+                alreadyExistsSlug = _context.Set<Blog>().Any(i => i.Slug == verifiedSlug && i.Id != slugifiedEntity.Id);
             }
 
             return verifiedSlug;

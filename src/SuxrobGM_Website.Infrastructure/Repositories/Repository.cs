@@ -10,7 +10,11 @@ using SuxrobGM_Website.Infrastructure.Data;
 
 namespace SuxrobGM_Website.Infrastructure.Repositories
 {
-    public class Repository : IRepository
+    /// <summary>
+    /// Generic repository.
+    /// </summary>
+    /// <typeparam name="TEntity">Class that implements IEntityBase interface</typeparam>
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityBase
     {
         private readonly ApplicationDbContext _context;
 
@@ -20,53 +24,98 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
             _context = context;
         }
 
-        public virtual Task<TEntity> GetByIdAsync<TEntity>(string id) where TEntity: class, IEntity<string>
+        /// <summary>
+        /// Get entity object by its ID.
+        /// </summary>
+        /// <param name="id">Entity primary key</param>
+        /// <returns>Entity object</returns>
+        public Task<TEntity> GetByIdAsync(object id)
         {
-            return _context.Set<TEntity>().FirstOrDefaultAsync(i => i.Id == id);
+            return _context.Set<TEntity>().FindAsync(id).AsTask();
         }
 
-        public virtual Task<TEntity> GetAsync<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity: class, IEntity<string>
+        /// <summary>
+        /// Get entity object by predicate.
+        /// </summary>
+        /// <param name="predicate">Predicate to filter query</param>
+        /// <returns>Entity object</returns>
+        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
             return _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
         }
 
-        public virtual Task<List<TEntity>> GetListAsync<TEntity>() where TEntity: class, IEntity<string>
+        /// <summary>
+        /// Get list of entity objects
+        /// </summary>
+        /// <param name="predicate">Predicate to filter query</param>
+        /// <returns>List of entity objects</returns>
+        public Task<List<TEntity>> GetListAsync(Expression<Func<TEntity, bool>> predicate = null)
         {
-            return _context.Set<TEntity>().ToListAsync();
+            return predicate == null ? _context.Set<TEntity>().ToListAsync() : _context.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
-        public virtual Task<List<TEntity>> GetListAsync<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity: class, IEntity<string>
+        /// <summary>
+        /// Get IQueryable entity objects.
+        /// </summary>
+        /// <param name="predicate">Predicate to filter query</param>
+        /// <returns>IQueryable entity objects</returns>
+        public IQueryable<TEntity> GetQuery(Expression<Func<TEntity, bool>> predicate = null)
         {
-            return _context.Set<TEntity>().Where(predicate).ToListAsync();
+            return predicate != null ? _context.Set<TEntity>().Where(predicate) : _context.Set<TEntity>();
         }
 
-        public virtual IQueryable<TEntity> GetAll<TEntity>(Expression<Func<TEntity, bool>> predicate) where TEntity: class, IEntity<string>
+        /// <summary>
+        /// Add new entry to database.
+        /// </summary>
+        /// <param name="entity">Entity object</param>
+        /// <returns>Task</returns>
+        public Task AddAsync(TEntity entity)
         {
-            IQueryable<TEntity> query = _context.Set<TEntity>();
-            return predicate == null ? query : query.Where(predicate);
+            _context.Set<TEntity>().Add(entity);
+            return _context.SaveChangesAsync();
         }
 
-        public virtual async Task<TEntity> AddAsync<TEntity>(TEntity entity) where TEntity: class, IEntity<string>
+        /// <summary>
+        /// Update existing entry.
+        /// </summary>
+        /// <param name="entity">Entity object</param>
+        /// <returns>Task</returns>
+        public Task UpdateAsync(TEntity entity)
         {
-            await _context.AddAsync(entity);
-            await _context.SaveChangesAsync();
-            return entity;
-        }
-
-        public virtual Task UpdateAsync<TEntity>(TEntity entity) where TEntity: class, IEntity<string>
-        {
+            _context.Set<TEntity>().Attach(entity);
             _context.Entry(entity).State = EntityState.Modified;
             return _context.SaveChangesAsync();
         }
 
-        public virtual Task DeleteAsync<TEntity>(TEntity entity) where TEntity: class, IEntity<string>
+        /// <summary>
+        /// Delete entry from database by its ID.
+        /// </summary>
+        /// <param name="id">Primary key of entity</param>
+        /// <returns>Task</returns>
+        public Task DeleteByIdAsync(object id)
         {
-            var sourceEntity = _context.Set<TEntity>().FirstOrDefault(i => i.Id == entity.Id);
-
-            if (sourceEntity == null) 
+            if (id == null)
+            {
                 return Task.CompletedTask;
+            }
 
-            _context.Remove(sourceEntity);
+            var entity = _context.Set<TEntity>().Find(id);
+            return DeleteAsync(entity);
+        }
+
+        /// <summary>
+        /// Delete entity object from database.
+        /// </summary>
+        /// <param name="entity">Entity object</param>
+        /// <returns>Task</returns>
+        public Task DeleteAsync(TEntity entity)
+        {
+            if (entity == null)
+            {
+                return Task.CompletedTask;
+            }
+
+            _context.Set<TEntity>().Remove(entity);
             return _context.SaveChangesAsync();
         }
     }

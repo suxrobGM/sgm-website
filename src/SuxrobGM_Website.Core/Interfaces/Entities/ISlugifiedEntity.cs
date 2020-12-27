@@ -1,6 +1,6 @@
 ﻿namespace SuxrobGM_Website.Core.Interfaces.Entities
 {
-    public interface ISlugifiedEntity
+    public interface ISlugifiedEntity : IEntity<string>
     {
         string Slug { get; set; }
     }

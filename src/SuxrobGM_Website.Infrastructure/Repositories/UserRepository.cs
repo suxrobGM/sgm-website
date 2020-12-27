@@ -9,7 +9,7 @@ using SuxrobGM_Website.Infrastructure.Data;
 
 namespace SuxrobGM_Website.Infrastructure.Repositories
 {
-    public class UserRepository : Repository, IUserRepository
+    public class UserRepository : Repository<ApplicationUser>, IUserRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;

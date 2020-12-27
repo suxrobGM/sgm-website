@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
@@ -20,7 +19,8 @@ namespace SuxrobGM_Website.Web.Pages.Blog
         private readonly IEmailSender _emailSender;
 
         public IndexModel(UserManager<ApplicationUser> userManager,
-            IBlogRepository blogRepository, IEmailSender emailSender)
+            IBlogRepository blogRepository,
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _blogRepository = blogRepository;
@@ -48,9 +48,9 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
         public async Task OnGetAsync(int pageIndex = 1)
         {
-            var blogSlug = RouteData.Values["slug"].ToString();
-            Blog = await _blogRepository.GetAsync<Core.Entities.BlogEntities.Blog>(i => i.Slug == blogSlug);
-            Tags = Tag.JoinTags(Blog.BlogTags.Select(i => i.Tag));
+            var blogSlug = RouteData.Values["slug"]?.ToString();
+            Blog = await _blogRepository.GetAsync(i => i.Slug == blogSlug);
+            Tags = Tag.ConvertTagsToString(Blog.Tags);
 
             if (!Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"))
             {
@@ -65,7 +65,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var blogSlug = RouteData.Values["slug"].ToString();
+            var blogSlug = RouteData.Values["slug"]?.ToString();
 
             if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out var pageNumber))
             {
@@ -78,10 +78,10 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 return Page();
             }
 
-            Blog = await _blogRepository.GetAsync<Core.Entities.BlogEntities.Blog>(i => i.Slug == blogSlug);
+            Blog = await _blogRepository.GetAsync(i => i.Slug == blogSlug);
             var comment = new Comment() { Content = CommentContent };
 
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity != null && User.Identity.IsAuthenticated)
             {
                 var user = await _userManager.GetUserAsync(User);
                 comment.Author = user;
@@ -104,15 +104,15 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
         public async Task<IActionResult> OnPostReplyToCommentAsync(string commentId)
         {
-            var blogSlug = RouteData.Values["slug"].ToString();
+            var blogSlug = RouteData.Values["slug"]?.ToString();
             if (!int.TryParse(HttpContext.Request.Query["pageIndex"].ToString(), out var pageNumber))
             {
                 pageNumber = 1;
             }
 
-            var blog = await _blogRepository.GetAsync<Core.Entities.BlogEntities.Blog>(i => i.Slug == blogSlug);
+            var blog = await _blogRepository.GetAsync(i => i.Slug == blogSlug);
             var author = await _userManager.GetUserAsync(User);
-            var parentComment = await _blogRepository.GetAsync<Comment>(i => i.Id == commentId);
+            var parentComment = await _blogRepository.GetCommentById(commentId);
 
             if (string.IsNullOrWhiteSpace(CommentContent))
             {
@@ -147,7 +147,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 pageNumber = 1;
             }
 
-            var comment = await _blogRepository.GetAsync<Comment>(i => i.Id == commentId);
+            var comment = await _blogRepository.GetCommentById(commentId);
             await _blogRepository.DeleteCommentAsync(comment);
             return RedirectToPage("", "", new { pageIndex = pageNumber }, rootCommentId);
         }

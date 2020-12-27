@@ -62,8 +62,7 @@
     <div class="card-footer">
         <b>Tags</b><br />
         @{
-            var tags = Model.Blog.BlogTags.Select(i => i.Tag);
-            foreach (var tag in tags)
+            foreach (var tag in Model.Blog.Tags)
             {
                 <span class="badge badge-dark mr-2">@tag</span>
             }

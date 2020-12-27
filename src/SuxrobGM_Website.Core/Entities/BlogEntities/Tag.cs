@@ -6,7 +6,7 @@ using SuxrobGM_Website.Core.Entities.Base;
 
 namespace SuxrobGM_Website.Core.Entities.BlogEntities
 {
-    public class Tag : EntityBase
+    public class Tag : EntityBase, IEqualityComparer<Tag>
     {
         public Tag()
         {
@@ -23,7 +23,7 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
         [Display(Name = "Name")]
         public string Name { get; set; }
 
-        public virtual IList<BlogTag> BlogTags { get; set; }
+        public virtual IList<Tag> Blogs { get; set; }
 
         public override string ToString() => Name;
         public static implicit operator Tag(string tagName) => new Tag(tagName);
@@ -36,9 +36,23 @@ namespace SuxrobGM_Website.Core.Entities.BlogEntities
             return tagsArray;
         }
 
-        public static string JoinTags(IEnumerable<Tag> tags, char separator = ',')
+        public static string ConvertTagsToString(IEnumerable<Tag> tags, char separator = ',')
         {
             return string.Join(separator, tags);
+        }
+
+        public bool Equals(Tag x, Tag y)
+        {
+            if (ReferenceEquals(x, y)) return true;
+            if (ReferenceEquals(x, null)) return false;
+            if (ReferenceEquals(y, null)) return false;
+            if (x.GetType() != y.GetType()) return false;
+            return x.Name.ToLower() == y.Name.ToLower();
+        }
+
+        public int GetHashCode(Tag obj)
+        {
+            return (obj.Name != null ? obj.Name.GetHashCode() : 0);
         }
     }
 }

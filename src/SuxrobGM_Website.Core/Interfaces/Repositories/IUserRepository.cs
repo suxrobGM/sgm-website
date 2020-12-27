@@ -4,7 +4,7 @@ using SuxrobGM_Website.Core.Entities.UserEntities;
 
 namespace SuxrobGM_Website.Core.Interfaces.Repositories
 {
-    public interface IUserRepository : IRepository
+    public interface IUserRepository : IRepository<ApplicationUser>
     {
         Task UpdateUserRolesAsync(ApplicationUser user, IEnumerable<string> roles);
 
