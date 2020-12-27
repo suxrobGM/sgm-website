@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Web", "src\SuxrobGM_Website.Web\SuxrobGM_Website.Web.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Tests", "tests\SuxrobGM_Website.Tests\SuxrobGM_Website.Tests.csproj", "{924CBA55-F1B4-436E-951B-A307F890E7CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Tests", "test\SuxrobGM_Website.Tests\SuxrobGM_Website.Tests.csproj", "{924CBA55-F1B4-436E-951B-A307F890E7CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuxrobGM_Website.Core", "src\SuxrobGM_Website.Core\SuxrobGM_Website.Core.csproj", "{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}"
 EndProject

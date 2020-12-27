@@ -69,7 +69,6 @@ namespace SuxrobGM_Website.Web
             if (env.IsDevelopment())
             {               
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
             }
             else
             {
@@ -100,14 +99,14 @@ namespace SuxrobGM_Website.Web
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                        Configuration.GetConnectionString("RemoteDbConnection"))
+                        Configuration.GetConnectionString("LocalDbConnection"))
                     .UseLazyLoadingProxies());
         }
 
         private void ConfigureIdentity(IServiceCollection services)
         {
             services.AddDefaultIdentity<ApplicationUser>()
-                .AddRoles<UserRole>()
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.Configure<IdentityOptions>(options =>

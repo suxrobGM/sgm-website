@@ -13,9 +13,9 @@ namespace SuxrobGM_Website.Core.Entities.UserEntities
         Editor
     }
 
-    public class UserRole : IdentityRole, IEntity<string>
+    public class ApplicationRole : IdentityRole, IEntity<string>
     {
-        public UserRole(Role role) : base(role.ToString())
+        public ApplicationRole(Role role) : base(role.ToString())
         {
             Role = role;
         }

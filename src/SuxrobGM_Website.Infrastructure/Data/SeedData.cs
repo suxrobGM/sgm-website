@@ -18,7 +18,7 @@ namespace SuxrobGM_Website.Infrastructure.Data
 
         private static async Task CreateUserRolesAsync(IServiceProvider serviceProvider)
         {
-            var roleManager = serviceProvider.GetRequiredService<RoleManager<UserRole>>();
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
 
             var superAdminRole = await roleManager.RoleExistsAsync(Role.SuperAdmin.ToString());
             var adminRole = await roleManager.RoleExistsAsync(Role.Admin.ToString());
@@ -27,19 +27,19 @@ namespace SuxrobGM_Website.Infrastructure.Data
 
             if (!superAdminRole)
             {
-                await roleManager.CreateAsync(new UserRole(Role.SuperAdmin));
+                await roleManager.CreateAsync(new ApplicationRole(Role.SuperAdmin));
             }
             if (!adminRole)
             {
-                await roleManager.CreateAsync(new UserRole(Role.Admin));
+                await roleManager.CreateAsync(new ApplicationRole(Role.Admin));
             }
             if (!moderatorRole)
             {
-                await roleManager.CreateAsync(new UserRole(Role.Moderator));
+                await roleManager.CreateAsync(new ApplicationRole(Role.Moderator));
             }
             if (!editorRole)
             {
-                await roleManager.CreateAsync(new UserRole(Role.Editor));
+                await roleManager.CreateAsync(new ApplicationRole(Role.Editor));
             }
         }
 

@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SuxrobGM_Website.Core.Entities.BlogEntities;
 using SuxrobGM_Website.Core.Entities.UserEntities;
 
 namespace SuxrobGM_Website.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, UserRole, string>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public ApplicationDbContext()
         {
@@ -29,15 +28,6 @@ namespace SuxrobGM_Website.Infrastructure.Data
         {
             base.OnModelCreating(builder);
 
-            // Change standard identity table names
-            builder.Entity<ApplicationUser>(entity => { entity.ToTable(name: "Users"); });
-            builder.Entity<UserRole>(entity => { entity.ToTable(name: "Roles"); });
-            builder.Entity<IdentityUserRole<string>>(entity => { entity.ToTable("UserRoles"); });
-            builder.Entity<IdentityUserClaim<string>>(entity => { entity.ToTable("UserClaims"); });
-            builder.Entity<IdentityUserLogin<string>>(entity => { entity.ToTable("UserLogins"); });
-            builder.Entity<IdentityUserToken<string>>(entity => { entity.ToTable("UserToken"); });
-            builder.Entity<IdentityRoleClaim<string>>(entity => { entity.ToTable("RoleClaims"); });
-
             builder.Entity<Blog>(entity =>
             {
                 entity.HasMany(m => m.Comments)
@@ -48,6 +38,12 @@ namespace SuxrobGM_Website.Infrastructure.Data
             {
                 entity.HasMany(m => m.Replies)
                     .WithOne(m => m.ParentComment);
+            });
+
+            builder.Entity<Tag>(entity =>
+            {
+                entity.HasMany(m => m.Blogs)
+                    .WithMany(m => m.Tags);
             });
         }
     }

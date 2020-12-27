@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SuxrobGM_Website.Infrastructure.Data;
 
-namespace SuxrobGM_Website.Infrastructure.Migrations
+namespace SuxrobGM_Website.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -15,16 +15,31 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.6")
+                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "5.0.1");
+
+            modelBuilder.Entity("BlogTag", b =>
+                {
+                    b.Property<string>("BlogsId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("TagsId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("BlogsId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("BlogTag");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -40,7 +55,7 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims");
+                    b.ToTable("AspNetRoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -48,7 +63,7 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .UseIdentityColumn();
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -64,7 +79,7 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims");
+                    b.ToTable("AspNetUserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -86,7 +101,7 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins");
+                    b.ToTable("AspNetUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -101,7 +116,7 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("AspNetUserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -120,7 +135,7 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserToken");
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.Blog", b =>
@@ -136,25 +151,25 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CoverPhotoPath")
-                        .HasColumnType("nvarchar(64)")
-                        .HasMaxLength(64);
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("Slug")
-                        .HasColumnType("nvarchar(80)")
-                        .HasMaxLength(80);
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("Summary")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(80)")
-                        .HasMaxLength(80);
+                        .HasMaxLength(80)
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<int>("ViewCount")
                         .HasColumnType("int");
@@ -166,36 +181,21 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                     b.ToTable("Blog");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.BlogTag", b =>
-                {
-                    b.Property<string>("BlogId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("TagId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("BlogId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("BlogTag");
-                });
-
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.Comment", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AuthorEmail")
-                        .HasColumnType("nvarchar(64)")
-                        .HasMaxLength(64);
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("AuthorId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("AuthorName")
-                        .HasColumnType("nvarchar(64)")
-                        .HasMaxLength(64);
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("BlogId")
                         .HasColumnType("nvarchar(450)");
@@ -228,8 +228,8 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
@@ -237,6 +237,43 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tag");
+                });
+
+            modelBuilder.Entity("SuxrobGM_Website.Core.Entities.UserEntities.ApplicationRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.UserEntities.ApplicationUser", b =>
@@ -252,19 +289,19 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(40)")
-                        .HasMaxLength(40);
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -273,12 +310,12 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -290,8 +327,8 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("ProfilePhotoPath")
-                        .HasColumnType("nvarchar(64)")
-                        .HasMaxLength(64);
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -300,62 +337,40 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasName("EmailIndex");
+                        .HasDatabaseName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
+                        .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("Users");
+                    b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("SuxrobGM_Website.Core.Entities.UserEntities.UserRole", b =>
+            modelBuilder.Entity("BlogTag", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.HasOne("SuxrobGM_Website.Core.Entities.BlogEntities.Blog", null)
+                        .WithMany()
+                        .HasForeignKey("BlogsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(250)")
-                        .HasMaxLength(250);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("Roles");
+                    b.HasOne("SuxrobGM_Website.Core.Entities.BlogEntities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("SuxrobGM_Website.Core.Entities.UserEntities.UserRole", null)
+                    b.HasOne("SuxrobGM_Website.Core.Entities.UserEntities.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -382,7 +397,7 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("SuxrobGM_Website.Core.Entities.UserEntities.UserRole", null)
+                    b.HasOne("SuxrobGM_Website.Core.Entities.UserEntities.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -409,21 +424,8 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                     b.HasOne("SuxrobGM_Website.Core.Entities.UserEntities.ApplicationUser", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorId");
-                });
 
-            modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.BlogTag", b =>
-                {
-                    b.HasOne("SuxrobGM_Website.Core.Entities.BlogEntities.Blog", "Blog")
-                        .WithMany("BlogTags")
-                        .HasForeignKey("BlogId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SuxrobGM_Website.Core.Entities.BlogEntities.Tag", "Tag")
-                        .WithMany("BlogTags")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.Comment", b =>
@@ -439,6 +441,22 @@ namespace SuxrobGM_Website.Infrastructure.Migrations
                     b.HasOne("SuxrobGM_Website.Core.Entities.BlogEntities.Comment", "ParentComment")
                         .WithMany("Replies")
                         .HasForeignKey("ParentCommentId");
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Blog");
+
+                    b.Navigation("ParentComment");
+                });
+
+            modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.Blog", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("SuxrobGM_Website.Core.Entities.BlogEntities.Comment", b =>
+                {
+                    b.Navigation("Replies");
                 });
 #pragma warning restore 612, 618
         }
