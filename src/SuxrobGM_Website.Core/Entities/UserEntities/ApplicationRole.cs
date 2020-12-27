@@ -18,6 +18,7 @@ namespace SuxrobGM_Website.Core.Entities.UserEntities
         public ApplicationRole(Role role) : base(role.ToString())
         {
             Role = role;
+            Timestamp = DateTime.Now;
         }
 
         [Display(Name = "ID")]

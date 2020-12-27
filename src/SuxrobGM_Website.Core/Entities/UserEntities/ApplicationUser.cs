@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 using SuxrobGM.Sdk.Utils;
 using SuxrobGM_Website.Core.Interfaces.Entities;
@@ -10,6 +11,7 @@ namespace SuxrobGM_Website.Core.Entities.UserEntities
         public ApplicationUser()
         {
             ProfilePhotoPath = "/img/default_user_avatar.png";
+            Timestamp = DateTime.Now;
         }
 
         [Display(Name = "ID")]
@@ -26,5 +28,8 @@ namespace SuxrobGM_Website.Core.Entities.UserEntities
         [StringLength(64)]
         [Display(Name = "Profile Photo Path")]
         public string ProfilePhotoPath { get; set; }
+
+        [Display(Name = "Registration Date")]
+        public DateTime Timestamp { get; set; }
     }
 }
