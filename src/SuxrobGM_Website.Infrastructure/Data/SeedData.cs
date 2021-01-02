@@ -12,7 +12,7 @@ namespace SuxrobGM_Website.Infrastructure.Data
         public static async void Initialize(IServiceProvider service)
         {
             await CreateUserRolesAsync(service);
-            await AddSuperAdminRoleToSiteOwnerAsync(service);
+            await CreateOwnerAccount(service);
             await CreateDeletedUserAccountAsync(service);
         }
 
@@ -43,19 +43,30 @@ namespace SuxrobGM_Website.Infrastructure.Data
             }
         }
 
-        private static async Task AddSuperAdminRoleToSiteOwnerAsync(IServiceProvider service)
+        private static async Task CreateOwnerAccount(IServiceProvider service)
         {
             var userManager = service.GetRequiredService<UserManager<ApplicationUser>>();
-            var siteOwner = await userManager.FindByEmailAsync("suxrobgm@gmail.com");
+            var config = service.GetRequiredService<IConfiguration>();
 
-            if (siteOwner == null) 
-                return;
+            var ownerAccount = new ApplicationUser()
+            {
+                UserName = config.GetSection("ServerAccounts:Owner:UserName").Value,
+                Email = config.GetSection("ServerAccounts:Owner:Email").Value,
+                EmailConfirmed = true
+            };
+            var password = config.GetSection("ServerAccounts:Owner:Password").Value;
 
-            var hasSuperAdminRole = await userManager.IsInRoleAsync(siteOwner, Role.SuperAdmin.ToString());
+            var siteOwner = await userManager.FindByEmailAsync(ownerAccount.Email);
+            if (siteOwner == null)
+            {
+                await userManager.CreateAsync(ownerAccount, password);
+            }
+
+            var hasSuperAdminRole = await userManager.IsInRoleAsync(siteOwner, "SuperAdmin");
 
             if (!hasSuperAdminRole)
             {
-                await userManager.AddToRoleAsync(siteOwner, Role.SuperAdmin.ToString());
+                await userManager.AddToRoleAsync(siteOwner, "SuperAdmin");
             }
         }
 
@@ -64,23 +75,25 @@ namespace SuxrobGM_Website.Infrastructure.Data
             var userManager = service.GetRequiredService<UserManager<ApplicationUser>>();
             var config = service.GetRequiredService<IConfiguration>();
 
-            var deletedUserAccount = await userManager.FindByNameAsync("DELETED_USER");
-            if (deletedUserAccount == null)
+            var deletedUserAccount = new ApplicationUser()
             {
-                await userManager.CreateAsync(new ApplicationUser()
-                {
-                    UserName = "DELETED_USER",
-                    Email = "Deleted.User@suxrobgm.net",
-                    EmailConfirmed = true
-                }, 
-                config.GetSection("EmailPassword").Value);
+                UserName = config.GetSection("ServerAccounts:DeletedUser:UserName").Value,
+                Email = config.GetSection("ServerAccounts:DeletedUser:Email").Value,
+                EmailConfirmed = true
+            };
+            var password = config.GetSection("ServerAccounts:DeletedUser:Password").Value;
+
+            var deletedUser = await userManager.FindByNameAsync(deletedUserAccount.UserName);
+            if (deletedUser == null)
+            {
+                await userManager.CreateAsync(deletedUserAccount, password);
             }
 
-            var hasSuperAdminRole = await userManager.IsInRoleAsync(deletedUserAccount, Role.SuperAdmin.ToString());
+            var hasSuperAdminRole = await userManager.IsInRoleAsync(deletedUser, "SuperAdmin");
 
             if (!hasSuperAdminRole)
             {
-                await userManager.AddToRoleAsync(deletedUserAccount, Role.SuperAdmin.ToString());
+                await userManager.AddToRoleAsync(deletedUser, "SuperAdmin");
             }
         }
     }
