@@ -5,7 +5,7 @@
     <div>
         @if (Model.Author == null)
         {
-            <img class="rounded-circle mr-2" width="50" height="50" src="~/img/user_def_icon.png" alt="user avatar" />
+            <img class="rounded-circle mr-2" width="50" height="50" src="~/img/default_user_avatar.png" alt="user avatar" />
         }
         else
         {
@@ -32,19 +32,27 @@
                     @if (Model.Replies.Any())
                     {
                         var targetElement = $"#{Model.Id}.card-footer";
-                        <button class="btn btn-sm" onclick="collapseElement('@targetElement')"><i class="fa fa-angle-down fa-lg"></i></button>
+                        <button class="btn btn-sm" onclick="collapseElement('@targetElement')">
+                            <i class="fa fa-angle-down fa-lg"></i>
+                        </button>
                     }
 
-                    @if (Model.Author != null && User.Identity.Name == Model.Author.UserName || User.IsInRole("SuperAdmin") || User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                    @if (Model.Author != null && User.Identity?.Name == Model.Author.UserName || 
+                         User.IsInRole("SuperAdmin") || User.IsInRole("Admin") || 
+                         User.IsInRole("Moderator"))
                     {
                         <form asp-page-handler="DeleteComment" asp-route-commentId="@Model.Id" asp-route-rootCommentId="@ViewData["RootCommentId"]" asp-route-pageIndex="@ViewData["PageIndex"]" class="float-right" method="post">
-                            <button class="btn btn-sm delete-item" data-toggle="tooltip" data-placement="top" title="Delete comment"><i class="fa fa-times"></i></button>
+                            <button class="btn btn-sm delete-item" data-toggle="tooltip" data-placement="top" title="Delete comment">
+                                <i class="fa fa-times"></i>
+                            </button>
                         </form>
                     }
 
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <button id="@Model.Id" class="btn btn-sm float-right" data-toggle="tooltip" data-placement="top" title="Reply to this comment" onclick="showReplyCommentBox('@Model.Id')"><i class="fa fa-reply"></i></button>
+                        <button id="@Model.Id" class="btn btn-sm float-right" data-toggle="tooltip" data-placement="top" title="Reply to this comment" onclick="showReplyCommentBox('@Model.Id')">
+                            <i class="fa fa-reply"></i>
+                        </button>
                     }
                 </div>
             </div>
@@ -61,8 +69,8 @@
             <div id="@Model.Id" class="reply-commentbox ml-1 d-none">
                 <form asp-page-handler="ReplyToComment" asp-route-commentId="@Model.Id" asp-route-pageIndex="@ViewData["PageIndex"]" class="w-100" method="post">
                     <div class="bg-white border border-dark p-2">
-                        <span data-valmsg-for="CommentText" data-valmsg-replace="true" class="text-danger"></span>
-                        <textarea id="CommentText" name="CommentText" class="comment-editor" rows="4" placeholder="Type message..." required></textarea>
+                        <span data-valmsg-for="CommentContent" data-valmsg-replace="true" class="text-danger"></span>
+                        <textarea id="CommentContent" name="CommentContent" class="comment-editor" rows="4" placeholder="Type message..." required></textarea>
                     </div>
                     <div class="mt-2">
                         <input type="submit" class="btn btn-sm btn-info shadow-sm" value="Reply" onclick="hideReplyCommentBox('@Model.Id')" />

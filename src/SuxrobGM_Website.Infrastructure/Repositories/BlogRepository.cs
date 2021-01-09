@@ -22,7 +22,7 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
             _tagRepository = tagRepository;
         }
 
-        public Task<Comment> GetCommentById(string commentId)
+        public Task<Comment> GetCommentByIdAsync(string commentId)
         {
             return _commentRepository.GetByIdAsync(commentId);
         }
@@ -51,7 +51,7 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
             return UpdateAsync(blog);
         }
 
-        public async Task UpdateTagsAsync(Blog blog, bool saveChanges = true, params Tag[] tags)
+        public async Task UpdateTagsAsync(Blog blog, params Tag[] tags)
         {
             foreach (var tag in tags)
             {
@@ -73,45 +73,50 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
                 blog.Tags.Add(originTag);
             }
 
-            if (saveChanges)
-            {
-                await UpdateAsync(blog);
-            }
+            await UpdateAsync(blog);
         }
 
         public async Task DeleteBlogAsync(Blog blog)
         {
-            foreach (var comment in blog.Comments)
+            if (blog == null)
             {
-                await DeleteCommentAsync(comment, false);
+                return;
             }
 
+            foreach (var comment in blog.Comments)
+            {
+                await RemoveChildCommentsAsync(comment); // remove child comments
+                _context.Remove(comment); // remove root comment
+            }
+
+            RemoveEmptyTags(); // remove empty tags
             await DeleteAsync(blog);
         }
 
-        public async Task DeleteCommentAsync(Comment comment, bool saveChanges = true)
+        public async Task DeleteCommentAsync(Comment comment)
         {
-            await RemoveChildrenCommentsAsync(comment);
-            var rootComment = _commentRepository.GetAsync(i => i.Id == comment.Id);
-
-            if (rootComment != null)
+            if (comment == null)
             {
-                _context.Remove(rootComment);
+                return;
             }
 
-            if (saveChanges)
-            {
-                await _context.SaveChangesAsync();
-            }
+            await RemoveChildCommentsAsync(comment);
+            await _commentRepository.DeleteByIdAsync(comment.Id);
         }
 
-        private async Task RemoveChildrenCommentsAsync(Comment comment)
+        private async Task RemoveChildCommentsAsync(Comment comment)
         {
             foreach (var reply in comment.Replies)
             {
-                await RemoveChildrenCommentsAsync(reply);
+                await RemoveChildCommentsAsync(reply);
                 _context.Remove(reply);
             }
+        }
+
+        private void RemoveEmptyTags()
+        {
+            var emptyTags = _tagRepository.GetQuery(i => i.Blogs.Count == 0);
+            _context.RemoveRange(emptyTags);
         }
 
         private string GetVerifiedBlogSlug(ISlugifiedEntity slugifiedEntity)

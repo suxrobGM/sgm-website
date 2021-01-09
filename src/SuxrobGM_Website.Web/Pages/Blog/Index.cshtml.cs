@@ -112,7 +112,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
             var blog = await _blogRepository.GetAsync(i => i.Slug == blogSlug);
             var author = await _userManager.GetUserAsync(User);
-            var parentComment = await _blogRepository.GetCommentById(commentId);
+            var parentComment = await _blogRepository.GetCommentByIdAsync(commentId);
 
             if (string.IsNullOrWhiteSpace(CommentContent))
             {
@@ -147,7 +147,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 pageNumber = 1;
             }
 
-            var comment = await _blogRepository.GetCommentById(commentId);
+            var comment = await _blogRepository.GetCommentByIdAsync(commentId);
             await _blogRepository.DeleteCommentAsync(comment);
             return RedirectToPage("", "", new { pageIndex = pageNumber }, rootCommentId);
         }

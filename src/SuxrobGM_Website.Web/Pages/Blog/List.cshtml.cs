@@ -28,7 +28,8 @@ namespace SuxrobGM_Website.Web.Pages.Blog
 
             if (tag != null)
             {
-                var taggedBlogs = _blogRepository.GetQuery(i => i.Tags.Contains(new Tag(tag)));
+                var taggedBlogs = _blogRepository.GetQuery(i => i.Tags.Select(t => t.Name.Trim().ToLower())
+                    .Contains(tag.Trim().ToLower()));
 
                 Blogs = PaginatedList<Core.Entities.BlogEntities.Blog>.Create(taggedBlogs, pageIndex, 5);
             }

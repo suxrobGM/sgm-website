@@ -11,9 +11,16 @@ namespace SuxrobGM_Website.Infrastructure.Data
     {
         public static async void Initialize(IServiceProvider service)
         {
-            await CreateUserRolesAsync(service);
-            await CreateOwnerAccount(service);
-            await CreateDeletedUserAccountAsync(service);
+            try
+            {
+                await CreateUserRolesAsync(service);
+                await CreateOwnerAccountAsync(service);
+                await CreateDeletedUserAccountAsync(service);
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
 
         private static async Task CreateUserRolesAsync(IServiceProvider serviceProvider)
@@ -43,7 +50,7 @@ namespace SuxrobGM_Website.Infrastructure.Data
             }
         }
 
-        private static async Task CreateOwnerAccount(IServiceProvider service)
+        private static async Task CreateOwnerAccountAsync(IServiceProvider service)
         {
             var userManager = service.GetRequiredService<UserManager<ApplicationUser>>();
             var config = service.GetRequiredService<IConfiguration>();
@@ -62,11 +69,11 @@ namespace SuxrobGM_Website.Infrastructure.Data
                 await userManager.CreateAsync(ownerAccount, password);
             }
 
-            var hasSuperAdminRole = await userManager.IsInRoleAsync(siteOwner, "SuperAdmin");
+            var hasSuperAdminRole = await userManager.IsInRoleAsync(siteOwner, Role.SuperAdmin.ToString());
 
             if (!hasSuperAdminRole)
             {
-                await userManager.AddToRoleAsync(siteOwner, "SuperAdmin");
+                await userManager.AddToRoleAsync(siteOwner, Role.SuperAdmin.ToString());
             }
         }
 
@@ -89,11 +96,11 @@ namespace SuxrobGM_Website.Infrastructure.Data
                 await userManager.CreateAsync(deletedUserAccount, password);
             }
 
-            var hasSuperAdminRole = await userManager.IsInRoleAsync(deletedUser, "SuperAdmin");
+            var hasSuperAdminRole = await userManager.IsInRoleAsync(deletedUser, Role.SuperAdmin.ToString());
 
             if (!hasSuperAdminRole)
             {
-                await userManager.AddToRoleAsync(deletedUser, "SuperAdmin");
+                await userManager.AddToRoleAsync(deletedUser, Role.SuperAdmin.ToString());
             }
         }
     }

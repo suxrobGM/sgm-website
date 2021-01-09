@@ -71,6 +71,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
             }
 
             await _blogRepository.AddBlogAsync(Input.Blog);
+            await _blogRepository.UpdateTagsAsync(Input.Blog, tags);
             return RedirectToPage("/Blog/Index", new { slug = Input.Blog.Slug });
         }
     }

@@ -76,7 +76,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 Input.Blog.CoverPhotoPath = _imageHelper.UploadImage(Input.UploadCoverPhoto, $"{blog.Id}_blog_cover", resizeToRectangle: true);
             }
 
-            await _blogRepository.UpdateTagsAsync(blog, false, tags);
+            await _blogRepository.UpdateTagsAsync(blog, tags);
             await _blogRepository.UpdateBlogAsync(blog);
             return RedirectToPage("/Blog/Index", new { slug = blog.Slug });
         }
