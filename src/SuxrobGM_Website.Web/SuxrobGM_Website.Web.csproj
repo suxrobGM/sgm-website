@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.22.2.2" />
+    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.22.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
@@ -23,7 +23,7 @@
     <PackageReference Include="SuxrobGM.Sdk.AspNetCore" Version="0.3.9" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics" Version="0.3.7" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.3.7" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.4.0.31" />
+    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.4.0.33" />
   </ItemGroup>
 
   <ItemGroup>
