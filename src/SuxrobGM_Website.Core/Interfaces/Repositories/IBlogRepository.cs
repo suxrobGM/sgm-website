@@ -9,7 +9,7 @@ namespace SuxrobGM_Website.Core.Interfaces.Repositories
         Task AddBlogAsync(Blog blog);
         Task AddCommentAsync(Blog blog, Comment comment);
         Task AddReplyToCommentAsync(Comment parentComment, Comment childComment);
-        Task UpdateBlogAsync(Blog blog);
+        Task UpdateBlogAsync(Blog blog, bool verifySlug = true);
         Task UpdateTagsAsync(Blog blog, params Tag[] tags);
         Task DeleteBlogAsync(Blog blog);
         Task DeleteCommentAsync(Comment comment);

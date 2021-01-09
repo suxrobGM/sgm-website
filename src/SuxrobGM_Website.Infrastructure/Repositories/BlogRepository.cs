@@ -45,9 +45,13 @@ namespace SuxrobGM_Website.Infrastructure.Repositories
             return _commentRepository.UpdateAsync(parentComment);
         }
 
-        public Task UpdateBlogAsync(Blog blog)
+        public Task UpdateBlogAsync(Blog blog, bool verifySlug = true)
         {
-            blog.Slug = GetVerifiedBlogSlug(blog);
+            if (verifySlug)
+            {
+                blog.Slug = GetVerifiedBlogSlug(blog);
+            }
+            
             return UpdateAsync(blog);
         }
 

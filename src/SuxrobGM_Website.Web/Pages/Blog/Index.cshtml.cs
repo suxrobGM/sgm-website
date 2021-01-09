@@ -57,7 +57,7 @@ namespace SuxrobGM_Website.Web.Pages.Blog
                 Blog.ViewCount++;
             }
 
-            await _blogRepository.UpdateBlogAsync(Blog);
+            await _blogRepository.UpdateBlogAsync(Blog, false);
             Comments = PaginatedList<Comment>.Create(Blog.Comments, pageIndex);
             PageIndex = pageIndex;
             ViewData.Add("PageIndex", PageIndex);
