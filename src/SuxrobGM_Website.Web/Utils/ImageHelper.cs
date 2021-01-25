@@ -30,7 +30,7 @@ namespace SuxrobGM_Website.Web.Utils
             try
             {
                 var fileExtension = Path.GetExtension(image.FileName);
-                var isAnimatedImage = fileExtension != null && fileExtension.ToLower() == ".gif";
+                var isAnimatedImage = fileExtension.ToLower() == ".gif";
                 var imagePath = $"{imageFileName}{fileExtension}";
                 var absolutePath = Path.Combine(_env.WebRootPath, "db_files", "img", imagePath);
 
