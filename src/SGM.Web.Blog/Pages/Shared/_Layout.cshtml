@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    @await RenderSectionAsync("Head", required: false).ConfigureAwait(false)
+    @await RenderSectionAsync("Head", false)
     <title>@ViewData["Title"]</title>
 
     <environment include="Development">
@@ -18,7 +18,7 @@
     <link href="~/favicon.ico" rel="shortcut icon"  />
     <link href="~/css/blog.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/6627613fa4.js" crossorigin="anonymous"></script>
-    @await RenderSectionAsync("CSS", required: false).ConfigureAwait(false)
+    @await RenderSectionAsync("CSS", false)
 </head>
 <body>
     <header>
@@ -93,7 +93,7 @@
         </script>
     </environment>
 
-    @await RenderSectionAsync("Scripts", required: false).ConfigureAwait(false)
+    @await RenderSectionAsync("Scripts", false)
 
     <script src="~/js/blog.js"></script>
 
