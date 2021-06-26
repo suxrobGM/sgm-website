@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using SGM.Infrastructure.Data;
+using Serilog.Settings.Configuration;
 
 namespace SGM.Web.Blog
 {
@@ -19,7 +20,7 @@ namespace SGM.Web.Blog
             {
                 Log.Logger?.Information("-------------------------------------------------");
                 Log.Logger?.Information("Started webapp SGM Blog");
-                
+
                 var host = CreateHostBuilder(args).Build();
                 using var scope = host.Services.CreateScope();
                 var serviceProvider = scope.ServiceProvider;
@@ -45,8 +46,8 @@ namespace SGM.Web.Blog
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        
-        #region Static methods for creating logger 
+
+        #region Static methods for creating logger
 
         private static IConfiguration BuildConfiguration()
         {
@@ -63,7 +64,7 @@ namespace SGM.Web.Blog
         private static ILogger CreateLogger(IConfiguration configuration)
         {
             return new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
+                .ReadFrom.Configuration(configuration, ConfigurationAssemblySource.AlwaysScanDllFiles)
                 .CreateLogger();
         }
 

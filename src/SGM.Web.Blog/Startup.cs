@@ -29,7 +29,7 @@ namespace SGM.Web.Blog
         }
 
         public IConfiguration Configuration { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             SyncfusionLicenseProvider.RegisterLicense(Configuration.GetSection("SynLicenseKey").Value);
@@ -64,16 +64,16 @@ namespace SGM.Web.Blog
                 options.Conventions.AddPageRoute("/Blog/List", "/");
             });
         }
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {               
+            {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error");                
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
 
@@ -95,7 +95,7 @@ namespace SGM.Web.Blog
                 endpoints.MapRazorPages();
             });
         }
-        
+
         private void ConfigureDatabases(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>

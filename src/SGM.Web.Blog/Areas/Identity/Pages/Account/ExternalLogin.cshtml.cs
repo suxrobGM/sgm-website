@@ -42,7 +42,7 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
-            
+
             [Required]
             public string UserName { get; set; }
         }
@@ -91,12 +91,12 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
             ReturnUrl = returnUrl;
             LoginProvider = info.LoginProvider;
             Input = new InputModel();
-                
+
             if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
             {
                 Input.Email = info.Principal.FindFirstValue(ClaimTypes.Email);
             }
-                
+
             if (info.Principal.HasClaim(c => c.Type == ClaimTypes.Name))
             {
                 Input.UserName = info.Principal.FindFirstValue(ClaimTypes.Name);

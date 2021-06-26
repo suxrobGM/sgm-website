@@ -20,18 +20,18 @@ namespace SGM.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped(_ => new SqliteDbContext(Configuration.GetConnectionString("AnalyticsSqliteDbConnection")));
-            services.AddRazorPages();            
+            services.AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {               
+            {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                app.UseExceptionHandler("/Error");                
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
 

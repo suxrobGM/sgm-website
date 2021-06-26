@@ -36,7 +36,7 @@ namespace SGM.Web.Blog.Pages
             {
                 Blogs = PaginatedList<Domain.Entities.BlogEntities.Blog>.Create(blogs.OrderByDescending(i => i.Timestamp), pageIndex, 5);
             }
-            
+
             PopularArticles = blogs.OrderByDescending(i => i.ViewCount).Take(5).ToArray();
             PopularTags = await GetPopularTagsAsync(blogs);
             return Page();

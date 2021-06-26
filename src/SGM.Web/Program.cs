@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Serilog.Settings.Configuration;
 
 namespace SGM.Web
 {
@@ -37,8 +38,8 @@ namespace SGM.Web
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-        
-        #region Static methods for creating logger 
+
+        #region Static methods for creating logger
 
         private static IConfiguration BuildConfiguration()
         {
@@ -55,7 +56,7 @@ namespace SGM.Web
         private static ILogger CreateLogger(IConfiguration configuration)
         {
             return new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
+                .ReadFrom.Configuration(configuration, ConfigurationAssemblySource.AlwaysScanDllFiles)
                 .CreateLogger();
         }
 
