@@ -1,0 +1,91 @@
+﻿@page
+@model SGM.Web.Pages.Blog.EditModel
+
+@{
+    ViewData["Title"] = "Edit " + Model.Input.Blog.Title;
+    Layout = "_BlogLayout";
+}
+
+@section CSS {
+    <link href="~/lib/fileupload/fileupload.css" rel="stylesheet" />
+    <environment include="Development">
+        <link href="~/lib/syncfusion/material.css" rel="stylesheet" />
+        <script src="~/lib/syncfusion/ej2.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <link href="https://cdn.syncfusion.com/ej2/material.css" rel="stylesheet" />
+        <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+    </environment>
+}
+
+<h1>Edit Article</h1>
+<h3>@Model.Input.Blog.Title</h3>
+<hr />
+<div class="row">
+    <div class="px-5">
+        <form enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Input.Blog.Id" />
+            <div class="form-group">
+                <label asp-for="Input.Blog.Title" class="control-label"></label>
+                <input asp-for="Input.Blog.Title" class="form-control" />
+                <span asp-validation-for="Input.Blog.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Blog.Summary" class="control-label"></label>
+                <textarea rows="3" asp-for="Input.Blog.Summary" class="form-control"></textarea>
+                <span asp-validation-for="Input.Blog.Summary" class="text-danger"></span>
+            </div>
+            <div>
+                <label>Cover image</label>
+                <div class="file-upload mb-2">
+                    <div class="image-upload-wrap">
+                        <input class="file-upload-input" asp-for="Input.UploadCoverPhoto" type="file" onchange="readURL(this);" accept="image/*" />
+                        <div class="drag-text">
+                            <h3>Drag and drop a file or select add Image</h3>
+                        </div>
+                    </div>
+                    <div class="file-upload-content">
+                        <img class="file-upload-image" src="@Model.Input.Blog.CoverPhotoPath" alt="your image" />
+                        <div class="image-title-wrap">
+                            <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Tags" class="control-label"></label>
+                <label class="font-weight-light">&nbsp;(<span class="font-weight-bold text-danger">*</span>Do not duplicate tag names)</label>
+                <input asp-for="Input.Tags" class="form-control" />
+                <span asp-validation-for="Input.Tags" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Blog.Content" class="control-label"></label>
+                <span asp-validation-for="Input.Blog.Content" class="text-danger"></span>
+                <ejs-richtexteditor id="rich_texteditor" ejs-for="Input.Blog.Content" height="300">
+                    <e-richtexteditor-toolbarsettings items="@ViewData["toolbars"]" enableFloating="true">
+                    </e-richtexteditor-toolbarsettings>
+                </ejs-richtexteditor>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="/Blog/List">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/fileupload/fileupload.js"></script>
+
+    @if (!string.IsNullOrEmpty(Model.Input.Blog.CoverPhotoPath))
+    {
+        <script>
+            $('.file-upload-content').show();
+            $('.image-upload-wrap').hide();
+        </script>
+    }
+}
