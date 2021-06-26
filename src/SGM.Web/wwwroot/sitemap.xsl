@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0" 
+<xsl:stylesheet version="2.0"
                 xmlns:html="http://www.w3.org/TR/REC-html40"
                 xmlns:sitemap="http://www.sitemaps.org/schemas/sitemap/0.9"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -13,14 +13,14 @@
 					body {
 						font-family:"Lucida Grande","Lucida Sans Unicode",Tahoma,Verdana;
 						font-size: 13px;
-					}	
+					}
 
 					#header {
 						text-align: center;
 						padding-top: 14px;
 						padding-bottom: 29px;
-					}				
-					
+					}
+
 					h1 {
 						font-weight: normal;
 						font-size: 24px;
@@ -34,7 +34,7 @@
 						color: #aaaaaa;
 						line-height: 10px;
 					}
-					
+
 					#content {
 						background: #f8f8f8;
 						border-top: 1px solid #dddddd;
@@ -60,7 +60,7 @@
 					}
 
 					#content tr:hover a {
-						color: #6e6e6e;						
+						color: #6e6e6e;
 					}
 
 					td {
@@ -69,29 +69,29 @@
 						border-bottom: 1px solid #dddddd;
 						padding: 11px 5px 13px;
 					}
-					
+
 					th {
 						color: #333333;
 						font-size: 12px;
 						border-bottom: 1px solid #dddddd;
 						padding: 5px 50px 17px 5px;
 					}
-					
+
 					#footer {
 						background: #f8f8f8;
 						font-size: 13px;
 						color: #aaaaaa;
 						padding: 54px 0 20px;
-						text-align: center;						
+						text-align: center;
 					}
-					
+
 					a {
 						color: #2384c6;
-					}			
+					}
 					a:hover {
 						color: #6e6e6e;
 						text-decoration: none;
-					}		
+					}
 				</style>
 			</head>
 			<body>

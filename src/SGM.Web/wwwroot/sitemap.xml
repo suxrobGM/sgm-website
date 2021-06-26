@@ -10,40 +10,4 @@
     <priority>1</priority>
     <lastmod>2020-06-01T08:26:17Z</lastmod>
   </url>
-  <url>
-    <loc>https://suxrobgm.net/blog</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2020-06-01T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>https://suxrobgm.net/Identity/Account/Register</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2020-06-01T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>https://suxrobgm.net/Identity/Account/Login</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>0.5</priority>
-    <lastmod>2020-06-01T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>https://suxrobgm.net/blog/introducing-net-5</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>1</priority>
-    <lastmod>2020-06-01T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>https://suxrobgm.net/blog/mlnet-machine-learning-for-net</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>1</priority>
-    <lastmod>2020-06-01T08:26:17Z</lastmod>
-  </url>
-  <url>
-    <loc>https://suxrobgm.net/blog/travel-in-thailand</loc>
-    <changefreq>Monthly</changefreq>
-    <priority>1</priority>
-    <lastmod>2020-06-01T08:26:17Z</lastmod>
-  </url>
 </urlset>

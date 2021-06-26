@@ -12,24 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.22.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="5.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="SuxrobGM.Sdk.AspNetCore" Version="0.4.0" />
+	<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.6" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.4.0" />
-    <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.4.0.33" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\lib\syncfusion\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
