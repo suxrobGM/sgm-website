@@ -74,8 +74,7 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            // ReSharper disable once Html.PathError
-            returnUrl ??= Url.Content("~/Blog");
+            returnUrl ??= Url.Content("~/");
 
             var validCaptcha = await CheckCaptchaResponseAsync();
 
@@ -95,7 +94,7 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User created a new account with password.");
+                _logger.LogInformation("User created a new account with password");
 
                 var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var callbackUrl = Url.Page(

@@ -46,10 +46,16 @@ namespace SGM.Web.Blog.Pages
         public PaginatedList<Comment> Comments { get; set; }
         
 
-        public async Task OnGetAsync(int pageIndex = 1)
+        public async Task<IActionResult> OnGetAsync(int pageIndex = 1)
         {
             var blogSlug = RouteData.Values["slug"]?.ToString();
             Blog = await _blogRepository.GetAsync(i => i.Slug == blogSlug);
+            
+            if (Blog == null)
+            {
+                return RedirectToPage("./List");
+            }
+            
             Tags = Tag.ConvertTagsToString(Blog.Tags);
 
             if (!Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"))
@@ -61,6 +67,8 @@ namespace SGM.Web.Blog.Pages
             Comments = PaginatedList<Comment>.Create(Blog.Comments, pageIndex);
             PageIndex = pageIndex;
             ViewData.Add("PageIndex", PageIndex);
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()

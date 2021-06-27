@@ -60,7 +60,7 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            returnUrl ??= Url.Content("~/Blog");
+            returnUrl ??= Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -72,7 +72,7 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/Blog");
+            returnUrl ??= Url.Content("~/");
 
             // Match input is username or email
             if (Input.Username.IndexOf('@') > -1)
@@ -117,7 +117,7 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
             var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, true);
             if (result.Succeeded)
             {
-                _logger.LogInformation("User logged in.");
+                _logger.LogInformation("User logged in");
                 return LocalRedirect(returnUrl);
             }
             if (result.RequiresTwoFactor)
@@ -126,7 +126,7 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning("User account locked out.");
+                _logger.LogWarning("User account locked out");
                 return RedirectToPage("./Lockout");
             }
             else

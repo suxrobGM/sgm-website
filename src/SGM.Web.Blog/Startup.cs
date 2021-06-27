@@ -62,6 +62,7 @@ namespace SGM.Web.Blog
             services.AddRazorPages(options =>
             {
                 options.Conventions.AddPageRoute("/Blog/List", "/");
+                options.Conventions.AddPageRoute("/Blog/Index", "/{slug}");
             });
         }
 

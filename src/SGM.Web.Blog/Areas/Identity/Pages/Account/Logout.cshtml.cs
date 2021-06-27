@@ -24,10 +24,10 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account
         {
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = "/Blog")
+        public async Task<IActionResult> OnPostAsync(string returnUrl = "/")
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("User logged out.");
+            _logger.LogInformation("User logged out");
             return LocalRedirect(returnUrl);
         }
     }
