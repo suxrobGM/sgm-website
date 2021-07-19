@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SuxrobGM.Sdk.ServerAnalytics;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
+using SGM.Domain.Interfaces.Services;
+using SGM.Infrastructure.Services;
 
 namespace SGM.Web
 {
@@ -19,6 +21,7 @@ namespace SGM.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddScoped(_ => new SqliteDbContext(Configuration.GetConnectionString("AnalyticsSqliteDbConnection")));
             services.AddRazorPages();
         }

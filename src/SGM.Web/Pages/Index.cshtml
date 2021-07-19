@@ -1,398 +1,264 @@
 ﻿@page
 @model SGM.Web.Pages.IndexModel
 @{
-    ViewData["Title"] = "Sukhrob Ilyosbekov";
+    Layout = null;
 }
 
-<section id="modal-wrapper">
-</section>
+<html lang="en-US">
+<head>
+    <title>Sukhrob Ilyosbekov</title>
+    <meta charset="UTF-8">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<section id="hero-area" class="hero-area-bg">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 text-center">
-                <div class="contents">
-                    <h4 class="script-font wow fadeInUp" data-wow-delay="0.2s">Hi This is</h4>
-                    <h1 class="head-title wow fadeInUp" data-wow-delay="0.4s">Sukhrob Ilyosbekov</h1>
-                    <p class="script-font wow fadeInUp" data-wow-delay="0.6s">Software Engineer</p>
-                    <ul class="social-icon wow fadeInUp" data-wow-delay="0.8s">
-                        <li>
-                            <a class="facebook" href="https://www.facebook.com/suxrobgm"><i class="icon-social-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a class="instagram" href="https://www.instagram.com/suxrob_gm"><i class="icon-social-instagram"></i></a>
-                        </li>
-                        <li>
-                            <a class="linkedin" href="https://www.linkedin.com/in/suxrobgm/"><i class="icon-social-linkedin"></i></a>
-                        </li>
-                        <li>
-                            <a class="github" href="https://github.com/suxrobgm"><i class="icon-social-github"></i></a>
-                        </li>
-                        <li>
-                            <a class="telegram" href="https://t.me/suxrobgm"><i class="fab fa-telegram-plane"></i></a>
-                        </li>
-                    </ul>
-                    <div class="header-button wow fadeInUp" data-wow-delay="1s">
-                        <a href="https://blog.suxrobgm.net" class="btn btn-common">Blog</a>
-                    </div>
-                </div>
-            </div>
+    <meta name="google-site-verification" content="7443Tno6XS-gkMmh5ZvtcwWF1PuGfkPev_q-fVmUF3Y" />
+    <meta name="yandex-verification" content="aad30851e49cf5e7" />
+    <meta name="msvalidate.01" content="6527AC8486CF0C33982F0189EB53F279" />
+    
+    <meta name="author" content="Sukhrob Ilyosbekov" />
+    <meta name="keywords" content="Suxrob, Sukhrob, Ilyosbekov, SuxrobGM, Suxrob GM, Sukhrob Ilyosbekov, Suxrobbek, Suxrobbek Ilyosbekov,
+          Suxrob Ilyosbekov, Sukhrobbek, Sukhrobbek Ilyosbekov, suxrob_gm, Stephen, Software Enginer, Software Developer, Developer, Software, SGM, .NET, .NET Expert, Freelancer, Freelance,
+          development, game, skills, software, application, mobile, desktop, programmer, programming, C#, C++, Python, JavaScript, full-stack developer, uzbekistan, samarkand" />
+    <meta name="description" content="Sukhrob Ilyosbekov's official website, Software Engineer having over 5 years of extensive experience in complete software development life cycle (SDLC) involving requirements gathering, analysis, design, development, testing, packaging, deploying and supporting of desktop, web and mobile applications, as well as experienced game development in the Unity platform. " />
+    <meta name="image" content="https://suxrobgm.net/images/about.jpg" />
+    
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://suxrobgm.net" />
+    <meta property="og:title" content="Sukhrob Ilyosbekov" />
+    <meta property="og:description" content="Sukhrob Ilyosbekov's official website, Software Engineer having over 5 years of extensive experience in complete software development life cycle (SDLC) involving requirements gathering, analysis, design, development, testing, packaging, deploying and supporting of desktop, web and mobile applications, as well as experienced game development in the Unity platform. " />
+    <meta property="og:image" content="https://suxrobgm.net/images/about.jpg" />
+    
+    <meta name="twitter:card" content="Sukhrob Ilyosbekov's official website, Software Engineer." />
+    <meta name="twitter:url" content="https://suxrobgm.net" />
+    <meta name="twitter:title" content="Sukhrob Ilyosbekov" />
+    <meta name="twitter:description" content="Sukhrob Ilyosbekov's official website, Software Engineer having over 5 years of extensive experience in complete software development life cycle (SDLC) involving requirements gathering, analysis, design, development, testing, packaging, deploying and supporting of desktop, web and mobile applications, as well as experienced game development in the Unity platform. " />
+    <meta name="twitter:creator" content="Sukhrob Ilyosbekov" />
+    <meta name="twitter:image" content="https://suxrobgm.net/images/about.jpg" />
+
+    <!-- Bootstrap Css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Materialdesign icons Css -->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <!-- Animate Css -->
+    <link rel="stylesheet" href="css/animate.min.css">
+
+    <!-- Magnific-popup -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Mobirise icons Css -->
+    <link rel="stylesheet" href="css/mobiriseicons.css"> 
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/color/default.css" id="option-color">
+</head>
+
+<body>
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner">Loading...</div>
         </div>
     </div>
-</section>
 
-<section id="about" class="section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-                    <img class="img-fluid" src="~/img/about/profile_5.jpg" alt="Sukhrob Ilyosbekov's photo">
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="profile-wrapper wow fadeInRight" data-wow-delay="0.3s">
-                    <h3>Hi!</h3>
-                    <p>I am Software Engineer with over 5 years of extensive experience in complete software development life cycle (SDLC) involving requirements gathering, analysis, design, development, testing, packaging, deploying and supporting of desktop, web and mobile applications, as well as experienced game development in the Unity platform. </p>
-                    <div class="about-profile">
-                        <ul class="admin-profile">
-                            <li><span class="pro-title"> Full Name </span> <span class="pro-detail">Sukhrob Ilyosbekov</span></li>
-                            <li><span class="pro-title"> Age </span> <span class="pro-detail">23 Years</span></li>
-                            <li><span class="pro-title"> Experience </span> <span class="pro-detail">5 Years</span></li>
-                            <li><span class="pro-title"> Nationality </span> <span class="pro-detail">Uzbekistan</span></li>
-                            <li><span class="pro-title"> Residence </span> <span class="pro-detail">Malaysia</span></li>
-                            <li><span class="pro-title"> Freelance </span> <span class="pro-detail">Available</span></li>
-                        </ul>
+	<!-- Start Navbar -->
+	<nav class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky">
+	    <div class="container">
+	        @*<a class="navbar-brand pt-0 logo" href="#">
+                <img src="images/logo.png" alt="" class="img-fluid logo-light">
+                <img src="images/logo-dark.png" alt="" class="img-fluid logo-dark">
+            </a>*@
+	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	            <span class="mdi mdi-menu"></span>
+	        </button>
+	        <div class="collapse navbar-collapse" id="navbarNav">
+	            <ul class="navbar-nav ms-auto" id="main_nav">
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#home">Home</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#about">About</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#services">Services</a>
+	                </li>
+                    @*<li class="nav-item">
+	                    <a class="nav-link" href="#client">Client</a>
+	                </li>*@
+                    <li class="nav-item">
+                    	<a class="nav-link" href="#work">Work</a>
+                    </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#portfolio">Portfolio</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="https://blog.suxrobgm.net">Blog</a>
+	                </li>
+	                <li class="nav-item">
+	                    <a class="nav-link" href="#contact">Contact</a>
+	                </li>
+	            </ul>
+	        </div>
+	    </div>
+	</nav>
+	<!-- End Navbar -->
+
+
+    <!-- START HOME -->
+    <section class="section header-bg-img h-100vh align-items-center d-flex jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('images/header-bg2.jpg');" id="home">
+        <div class="bg-overlay"></div>
+        <div class="container z-index">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="text-center header-content mx-auto">
+                        <h4 class="text-white first-title mb-4">Welcome</h4>
+                        <h1 class="header-name text-white text-capitalize mb-0">I'M <span class="simple-text-rotate fw-bold">Sukhrob Ilyosbekov.,Software Engineer.</span></h1>
+                        <p class="text-white mx-auto header-desc mt-4">.NET Expert</p>
+                        <div class="mt-4 pt-2">
+                            <a href="~/resume_en.pdf" class="btn btn-outline-custom btn-round">Download CV</a>
+                        </div>
                     </div>
-                    <a href="~/Resume_RU.pdf" class="btn btn-common"><i class="icon-paper-clip"></i>Download Resume (RU)</a>
-                    <a href="~/Resume_EN.pdf" class="btn btn-common"><i class="icon-paper-clip"></i>Download Resume (EN)</a>
-                    <a href="mailto:suxrobgm@gmail.com" class="btn btn-danger"><i class="icon-speech"></i>Contact Me</a>
                 </div>
             </div>
+        </div>            
+        <div class="scroll_down">
+            <a href="#about" class="scroll">
+                <i class="text-white"></i>
+            </a>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- END HOME -->
 
-<section id="skills" class="section-padding">
-    <h2 class="section-title wow flipInX" data-wow-delay="0.4s">Skills</h2>
-    <div class="container">
-
-        <!--First row-->
-        <div class="row">
-            <div class="col-12 col-md-6 wow slideInLeft" data-wow-delay="0.3s">
-                <h2 class="skills-title"><i class="fa fa-code"></i>&nbsp;&nbsp; Code Skills</h2>
-                <ul class="skills-list">
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%">
-                                <span class="progress-type">C#</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 90%">
-                                <span class="progress-type"><i class="fab fa-python"></i>&nbsp; Python</span>
-                                <span class="progress-completed">90%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 90%">
-                                <span class="progress-type">JavaScript</span>
-                                <span class="progress-completed">90%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 90%">
-                                <span class="progress-type">TypeScript</span>
-                                <span class="progress-completed">90%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 90%">
-                                <span class="progress-type">C++</span>
-                                <span class="progress-completed">90%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%">
-                                <span class="progress-type"><i class="fa fa-database"></i>&nbsp; SQL</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%">
-                                <span class="progress-type"><i class="fab fa-html5"></i>&nbsp; HTML/CSS</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-6 wow slideInRight" data-wow-delay="0.5s">
-                <h2 class="skills-title"><i class="fa fa-tools"></i>&nbsp;&nbsp; Tools &amp; Technologies</h2>
-                <ul class="skills-list">
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%">
-                                <span class="progress-type">.NET Framework</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%">
-                                <span class="progress-type">.NET Core</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%">
-                                <span class="progress-type"><i class="fab fa-windows"></i>&nbsp; WPF</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%">
-                                <span class="progress-type">ASP.NET Core</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%">
-                                <span class="progress-type">Unity 3D</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 100%">
-                                <span class="progress-type"><i class="fa fa-mobile-alt"></i>&nbsp; Xamarin.Forms</span>
-                                <span class="progress-completed text-light font-italic">100% &nbsp;<i class="fa fa-check text-light"></i></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 80%">
-                                <span class="progress-type"><i class="fab fa-react"></i>&nbsp; ReactJS</span>
-                                <span class="progress-completed">80%</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!--Second row-->
-        <div class="row">
-            <div class="col-12 col-md-6 wow slideInLeft" data-wow-delay="0.7s">
-                <h2 class="skills-title"><i class="fa fa-users"></i>&nbsp;&nbsp; Professional Skills</h2>
-                <ul class="skills-list">
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 65%">
-                                <span class="progress-type">Communication</span>
-                                <span class="progress-completed">70%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: 90%">
-                                <span class="progress-type">Leadership</span>
-                                <span class="progress-completed">90%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 80%">
-                                <span class="progress-type">Confidence</span>
-                                <span class="progress-completed">80%</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <!--<div class="col-12 col-md-6 wow slideInRight" data-wow-delay="0.9s">
-                <h2 class="skills-title"><i class="fa fa-satellite-dish"></i>&nbsp;&nbsp; Ethical Hacking Skills</h2>
-                <ul class="skills-list">
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: 50%">
-                                <span class="progress-type"><i class="fa fa-network-wired"></i>&nbsp; Network Traffic Sniffing</span>
-                                <span class="progress-completed">50%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: 65%">
-                                <span class="progress-type"><i class="fa fa-wifi"></i>&nbsp; Wireless Security Analysis</span>
-                                <span class="progress-completed">65%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: 40%">
-                                <span class="progress-type">Social Engineering</span>
-                                <span class="progress-completed">40%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: 70%">
-                                <span class="progress-type">Web Application Security Analysis</span>
-                                <span class="progress-completed">70%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: 40%">
-                                <span class="progress-type">Vulnerability Analysis</span>
-                                <span class="progress-completed">40%</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="progress">
-                            <div class="progress-bar bg-dark" role="progressbar" style="width: 40%">
-                                <span class="progress-type">Penetration Testing</span>
-                                <span class="progress-completed">40%</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>-->
-        </div>
-    </div>
-</section>
-
-<section id="services" class="services section-padding">
-    <h2 class="section-title wow flipInX" data-wow-delay="0.4s">What I do</h2>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown h-100" data-wow-delay="0.3s">
-                    <div class="icon">
-                        <i class="fab fa-html5"></i>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Web Application Development</a></h3>
-                        <p>Web application development using ASP.NET Core</p>
+    <!-- START ABOUT -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="mt-3">
+                        <img src="images/about.jpg" alt="" class="img-fluid mx-auto d-block img-thumbnail">
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown h-100" data-wow-delay="0.6s">
-                    <div class="icon">
-                        <i class="fab fa-windows"></i>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Desktop Application Development</a></h3>
-                        <p>Windows desktop development using WPF or cross-platform desktop development using GTK#</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown h-100" data-wow-delay="0.9s">
-                    <div class="icon">
-                        <i class="fa fa-mobile-alt"></i>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Mobile Application Development</a></h3>
-                        <p>Cross-platform mobile application development using Xamarin.Forms</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3 col-xs-12">
-                <div class="services-item wow fadeInDown h-100" data-wow-delay="1.2s">
-                    <div class="icon">
-                        <i class="fa fa-gamepad"></i>
-                    </div>
-                    <div class="services-content">
-                        <h3><a href="#">Game Development</a></h3>
-                        <p>Game development using Unity 3D</p>
+                <div class="col-lg-6">
+                    <div class="mt-3">
+                        <h2><span class="fw-bold">About</span> Me</h2>
+                        <h4 class="mt-4">Hello! <span class="text-custom fw-bold">I'M Sukhrob Ilyosbekov.</span></h4>
+                        <p class="text-muted mt-4">I am Software Engineer with over 5 years of extensive experience in complete software development life cycle (SDLC) involving requirements gathering, analysis, design, development, testing, packaging, deploying and supporting of desktop, web and mobile applications, as well as experienced game development in the Unity platform.  </p>
+                        <p class="text-muted mt-2">My major skills:</p>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul>
+                                    <li class="text-muted">C#</li>
+                                    <li class="text-muted">ASP.NET Core</li>
+                                    <li class="text-muted">WPF</li>
+                                    <li class="text-muted">Xamarin.Forms</li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul>
+                                    <li class="text-muted">JavaScript</li>
+                                    <li class="text-muted">HTML</li>
+                                    <li class="text-muted">CSS</li>
+                                    <li class="text-muted">SQL</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="mb-0 about-social list-inline mt-4">
+                                <li class="list-inline-item"><a href="https://instagram.com/suxrob_gm"><i class="mdi mdi-instagram"></i></a></li>
+                                <li class="list-inline-item"><a href="https://facebook.com/suxrobgm"><i class="mdi mdi-facebook"></i></a></li>
+                                <li class="list-inline-item"><a href="https://linkedin.com/in/suxrobgm"><i class="mdi mdi-linkedin"></i></a></li>
+                                <li class="list-inline-item"><a href="https://github.com/suxrobgm"><i class="mdi mdi-github-circle"></i></a></li>
+                            </ul> 
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- END ABOUT -->
 
-<section id="resume" class="section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="education wow fadeInRight" data-wow-delay="0.3s">
+    <!-- START SERVICES -->
+    <section class="section bg-light" id="services">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2><span class="fw-bold">What I do</span></h2>
+                        @* <p class="text-muted mx-auto section-subtitle mt-3">I can develop various applications: web, mobile and desktop</p> *@
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="text-center services-boxes rounded p-4 mt-4">
+                        <div class="services-boxes-icon">
+                            <i class="mbri-browse text-custom display-4"></i>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="mb-0">Web Application</h5>
+                            <div class="services-title-border"></div>
+                            <p class="text-muted mt-3">Web application development using ASP.NET Core</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center services-boxes rounded p-4 mt-4">
+                        <div class="services-boxes-icon">
+                            <i class="mbri-windows text-custom display-4"></i>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="mb-0">Desktop Application</h5>
+                            <div class="services-title-border"></div>
+                            <p class="text-muted mt-3">Desktop application development using WPF or Avalonia.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="text-center services-boxes rounded p-4 mt-4">
+                        <div class="services-boxes-icon">
+                            <i class="mbri-android text-custom display-4"></i>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="mb-0">Game Development</h5>
+                            <div class="services-title-border"></div>
+                            <p class="text-muted mt-3">Game development using Unity 3D</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="text-center services-boxes rounded p-4 mt-4">
+                        <div class="services-boxes-icon">
+                            <i class="mbri-mobile2 text-custom display-4"></i>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="mb-0">Mobile Application</h5>
+                            <div class="services-title-border"></div>
+                            <p class="text-muted mt-3">Cross-platform mobile application development using Xamarin.Forms</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END SERVICES -->
+
+    <!-- START WORK EXPERIENCE -->
+    <section class="section" id="work">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
                     <ul class="timeline">
                         <li>
-                            <i class="icon-graduation"></i>
-                            <h2 class="timelin-title">Education</h2>
-                        </li>
-                        <li>
-                            <div class="content-text">
-                                <h3 class="line-title">INTI International University &amp; Colleges</h3>
-                                <span>2019 - 2021</span>
-                                <p class="line-text">Bachelor's Degree in Computer Science | Malaysia | Kuala-Lumpur</p>
-                                <p class="line-text">American Degree Transfer Program</p>
-                                <p class="line-text">Major: Computer Science</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content-text">
-                                <h3 class="line-title">Tashkent University of Information Technologies</h3>
-                                <span>2017 - 2019</span>
-                                <p class="line-text">Bachelor's Degree in Computer Science | Uzbekistan | Samarkand</p>
-                                <p class="line-text">Major: Software Engineering</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content-text">
-                                <h3 class="line-title">Academic lyceum under Samarkand State Institute of Foreign Languages</h3>
-                                <span>2014 - 2017</span>
-                                <p class="line-text">Specialized in Mathematics and Physics | Uzbekistan | Samarkand</p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content-text">
-                                <h3 class="line-title">Secondary School #10</h3>
-                                <span>2005 - 2014</span>
-                                <p class="line-text">General Education | Uzbekistan | Samarkand</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6">
-                <div class="experience wow fadeInRight" data-wow-delay="0.6s">
-                    <ul class="timeline">
-                        <li>
-                            <i class="icon-briefcase"></i>
-                            <h2 class="timelin-title">Experience</h2>
+                            <i class="mbri-briefcase"></i>
+                            <h2 class="timeline-title">Work Experience</h2>
                         </li>
                         <li>
                             <div class="content-text">
@@ -400,19 +266,19 @@
                                 <span>September 2020 - Present</span>
                                 <p class="line-text">
                                     &bull; Participated in all phases of SDLC starting from Analysis to Delivery of
-                                           the application development projects and also supported enhancements and
-                                           maintenance of existing applications.<br />
+                                    the application development projects and also supported enhancements and
+                                    maintenance of existing applications.<br />
                                     &bull; Designed and developed robotic cashier application - a self-service terminal
-                                           capable of completely replacing the cashier using WPF, gRPC and MS SQL stacks.<br />
+                                    capable of completely replacing the cashier using WPF, gRPC and MS SQL stacks.<br />
                                     &bull; Designed and developed the self-service kiosk - a hardware and software suite
-                                           that is integrated with POS systems of the catering establishment.<br />
+                                    that is integrated with POS systems of the catering establishment.<br />
                                     &bull; Developed library for MVVM applications, significantly improved code
-                                           maintainability and testability in WPF applications.<br />
+                                    maintainability and testability in WPF applications.<br />
                                     &bull; Designed and developed web application using ASP.NET Core, Blazor, MS SQL to
-                                           support payroll and performance management applications through system driven approach.<br />
+                                    support payroll and performance management applications through system driven approach.<br />
                                     &bull; Identified and suggested tools to enhance the code quality, maintenance and reusability.<br />
                                     &bull; Worked with business stakeholders, application developers, production teams
-                                           and across functional units to identify business needs and discuss solution options.<br />
+                                    and across functional units to identify business needs and discuss solution options.<br />
                                 </p>
                             </div>
                         </li>
@@ -463,442 +329,417 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+    <!-- END WORK EXPERIENCE -->
 
-<section id="portfolios" class="section-padding">
-    <div class="container">
-        <h2 class="section-title wow flipInX" data-wow-delay="0.4s">My Remarkable Works</h2>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="controls text-center">
-                    <a class="filter active btn btn-common" data-filter="all">
-                        All
-                    </a>
-                    <a class="filter btn btn-common" data-filter=".web-development">
-                        Web Development
-                    </a>
-                    <a class="filter btn btn-common" data-filter=".desktop-development">
-                        Desktop Development
-                    </a>
-                    <a class="filter btn btn-common" data-filter=".mobile-development">
-                        Mobile Development
-                    </a>
-                    <a class="filter btn btn-common" data-filter=".game-development">
-                        Game Development
-                    </a>
-                </div>
-            </div>
-
-            <div id="portfolio" class="row wow fadeInDown" data-wow-delay="0.4s">
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix game-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/ec_background.jpg" alt="Economic Crisis" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#ec_modal"
-                                       onclick="openImageModal('ec_modal',
-                                                                ['/img/gallery/ec_1.jpg', '/img/gallery/ec_2.jpg', '/img/gallery/ec_3.jpg'],
-                                                                'Hearts of Iron IV: Economic Crisis',
-                                                                'Economic Crisis is RTS global strategy game. It is modification of the orginal game \'Hearts of Iron IV\' will allow you to manage anyone country in our time, beginning in 2013, and lead it into the future. You can seek the peace and tranquility for its people, you can put the whole world on his knees in front of his people, and lead the country to destroy other countries. In your hands the ability to create an ideal country. Will you be able to change the course of history and prevent World War III? Or, you will become the chief culprit of the bloody conflict?Take command on the battlefields of World War III. At your disposal a loyal and steadfast soldiers nuclear power and the best advanced weapons - all to build a new world on your vision.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-
-                                    <a class="link" href="https://vk.com/ec_hoi_mod">
-                                        <i class="icon-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix game-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/trivia_streak_1.jpg" alt="Trivia Streak" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#trivia_streak_modal"
-                                       onclick="openImageModal('trivia_streak_modal',
-                                                                ['/img/gallery/trivia_streak_1.jpg', '/img/gallery/trivia_streak_2.jpg', '/img/gallery/trivia_streak_3.jpg'],
-                                                                'Trivia Streak',
-                                                                'Trivia Streak is a game where you answer questions to win prizes that can be kept or donated to charity.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-
-                                    <a class="link" href="https://play.google.com/store/apps/details?id=com.hendocheese.triviastreak&hl=en">
-                                        <i class="icon-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix web-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/mystand_1.jpg" alt="MyStand" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#mystand_modal"
-                                       onclick="openImageModal('mystand_modal',
-                                                                ['/img/gallery/mystand_1.jpg', '/img/gallery/mystand_2.jpg', '/img/gallery/mystand_3.jpg'],
-                                                                'MyStand - Crowd-funding charity',
-                                                                'MyStand is a crowd-funding, media sharing website, that has you donating actions instead of money out of your pocket. Features social media sharing and large scale crowd-funding.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix web-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/powur_2.jpg" alt="Powur" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#powur_modal"
-                                       onclick="openImageModal('powur_modal',
-                                                                ['/img/gallery/powur_1.jpg', '/img/gallery/powur_2.jpg', '/img/gallery/powur_3.jpg'],
-                                                                'Powur.com - Multi-level marketing',
-                                                                'Powur is a multi-level marketing platform for lead generation, recruitment, and team building. Features complex user tree heiarchy and commission system.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                    <a class="link" href="https://powur.com/">
-                                        <i class="icon-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix web-development mobile-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/roambi_2.jpg" alt="Roambi" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#roambi_modal"
-                                       onclick="openImageModal('roambi_modal',
-                                                                ['/img/gallery/roambi_1.jpg', '/img/gallery/roambi_2.jpg', '/img/gallery/roambi_3.jpg'],
-                                                                'Roambi.com - Business analytics',
-                                                                'Roambi provides analytics, reporting, and business intelligence for companies to use on the go.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                    <a class="link" href="https://www.sap.com/products/roambi.html">
-                                        <i class="icon-link"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix web-development mobile-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/walker_2.jpg" alt="Walker Tracker" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#walker_modal"
-                                       onclick="openImageModal('walker_modal',
-                                                                ['/img/gallery/walker_1.jpg', '/img/gallery/walker_2.jpg', '/img/gallery/walker_3.jpg'],
-                                                                'WalkerTracker - Performance metrics',
-                                                                'Walker Tracker offers goal management, fitness tracking, and team competitions to companies for internal use. Features visual metrics and gamified progression system.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix web-development mobile-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/never_2.jpg" alt="NeverSurrender" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#never_modal"
-                                       onclick="openImageModal('never_modal',
-                                                                ['/img/gallery/never_1.jpg', '/img/gallery/never_2.jpg', '/img/gallery/never_3.jpg'],
-                                                                'NeverSurrender - ALS awareness',
-                                                                'NeverSurrender is a platform for the new ALS foundation mobile app in hopes to raise awareness and research funding to fight ALS. Pure JavaScript marketing site to promote the new ALS NeverSurrender app.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix web-development mobile-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/themall_2.jpg" alt="The Mall" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#themall_modal"
-                                       onclick="openImageModal('themall_modal',
-                                                                ['/img/gallery/themall_1.jpg', '/img/gallery/themall_2.jpg', '/img/gallery/themall_3.jpg'],
-                                                                'The Mall - Peer guided shopping',
-                                                                'The Mall is a place to follow the latest fashion purchases of your friends and favorite celebrities. Features the ability to import thousands of top brands products into one shopping site.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix desktop-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/apos_1.jpg" alt="aPOS" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#apos_modal"
-                                       onclick="openImageModal('apos_modal',
-                                                                ['/img/gallery/apos_1.jpg', '/img/gallery/apos_2.jpg', '/img/gallery/apos_3.jpg', '/img/gallery/apos_4.jpg'],
-                                                                'aPOS - Point Of Sale Software',
-                                                                'aPos is a POS (Point Of Sale) software program dedicated for any business or workshop that has sales and/or services with cash. This software is integrated with fiscal printer which forms a very functional “fiscal” cash register. It’s a very user friendly software that fulfills all requests for the management of a business with one or more points of sale.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix desktop-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/addict_registry_system.jpg" alt="The Addict Registry" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#addict_registry_system_modal"
-                                       onclick="openImageModal('addict_registry_system_modal',
-                                                                ['/img/gallery/addict_registry_system.jpg'],
-                                                                'Addict Registry System',
-                                                                'The Addict Registry is a software system (application with database) developed for the identification of addicts (drug users) for NGO Labyrinth. This software system is used for registration and generating of advanced statistical reports over drug addicts (drug users). NGO Labyrinth will have an exact and clear sight over Kosova’s drug addicts. The system has a high security due to client’s highly sensitive data.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix desktop-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/school_registry_1.jpg" alt="School Registry System" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#school_registry_modal"
-                                       onclick="openImageModal('school_registry_modal',
-                                                                ['/img/gallery/school_registry_1.jpg'],
-                                                                'School Registry System',
-                                                                'This software system can be used for registration, update and detailed reporting of education institutions for entire Kosova. With this system, MEST can have a clear picture of all details of the education institutions of Kosova. The system co-acts with ArcGIS, respectively with ArcMap, which gives access to the locating of every educating object directly from the evidence of schools system, on the Kosovo’s map, respectively on the ArcMap system.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix mobile-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/instagram_post_downloader_preview.jpg" alt="Instagram Post Downloader" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#instagram_post_downloader_modal"
-                                       onclick="openImageModal('instagram_post_downloader_modal',
-                                                                ['/img/gallery/instagram_post_downloader_1.jpg', '/img/gallery/instagram_post_downloader_2.jpg', '/img/gallery/instagram_post_downloader_3.jpg'],
-                                                                'Instagram Post Downloader',
-                                                                'Instagram Post Downloader is mobile application. You can download your favorite images and videos from instagram post url. Just copy and paste post url')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix desktop-development mobile-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/alite_1.jpg" alt="aLite" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#alite_modal"
-                                       onclick="openImageModal('alite_modal',
-                                                                ['/img/gallery/alite_1.jpg', '/img/gallery/alite_2.jpg', '/img/gallery/alite_3.jpg'],
-                                                                'aLite - Bar and Restaurant Management Software',
-                                                                'aLite is a software dedicated for any restaurant and bar which supports the work with fiscal printer in Kosovo. It’s an easy and user friendly software that can be used by everyone and fulfills all requests for restaurants and bars. It is exclusively developed according to the requirements of managers and owners of restaurants and bars and it is installed in many of the best restaurants and bars in the country.')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix desktop-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/medical_clinic_queue_1.jpg" alt="Medical Clinic Queue" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#medical_clinic_queue_modal"
-                                       onclick="openImageModal('medical_clinic_queue_modal',
-                                                                ['/img/gallery/medical_clinic_queue_1.jpg', '/img/gallery/medical_clinic_queue_2.jpg'],
-                                                                'Medical Clinic Queue',
-                                                                'Medical Clinic Queue is windows application which optimizes waiting queues in medical clinics with POS system')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mix web-development">
-                    <div class="portfolio-item">
-                        <div class="shot-item">
-                            <img src="~/img/gallery/ecommerce_1.jpg" alt="Smart Market" />
-                            <div class="overlay">
-                                <div class="icons">
-                                    <a role="button" data-toggle="modal" data-target="#ecommerce_modal"
-                                       onclick="openImageModal('ecommerce_modal',
-                                                                ['/img/gallery/ecommerce_1.jpg', '/img/gallery/ecommerce_2.jpg', '/img/gallery/ecommerce_3.jpg', '/img/gallery/ecommerce_4.jpg'],
-                                                                'Smart Market - ECommerce online shop',
-                                                                'Smart Market is a ecommerce web application based on nopCommerce Asp.Net Core')">
-                                        <i class="icon-eye"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="testimonials" class="counter-section section-padding">
-    <div class="container">
-        <div class="row">
-            @*<div class="col-md-3 col-sm-6 work-counter-widget text-center">
-                <div class="counter wow fadeInDown" data-wow-delay="0.3s">
-                    <div class="icon"><i class="icon-briefcase"></i></div>
-                    <div class="counterUp">47</div>
-                    <p>Project Working</p>
-                </div>
-            </div>*@
-            <div class="col-md-4 col-sm-6 work-counter-widget text-center">
-                <div class="counter wow fadeInDown" data-wow-delay="0.6s">
-                    <div class="icon"><i class="icon-check"></i></div>
-                    <div class="counterUp">76</div>
-                    <p>Project Done</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 work-counter-widget text-center">
-                <div class="counter wow fadeInDown" data-wow-delay="0.9s">
-                    <div class="icon"><i class="icon-diamond"></i></div>
-                    <div class="counterUp">49</div>
-                    <p>Awards Received</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6 work-counter-widget text-center">
-                <div class="counter wow fadeInDown" data-wow-delay="1.2s">
-                    <div class="icon"><i class="icon-heart"></i></div>
-                    <div class="counterUp">53</div>
-                    <p>Happy Clients</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-sm-10 col-md-9 col-lg-8 mx-auto">
-                <div id="client_testimonials" class="carousel" data-ride="carousel">
-                    <ul class="carousel-indicators">
-                        <li data-target="#client_testimonials" data-slide-to="0" class="active"></li>
-                        <li data-target="#client_testimonials" data-slide-to="1"></li>
-                        <li data-target="#client_testimonials" data-slide-to="2"></li>
-                    </ul>
-
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <blockquote class="blockquote">
-                                <p class="h4">His work was outstanding. Not only did what we needed but also his professionalism has been great: he documented and give us guidelines of everything. Thanks again</p>
-                                <div class="blockquote-footer text-white">
-                                    Ariel S. from USA
-                                </div>
-                            </blockquote>
-                        </div>
-                        <div class="carousel-item">
-                            <blockquote class="blockquote">
-                                <p class="h4">You are a person with patience, I appreciate that, thanks for your great work.</p>
-                                <div class="blockquote-footer text-white">
-                                    Nestor M. from Peru
-                                </div>
-                            </blockquote>
-                        </div>
-                        <div class="carousel-item">
-                            <blockquote class="blockquote">
-                                <p class="h4">Great work. I want to work with him again Thanks. Everything is very fine</p>
-                                <div class="blockquote-footer text-white">
-                                    Akindele H. from Nigeria
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section id="contact" class="section-padding">
-    <div class="contact-form">
+    @*<!-- START CLIENT -->
+    <section class="section bg-light" id="client">
         <div class="container">
-            <div class="row contact-form-area wow fadeInUp" data-wow-delay="0.4s">
-                <div class="col-md-6 col-lg-6 col-sm-12">
-                    <div class="footer-right-area wow fadeIn">
-                        <h2>Contact Address</h2>
-                        <div class="footer-right-contact">
-                            <div class="single-contact">
-                                <div class="contact-icon">
-                                    <i class="fa fa-map-marker"></i>
-                                </div>
-                                <p>Malaysia</p>
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2>Our <span class="fw-bold">Client</span></h2>
+                        <p class="text-muted mx-auto section-subtitle mt-3">It is a long established fact that a reader will be of a page when established fact looking at its layout.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 pt-4">
+                <div class="col-lg-12">
+                    <div id="owl-demo" class="owl-carousel">
+                        <div class="text-center testi_boxes mx-auto">
+                            <div class="tam_testi_icon text-custom">
+                                <i class="mbri-quote-left"></i>
                             </div>
-                            <div class="single-contact">
-                                <div class="contact-icon">
-                                    <i class="fa fa-envelope"></i>
+                            <div class="mt-2">
+                                <div class="img_testi">
+                                    <img src="images/testi/testi-1.jpg" alt="" class="mx-auto img-thumbnail img-fluid rounded-circle">
                                 </div>
-                                <p><a href="mailto:suxrobgm@gmail.com">suxrobgm@gmail.com</a></p>
+                                <p class="client_review fst-italic mt-4 text-center text-muted">" The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here."</p>
+                                <p class="client_name text-center mb-0 mt-4">- Ebony verty, <span class="fw-bold">Envato</span></p>
                             </div>
-                            <div class="single-contact">
-                                <div class="contact-icon">
-                                    <i class="fab fa-telegram-plane"></i>
+                        </div>
+                        <div class="text-center testi_boxes mx-auto">
+                            <div class="tam_testi_icon text-custom">
+                                <i class="mbri-quote-left"></i>
+                            </div>
+                            <div class="mt-2">
+                                <div class="img_testi">
+                                    <img src="images/testi/testi-2.jpg" alt="" class="mx-auto img-thumbnail img-fluid d-block rounded-circle">
                                 </div>
-                                <a class="telegram" href="https://t.me/suxrobgm">Telegram (@@suxrobgm)</a>
+                                <p class="client_review fst-italic mt-4 text-center text-muted">" The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here."</p>
+                                <p class="client_name text-center mb-0 mt-4">- Ebony verty, <span class="fw-bold">Envato</span></p>
+                            </div>
+                        </div>
+                        <div class="text-center testi_boxes mx-auto">
+                            <div class="tam_testi_icon text-custom">
+                                <i class="mbri-quote-left"></i>
+                            </div>
+                            <div class="mt-2">
+                                <div class="img_testi">
+                                    <img src="images/testi/testi-3.jpg" alt="" class="mx-auto img-thumbnail img-fluid d-block rounded-circle">
+                                </div>
+                                <p class="client_review fst-italic mt-4 text-center text-muted">" The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here."</p>
+                                <p class="client_name text-center mb-0 mt-4">- Ebony verty, <span class="fw-bold">Envato</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+    <!-- END CLIENT -->*@
+
+    <!-- START PORTFOLIO -->   
+    <section class="section bg-light text-center" id="portfolio">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2><span class="fw-bold">Past Projects</span></h2>
+                        @* <p class="text-muted mx-auto section-subtitle mt-3">It is a long established fact that a reader will be of a page when established fact looking at its layout.</p> *@
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 ">
+                <ul class="col list-unstyled list-inline mb-0 text-uppercase work_menu" id="menu-filter">
+                    <li class="list-inline-item"><a class="active" data-filter="*">All</a></li>
+                    <li class="list-inline-item"><a class="" data-filter=".web">Web Development</a></li>
+                    <li class="list-inline-item"><a class="" data-filter=".desktop">Desktop Development</a></li>
+                    <li class="list-inline-item"><a class="" data-filter=".mobile">Mobile Development</a></li>
+                    <li class="list-inline-item"><a class="" data-filter=".game">Game Development</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row mt-4 work-filter">
+                <div class="col-lg-4 work_item game">
+                    <a href="images/portfolio/ec.jpg" class="img-zoom">
+                        <div class="work_box">
+                            <div class="work_img">
+                                <img src="images/portfolio/ec.jpg" class="img-fluid mx-auto d-block rounded" alt="Hearts of Iron IV: Economic Crisis">
+                            </div>
+                            <div class="work_detail">
+                                <p class="mb-2">Strategy game for PC</p>
+                                <h4 class="mb-0">Hearts of Iron IV: Economic Crisis</h4>
+                                <button class="btn" onclick="window.open('https://vk.com/ec_hoi_mod', '_blank')"><i class="mdi mdi-24px mdi-link"></i></button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 work_item game mobile">
+                    <a href="images/portfolio/trivia_streak.jpg" class="img-zoom">
+                        <div class="work_box">
+                            <div class="work_img">
+                                <img src="images/portfolio/trivia_streak.jpg" class="img-fluid mx-auto d-block rounded" alt="Trivia Streak">
+                            </div>
+                            <div class="work_detail">
+                                <p class="mb-2">Casual mobile game for Android</p>
+                                <h4 class="mb-0">Trivia Streak</h4>
+                                <button class="btn" onclick="window.open('https://play.google.com/store/apps/details?id=com.hendocheese.triviastreak', '_blank')"><i class="mdi mdi-24px mdi-link"></i></button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 work_item desktop web">
+                    <a href="images/portfolio/terminal.jpg" class="img-zoom">
+                        <div class="work_box">
+                            <div class="work_img">
+                                <img src="images/portfolio/terminal.jpg" class="img-fluid mx-auto d-block rounded" alt="Launch FastPass">
+                            </div>
+                            <div class="work_detail">
+                                <p class="mb-2">Robotic cashier</p>
+                                <h4 class="mb-0">Launch FastPass</h4>
+                                <button class="btn" onclick="window.open('https://smartmealservice.com/en/robotic-cashiers', '_blank')"><i class="mdi mdi-24px mdi-link"></i></button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 work_item desktop web">
+                    <a href="images/portfolio/self_service.jpg" class="img-zoom">
+                        <div class="work_box">
+                            <div class="work_img">
+                                <img src="images/portfolio/self_service.jpg" class="img-fluid mx-auto d-block rounded" alt="Self-Service Kiosk">
+                            </div>
+                            <div class="work_detail">
+                                <p class="mb-2">POS system</p>
+                                <h4 class="mb-0">Self-Service Kiosk</h4>
+                                <button class="btn" onclick="window.open('https://smartmealservice.com/en/self-service-kiosk', '_blank')"><i class="mdi mdi-24px mdi-link"></i></button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-lg-4 work_item desktop web">
+                    <a href="images/portfolio/self_checkin.jpg" class="img-zoom">
+                        <div class="work_box">
+                            <div class="work_img">
+                                <img src="images/portfolio/self_checkin.jpg" class="img-fluid mx-auto d-block rounded" alt="Self-Check-in Kiosk">
+                            </div>
+                            <div class="work_detail">
+                                <p class="mb-2">Hotel automatization</p>
+                                <h4 class="mb-0">Self-Check-in Kiosk</h4>
+                                <button class="btn" onclick="window.open('https://smartmealservice.com/en/self-check-in-kiosk', '_blank')"><i class="mdi mdi-24px mdi-link"></i></button>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END PORTFOLIO -->
+
+    @*<!-- START BLOG -->
+    <section class="section" id="blog">
+        <div class="container">   
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2>Our <span class="fw-bold">Blog</span></h2>
+                        <p class="text-muted mx-auto section-subtitle mt-3">It is a long established fact that a reader will be of a page when established fact looking at its layout.</p>
+                    </div>
+                </div>
+            </div>                 
+            <div class="row mt-5">
+                <div class="col-lg-4 mt-3">
+                    <div class="rounded blog_color p-2">
+                        <div class="img_blog">
+                            <img src="images/blog/blog-1.jpg" alt="" class="img-fluid rounded mx-auto d-block">
+                        </div>
+                        <div class="content_blog p-3">
+                            <div>
+                                <h5 class="fw-bold mb-0"><a href="#" class="text-white">There are many variations</a></h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="h6 text-muted date_blog mb-0">11 March 2018 <a href="#" class="text-custom fw-bold">By Kerri</a></p>
+                                <p class="mt-3 desc_blog text-muted">Sit sagittis vulputate laoreet sodales tortor nulla lobortis bibendum netus primis fames. Lobortis ultricies.</p>
+                                <p class="h6 mb-0"><a href="#" class="text-muted fw-bold">Read More...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-3">
+                    <div class="rounded blog_color p-2">
+                        <div class="img_blog">
+                            <img src="images/blog/blog-2.jpg" alt="" class="img-fluid rounded mx-auto d-block">
+                        </div>
+                        <div class="content_blog p-3">
+                            <div>
+                                <h5 class="fw-bold mb-0"><a href="#" class="text-white">Contrary to popular belief</a></h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="h6 text-muted date_blog mb-0">18 March 2018 <a href="#" class="text-custom fw-bold">By Kerri</a></p>
+                                <p class="mt-3 desc_blog text-muted">Sit sagittis vulputate laoreet sodales tortor nulla lobortis bibendum netus primis fames. Lobortis ultricies.</p>
+                                <p class="h6 mb-0"><a href="#" class="text-muted fw-bold">Read More...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-3">
+                    <div class="rounded blog_color p-2">
+                        <div class="img_blog">
+                            <img src="images/blog/blog-3.jpg" alt="" class="img-fluid rounded mx-auto d-block">
+                        </div>
+                        <div class="content_blog p-3">
+                            <div>
+                                <h5 class="fw-bold mb-0"><a href="#" class="text-white">Lorem Ipsum is not simply</a></h5>
+                            </div>
+                            <div class="mt-3">
+                                <p class="h6 text-muted date_blog mb-0">22 March 2018 <a href="#" class="text-custom fw-bold">By Kerri</a></p>
+                                <p class="mt-3 desc_blog text-muted">Sit sagittis vulputate laoreet sodales tortor nulla lobortis bibendum netus primis fames. Lobortis ultricies.</p>
+                                <p class="h6 mb-0"><a href="#" class="text-muted fw-bold">Read More...</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END BLOG -->*@
+
+    <!-- START CONTACT -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h2><span class="fw-bold">Contact</span> Me</h2>
+                        @* <p class="text-muted mx-auto section-subtitle mt-3">It is a long established fact that a reader will be of a page when established fact looking at its layout.</p> *@
+                    </div>
+                </div>
+            </div> 
+            <div class="row mt-5">
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <div>
+                            <i class="mbri-mobile2 text-custom h1"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="mb-0 contact_detail-title fw-bold">Telegram</h5>
+                            <a class="text-muted" href="https://t.me/suxrobgm">@@suxrobgm</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <div>
+                            <i class="mbri-letter text-custom h1"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="mb-0 contact_detail-title fw-bold">Email</h5>
+                            <a class="text-muted" href="mailto:suxrobgm@gmail.com">suxrobgm@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <div>
+                            <i class="mbri-pin text-custom h1"></i>
+                        </div>
+                        <div class="mt-3">
+                            <h5 class="mb-0 contact_detail-title fw-bold">Address</h5>
+                            <p class="text-muted">USA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div id="email" class="form-email contact_form">
+                        <form asp-page-handler="SendEmail" method="Post">
+                            <div class="row">
+                                <partial name="_StatusMessage" for="EmailStatusMessage"/>
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-2">
+                                        <span asp-validation-for="EmailInput.Name" class="text-danger"></span>
+                                        <input asp-for="EmailInput.Name" class="form-control text-light" placeholder="Your name..." aria-label="First name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mt-2">
+                                        <span asp-validation-for="EmailInput.Email" class="text-danger"></span>
+                                        <input asp-for="EmailInput.Email" class="form-control text-light" placeholder="Your email...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group mt-2">
+                                    <span asp-validation-for="EmailInput.Subject" class="text-danger"></span>
+                                    <input asp-for="EmailInput.Subject" class="form-control text-light" placeholder="Your Subject.." aria-label="Subject">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group mt-2">
+                                        <span asp-validation-for="EmailInput.Message" class="text-danger"></span>
+                                        <textarea asp-for="EmailInput.Message" class="form-control text-light" rows="4" placeholder="Your Massage..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 text-end mt-2">
+                                    <input type="submit" class="btn btn-custom text-uppercase" value="Send Massage">
+                                </div>
+                            </div>
+                        </form>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END CONTACT -->
+
+    <!--START FOOTER-->
+    <footer class="footer bg-light">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-12">
+                    <div class="text-center text-white footer-alt">
+                        <ul class="list-unstyled list-inline mb-0">
+                            <li class="list-inline-item"><a href="https://facebook.com/suxrobgm"><i class="mdi mdi-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://linkedin.com/in/suxrobgm"><i class="mdi mdi-linkedin"></i></a></li>
+                            <li class="list-inline-item"><a href="https://instagram.com/suxrob_gm"><i class="mdi mdi-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="https://github.com/suxrobgm"><i class="mdi mdi-github-circle"></i></a></li>
+                        </ul>
+                        <p class="copyright_content mb-0 mt-3"> 2021 &copy; Sukhrob Ilyosbekov</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--END FOOTER-->
+    
+
+    <!-- Back To Top -->    
+    <a href="#" class="back_top"> <i class="mdi mdi-chevron-up"> </i> </a>
+
+    <!-- START SWITCHER -->
+    <div id="color-switcher" style="left: 0;">
+        <div>
+            <h3 class="fw-bold text-center text-white">Select your color</h3>
+            <ul class="pattern">
+                <li>
+                    <a class="color1" href="#"></a>
+                </li>
+                <li>
+                    <a class="color2" href="#"></a>
+                </li>
+                <li>
+                    <a class="color3" href="#"></a>
+                </li>
+                <li>
+                    <a class="color4" href="#"></a>
+                </li>
+                <li>
+                    <a class="color5" href="#"></a>
+                </li>
+                <li>
+                    <a class="color6" href="#"></a>
+                </li>                   
+            </ul>
+        </div>
+        <div class="bottom">
+            <a href="#" class="settings rounded-right"><i class="mdi mdi-settings mdi-spin"></i></a>
+        </div>
     </div>
-</section>
+    <!-- END SWITCHER -->
+
+    <!--All Javascript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Text Rotate -->
+    <script src="js/jquery.simple-text-rotator.js"></script>
+
+    <!-- Parallax Js -->
+    <script src="js/parallax.js"></script> 
+
+    <!-- Particles Js -->
+    <script src="js/particles.js"></script>  
+    <script src="js/particles.app.js"></script> 
+
+    <!-- Switcher Js -->
+    <script src="js/switcher.js"></script>  
+    
+    <!-- Owl Carousel -->
+    <script src="js/owl.carousel.min.js"></script>
+    
+    <!-- Work Filter -->
+    <script src="js/isotope.js"></script>
+
+    <!-- Magnific Popup Js -->
+    <script src="js/jquery.magnific-popup.min.js"></script>
+
+	<!-- Custom Js -->
+	<script src="js/custom.js"></script>
+    <script>
+        $(".simple-text-rotate").textrotator({
+            animation: "fade",
+            speed: 3500
+        });
+    </script>
+</body>
+</html>
