@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Infrastructure.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Domain", "src\SGM.Domain\SGM.Domain.csproj", "{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.EntityFramework", "src\SGM.Infrastructure\SGM.EntityFramework.csproj", "{572B48A9-6DE9-4617-9E0A-4756738DBC22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.EntityFramework", "src\SGM.EntityFramework\SGM.EntityFramework.csproj", "{572B48A9-6DE9-4617-9E0A-4756738DBC22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{394C224B-A6DF-4988-A196-63F2CC035077}"
 EndProject
