@@ -6,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using SGM.Domain.Interfaces.Services;
 using SGM.Domain.Settings;
 
-namespace SGM.Infrastructure.Services
+namespace SGM.EntityFramework.Services
 {
     public class EmailSender : IEmailSender
     {

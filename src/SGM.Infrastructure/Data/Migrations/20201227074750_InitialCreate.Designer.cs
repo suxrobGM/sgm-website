@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SGM.Infrastructure.Data;
+using SGM.EntityFramework.Data;
 
-namespace SGM.Infrastructure.Data.Migrations
+namespace SGM.EntityFramework.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20201227074750_InitialCreate")]

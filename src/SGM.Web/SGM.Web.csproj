@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+	<ImplicitUsings>enable</ImplicitUsings>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
@@ -28,8 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SGM.Domain\SGM.Domain.csproj" />
-    <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj" />
+    <ProjectReference Include="..\SGM.Application\SGM.Application.csproj" />
   </ItemGroup>
 
 </Project>

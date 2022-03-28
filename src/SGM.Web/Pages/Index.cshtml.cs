@@ -1,71 +1,83 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using SGM.Domain.Interfaces.Services;
+﻿using System.ComponentModel.DataAnnotations;
+using SGM.Application.Contracts.Services;
+using SGM.Application.Options;
 
-namespace SGM.Web.Pages
+namespace SGM.Web.Pages;
+
+public class IndexModel : PageModel
 {
-    public class IndexModel : PageModel
+    private readonly ICaptchaService _captchaService;
+    private readonly IEmailSender _emailSender;
+    private readonly ILogger<IndexModel> _logger;
+
+    public IndexModel(
+        ICaptchaService captchaService,
+        IEmailSender emailSender,
+        ILogger<IndexModel> logger,
+        GoogleRecaptchaOptions recaptchaOptions)
     {
-        private readonly IEmailSender _emailSender;
-        private readonly ILogger<IndexModel> _logger;
-        
-        public IndexModel(IEmailSender emailSender, 
-            ILogger<IndexModel> logger)
+        if (string.IsNullOrEmpty(recaptchaOptions.SiteKey))
         {
-            _emailSender = emailSender;
-            _logger = logger;
-        }
-        
-        public class EmailInputModel
-        {
-            [Required]
-            public string Name { get; init; }
-            
-            [Required]
-            public string Subject { get; init; }
-            
-            [Required, EmailAddress]
-            public string Email { get; init; }
-            
-            [Required]
-            public string Message { get; init; }
+            throw new ArgumentException("Captcha site key is an empty");
         }
 
-        [BindProperty]
-        public EmailInputModel EmailInput { get; init; }
-        
-        [TempData]
-        public string EmailStatusMessage { get; set; }
+        _captchaService = captchaService;
+        _emailSender = emailSender;
+        _logger = logger;
+        CaptchaSiteKey = recaptchaOptions.SiteKey;
+    }
 
-        public void OnGet()
-        {
-            
-        }
+    public class EmailInputModel
+    {
+        [Required]
+        public string Name { get; init; }
 
-        public async Task<IActionResult> OnPostSendEmailAsync()
-        {
-            if (!ModelState.IsValid)
-                return Page();
+        [Required]
+        public string Subject { get; init; }
 
-            var message = @$"<p><b>{EmailInput.Name}</b> - {EmailInput.Email}</p>
-                            <p>{EmailInput.Message}</p>";
-            try
-            {
-                await _emailSender.SendEmailAsync("suxrobgm@gmail.com", EmailInput.Subject, message);
-                EmailStatusMessage = "Your message has been sent successfully";
-            }
-            catch (Exception e)
-            {
-                EmailStatusMessage = "Error: could not send email";
-                _logger?.LogError("Could not send email, thrown exception: {Exception}", e);
-                return RedirectToPage("", "", "email");
-            }
+        [Required, EmailAddress]
+        public string Email { get; init; }
 
+        [Required]
+        public string Message { get; init; }
+    }
+
+    [BindProperty]
+    public EmailInputModel EmailInput { get; init; }
+
+    [TempData]
+    public string EmailStatusMessage { get; set; }
+
+    public string CaptchaSiteKey { get; }
+
+
+    public async Task<IActionResult> OnPostSendEmailAsync()
+    {
+        if (!ModelState.IsValid)
             return Page();
+
+        var captchaValue = HttpContext.Request.Form["g-Recaptcha-Response"].ToString();
+        var validCaptcha = await _captchaService.VerifyCaptchaAsync(captchaValue);
+
+        if (!validCaptcha)
+        {
+            EmailStatusMessage = "Error: invalid captcha value";
+            return RedirectToPage("", "", "email");
         }
+
+        var message = @$"<p><b>{EmailInput.Name}</b> - {EmailInput.Email}</p>
+                         <p>{EmailInput.Message}</p>";
+        var sentMail = await _emailSender.SendMailAsync("suxrobgm@gmail.com", EmailInput.Subject, message);
+
+        if (sentMail)
+        {
+            EmailStatusMessage = "Your message has been sent successfully";
+        }
+        else
+        {
+            EmailStatusMessage = "Error: could not send email";  
+        }
+
+        return RedirectToPage("", "", "email");
     }
 }

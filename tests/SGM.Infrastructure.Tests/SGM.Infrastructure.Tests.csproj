@@ -20,11 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SGM.Infrastructure\SGM.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties" />
+    <ProjectReference Include="..\..\src\SGM.Infrastructure\SGM.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

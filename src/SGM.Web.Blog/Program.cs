@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Extensions.Logging;
 using Serilog.Settings.Configuration;
-using SGM.Infrastructure.Data;
+using SGM.EntityFramework.Data;
 
 namespace SGM.Web.Blog
 {

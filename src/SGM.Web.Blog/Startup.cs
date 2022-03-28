@@ -14,9 +14,9 @@ using Syncfusion.Licensing;
 using SGM.Domain.Entities.UserEntities;
 using SGM.Domain.Interfaces.Repositories;
 using SGM.Domain.Interfaces.Services;
-using SGM.Infrastructure.Data;
-using SGM.Infrastructure.Repositories;
-using SGM.Infrastructure.Services;
+using SGM.EntityFramework.Data;
+using SGM.EntityFramework.Repositories;
+using SGM.EntityFramework.Services;
 using SGM.Web.Blog.Utils;
 
 namespace SGM.Web.Blog

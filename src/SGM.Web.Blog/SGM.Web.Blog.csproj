@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj" />
+    <ProjectReference Include="..\SGM.Infrastructure\SGM.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

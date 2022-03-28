@@ -1,9 +1,9 @@
 using System.IO;
 using Microsoft.Extensions.Configuration;
 using Xunit;
-using SGM.Infrastructure.Services;
+using SGM.EntityFramework.Services;
 
-namespace SGM.Infrastructure.Tests
+namespace SGM.EntityFramework.Tests
 {
     public class UnitTests
     {
