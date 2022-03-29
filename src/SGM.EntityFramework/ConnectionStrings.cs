@@ -1,4 +1,4 @@
-﻿namespace Logistics.EntityFramework;
+﻿namespace SGM.EntityFramework;
 
 public static class ConnectionStrings
 {

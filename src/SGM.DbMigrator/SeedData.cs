@@ -1,22 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using SGM.Domain.Entities.UserEntities;
 
-namespace SGM.EntityFramework.Data;
+namespace SGM.DbMigrator;
 
 public class SeedData
 {
-    public static async void Initialize<TDbContext>(IServiceProvider serviceProvider, 
-        ILogger logger = null) where TDbContext : DbContext
+    public static async Task InitializeAsync<T>(IServiceProvider serviceProvider) where T : DbContext
     {
         try
         {
-            var dbContext = serviceProvider.GetRequiredService<TDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<T>();
             await MigrateDatabaseAsync(dbContext);
             await CreateUserRolesAsync(serviceProvider);
             await CreateOwnerAccountAsync(serviceProvider);
@@ -24,7 +20,7 @@ public class SeedData
         }
         catch (Exception ex)
         {
-            logger?.LogCritical("Exception thrown in SeedData.Initialize(): {Exception}", ex);
+            Console.WriteLine($"Exception thrown in SeedData.Initialize(): {ex}");
             throw;
         }
     }

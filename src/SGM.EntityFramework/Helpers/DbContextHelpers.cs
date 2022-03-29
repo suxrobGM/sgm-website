@@ -4,6 +4,9 @@ internal static class DbContextHelpers
 {
     public static void ConfigureSqlServer(string connectionString, DbContextOptionsBuilder options)
     {
-        options.UseSqlServer(connectionString).UseLazyLoadingProxies();
+        options.UseSqlServer(connectionString, o =>
+        {
+            o.MigrationsAssembly("SGM.EntityFramework.DbMigrations");
+        }).UseLazyLoadingProxies();
     }
 }
