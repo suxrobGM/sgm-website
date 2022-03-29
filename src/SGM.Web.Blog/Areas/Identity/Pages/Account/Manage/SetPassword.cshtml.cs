@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SGM.Domain.Entities.UserEntities;
 
-namespace SGM.Web.Blog.Areas.Identity.Pages.Account.Manage
+namespace SGM.BlogApp.Blog.Areas.Identity.Pages.Account.Manage
 {
     public class SetPasswordModel : PageModel
     {

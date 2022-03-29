@@ -1,9 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using SGM.Domain.Interfaces.Entities;
+﻿using System.ComponentModel.DataAnnotations;
 using SuxrobGM.Sdk.Utils;
 
-namespace SGM.Domain.Entities.Base
+namespace SGM.Domain.Entities
 {
     public abstract class EntityBase : IEntity<string>
     {

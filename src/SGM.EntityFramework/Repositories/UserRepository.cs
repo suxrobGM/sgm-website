@@ -1,21 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using SGM.Domain.Entities.BlogEntities;
-using SGM.Domain.Entities.UserEntities;
-using SGM.Domain.Interfaces.Repositories;
-using SGM.EntityFramework.Data;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace SGM.EntityFramework.Repositories;
 
 public class UserRepository : Repository<ApplicationUser>, IUserRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly DatabaseContext _context;
     private readonly UserManager<ApplicationUser> _userManager;
 
     public UserRepository(UserManager<ApplicationUser> userManager, 
-        ApplicationDbContext context) : base(context)
+        DatabaseContext context) : base(context)
     {
         _userManager = userManager;
         _context = context;

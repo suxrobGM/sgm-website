@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using SGM.Domain.Entities.Base;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SGM.Domain.Entities.BlogEntities
 {

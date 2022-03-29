@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Web", "src\SGM.Web\SGM.Web.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.WebApp", "src\SGM.Web\SGM.WebApp.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Infrastructure.Tests", "tests\SGM.Infrastructure.Tests\SGM.Infrastructure.Tests.csproj", "{924CBA55-F1B4-436E-951B-A307F890E7CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.IntegrationTests", "tests\SGM.Infrastructure.Tests\SGM.IntegrationTests.csproj", "{924CBA55-F1B4-436E-951B-A307F890E7CE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Domain", "src\SGM.Domain\SGM.Domain.csproj", "{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}"
 EndProject
@@ -15,13 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{394C224B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{0E5E8109-D440-4918-863D-342D7691ADC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Web.Blog", "src\SGM.Web.Blog\SGM.Web.Blog.csproj", "{552658C8-E28F-484E-8571-F1E59B1B2209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.BlogApp", "src\SGM.Web.Blog\SGM.BlogApp.csproj", "{552658C8-E28F-484E-8571-F1E59B1B2209}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E922079F-8980-4288-B89B-E6962EEAD6CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Application.Contracts", "src\SGM.Application.Contracts\SGM.Application.Contracts.csproj", "{B4F62CA7-7F76-4905-A3CF-C37564071773}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Application.Contracts", "src\SGM.Application.Contracts\SGM.Application.Contracts.csproj", "{B4F62CA7-7F76-4905-A3CF-C37564071773}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Application", "src\SGM.Application\SGM.Application.csproj", "{40EA48AB-A784-4E0C-AD39-D19B05448991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Application", "src\SGM.Application\SGM.Application.csproj", "{40EA48AB-A784-4E0C-AD39-D19B05448991}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

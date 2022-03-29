@@ -1,7 +1,7 @@
 ﻿using Serilog;
 using Serilog.Settings.Configuration;
 
-namespace SGM.Web;
+namespace SGM.BlogApp;
 
 public class Program
 {

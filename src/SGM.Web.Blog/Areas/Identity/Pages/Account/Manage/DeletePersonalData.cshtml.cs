@@ -1,15 +1,8 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using SGM.BlogApp.Utils;
 
-using SGM.Domain.Entities.UserEntities;
-using SGM.Web.Blog.Utils;
-
-namespace SGM.Web.Blog.Areas.Identity.Pages.Account.Manage
+namespace SGM.BlogApp.Areas.Identity.Pages.Account.Manage
 {
     public class DeletePersonalDataModel : PageModel
     {

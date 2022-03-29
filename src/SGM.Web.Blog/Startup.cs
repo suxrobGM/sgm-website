@@ -1,25 +1,12 @@
-using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using SuxrobGM.Sdk.ServerAnalytics;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 using Syncfusion.Licensing;
+using SGM.BlogApp.Utils;
+using SGM.Application;
+using SGM.EntityFramework;
 
-using SGM.Domain.Entities.UserEntities;
-using SGM.Domain.Interfaces.Repositories;
-using SGM.Domain.Interfaces.Services;
-using SGM.EntityFramework.Data;
-using SGM.EntityFramework.Repositories;
-using SGM.EntityFramework.Services;
-using SGM.Web.Blog.Utils;
-
-namespace SGM.Web.Blog
+namespace SGM.BlogApp
 {
     public class Startup
     {
@@ -34,18 +21,25 @@ namespace SGM.Web.Blog
         {
             SyncfusionLicenseProvider.RegisterLicense(Configuration.GetSection("SynLicenseKey").Value);
 
+            services.AddApplicationLayer(Configuration);
+            services.AddInfrastructureLayer(Configuration, "RemoteDB");
 
-            // Infrastructure layer
-            ConfigureDatabases(services);
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped<IBlogRepository, BlogRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-
-            // Web layer
-            ConfigureIdentity(services);
             services.AddScoped<ImageHelper>();
-            services.AddScoped(_ => new SqliteDbContext(Configuration.GetConnectionString("AnalyticsSqliteDbConnection")));
+            services.AddScoped(_ => new SqliteDbContext(Configuration.GetConnectionString("AnalyticsSqliteDB")));
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    var googleAuthNSection = Configuration.GetSection("Authentication:Google");
+                    options.ClientId = googleAuthNSection["ClientId"];
+                    options.ClientSecret = googleAuthNSection["ClientSecret"];
+                })
+                .AddFacebook(options =>
+                {
+                    var facebookAuthSection = Configuration.GetSection("Authentication:Facebook");
+                    options.AppId = facebookAuthSection["AppId"];
+                    options.AppSecret = facebookAuthSection["AppSecret"];
+                });
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -95,46 +89,6 @@ namespace SGM.Web.Blog
             {
                 endpoints.MapRazorPages();
             });
-        }
-
-        private void ConfigureDatabases(IServiceCollection services)
-        {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                        Configuration.GetConnectionString("RemoteDbConnection"))
-                    .UseLazyLoadingProxies());
-        }
-
-        private void ConfigureIdentity(IServiceCollection services)
-        {
-            services.AddDefaultIdentity<ApplicationUser>()
-                .AddRoles<ApplicationRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.Configure<IdentityOptions>(options =>
-            {
-                options.Password.RequiredLength = 8;
-                options.Password.RequireDigit = true;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.User.AllowedUserNameCharacters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789_.-";
-                options.User.RequireUniqueEmail = true;
-                //options.SignIn.RequireConfirmedAccount = true;
-            });
-
-            services.AddAuthentication()
-                .AddGoogle(options =>
-                {
-                    var googleAuthNSection = Configuration.GetSection("Authentication:Google");
-                    options.ClientId = googleAuthNSection["ClientId"];
-                    options.ClientSecret = googleAuthNSection["ClientSecret"];
-                })
-                .AddFacebook(options =>
-                {
-                    var facebookAuthSection = Configuration.GetSection("Authentication:Facebook");
-                    options.AppId = facebookAuthSection["AppId"];
-                    options.AppSecret = facebookAuthSection["AppSecret"];
-                });
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace SGM.Web.Blog.Areas.Identity.Pages.Account.Manage
+namespace SGM.BlogApp.Blog.Areas.Identity.Pages.Account.Manage
 {
     public static class ManageNavPages
     {

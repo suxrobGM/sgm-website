@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SGM.Domain.Entities.UserEntities;
 
-namespace SGM.Web.Blog.Areas.Identity.Pages.Account.Manage
+namespace SGM.BlogApp.Blog.Areas.Identity.Pages.Account.Manage
 {
     public class Disable2faModel : PageModel
     {

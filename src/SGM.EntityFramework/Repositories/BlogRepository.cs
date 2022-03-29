@@ -1,19 +1,15 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using SGM.Domain.Entities.BlogEntities;
-using SGM.Domain.Interfaces.Entities;
-using SGM.Domain.Interfaces.Repositories;
-using SGM.EntityFramework.Data;
+﻿using SGM.Domain.Entities.BlogEntities;
+using SGM.Domain.Repositories;
 
 namespace SGM.EntityFramework.Repositories;
 
 public class BlogRepository : Repository<Blog>, IBlogRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly DatabaseContext _context;
     private readonly IRepository<Comment> _commentRepository;
     private readonly IRepository<Tag> _tagRepository;
 
-    public BlogRepository(ApplicationDbContext context,
+    public BlogRepository(DatabaseContext context,
         IRepository<Comment> commentRepository, 
         IRepository<Tag> tagRepository) : base(context)
     {

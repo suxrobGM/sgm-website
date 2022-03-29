@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SGM.Domain.Entities.UserEntities;
 
-namespace SGM.Web.Blog.Areas.Identity.Pages.Account.Manage
+namespace SGM.BlogApp.Blog.Areas.Identity.Pages.Account.Manage
 {
     public class DownloadPersonalDataModel : PageModel
     {

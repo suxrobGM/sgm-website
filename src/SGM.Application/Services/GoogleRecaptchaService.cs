@@ -2,7 +2,7 @@
 
 namespace SGM.Application.Services;
 
-internal class GoogleRecaptchaService : ICaptchaService
+public sealed class GoogleRecaptchaService : ICaptchaService
 {
     private const string apiEndpoint = "https://www.google.com/recaptcha/api/siteverify";
     private readonly GoogleRecaptchaOptions _options;

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using SGM.Domain.Interfaces.Entities;
-using SGM.Domain.Interfaces.Repositories;
-using SGM.EntityFramework.Data;
+﻿using System.Linq.Expressions;
 
 namespace SGM.EntityFramework.Repositories;
 
@@ -16,10 +8,10 @@ namespace SGM.EntityFramework.Repositories;
 /// <typeparam name="TEntity">Class that implements IEntityBase interface</typeparam>
 public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly DatabaseContext _context;
 
     // ReSharper disable once MemberCanBeProtected.Global
-    public Repository(ApplicationDbContext context)
+    public Repository(DatabaseContext context)
     {
         _context = context;
     }

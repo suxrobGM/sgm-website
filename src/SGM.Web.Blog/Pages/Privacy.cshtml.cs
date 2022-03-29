@@ -1,24 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿namespace SGM.BlogApp.Pages;
 
-namespace SGM.Web.Blog.Pages
+public class PrivacyModel : PageModel
 {
-    public class PrivacyModel : PageModel
+    private readonly ILogger<PrivacyModel> _logger;
+
+    public PrivacyModel(ILogger<PrivacyModel> logger)
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        _logger = logger;
+    }
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
-        {
-            _logger = logger;
-        }
-
-        public void OnGet()
-        {
-        }
+    public void OnGet()
+    {
     }
 }

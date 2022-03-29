@@ -2,7 +2,7 @@ using SuxrobGM.Sdk.ServerAnalytics;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 using SGM.Application;
 
-namespace SGM.Web;
+namespace SGM.BlogApp;
 
 public class Startup
 {

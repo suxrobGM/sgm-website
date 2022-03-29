@@ -1,4 +1,4 @@
-﻿namespace SGM.Domain.Interfaces.Entities
+﻿namespace SGM.Domain
 {
     public interface ISlugifiedEntity : IEntity<string>
     {

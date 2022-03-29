@@ -1,63 +1,57 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using SGM.Domain.Entities.BlogEntities;
-using SGM.Domain.Interfaces.Repositories;
-using SGM.Web.Blog.Utils;
+﻿using Microsoft.AspNetCore.Authorization;
+using SGM.BlogApp.Utils;
 
-namespace SGM.Web.Blog.Pages
+namespace SGM.BlogApp.Pages;
+
+[Authorize(Roles = "SuperAdmin,Admin")]
+public class DeleteBlogModel : PageModel
 {
-    [Authorize(Roles = "SuperAdmin,Admin")]
-    public class DeleteBlogModel : PageModel
+    private readonly ImageHelper _imageHelper;
+    private readonly IBlogRepository _blogRepository;
+
+    public DeleteBlogModel(ImageHelper imageHelper, IBlogRepository blogRepository)
     {
-        private readonly ImageHelper _imageHelper;
-        private readonly IBlogRepository _blogRepository;
+        _blogRepository = blogRepository;
+        _imageHelper = imageHelper;
+    }
 
-        public DeleteBlogModel(ImageHelper imageHelper, IBlogRepository blogRepository)
+    [BindProperty]
+    public Domain.Entities.BlogEntities.Blog Blog { get; set; }
+
+    public string Tags { get; set; }
+
+    public async Task<IActionResult> OnGetAsync(string id)
+    {
+        if (id == null)
         {
-            _blogRepository = blogRepository;
-            _imageHelper = imageHelper;
+            return NotFound();
         }
 
-        [BindProperty]
-        public Domain.Entities.BlogEntities.Blog Blog { get; set; }
+        Blog = await _blogRepository.GetByIdAsync(id);
+        Tags = Tag.ConvertTagsToString(Blog.Tags);
 
-        public string Tags { get; set; }
-
-        public async Task<IActionResult> OnGetAsync(string id)
+        if (Blog == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            return NotFound();
+        }
+        return Page();
+    }
 
-            Blog = await _blogRepository.GetByIdAsync(id);
-            Tags = Tag.ConvertTagsToString(Blog.Tags);
-
-            if (Blog == null)
-            {
-                return NotFound();
-            }
-            return Page();
+    public async Task<IActionResult> OnPostAsync(string id)
+    {
+        if (id == null)
+        {
+            return NotFound();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        Blog = await _blogRepository.GetByIdAsync(id);
+
+        if (Blog != null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            Blog = await _blogRepository.GetByIdAsync(id);
-
-            if (Blog != null)
-            {
-                await _blogRepository.DeleteBlogAsync(Blog);
-                _imageHelper.RemoveImage(Blog.CoverPhotoPath);
-            }
-
-            return RedirectToPage("/Blog/List");
+            await _blogRepository.DeleteBlogAsync(Blog);
+            _imageHelper.RemoveImage(Blog.CoverPhotoPath);
         }
+
+        return RedirectToPage("/Blog/List");
     }
 }

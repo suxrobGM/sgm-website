@@ -3,7 +3,7 @@ using System.Net.Mail;
 using Microsoft.Extensions.Logging;
 namespace SGM.Application.Services;
 
-internal sealed class EmailSender : IEmailSender
+public sealed class EmailSender : IEmailSender
 {
     private readonly EmailSenderOptions options;
     
@@ -14,7 +14,7 @@ internal sealed class EmailSender : IEmailSender
         ILogger<EmailSender> logger)
     {
         this.options = options ?? throw new ArgumentNullException(nameof(options));
-        this.logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        this.logger = logger;
 
         if (string.IsNullOrEmpty(options.SenderName))
             throw new ArgumentException("SenderName is a empty string");

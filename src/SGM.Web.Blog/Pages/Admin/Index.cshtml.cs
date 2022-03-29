@@ -1,37 +1,33 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Authorization;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 
-namespace SGM.Web.Blog.Pages.Admin
+namespace SGM.BlogApp.Pages;
+
+[Authorize(Roles = "SuperAdmin,Admin")]
+public class AdminIndexModel : PageModel
 {
-    [Authorize(Roles = "SuperAdmin,Admin")]
-    public class IndexModel : PageModel
+    private readonly SqliteDbContext _context;
+
+    public AdminIndexModel(SqliteDbContext context)
     {
-        private readonly SqliteDbContext _context;
+        _context = context;
+    }
 
-        public IndexModel(SqliteDbContext context)
-        {
-            _context = context;
-        }
+    public IActionResult OnGet()
+    {
+        var dataSource = _context.Traffics;
+        
+        ViewData.Add("dataSource", dataSource);
 
-        public IActionResult OnGet()
-        {
-            var dataSource = _context.Traffics;
-            
-            ViewData.Add("dataSource", dataSource);
+        return Page();
+    }
 
-            return Page();
-        }
-
-        public async Task<IActionResult> OnGetRemoveItemsAsync()
-        {
-            var items = _context.Traffics;
-            _context.Traffics.RemoveRange(items);
-            
-            await _context.SaveChangesAsync();
-            return Page();
-        }
+    public async Task<IActionResult> OnGetRemoveItemsAsync()
+    {
+        var items = _context.Traffics;
+        _context.Traffics.RemoveRange(items);
+        
+        await _context.SaveChangesAsync();
+        return Page();
     }
 }

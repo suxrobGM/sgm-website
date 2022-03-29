@@ -1,5 +1,5 @@
 ﻿@page
-@model SGM.Web.Pages.IndexModel
+@model SGM.BlogApp.Pages.IndexModel
 @{
     Layout = null;
 }
@@ -633,27 +633,27 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <span asp-validation-for="EmailInput.Name" class="text-danger"></span>
-                                        <input asp-for="EmailInput.Name" class="form-control text-light" placeholder="Your name..." aria-label="First name">
+                                        <input asp-for="EmailInput.Name" class="form-control text-light" placeholder="Your name..." aria-label="Your name" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <span asp-validation-for="EmailInput.Email" class="text-danger"></span>
-                                        <input asp-for="EmailInput.Email" class="form-control text-light" placeholder="Your email...">
+                                        <input asp-for="EmailInput.Email" class="form-control text-light" placeholder="Your email..." aria-label="Your email" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="form-group">
                                     <span asp-validation-for="EmailInput.Subject" class="text-danger"></span>
-                                    <input asp-for="EmailInput.Subject" class="form-control text-light" placeholder="Subject.." aria-label="Subject">
+                                    <input asp-for="EmailInput.Subject" class="form-control text-light" placeholder="Subject.." aria-label="Subject" required>
                                 </div>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <span asp-validation-for="EmailInput.Message" class="text-danger"></span>
-                                        <textarea asp-for="EmailInput.Message" class="form-control text-light" rows="4" placeholder="Your Message..."></textarea>
+                                        <textarea asp-for="EmailInput.Message" class="form-control text-light" rows="4" placeholder="Your Message..." required></textarea>
                                     </div>
                                 </div>
                             </div>

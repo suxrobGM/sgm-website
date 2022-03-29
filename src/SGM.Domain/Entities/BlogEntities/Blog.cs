@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 using System.Web;
-using SGM.Domain.Entities.Base;
 
 namespace SGM.Domain.Entities.BlogEntities
 {

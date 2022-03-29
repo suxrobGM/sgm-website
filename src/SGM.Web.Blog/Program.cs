@@ -1,14 +1,9 @@
-using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Extensions.Logging;
 using Serilog.Settings.Configuration;
 using SGM.EntityFramework.Data;
 
-namespace SGM.Web.Blog
+namespace SGM.BlogApp
 {
     public class Program
     {
@@ -23,12 +18,12 @@ namespace SGM.Web.Blog
                 Log.Logger?.Information("Started webapp SGM Blog");
                 
                 var loggerFactory = new SerilogLoggerFactory(Log.Logger);
-                var mefLogger = loggerFactory.CreateLogger(typeof(ApplicationDbContext).Assembly.GetName().Name);
+                var mefLogger = loggerFactory.CreateLogger(typeof(DatabaseContext).Assembly.GetName().Name);
 
                 var host = CreateHostBuilder(args).Build();
                 using var scope = host.Services.CreateScope();
                 var serviceProvider = scope.ServiceProvider;
-                SeedData.Initialize<ApplicationDbContext>(serviceProvider, mefLogger);
+                SeedData.Initialize<DatabaseContext>(serviceProvider, mefLogger);
 
                 host.Run();
             }
@@ -65,7 +60,7 @@ namespace SGM.Web.Blog
                 .Build();
         }
 
-        private static ILogger CreateLogger(IConfiguration configuration)
+        private static Serilog.ILogger CreateLogger(IConfiguration configuration)
         {
             return new LoggerConfiguration()
                 .ReadFrom.Configuration(configuration, ConfigurationAssemblySource.AlwaysScanDllFiles)

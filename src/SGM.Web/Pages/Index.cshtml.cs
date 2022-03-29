@@ -2,7 +2,7 @@
 using SGM.Application.Contracts.Services;
 using SGM.Application.Options;
 
-namespace SGM.Web.Pages;
+namespace SGM.BlogApp.Pages;
 
 public class IndexModel : PageModel
 {
@@ -61,7 +61,7 @@ public class IndexModel : PageModel
 
         if (!validCaptcha)
         {
-            EmailStatusMessage = "Error: invalid captcha value";
+            EmailStatusMessage = "Error: invalid captcha";
             return RedirectToPage("", "", "email");
         }
 

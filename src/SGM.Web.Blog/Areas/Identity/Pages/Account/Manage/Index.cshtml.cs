@@ -1,16 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using SGM.Application.Contracts.Services;
+using SGM.BlogApp.Utils;
 
-using SGM.Domain.Entities.UserEntities;
-using SGM.Web.Blog.Utils;
-
-namespace SGM.Web.Blog.Areas.Identity.Pages.Account.Manage
+namespace SGM.BlogApp.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {
@@ -145,7 +139,7 @@ namespace SGM.Web.Blog.Areas.Identity.Pages.Account.Manage
                 new { userId = user.Id, code },
                 Request.Scheme);
 
-            await _emailSender.SendEmailAsync(
+            await _emailSender.SendMailAsync(
                 user.Email,
                 "Confirm your email suxrobgm.net",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");

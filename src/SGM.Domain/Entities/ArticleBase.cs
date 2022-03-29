@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using SGM.Domain.Entities.UserEntities;
-using SGM.Domain.Interfaces.Entities;
 
-namespace SGM.Domain.Entities.Base
+namespace SGM.Domain.Entities
 {
     public abstract class ArticleBase : EntityBase, ISlugifiedEntity
     {

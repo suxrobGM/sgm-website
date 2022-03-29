@@ -1,26 +1,25 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using SGM.Domain.Entities.BlogEntities;
-using SGM.Domain.Entities.UserEntities;
 
 namespace SGM.EntityFramework.Data;
 
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
+public class DatabaseContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
 {
-    public ApplicationDbContext()
+    private readonly string connectionString;
+
+    public DatabaseContext(string connectionString)
+    {
+        this.connectionString = connectionString;
+    }
+
+    public DatabaseContext(DbContextOptions options) : base(options)
     {
     }
 
-    public ApplicationDbContext(DbContextOptions options) : base(options)
+    protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {               
-            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS; Initial Catalog=SGM_BlogDB; Trusted_Connection=True")
-                .UseLazyLoadingProxies();
+        if (!options.IsConfigured)
+        {
+            DbContextHelpers.ConfigureSqlServer(connectionString, options);
         }
     }
 

@@ -9,7 +9,7 @@ using SGM.EntityFramework.Data;
 
 namespace SGM.EntityFramework.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(DatabaseContext))]
     [Migration("20201227074750_InitialCreate")]
     partial class InitialCreate
     {
