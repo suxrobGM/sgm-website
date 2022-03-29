@@ -71,7 +71,9 @@ public class RegisterModel : PageModel
     public async Task<IActionResult> OnPostAsync(string returnUrl = null)
     {
         returnUrl ??= Url.Content("~/");
-        var validCaptcha = await _captchaService.VerifyCaptchaAsync(CaptchaSiteKey);
+
+        var captchaValue = HttpContext.Request.Form["g-Recaptcha-Response"].ToString();
+        var validCaptcha = await _captchaService.VerifyCaptchaAsync(captchaValue);
 
         if (!validCaptcha)
             ModelState.AddModelError("captcha", "Invalid captcha");

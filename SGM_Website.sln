@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.WebApp", "src\SGM.Web\SGM.WebApp.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.WebApp", "src\SGM.WebApp\SGM.WebApp.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.IntegrationTests", "tests\SGM.IntegrationTests\SGM.IntegrationTests.csproj", "{924CBA55-F1B4-436E-951B-A307F890E7CE}"
 EndProject
@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.EntityFramework", "src\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{394C224B-A6DF-4988-A196-63F2CC035077}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{0E5E8109-D440-4918-863D-342D7691ADC8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{0E5E8109-D440-4918-863D-342D7691ADC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.BlogApp", "src\SGM.Web.Blog\SGM.BlogApp.csproj", "{552658C8-E28F-484E-8571-F1E59B1B2209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.BlogApp", "src\SGM.BlogApp\SGM.BlogApp.csproj", "{552658C8-E28F-484E-8571-F1E59B1B2209}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E922079F-8980-4288-B89B-E6962EEAD6CC}"
 EndProject
@@ -23,9 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Application.Contracts",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Application", "src\SGM.Application\SGM.Application.csproj", "{40EA48AB-A784-4E0C-AD39-D19B05448991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.EntityFramework.DbMigrations", "src\SGM.EntityFramework.DbMigrations\SGM.EntityFramework.DbMigrations.csproj", "{0C7F65AA-F269-4BD8-814E-6173AE38B1CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.EntityFramework.DbMigrations", "src\SGM.EntityFramework.DbMigrations\SGM.EntityFramework.DbMigrations.csproj", "{0C7F65AA-F269-4BD8-814E-6173AE38B1CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.DbMigrator", "src\SGM.DbMigrator\SGM.DbMigrator.csproj", "{5C2F9583-C9E5-4578-B807-456A3B5CF8A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.DbMigrator", "src\SGM.DbMigrator\SGM.DbMigrator.csproj", "{5C2F9583-C9E5-4578-B807-456A3B5CF8A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

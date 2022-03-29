@@ -37,7 +37,7 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
-            <div class="g-recaptcha" data-sitekey="Model.CaptchaSiteKey"></div>
+            <div class="g-recaptcha" data-sitekey="@Model.CaptchaSiteKey"></div>
             <button type="submit" class="btn btn-primary mt-2">Sign Up</button>
         </form>
     </div>
