@@ -1,4 +1,5 @@
-﻿using SGM.Domain.Entities.BlogEntities;
+﻿using SGM.Domain.Entities;
+using SGM.Domain.Entities.BlogEntities;
 using SGM.Domain.Repositories;
 
 namespace SGM.EntityFramework.Repositories;
@@ -119,7 +120,7 @@ public class BlogRepository : Repository<Blog>, IBlogRepository
         _context.RemoveRange(emptyTags);
     }
 
-    private string GetVerifiedBlogSlug(ISlugifiedEntity slugifiedEntity)
+    private string GetVerifiedBlogSlug(Article slugifiedEntity)
     {
         var slug = slugifiedEntity.Slug;
         var verifiedSlug = slug;

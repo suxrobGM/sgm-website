@@ -6,7 +6,7 @@ namespace SGM.EntityFramework.Repositories;
 /// Generic repository.
 /// </summary>
 /// <typeparam name="TEntity">Class that implements IEntityBase interface</typeparam>
-public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityBase
+public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IAggregateRoot
 {
     private readonly DatabaseContext _context;
 

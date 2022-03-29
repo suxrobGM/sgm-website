@@ -74,6 +74,7 @@ public class SeedData
         if (siteOwner == null)
         {
             await userManager.CreateAsync(ownerAccount, password);
+            siteOwner = await userManager.FindByEmailAsync(ownerAccount.Email);
         }
 
         var hasSuperAdminRole = await userManager.IsInRoleAsync(siteOwner, Role.SuperAdmin.ToString());
@@ -101,6 +102,7 @@ public class SeedData
         if (deletedUser == null)
         {
             await userManager.CreateAsync(deletedUserAccount, password);
+            deletedUser = await userManager.FindByNameAsync(deletedUserAccount.UserName);
         }
 
         var hasSuperAdminRole = await userManager.IsInRoleAsync(deletedUser, Role.SuperAdmin.ToString());

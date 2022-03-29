@@ -3,7 +3,7 @@ using SGM.Domain.Entities.UserEntities;
 
 namespace SGM.Domain.Entities.BlogEntities
 {
-    public class Comment : EntityBase
+    public class Comment : Entity
     {
         [Required(ErrorMessage = "Please enter content")]
         [Display(Name = "Content")]

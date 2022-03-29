@@ -33,7 +33,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\SGM.Application\SGM.Application.csproj" />
-    <ProjectReference Include="..\..\src\SGM.Infrastructure\SGM.EntityFramework.csproj" />
   </ItemGroup>
 
 </Project>

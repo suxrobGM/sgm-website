@@ -11,16 +11,13 @@ public enum Role
     Editor
 }
 
-public class ApplicationRole : IdentityRole, IEntity<string>
+public class ApplicationRole : IdentityRole, IAggregateRoot
 {
     public ApplicationRole(Role role) : base(role.ToString())
     {
         Role = role;
         Timestamp = DateTime.Now;
     }
-
-    [Display(Name = "ID")]
-    public override string Id { get; set; }
 
     public Role Role { get; set; }
 

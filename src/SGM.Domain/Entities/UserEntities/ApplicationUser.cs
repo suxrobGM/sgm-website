@@ -1,19 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
-using SuxrobGM.Sdk.Utils;
 
 namespace SGM.Domain.Entities.UserEntities;
 
-public class ApplicationUser : IdentityUser<string>, IEntity<string>
+public class ApplicationUser : IdentityUser<string>, IAggregateRoot
 {
     public ApplicationUser()
     {
         ProfilePhotoPath = "/img/default_user_avatar.png";
         Timestamp = DateTime.Now;
     }
-
-    [Display(Name = "ID")]
-    public override string Id { get; set; } = GeneratorId.GenerateComplex();
 
     [StringLength(40, ErrorMessage = "Characters must be less than 40")]
     [Display(Name = "First Name")]

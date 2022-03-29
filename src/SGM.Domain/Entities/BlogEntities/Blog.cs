@@ -4,7 +4,7 @@ using System.Web;
 
 namespace SGM.Domain.Entities.BlogEntities
 {
-    public class Blog : ArticleBase
+    public class Blog : Article
     {
         public Blog()
         {

@@ -5,7 +5,7 @@ namespace SGM.Domain.Repositories;
 /// <summary>
 /// Generic repository interface
 /// </summary>
-public interface IRepository<TEntity> where TEntity: class, IEntityBase
+public interface IRepository<TEntity> where TEntity: class, IAggregateRoot
 {
     Task<TEntity> GetByIdAsync(object id);
     Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);

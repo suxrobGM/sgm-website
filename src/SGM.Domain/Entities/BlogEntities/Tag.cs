@@ -2,7 +2,7 @@
 
 namespace SGM.Domain.Entities.BlogEntities
 {
-    public class Tag : EntityBase, IEqualityComparer<Tag>
+    public class Tag : Entity, IEqualityComparer<Tag>
     {
         public Tag()
         {
