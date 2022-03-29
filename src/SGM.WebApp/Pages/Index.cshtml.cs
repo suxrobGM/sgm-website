@@ -2,7 +2,7 @@
 using SGM.Application.Contracts.Services;
 using SGM.Application.Options;
 
-namespace SGM.BlogApp.Pages;
+namespace SGM.WebApp.Pages;
 
 public class IndexModel : PageModel
 {

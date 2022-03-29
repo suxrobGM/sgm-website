@@ -1,4 +1,4 @@
-﻿namespace SGM.BlogApp.Pages;
+﻿namespace SGM.WebApp.Pages;
 
 public class SitemapModel : PageModel
 {

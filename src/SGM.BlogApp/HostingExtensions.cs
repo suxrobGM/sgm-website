@@ -1,68 +1,61 @@
-using Microsoft.EntityFrameworkCore;
+﻿using SGM.Application;
+using SGM.BlogApp.Utils;
+using SGM.EntityFramework;
 using SuxrobGM.Sdk.ServerAnalytics;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 using Syncfusion.Licensing;
-using SGM.BlogApp.Utils;
-using SGM.Application;
-using SGM.EntityFramework;
 
 namespace SGM.BlogApp;
 
-public class Startup
+internal static class HostingExtensions
 {
-    public Startup(IConfiguration configuration)
+    public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        Configuration = configuration;
-    }
+        SyncfusionLicenseProvider.RegisterLicense(builder.Configuration.GetSection("SynLicenseKey").Value);
 
-    public IConfiguration Configuration { get; }
+        builder.Services.AddApplicationLayer(builder.Configuration);
+        builder.Services.AddInfrastructureLayer(builder.Configuration, "RemoteDB");
 
-    public void ConfigureServices(IServiceCollection services)
-    {
-        SyncfusionLicenseProvider.RegisterLicense(Configuration.GetSection("SynLicenseKey").Value);
+        builder.Services.AddScoped<ImageHelper>();
+        builder.Services.AddScoped(_ => new SqliteDbContext(builder.Configuration.GetConnectionString("AnalyticsSqliteDB")));
 
-        services.AddApplicationLayer(Configuration);
-        services.AddInfrastructureLayer(Configuration, "RemoteDB");
-
-        services.AddScoped<ImageHelper>();
-        services.AddScoped(_ => new SqliteDbContext(Configuration.GetConnectionString("AnalyticsSqliteDB")));
-
-        services.AddAuthentication()
+        builder.Services.AddAuthentication()
             .AddGoogle(options =>
             {
-                var googleAuthNSection = Configuration.GetSection("Authentication:Google");
+                var googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
                 options.ClientId = googleAuthNSection["ClientId"];
                 options.ClientSecret = googleAuthNSection["ClientSecret"];
             })
             .AddFacebook(options =>
             {
-                var facebookAuthSection = Configuration.GetSection("Authentication:Facebook");
+                var facebookAuthSection = builder.Configuration.GetSection("Authentication:Facebook");
                 options.AppId = facebookAuthSection["AppId"];
                 options.AppSecret = facebookAuthSection["AppSecret"];
             });
 
-        services.Configure<CookiePolicyOptions>(options =>
+        builder.Services.Configure<CookiePolicyOptions>(options =>
         {
             options.CheckConsentNeeded = _ => true;
             options.MinimumSameSitePolicy = SameSiteMode.None;
         });
-        services.ConfigureApplicationCookie(options =>
+        builder.Services.ConfigureApplicationCookie(options =>
         {
             options.ExpireTimeSpan = TimeSpan.FromDays(5);
             options.SlidingExpiration = true;
         });
 
-        services.AddRouting(options => options.LowercaseUrls = true);
-        services.AddRazorPages(options =>
+        builder.Services.AddRouting(options => options.LowercaseUrls = true);
+        builder.Services.AddRazorPages(options =>
         {
             options.Conventions.AddPageRoute("/Blog/List", "/");
             options.Conventions.AddPageRoute("/Blog/Index", "/{slug}");
         });
+        return builder.Build();
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        if (env.IsDevelopment())
+        if (app.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
@@ -82,12 +75,10 @@ public class Startup
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCookiePolicy();
+
         app.UseAuthentication();
         app.UseAuthorization();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapRazorPages();
-        });
+        app.MapRazorPages();
+        return app;
     }
 }

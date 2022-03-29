@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace SGM.BlogApp.Pages;
+namespace SGM.WebApp.Pages;
 
 [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 public class ErrorModel : PageModel

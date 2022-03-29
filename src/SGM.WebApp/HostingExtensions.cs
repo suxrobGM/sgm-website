@@ -1,28 +1,22 @@
+﻿using SGM.Application;
 using SuxrobGM.Sdk.ServerAnalytics;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
-using SGM.Application;
 
-namespace SGM.BlogApp;
+namespace SGM.WebApp;
 
-public class Startup
+internal static class HostingExtensions
 {
-    public Startup(IConfiguration configuration)
+    public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        Configuration = configuration;
+        builder.Services.AddApplicationLayer(builder.Configuration);
+        builder.Services.AddScoped(_ => new SqliteDbContext(builder.Configuration.GetConnectionString("AnalyticsSqliteDB")));
+        builder.Services.AddRazorPages();
+        return builder.Build();
     }
 
-    public IConfiguration Configuration { get; }
-
-    public void ConfigureServices(IServiceCollection services)
+    public static WebApplication ConfigurePipeline(this WebApplication app)
     {
-        services.AddApplicationLayer(Configuration);
-        services.AddScoped(_ => new SqliteDbContext(Configuration.GetConnectionString("AnalyticsSqliteDbConnection")));
-        services.AddRazorPages();
-    }
-
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-    {
-        if (env.IsDevelopment())
+        if (app.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
@@ -42,12 +36,10 @@ public class Startup
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCookiePolicy();
+
         app.UseAuthentication();
         app.UseAuthorization();
-
-        app.UseEndpoints(endpoints =>
-        {
-            endpoints.MapRazorPages();
-        });
+        app.MapRazorPages();
+        return app;
     }
 }

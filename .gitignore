@@ -11,6 +11,10 @@
 .vscode/
 .config/
 
+# Ignore log files
+Logs/
+*.log
+
 appsettings.json
 appsettings.Development.json
 app_analytics.sqlite

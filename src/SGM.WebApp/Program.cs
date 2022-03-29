@@ -1,60 +1,33 @@
 ﻿using Serilog;
-using Serilog.Settings.Configuration;
+using SGM.WebApp;
 
-namespace SGM.BlogApp;
 
-public class Program
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
+
+Log.Information("Starting up");
+
+try
 {
-    public static void Main(string[] args)
-    {
-        var configuration = BuildConfiguration();
-        Log.Logger = CreateLogger(configuration);
+    var builder = WebApplication.CreateBuilder(args);
 
-        try
-        {
-            Log.Logger?.Information("-------------------------------------------------");
-            Log.Logger?.Information("Started webapp SGM Profile");
-            CreateHostBuilder(args).Build().Run();
-        }
-        catch (Exception ex)
-        {
-            Log.Logger?.Fatal(ex, "Application start-up failed");
-            throw;
-        }
-        finally
-        {
-            Log.CloseAndFlush();
-        }
-    }
+    builder.Host.UseSerilog((ctx, lc) => lc
+        .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}")
+        .Enrich.FromLogContext()
+        .ReadFrom.Configuration(ctx.Configuration));
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .UseSerilog()
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            });
-
-    #region Static methods for creating logger
-
-    private static IConfiguration BuildConfiguration()
-    {
-        Environment.SetEnvironmentVariable("BASEDIR", AppContext.BaseDirectory);
-        var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
-        return new ConfigurationBuilder()
-            .SetBasePath(Environment.CurrentDirectory)
-            .AddJsonFile("appsettings.json", false, true)
-            .AddJsonFile($"appsettings.{environmentName}.json", true)
-            .Build();
-    }
-
-    private static Serilog.ILogger CreateLogger(IConfiguration configuration)
-    {
-        return new LoggerConfiguration()
-            .ReadFrom.Configuration(configuration, ConfigurationAssemblySource.AlwaysScanDllFiles)
-            .CreateLogger();
-    }
-
-    #endregion
+    var app = builder
+        .ConfigureServices()
+        .ConfigurePipeline();
+    app.Run();
+}
+catch (Exception ex) when (ex.GetType().Name is not "StopTheHostException")
+{
+    Log.Fatal(ex, "Unhandled exception");
+}
+finally
+{
+    Log.Information("Shut down complete");
+    Log.CloseAndFlush();
 }
