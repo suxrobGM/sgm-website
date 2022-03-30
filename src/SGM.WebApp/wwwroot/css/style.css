@@ -276,9 +276,10 @@ button:focus {
 }
 
 .custom-nav .navbar-toggler {
-    color: #fff;
+    color: #e65f78;
     font-size: 35px;
     padding: 0px;
+    border-color: #e65f78;
 }
 
 .custom-nav.stickyadd {

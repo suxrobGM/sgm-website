@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using SuxrobGM.Sdk.Extensions;
+using SGM.Application;
 using SGM.BlogApp.Utils;
 
 namespace SGM.BlogApp.Pages;

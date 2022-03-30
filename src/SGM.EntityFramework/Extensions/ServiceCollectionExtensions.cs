@@ -9,7 +9,7 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddInfrastructureLayer(
         this IServiceCollection services,
         IConfiguration configuration,
-        string connectionStringName = "Local")
+        string connectionStringName = "LocalDB")
     {
         var connectionString = configuration.GetConnectionString(connectionStringName);
 

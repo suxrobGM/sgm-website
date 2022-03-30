@@ -30,7 +30,7 @@ internal static class HostingExtensions
         app.UseServerAnalytics(new SqliteAnalyticsRepository())
             .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin", "/wp-includes/")
             .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")
-            .ExcludeLoopBack()
+            //.ExcludeLoopBack()
             .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"));
 
         app.UseStaticFiles();

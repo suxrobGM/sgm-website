@@ -15,6 +15,11 @@
 Logs/
 *.log
 
+# Ignore local databases
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
 appsettings.json
 appsettings.Development.json
 app_analytics.sqlite
