@@ -2,5 +2,5 @@
 
 public static class ConnectionStrings
 {
-    public const string Local = "Server=localhost; Database=LogisticsDB; Uid=root; Pwd=Test12345#; Connect Timeout=10";
+    public const string Local = "Server=localhost\\SQLEXPRESS; Initial Catalog=SGM_BlogDB; Trusted_Connection=True";
 }

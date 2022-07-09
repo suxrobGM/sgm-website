@@ -8,7 +8,6 @@ public class IndexModel : PageModel
 {
     private readonly ICaptchaService _captchaService;
     private readonly IEmailSender _emailSender;
-    private readonly ILogger<IndexModel> _logger;
 
     public IndexModel(
         ICaptchaService captchaService,
@@ -23,7 +22,6 @@ public class IndexModel : PageModel
 
         _captchaService = captchaService;
         _emailSender = emailSender;
-        _logger = logger;
         CaptchaSiteKey = recaptchaOptions.SiteKey;
     }
 
@@ -69,15 +67,12 @@ public class IndexModel : PageModel
                          <p>{EmailInput.Message}</p>";
         var sentMail = await _emailSender.SendMailAsync("suxrobgm@gmail.com", EmailInput.Subject, message);
 
-        if (sentMail)
-        {
-            EmailStatusMessage = "Your message has been sent successfully";
-        }
-        else
-        {
-            EmailStatusMessage = "Error: could not send email";  
-        }
-
+        EmailStatusMessage = sentMail ? "Your message has been sent successfully" : "Error: could not send email";
         return RedirectToPage("", "", "email");
+    }
+    
+    public IActionResult OnGetCv()
+    {
+        return File("/cv.pdf", "application/pdf");
     }
 }

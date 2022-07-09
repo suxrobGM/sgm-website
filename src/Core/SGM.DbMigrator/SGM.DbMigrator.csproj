@@ -1,19 +1,17 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>SGM.DbMigrator</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-SGM.DbMigrator-1A18F4E6-E6B6-4528-B46A-25C3318455F4</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.json" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SGM.EntityFramework.DbMigrations\SGM.EntityFramework.DbMigrations.csproj" />
   </ItemGroup>
-
 </Project>
