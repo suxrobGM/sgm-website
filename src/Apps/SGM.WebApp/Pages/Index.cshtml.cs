@@ -70,9 +70,4 @@ public class IndexModel : PageModel
         EmailStatusMessage = sentMail ? "Your message has been sent successfully" : "Error: could not send email";
         return RedirectToPage("", "", "email");
     }
-    
-    public IActionResult OnGetCv()
-    {
-        return File("/cv.pdf", "application/pdf");
-    }
 }

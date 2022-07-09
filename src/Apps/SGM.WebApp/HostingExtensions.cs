@@ -11,6 +11,7 @@ internal static class HostingExtensions
         AddSecretsJson(builder.Configuration);
         builder.Services.AddApplicationLayer(builder.Configuration);
         builder.Services.AddScoped(_ => new SqliteDbContext(builder.Configuration.GetConnectionString("AnalyticsSqliteDB")));
+        builder.Services.AddControllers();
         builder.Services.AddRazorPages();
         return builder.Build();
     }
@@ -40,6 +41,8 @@ internal static class HostingExtensions
 
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.MapControllers();
         app.MapRazorPages();
         return app;
     }
