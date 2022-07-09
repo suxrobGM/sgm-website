@@ -20,8 +20,7 @@ Logs/
 *.sqlite-shm
 *.sqlite-wal
 
-appsettings.json
-appsettings.Development.json
+secrets.json
 app_analytics.sqlite
 db_files/
 *.pdf

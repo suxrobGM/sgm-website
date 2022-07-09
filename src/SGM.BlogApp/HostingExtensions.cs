@@ -11,6 +11,7 @@ internal static class HostingExtensions
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
+        AddSecretsJson(builder.Configuration);
         SyncfusionLicenseProvider.RegisterLicense(builder.Configuration.GetSection("SynLicenseKey").Value);
 
         builder.Services.AddApplicationLayer(builder.Configuration);
@@ -69,7 +70,7 @@ internal static class HostingExtensions
         app.UseServerAnalytics(new SqliteAnalyticsRepository())
             .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin", "/wp-includes/")
             .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")
-            //.ExcludeLoopBack()
+            .ExcludeLoopBack()
             .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"));
 
         app.UseStaticFiles();
@@ -80,5 +81,11 @@ internal static class HostingExtensions
         app.UseAuthorization();
         app.MapRazorPages();
         return app;
+    }
+
+    private static void AddSecretsJson(IConfigurationBuilder configuration)
+    {
+        var path = Path.Combine(AppContext.BaseDirectory, "secrets.json");
+        configuration.AddJsonFile(path, true);
     }
 }
