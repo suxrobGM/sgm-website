@@ -8,7 +8,7 @@ await RunAsync();
 
 async Task RunAsync()
 {
-    var connectionString = ConnectionStrings.Local;
+    const string connectionString = ConnectionStrings.Local;
     var configuration = GetConfiguration();
     var services = new ServiceCollection();
     services.AddInfrastructureLayer(configuration);

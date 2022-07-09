@@ -6,7 +6,7 @@ using SGM.Domain.Entities.UserEntities;
 
 namespace SGM.DbMigrator;
 
-public class SeedData
+public static class SeedData
 {
     public static async Task InitializeAsync<T>(IServiceProvider serviceProvider) where T : DbContext
     {
@@ -64,11 +64,11 @@ public class SeedData
 
         var ownerAccount = new ApplicationUser()
         {
-            UserName = config.GetSection("ServerAccounts:Owner:UserName").Value,
-            Email = config.GetSection("ServerAccounts:Owner:Email").Value,
+            UserName = config["ServerAccounts:Admin:UserName"],
+            Email = config["ServerAccounts:Admin:Email"],
             EmailConfirmed = true
         };
-        var password = config.GetSection("ServerAccounts:Owner:Password").Value;
+        var password = config["ServerAccounts:Admin:Password"];
 
         var siteOwner = await userManager.FindByEmailAsync(ownerAccount.Email);
         if (siteOwner == null)
