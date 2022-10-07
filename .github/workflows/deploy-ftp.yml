@@ -2,7 +2,7 @@ name: Deploy FTP
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env:
   MAIN_WEB_PROJECT: src/Apps/SGM.WebApp/SGM.WebApp.csproj
