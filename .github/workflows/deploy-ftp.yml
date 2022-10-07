@@ -1,0 +1,75 @@
+name: Deploy FTP
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  MAIN_WEB_PROJECT: src/Apps/SGM.WebApp/SGM.WebApp.csproj
+  BLOG_WEB_PROJECT: src/Apps/SGM.BlogApp/SGM.BlogApp.csproj
+
+jobs:
+  test-dotnet:
+    name: .NET Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+
+  deploy-main-web:
+    name: Deploy Main Web
+    runs-on: windows-latest
+    needs: [test-dotnet]
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Publish
+      run: dotnet publish ${{ env.MAIN_WEB_PROJECT }} -c Release -r win-x86 -p:PublishSingleFile=true --self-contained true --output ./Release
+    
+    - name: Deploy to host
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: Release/
+        server-dir: suxrobgm.net/
+
+  deploy-blog-web:
+    name: Deploy Blog Web
+    runs-on: windows-latest
+    needs: [test-dotnet]
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Publish 
+      run: dotnet publish ${{ env.BLOG_WEB_PROJECT }} -c Release -r win-x86 -p:PublishSingleFile=true --self-contained true --output ./Release
+    
+    - name: Deploy to host
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: Release/
+        server-dir: blog.suxrobgm.net/

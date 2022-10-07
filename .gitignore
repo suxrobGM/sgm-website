@@ -21,6 +21,7 @@ Logs/
 *.sqlite-wal
 
 secrets.json
+*.secrets.json
 app_analytics.sqlite
 db_files/
 *.pdf
