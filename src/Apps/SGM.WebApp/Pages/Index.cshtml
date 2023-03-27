@@ -89,18 +89,15 @@
 	                <li class="nav-item">
 	                    <a class="nav-link" href="#services">Services</a>
 	                </li>
-                    @*<li class="nav-item">
-	                    <a class="nav-link" href="#client">Client</a>
-	                </li>*@
                     <li class="nav-item">
                     	<a class="nav-link" href="#work">Work</a>
                     </li>
 	                <li class="nav-item">
 	                    <a class="nav-link" href="#portfolio">Portfolio</a>
 	                </li>
-	                <li class="nav-item">
-	                    <a class="nav-link" href="https://blog.suxrobgm.net">Blog</a>
-	                </li>
+	                @* <li class="nav-item"> *@
+	                @*     <a class="nav-link" href="https://blog.suxrobgm.net">Blog</a> *@
+	                @* </li> *@
 	                <li class="nav-item">
 	                    <a class="nav-link" href="#contact">Contact</a>
 	                </li>
@@ -279,17 +276,6 @@
                         </li>
                         <li>
                             <div class="content-text">
-                                <h3 class="line-title">Software Engineer Intern - Microsoft, USA</h3>
-                                <span>May 2022 - August 2022</span>
-                                <p class="line-text">
-                                    • Participated in the design along with the project manager, team leader, and other team members. Prepared the user document, including API design and database design. <br />
-                                    • Implemented unit and integration tests to consistently deliver high-quality features and utilized SSRS to create daily and monthly analysis reports. <br />
-                                    • Language/Tools: C#, Unit Testing, Azure DevOps, Azure Cosmos DB <br />
-                                </p>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="content-text">
                                 <h3 class="line-title">Full Stack Developer - Frost Pixel Studio, Russia</h3>
                                 <span>October 2022 - May 2022</span>
                                 <p class="line-text">
@@ -372,63 +358,6 @@
     </section>
     <!-- END WORK EXPERIENCE -->
 
-    @*<!-- START CLIENT -->
-    <section class="section bg-light" id="client">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="text-center">
-                        <h2>Our <span class="fw-bold">Client</span></h2>
-                        <p class="text-muted mx-auto section-subtitle mt-3">It is a long established fact that a reader will be of a page when established fact looking at its layout.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4 pt-4">
-                <div class="col-lg-12">
-                    <div id="owl-demo" class="owl-carousel">
-                        <div class="text-center testi_boxes mx-auto">
-                            <div class="tam_testi_icon text-custom">
-                                <i class="mbri-quote-left"></i>
-                            </div>
-                            <div class="mt-2">
-                                <div class="img_testi">
-                                    <img src="img/testi/testi-1.jpg" alt="" class="mx-auto img-thumbnail img-fluid rounded-circle">
-                                </div>
-                                <p class="client_review fst-italic mt-4 text-center text-muted">" The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here."</p>
-                                <p class="client_name text-center mb-0 mt-4">- Ebony verty, <span class="fw-bold">Envato</span></p>
-                            </div>
-                        </div>
-                        <div class="text-center testi_boxes mx-auto">
-                            <div class="tam_testi_icon text-custom">
-                                <i class="mbri-quote-left"></i>
-                            </div>
-                            <div class="mt-2">
-                                <div class="img_testi">
-                                    <img src="img/testi/testi-2.jpg" alt="" class="mx-auto img-thumbnail img-fluid d-block rounded-circle">
-                                </div>
-                                <p class="client_review fst-italic mt-4 text-center text-muted">" The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here."</p>
-                                <p class="client_name text-center mb-0 mt-4">- Ebony verty, <span class="fw-bold">Envato</span></p>
-                            </div>
-                        </div>
-                        <div class="text-center testi_boxes mx-auto">
-                            <div class="tam_testi_icon text-custom">
-                                <i class="mbri-quote-left"></i>
-                            </div>
-                            <div class="mt-2">
-                                <div class="img_testi">
-                                    <img src="img/testi/testi-3.jpg" alt="" class="mx-auto img-thumbnail img-fluid d-block rounded-circle">
-                                </div>
-                                <p class="client_review fst-italic mt-4 text-center text-muted">" The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here."</p>
-                                <p class="client_name text-center mb-0 mt-4">- Ebony verty, <span class="fw-bold">Envato</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END CLIENT -->*@
-
     <!-- START PORTFOLIO -->   
     <section class="section bg-light text-center" id="portfolio">
         <div class="container">
@@ -466,6 +395,20 @@
                         </div>
                     </a>
                 </div>
+                <div class="col-lg-4 work_item game">
+                    <a href="img/portfolio/chestnut.jpg" class="img-zoom">
+                        <div class="work_box">
+                            <div class="work_img">
+                                <img src="img/portfolio/chestnut.jpg" class="img-fluid mx-auto d-block rounded" alt="Chestnut">
+                            </div>
+                            <div class="work_detail">
+                                <p class="mb-2">MMORPG browser game</p>
+                                <h4 class="mb-0">Chestnut</h4>
+                                <div class="btn" onclick="window.open('https://chest-nut.io', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
 
                 <div class="col-lg-4 work_item game mobile">
                     <a href="img/portfolio/trivia_streak.jpg" class="img-zoom">
@@ -477,6 +420,21 @@
                                 <p class="mb-2">Casual mobile game for Android</p>
                                 <h4 class="mb-0">Trivia Streak</h4>
                                 <div class="btn" onclick="window.open('https://play.google.com/store/apps/details?id=com.hendocheese.triviastreak', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-4 work_item web mobile">
+                    <a href="img/portfolio/logistics.jpg" class="img-zoom">
+                        <div class="work_box">
+                            <div class="work_img">
+                                <img src="img/portfolio/logistics.jpg" class="img-fluid mx-auto d-block rounded" alt="RatePic">
+                            </div>
+                            <div class="work_detail">
+                                <p class="mb-2">Survey Service</p>
+                                <h4 class="mb-0">Automate your entire transportation logistics operations with the transportation management system (TMS)</h4>
+                                <div class="btn" onclick="window.open('https://github.com/suxrobGM/logistics-app', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
                             </div>
                         </div>
                     </a>
