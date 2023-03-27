@@ -93,18 +93,18 @@ namespace SGM.DbMigrator
             };
             var password = config["ServerAccounts:Admin:Password"];
 
-            var siteOwner = await userManager.FindByEmailAsync(ownerAccount.Email);
+            var siteOwner = await userManager.FindByEmailAsync(ownerAccount.Email!);
             if (siteOwner == null)
             {
-                await userManager.CreateAsync(ownerAccount, password);
-                siteOwner = await userManager.FindByEmailAsync(ownerAccount.Email);
+                await userManager.CreateAsync(ownerAccount, password!);
+                siteOwner = await userManager.FindByEmailAsync(ownerAccount.Email!);
             }
 
-            var hasSuperAdminRole = await userManager.IsInRoleAsync(siteOwner, Role.SuperAdmin.ToString());
+            var hasSuperAdminRole = await userManager.IsInRoleAsync(siteOwner!, Role.SuperAdmin.ToString());
 
             if (!hasSuperAdminRole)
             {
-                await userManager.AddToRoleAsync(siteOwner, Role.SuperAdmin.ToString());
+                await userManager.AddToRoleAsync(siteOwner!, Role.SuperAdmin.ToString());
             }
         }
 
@@ -121,18 +121,18 @@ namespace SGM.DbMigrator
             };
             var password = config.GetSection("ServerAccounts:DeletedUser:Password").Value;
 
-            var deletedUser = await userManager.FindByNameAsync(deletedUserAccount.UserName);
+            var deletedUser = await userManager.FindByNameAsync(deletedUserAccount.UserName!);
             if (deletedUser == null)
             {
-                await userManager.CreateAsync(deletedUserAccount, password);
-                deletedUser = await userManager.FindByNameAsync(deletedUserAccount.UserName);
+                await userManager.CreateAsync(deletedUserAccount, password!);
+                deletedUser = await userManager.FindByNameAsync(deletedUserAccount.UserName!);
             }
 
-            var hasSuperAdminRole = await userManager.IsInRoleAsync(deletedUser, Role.SuperAdmin.ToString());
+            var hasSuperAdminRole = await userManager.IsInRoleAsync(deletedUser!, Role.SuperAdmin.ToString());
 
             if (!hasSuperAdminRole)
             {
-                await userManager.AddToRoleAsync(deletedUser, Role.SuperAdmin.ToString());
+                await userManager.AddToRoleAsync(deletedUser!, Role.SuperAdmin.ToString());
             }
         }
     }

@@ -13,9 +13,17 @@ public static class ServiceCollectionExtensions
     {
         var captchaOptions = configuration.GetSection(recaptchaSection).Get<GoogleRecaptchaOptions>();
         var emailSenderOptions = configuration.GetSection(emailConfigSection).Get<EmailSenderOptions>();
+        
+        if (captchaOptions != null)
+        {
+            services.AddSingleton(captchaOptions);
+        }
 
-        services.AddSingleton(captchaOptions);
-        services.AddSingleton(emailSenderOptions);
+        if (emailSenderOptions != null)
+        {
+            services.AddSingleton(emailSenderOptions);
+        }
+        
         services.AddTransient<IEmailSender, EmailSender>();
         services.AddScoped<ICaptchaService, GoogleRecaptchaService>();
         return services;
