@@ -13,7 +13,7 @@ public class FilesController : ControllerBase
     [HttpGet("resume")]
     public IActionResult GetResume()
     {
-        return File("/cv.pdf", "application/pdf");
+        return File("/resume.pdf", "application/pdf");
     }
 
     [HttpGet("sitemap")]
