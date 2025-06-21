@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SGM.EntityFramework.Data;
+using SGM.Infrastructure.Data;
 
 namespace SGM.EntityFramework.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201227074750_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20201227075947_AddTimestamp")]
+    partial class AddTimestamp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -334,6 +334,9 @@ namespace SGM.EntityFramework.Data.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");

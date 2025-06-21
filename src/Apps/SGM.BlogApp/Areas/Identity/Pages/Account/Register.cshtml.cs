@@ -2,8 +2,8 @@
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using SGM.Application.Contracts.Services;
 using SGM.Application.Options;
+using SGM.Application.Services;
 
 namespace SGM.BlogApp.Areas.Identity.Pages.Account;
 

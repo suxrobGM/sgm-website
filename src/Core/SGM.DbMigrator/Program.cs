@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SGM.DbMigrator;
-using SGM.EntityFramework.Data;
+using SGM.Infrastructure.Data;
 
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration(configuration =>

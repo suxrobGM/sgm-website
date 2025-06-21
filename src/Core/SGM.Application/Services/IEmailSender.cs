@@ -1,4 +1,4 @@
-﻿namespace SGM.Application.Contracts.Services;
+﻿namespace SGM.Application.Services;
 
 /// <summary>
 /// Email service

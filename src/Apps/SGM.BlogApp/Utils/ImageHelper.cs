@@ -14,7 +14,7 @@ public class ImageHelper
     }
 
     /// <summary>
-    /// Upload image file to server
+    /// Upload an image file to server
     /// </summary>
     /// <param name="image">Image file from form</param>
     /// <param name="imageFileName">Image file name without extension</param>
@@ -90,7 +90,7 @@ public class ImageHelper
         }
     }
 
-    public static void ResizeToQuadratic(IMagickImage<ushort> image, int xySize = 225)
+    public static void ResizeToQuadratic(IMagickImage<ushort> image, uint xySize = 225)
     {
         if (image.Height > xySize || image.Width > xySize)
         {
@@ -99,7 +99,7 @@ public class ImageHelper
         }
     }
 
-    public static void ResizeToRectangle(IMagickImage<ushort> image, int width = 850)
+    public static void ResizeToRectangle(IMagickImage<ushort> image, uint width = 850)
     {
         if (image.Width > width)
         {

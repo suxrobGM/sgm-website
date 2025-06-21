@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SGM.EntityFramework.Data;
+using SGM.Infrastructure.Data;
 
 namespace SGM.EntityFramework.Data.Migrations
 {

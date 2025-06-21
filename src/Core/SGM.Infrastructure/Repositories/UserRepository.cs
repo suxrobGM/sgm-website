@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SGM.Domain.Entities.BlogEntities;
+using SGM.Domain.Entities.UserEntities;
+using SGM.Domain.Repositories;
+using SGM.Infrastructure.Data;
 
-namespace SGM.EntityFramework.Repositories;
+namespace SGM.Infrastructure.Repositories;
 
 public class UserRepository : Repository<ApplicationUser>, IUserRepository
 {

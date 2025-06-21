@@ -1,4 +1,4 @@
-﻿namespace SGM.EntityFramework;
+﻿namespace SGM.Infrastructure;
 
 public static class ConnectionStrings
 {

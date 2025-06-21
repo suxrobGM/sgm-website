@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
+using SGM.Application.Options;
 
 namespace SGM.Application.Services;
 
 public sealed class GoogleRecaptchaService : ICaptchaService
 {
-    private const string apiEndpoint = "https://www.google.com/recaptcha/api/siteverify";
+    private const string ApiEndpoint = "https://www.google.com/recaptcha/api/siteverify";
     private readonly GoogleRecaptchaOptions _options;
     private readonly HttpClient _httpClient;
 
@@ -21,11 +22,11 @@ public sealed class GoogleRecaptchaService : ICaptchaService
     {
         var postQueries = new List<KeyValuePair<string, string>>
         {
-            new KeyValuePair<string, string>("secret", _options.SecretKey!),
-            new KeyValuePair<string, string>("response", captchaValue)
+            new("secret", _options.SecretKey!),
+            new("response", captchaValue)
         };
 
-        var response = await _httpClient.PostAsync(new Uri(apiEndpoint), new FormUrlEncodedContent(postQueries));
+        var response = await _httpClient.PostAsync(new Uri(ApiEndpoint), new FormUrlEncodedContent(postQueries));
         var responseContent = await response.Content.ReadAsStringAsync();
         var jsonData = JObject.Parse(responseContent);
 
@@ -33,9 +34,7 @@ public sealed class GoogleRecaptchaService : ICaptchaService
         {
             return value;
         }
-        else
-        {
-            return false;
-        }
+
+        return false;
     }
 }

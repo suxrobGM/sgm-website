@@ -1,8 +1,9 @@
 ﻿using SGM.Domain.Entities;
 using SGM.Domain.Entities.BlogEntities;
 using SGM.Domain.Repositories;
+using SGM.Infrastructure.Data;
 
-namespace SGM.EntityFramework.Repositories;
+namespace SGM.Infrastructure.Repositories;
 
 public class BlogRepository : Repository<Blog>, IBlogRepository
 {

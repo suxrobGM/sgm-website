@@ -1,14 +1,18 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using SGM.Domain.Entities.BlogEntities;
+using SGM.Domain.Entities.UserEntities;
+using SGM.Infrastructure.Helpers;
 
-namespace SGM.EntityFramework.Data;
+namespace SGM.Infrastructure.Data;
 
 public class DatabaseContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
 {
-    private readonly string connectionString;
+    private readonly string _connectionString;
 
     public DatabaseContext(string connectionString)
     {
-        this.connectionString = connectionString;
+        _connectionString = connectionString;
     }
 
     public DatabaseContext(DbContextOptions options) : base(options)
@@ -19,7 +23,7 @@ public class DatabaseContext : IdentityDbContext<ApplicationUser, ApplicationRol
     {
         if (!options.IsConfigured)
         {
-            DbContextHelpers.ConfigureSqlServer(connectionString, options);
+            DbContextHelpers.ConfigureSqlServer(_connectionString, options);
         }
     }
 

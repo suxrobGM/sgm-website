@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SGM.Domain.Entities.UserEntities;
+using SGM.Domain.Repositories;
+using SGM.Infrastructure.Data;
+using SGM.Infrastructure.Helpers;
+using SGM.Infrastructure.Repositories;
 
-namespace SGM.EntityFramework;
+namespace SGM.Infrastructure;
 
 public static class ServiceCollectionExtensions
 {

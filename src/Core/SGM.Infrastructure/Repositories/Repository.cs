@@ -1,6 +1,10 @@
 ﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using SGM.Domain;
+using SGM.Domain.Repositories;
+using SGM.Infrastructure.Data;
 
-namespace SGM.EntityFramework.Repositories;
+namespace SGM.Infrastructure.Repositories;
 
 /// <summary>
 /// Generic repository.

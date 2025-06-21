@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-SGM.DbMigrator-1A18F4E6-E6B6-4528-B46A-25C3318455F4</UserSecretsId>
@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SGM.EntityFramework.DbMigrations\SGM.EntityFramework.DbMigrations.csproj" />
+    <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

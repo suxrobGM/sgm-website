@@ -1,6 +1,6 @@
 ﻿using SGM.Application;
 using SGM.BlogApp.Utils;
-using SGM.EntityFramework;
+using SGM.Infrastructure;
 using SuxrobGM.Sdk.ServerAnalytics;
 using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 using Syncfusion.Licensing;

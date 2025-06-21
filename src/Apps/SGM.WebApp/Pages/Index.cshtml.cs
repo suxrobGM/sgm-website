@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using SGM.Application.Contracts.Services;
 using SGM.Application.Options;
+using SGM.Application.Services;
 
 namespace SGM.WebApp.Pages;
 

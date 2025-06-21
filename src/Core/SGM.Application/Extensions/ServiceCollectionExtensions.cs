@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SGM.Application.Options;
+using SGM.Application.Services;
 
 namespace SGM.Application;
 
