@@ -9,25 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\lib\fontawesome\**\*" CopyToPublishDirectory="Never" />
-    <Content Update="wwwroot\db_files\**\*" CopyToPublishDirectory="Never" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.6" />
 	<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.6" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.6" />
 	<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
     <PackageReference Include="SuxrobGM.Sdk.ServerAnalytics.Sqlite" Version="0.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\css\color" />
-    <Folder Include="wwwroot\fonts" />
-    <Folder Include="wwwroot\images\blog" />
-    <Folder Include="wwwroot\images\testi" />
-    <Folder Include="wwwroot\images\works" />
-    <Folder Include="wwwroot\js" />
   </ItemGroup>
 
   <ItemGroup>
