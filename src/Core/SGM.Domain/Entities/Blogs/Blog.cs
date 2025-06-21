@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace SGM.Domain.Entities.BlogEntities;
+namespace SGM.Domain.Entities.Blogs;
 
 public class Blog : Article
 {

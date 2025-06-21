@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SGM.Domain.Entities.UserEntities;
+using SGM.Domain.Entities.Users;
 using SGM.Infrastructure.Data;
 
 namespace SGM.DbMigrator

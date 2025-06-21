@@ -7,7 +7,7 @@ using Syncfusion.Licensing;
 
 namespace SGM.BlogApp;
 
-internal static class HostingExtensions
+internal static class Setup
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {

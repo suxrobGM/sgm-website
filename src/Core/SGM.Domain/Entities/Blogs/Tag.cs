@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SGM.Domain.Entities.BlogEntities;
+namespace SGM.Domain.Entities.Blogs;
 
 public class Tag : Entity, IEqualityComparer<Tag>
 {

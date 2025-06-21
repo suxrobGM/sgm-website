@@ -1,7 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using SGM.Application;
 using SGM.BlogApp.Utils;
+using SGM.Domain.Entities.Blogs;
+using SGM.Domain.Entities.Users;
+using SGM.Domain.Repositories;
 
 namespace SGM.BlogApp.Pages;
 
@@ -38,7 +43,7 @@ public class CreateBlogModel : PageModel
 
     public class InputModel
     {
-        public Domain.Entities.BlogEntities.Blog Blog { get; set; }
+        public Domain.Entities.Blogs.Blog Blog { get; set; }
         public IFormFile UploadCoverPhoto { get; set; }
         public string Tags { get; set; }
     }

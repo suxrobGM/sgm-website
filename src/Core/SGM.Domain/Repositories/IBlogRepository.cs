@@ -1,4 +1,4 @@
-﻿using SGM.Domain.Entities.BlogEntities;
+﻿using SGM.Domain.Entities.Blogs;
 
 namespace SGM.Domain.Repositories;
 

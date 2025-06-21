@@ -4,7 +4,7 @@ using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 
 namespace SGM.WebApp;
 
-internal static class HostingExtensions
+internal static class Setup
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
@@ -33,7 +33,7 @@ internal static class HostingExtensions
             .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin", "/wp-includes/")
             .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")
             .ExcludeLoopBack()
-            .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().ToLower().Contains("bot"));
+            .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().Contains("bot", StringComparison.CurrentCultureIgnoreCase));
 
         app.UseStaticFiles();
         app.UseRouting();

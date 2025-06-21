@@ -1,5 +1,5 @@
 ﻿using SGM.Domain.Entities;
-using SGM.Domain.Entities.BlogEntities;
+using SGM.Domain.Entities.Blogs;
 using SGM.Domain.Repositories;
 using SGM.Infrastructure.Data;
 

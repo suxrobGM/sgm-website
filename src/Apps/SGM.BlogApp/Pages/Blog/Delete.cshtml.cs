@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using SGM.BlogApp.Utils;
+using SGM.Domain.Entities.Blogs;
+using SGM.Domain.Repositories;
 
 namespace SGM.BlogApp.Pages;
 
@@ -16,7 +20,7 @@ public class DeleteBlogModel : PageModel
     }
 
     [BindProperty]
-    public Domain.Entities.BlogEntities.Blog Blog { get; set; }
+    public Domain.Entities.Blogs.Blog Blog { get; set; }
 
     public string Tags { get; set; }
 

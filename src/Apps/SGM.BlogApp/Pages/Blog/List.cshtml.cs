@@ -1,4 +1,7 @@
-﻿using SuxrobGM.Sdk.AspNetCore.Pagination;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using SGM.Domain.Repositories;
+using SuxrobGM.Sdk.AspNetCore.Pagination;
 
 namespace SGM.BlogApp.Pages;
 
@@ -11,8 +14,8 @@ public class ListBlogModel : PageModel
         _blogRepository = blogRepository;
     }
 
-    public PaginatedList<Domain.Entities.BlogEntities.Blog> Blogs { get; set; }
-    public Domain.Entities.BlogEntities.Blog[] PopularArticles { get; set; }
+    public PaginatedList<Domain.Entities.Blogs.Blog> Blogs { get; set; }
+    public Domain.Entities.Blogs.Blog[] PopularArticles { get; set; }
     public string[] PopularTags { get; set; }
 
     public async Task<IActionResult> OnGetAsync(int pageIndex = 1, string tag = null)
@@ -24,11 +27,11 @@ public class ListBlogModel : PageModel
             var taggedBlogs = _blogRepository.GetQuery(i => i.Tags.Select(t => t.Name.Trim().ToLower())
                 .Contains(tag.Trim().ToLower()));
 
-            Blogs = PaginatedList<Domain.Entities.BlogEntities.Blog>.Create(taggedBlogs, pageIndex, 5);
+            Blogs = PaginatedList<Domain.Entities.Blogs.Blog>.Create(taggedBlogs, pageIndex, 5);
         }
         else
         {
-            Blogs = PaginatedList<Domain.Entities.BlogEntities.Blog>.Create(blogs.OrderByDescending(i => i.Timestamp), pageIndex, 5);
+            Blogs = PaginatedList<Domain.Entities.Blogs.Blog>.Create(blogs.OrderByDescending(i => i.Timestamp), pageIndex, 5);
         }
 
         PopularArticles = blogs.OrderByDescending(i => i.ViewCount).Take(5).ToArray();
@@ -36,7 +39,7 @@ public class ListBlogModel : PageModel
         return Page();
     }
 
-    public Task<string[]> GetPopularTagsAsync(IQueryable<Domain.Entities.BlogEntities.Blog> blogs)
+    public Task<string[]> GetPopularTagsAsync(IQueryable<Domain.Entities.Blogs.Blog> blogs)
     {
         return Task.Run(() =>
         {

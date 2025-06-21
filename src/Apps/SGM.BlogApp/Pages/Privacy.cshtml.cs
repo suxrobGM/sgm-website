@@ -1,4 +1,6 @@
-﻿namespace SGM.BlogApp.Pages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace SGM.BlogApp.Pages;
 
 public class PrivacyModel : PageModel
 {

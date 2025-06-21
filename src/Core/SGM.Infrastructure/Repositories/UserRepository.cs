@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using SGM.Domain.Entities.BlogEntities;
-using SGM.Domain.Entities.UserEntities;
+using SGM.Domain.Entities.Blogs;
+using SGM.Domain.Entities.Users;
 using SGM.Domain.Repositories;
 using SGM.Infrastructure.Data;
 

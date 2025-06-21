@@ -3,6 +3,9 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using SGM.Domain.Entities.Users;
 
 namespace SGM.BlogApp.Areas.Identity.Pages.Account;
 

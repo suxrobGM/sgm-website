@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using SGM.Domain.Entities.UserEntities;
+using SGM.Domain.Entities.Users;
 
-namespace SGM.Domain.Entities.BlogEntities;
+namespace SGM.Domain.Entities.Blogs;
 
 public class Comment : Entity
 {

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using SGM.Domain.Entities.UserEntities;
+using SGM.Domain.Entities.Users;
 
 namespace SGM.BlogApp.Blog.Areas.Identity.Pages.Account.Manage
 {

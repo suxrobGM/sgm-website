@@ -2,6 +2,11 @@
 using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using SGM.Domain.Entities.Blogs;
+using SGM.Domain.Entities.Users;
+using SGM.Domain.Repositories;
 using SuxrobGM.Sdk.AspNetCore.Pagination;
 
 namespace SGM.BlogApp.Pages;
@@ -36,7 +41,7 @@ public class BlogIndexModel : PageModel
 
     public string Tags { get; set; }
     public int PageIndex { get; set; }
-    public Domain.Entities.BlogEntities.Blog Blog { get; set; }
+    public Domain.Entities.Blogs.Blog Blog { get; set; }
     public PaginatedList<Comment> Comments { get; set; }
     
 

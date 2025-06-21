@@ -10,8 +10,8 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices((ctx, services) =>
     {
-        var connectiongString = ctx.Configuration.GetConnectionString("LocalDB");
-        services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(connectiongString));
+        var connectionString = ctx.Configuration.GetConnectionString("LocalDB");
+        services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(connectionString));
         services.AddHostedService<SeedDataService>();
     })
     .Build();

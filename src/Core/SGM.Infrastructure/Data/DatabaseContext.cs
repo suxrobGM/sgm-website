@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SGM.Domain.Entities.BlogEntities;
-using SGM.Domain.Entities.UserEntities;
+using SGM.Domain.Entities.Blogs;
+using SGM.Domain.Entities.Users;
 using SGM.Infrastructure.Helpers;
 
 namespace SGM.Infrastructure.Data;
