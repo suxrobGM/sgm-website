@@ -6,7 +6,7 @@
 public interface IEmailSender
 {
     /// <summary>
-    /// Sends mail to specified address.
+    /// Sends mail to a specified address.
     /// </summary>
     /// <param name="receiverMail">Receiver email address</param>
     /// <param name="subject">Mail subject</param>

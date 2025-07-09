@@ -5,7 +5,7 @@ using SGM.Application.Services;
 
 namespace SGM.Application;
 
-public static class ServiceCollectionExtensions
+public static class Registrar
 {
     public static IServiceCollection AddApplicationLayer(
         this IServiceCollection services,
@@ -13,21 +13,16 @@ public static class ServiceCollectionExtensions
         string recaptchaSection = "GoogleRecaptcha",
         string emailConfigSection = "EmailConfig")
     {
-        var captchaOptions = configuration.GetSection(recaptchaSection).Get<GoogleRecaptchaOptions>();
         var emailSenderOptions = configuration.GetSection(emailConfigSection).Get<EmailSenderOptions>();
-        
-        if (captchaOptions != null)
-        {
-            services.AddSingleton(captchaOptions);
-        }
 
         if (emailSenderOptions != null)
         {
             services.AddSingleton(emailSenderOptions);
         }
-        
-        services.AddTransient<IEmailSender, EmailSender>();
-        services.AddScoped<ICaptchaService, GoogleRecaptchaService>();
+
+        services.AddOptions<GoogleRecaptchaOptions>().BindConfiguration(recaptchaSection);
+        services.AddScoped<IEmailSender, EmailSender>();
+        services.AddScoped<ICaptchaService, RecaptchaEnterpriseService>();
         return services;
     }
 }

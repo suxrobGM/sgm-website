@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Options;
 using SGM.Application.Options;
 using SGM.Application.Services;
 
@@ -13,16 +16,11 @@ public class IndexModel : PageModel
         ICaptchaService captchaService,
         IEmailSender emailSender,
         ILogger<IndexModel> logger,
-        GoogleRecaptchaOptions recaptchaOptions)
+        IOptions<GoogleRecaptchaOptions> options)
     {
-        if (string.IsNullOrEmpty(recaptchaOptions.SiteKey))
-        {
-            throw new ArgumentException("Captcha site key is an empty");
-        }
-
         _captchaService = captchaService;
         _emailSender = emailSender;
-        CaptchaSiteKey = recaptchaOptions.SiteKey;
+        CaptchaSiteKey = options.Value.SiteKey;
     }
 
     public class EmailInputModel
@@ -54,17 +52,19 @@ public class IndexModel : PageModel
         if (!ModelState.IsValid)
             return Page();
 
-        var captchaValue = HttpContext.Request.Form["g-Recaptcha-Response"].ToString();
-        var validCaptcha = await _captchaService.VerifyCaptchaAsync(captchaValue);
+        var token = Request.Form["recaptcha_token"];
+        var isHuman = await _captchaService.VerifyCaptchaAsync(token);
 
-        if (!validCaptcha)
+        if (!isHuman)
         {
-            EmailStatusMessage = "Error: invalid captcha";
+            EmailStatusMessage = "Error: failed reCAPTCHA check";
             return RedirectToPage("", "", "email");
         }
 
-        var message = @$"<p><b>{EmailInput.Name}</b> - {EmailInput.Email}</p>
-                         <p>{EmailInput.Message}</p>";
+        var message = $"""
+                       <p><b>{EmailInput.Name}</b> - {EmailInput.Email}</p>
+                                                <p>{EmailInput.Message}</p>
+                       """;
         var sentMail = await _emailSender.SendMailAsync("suxrobgm@gmail.com", EmailInput.Subject, message);
 
         EmailStatusMessage = sentMail ? "Your message has been sent successfully" : "Error: could not send email";

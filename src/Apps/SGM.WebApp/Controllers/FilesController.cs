@@ -1,6 +1,8 @@
-﻿namespace SGM.WebApp.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
+using SGM.Application.Services;
 
-//[Route("api/[controller]")]
+namespace SGM.WebApp.Controllers;
+
 [ApiController]
 public class FilesController : ControllerBase
 {

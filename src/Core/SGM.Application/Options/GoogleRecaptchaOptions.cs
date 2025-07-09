@@ -1,7 +1,8 @@
 ﻿namespace SGM.Application.Options;
 
-public class GoogleRecaptchaOptions
+public record GoogleRecaptchaOptions
 {
-    public string? SiteKey { get; set; }
-    public string? SecretKey { get; set; }
+    public required string SiteKey { get; init; }
+    public required string ProjectId { get; init; }
+    public required string KeyPath { get; init; }
 }

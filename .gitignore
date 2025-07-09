@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+appsettings.Production.json
+appsettings.Development.json
+
 # User-specific files
 *.suo
 *.user
@@ -25,6 +28,8 @@ secrets.json
 app_analytics.sqlite
 db_files/
 *.pdf
+
+keys/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

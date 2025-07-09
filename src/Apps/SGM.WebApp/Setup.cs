@@ -8,7 +8,6 @@ internal static class Setup
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        AddSecretsJson(builder.Configuration);
         builder.Services.AddApplicationLayer(builder.Configuration);
         builder.Services.AddScoped(_ => new SqliteDbContext(builder.Configuration.GetConnectionString("AnalyticsSqliteDB")));
         builder.Services.AddControllers();
@@ -33,7 +32,7 @@ internal static class Setup
             .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin", "/wp-includes/")
             .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")
             .ExcludeLoopBack()
-            .Exclude(ctx => ctx.Request.Headers["User-Agent"].ToString().Contains("bot", StringComparison.CurrentCultureIgnoreCase));
+            .Exclude(ctx => ctx.Request.Headers.UserAgent.ToString().Contains("bot", StringComparison.CurrentCultureIgnoreCase));
 
         app.UseStaticFiles();
         app.UseRouting();
@@ -45,11 +44,5 @@ internal static class Setup
         app.MapControllers();
         app.MapRazorPages();
         return app;
-    }
-
-    private static void AddSecretsJson(IConfigurationBuilder configuration)
-    {
-        var path = Path.Combine(AppContext.BaseDirectory, "appsettings.secrets.json");
-        configuration.AddJsonFile(path, true);
     }
 }

@@ -57,7 +57,7 @@
     <!-- Custom Style -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color/default.css" id="option-color">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=@Model.CaptchaSiteKey"></script>
 </head>
 
 <body>
@@ -653,7 +653,7 @@
                                 </div>
                             </div>
                             <div class="row mt-2">
-                                <div class="g-recaptcha" data-sitekey="@Model.CaptchaSiteKey"></div>
+                                <input type="hidden" id="recaptcha_token" name="recaptcha_token" />
                             </div>
                             <div class="row mt-2">
                                 <div class="col-lg-12">
@@ -680,7 +680,7 @@
                             <li class="list-inline-item"><a href="https://instagram.com/suxrob_gm"><i class="mdi mdi-instagram"></i></a></li>
                             <li class="list-inline-item"><a href="https://github.com/suxrobgm"><i class="mdi mdi-github-circle"></i></a></li>
                         </ul>
-                        <p class="copyright_content mb-0 mt-3"> 2023 &copy; Sukhrob Ilyosbekov</p>
+                        <p class="copyright_content mb-0 mt-3"> 2025 &copy; Sukhrob Ilyosbekov</p>
                     </div>
                 </div>
             </div>
@@ -757,5 +757,19 @@
             speed: 3500
         });
     </script>
-</body>
+    
+    <script>
+        // Submit the form with reCAPTCHA token
+        grecaptcha.enterprise.ready(() => {
+          const form = document.querySelector("#email form");
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const token = await grecaptcha.enterprise.execute(
+                "@Model.CaptchaSiteKey", { action: "contact" });
+            document.getElementById("recaptcha_token").value = token;
+            form.submit();
+          });
+        });
+    </script>
+    </body>
 </html>
