@@ -9,7 +9,7 @@ public class FilesController : ControllerBase
     [HttpGet("cv")]
     public IActionResult GetCv()
     {
-        return File("/cv.pdf", "application/pdf");
+        return File("/resume.pdf", "application/pdf");
     }
 
     [HttpGet("resume")]
