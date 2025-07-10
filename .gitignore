@@ -6,6 +6,9 @@
 appsettings.Production.json
 appsettings.Development.json
 
+app_analytics.sqlite
+db_files/
+
 # User-specific files
 *.suo
 *.user
@@ -22,12 +25,6 @@ Logs/
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
-
-secrets.json
-*.secrets.json
-app_analytics.sqlite
-db_files/
-*.pdf
 
 keys/
 

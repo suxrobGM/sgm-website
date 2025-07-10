@@ -20,4 +20,10 @@
     <ProjectReference Include="..\..\Core\SGM.Application\SGM.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\img\testi\testi_1.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\testi\testi_2.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\img\testi\testi_3.jpg" />
+  </ItemGroup>
+
 </Project>
