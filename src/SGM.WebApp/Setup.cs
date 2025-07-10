@@ -1,6 +1,4 @@
 ﻿using SGM.Application;
-using SuxrobGM.Sdk.ServerAnalytics;
-using SuxrobGM.Sdk.ServerAnalytics.Sqlite;
 
 namespace SGM.WebApp;
 
@@ -9,7 +7,6 @@ internal static class Setup
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddApplicationLayer(builder.Configuration);
-        builder.Services.AddScoped(_ => new SqliteDbContext(builder.Configuration.GetConnectionString("AnalyticsSqliteDB")));
         builder.Services.AddControllers();
         builder.Services.AddRazorPages();
         return builder.Build();
@@ -28,11 +25,6 @@ internal static class Setup
         }
 
         app.UseHttpsRedirection();
-        app.UseServerAnalytics(new SqliteAnalyticsRepository())
-            .ExcludePath("/js", "/lib", "/css", "/fonts", "/wp-includes", "/wp-admin", "/wp-includes/")
-            .ExcludeExtension(".jpg", ".png", ".ico", ".txt", ".php", "sitemap.xml", "sitemap.xsl")
-            .ExcludeLoopBack()
-            .Exclude(ctx => ctx.Request.Headers.UserAgent.ToString().Contains("bot", StringComparison.CurrentCultureIgnoreCase));
 
         app.UseStaticFiles();
         app.UseRouting();
