@@ -3,25 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.WebApp", "src\Apps\SGM.WebApp\SGM.WebApp.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.WebApp", "src\SGM.WebApp\SGM.WebApp.csproj", "{041590EA-6F5B-48E3-A93F-500E846C6364}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.IntegrationTests", "test\SGM.IntegrationTests\SGM.IntegrationTests.csproj", "{924CBA55-F1B4-436E-951B-A307F890E7CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Domain", "src\Core\SGM.Domain\SGM.Domain.csproj", "{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Domain", "src\SGM.Domain\SGM.Domain.csproj", "{68DBFA92-03AB-4B38-80D3-319DF9D0CA8B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Infrastructure", "src\Core\SGM.Infrastructure\SGM.Infrastructure.csproj", "{572B48A9-6DE9-4617-9E0A-4756738DBC22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Infrastructure", "src\SGM.Infrastructure\SGM.Infrastructure.csproj", "{572B48A9-6DE9-4617-9E0A-4756738DBC22}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{394C224B-A6DF-4988-A196-63F2CC035077}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{0E5E8109-D440-4918-863D-342D7691ADC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.BlogApp", "src\SGM.BlogApp\SGM.BlogApp.csproj", "{552658C8-E28F-484E-8571-F1E59B1B2209}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.BlogApp", "src\Apps\SGM.BlogApp\SGM.BlogApp.csproj", "{552658C8-E28F-484E-8571-F1E59B1B2209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Application", "src\SGM.Application\SGM.Application.csproj", "{40EA48AB-A784-4E0C-AD39-D19B05448991}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E922079F-8980-4288-B89B-E6962EEAD6CC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SGM.Application", "src\Core\SGM.Application\SGM.Application.csproj", "{40EA48AB-A784-4E0C-AD39-D19B05448991}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.DbMigrator", "src\Core\SGM.DbMigrator\SGM.DbMigrator.csproj", "{591C9FF6-74B5-43CF-BAE3-853DD936FA34}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.DbMigrator", "src\SGM.DbMigrator\SGM.DbMigrator.csproj", "{591C9FF6-74B5-43CF-BAE3-853DD936FA34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
