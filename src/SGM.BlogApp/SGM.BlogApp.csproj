@@ -28,8 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\SGM.Application\SGM.Application.csproj" />
-    <ProjectReference Include="..\..\Core\SGM.Infrastructure\SGM.Infrastructure.csproj" />
+    <ProjectReference Include="..\SGM.Application\SGM.Application.csproj" />
+    <ProjectReference Include="..\SGM.Infrastructure\SGM.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
