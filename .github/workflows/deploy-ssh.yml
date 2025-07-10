@@ -9,6 +9,7 @@ on:
 env:
   PROJECT_PATH: src/SGM.WebApp/SGM.WebApp.csproj
   DEPLOY_PATH: /var/www/sgm-main
+  GOOGLE_SA_KEY: blog-suxrobgm-13a40292a9ba.json
 
 jobs:
   test-dotnet:
@@ -74,6 +75,18 @@ jobs:
           script: |
             mv ${{ env.DEPLOY_PATH }}/publish/* ${{ env.DEPLOY_PATH }}
             rm -rf ${{ env.DEPLOY_PATH }}/publish
+
+      - name: Copy Google SA key into app
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host:     ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key:      ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            mkdir -p ${{ env.DEPLOY_PATH }}/keys
+            cp /home/persistence/${{ env.GOOGLE_SA_KEY }} ${{ env.DEPLOY_PATH }}/keys/
+            chown www-data:www-data ${{ env.DEPLOY_PATH }}/keys/${{ env.GOOGLE_SA_KEY }}
+            chmod 640 ${{ env.DEPLOY_PATH }}/keys/${{ env.GOOGLE_SA_KEY }}
 
       - name: Restart service
         uses: appleboy/ssh-action@v1.2.0
