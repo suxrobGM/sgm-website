@@ -1,5 +1,4 @@
-[![BuildShield](https://github.com/suxrobgm/sgm-website/actions/workflows/dotnet-build.yml/badge.svg)](https://github.com/suxrobgm/sgm-website/actions/workflows/dotnet-build.yml)
-[![BuildShield](https://github.com/suxrobgm/sgm-website/actions/workflows/deploy-ftp.yml/badge.svg)](https://github.com/suxrobgm/sgm-website/actions/workflows/deploy-ftp.yml)
+[![Deploy SSH](https://github.com/suxrobGM/sgm-website/actions/workflows/deploy-ssh.yml/badge.svg)](https://github.com/suxrobGM/sgm-website/actions/workflows/deploy-ssh.yml)
 
 # Sukhrob Ilyosbekov's website
 Sukhrob Ilyosbekov's personal website.
