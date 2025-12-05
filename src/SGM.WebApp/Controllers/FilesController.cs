@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SGM.Application.Services;
 
 namespace SGM.WebApp.Controllers;
 

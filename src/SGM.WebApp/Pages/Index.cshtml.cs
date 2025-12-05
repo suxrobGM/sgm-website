@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Options;
-using SGM.Application.Options;
-using SGM.Application.Services;
+using SGM.WebApp.Options;
+using SGM.WebApp.Services;
 
 namespace SGM.WebApp.Pages;
 

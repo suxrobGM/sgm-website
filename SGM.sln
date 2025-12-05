@@ -1,20 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Application", "src\SGM.Application\SGM.Application.csproj", "{573BAD35-02C1-497F-829C-12CAF4D7CCDD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.BlogApp", "src\SGM.BlogApp\SGM.BlogApp.csproj", "{DEF9A79D-21FA-4C21-BE8E-C050DF53033B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.DbMigrator", "src\SGM.DbMigrator\SGM.DbMigrator.csproj", "{09CEEECA-7926-4404-84E4-0D50ABD0B35F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Domain", "src\SGM.Domain\SGM.Domain.csproj", "{BB2FAB12-4182-42C7-9624-17C112A046FC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.Infrastructure", "src\SGM.Infrastructure\SGM.Infrastructure.csproj", "{D9B0B2FC-2107-4AFC-8541-DE571C765ED7}"
-EndProject
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.WebApp", "src\SGM.WebApp\SGM.WebApp.csproj", "{DAD65B78-A220-4C4F-8CA2-2A9473CF1010}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{852F762A-5982-45D3-8130-BE896AE24269}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SGM.IntegrationTests", "test\SGM.IntegrationTests\SGM.IntegrationTests.csproj", "{903C4374-BF59-47C6-9F28-C2ED1374EE36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,36 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{573BAD35-02C1-497F-829C-12CAF4D7CCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{573BAD35-02C1-497F-829C-12CAF4D7CCDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{573BAD35-02C1-497F-829C-12CAF4D7CCDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{573BAD35-02C1-497F-829C-12CAF4D7CCDD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DEF9A79D-21FA-4C21-BE8E-C050DF53033B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEF9A79D-21FA-4C21-BE8E-C050DF53033B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DEF9A79D-21FA-4C21-BE8E-C050DF53033B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DEF9A79D-21FA-4C21-BE8E-C050DF53033B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{09CEEECA-7926-4404-84E4-0D50ABD0B35F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{09CEEECA-7926-4404-84E4-0D50ABD0B35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{09CEEECA-7926-4404-84E4-0D50ABD0B35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{09CEEECA-7926-4404-84E4-0D50ABD0B35F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BB2FAB12-4182-42C7-9624-17C112A046FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BB2FAB12-4182-42C7-9624-17C112A046FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BB2FAB12-4182-42C7-9624-17C112A046FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BB2FAB12-4182-42C7-9624-17C112A046FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9B0B2FC-2107-4AFC-8541-DE571C765ED7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9B0B2FC-2107-4AFC-8541-DE571C765ED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9B0B2FC-2107-4AFC-8541-DE571C765ED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9B0B2FC-2107-4AFC-8541-DE571C765ED7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DAD65B78-A220-4C4F-8CA2-2A9473CF1010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DAD65B78-A220-4C4F-8CA2-2A9473CF1010}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAD65B78-A220-4C4F-8CA2-2A9473CF1010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAD65B78-A220-4C4F-8CA2-2A9473CF1010}.Release|Any CPU.Build.0 = Release|Any CPU
-		{903C4374-BF59-47C6-9F28-C2ED1374EE36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{903C4374-BF59-47C6-9F28-C2ED1374EE36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{903C4374-BF59-47C6-9F28-C2ED1374EE36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{903C4374-BF59-47C6-9F28-C2ED1374EE36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{903C4374-BF59-47C6-9F28-C2ED1374EE36} = {852F762A-5982-45D3-8130-BE896AE24269}
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BCFE7B81-FD09-47E0-A088-631977A29185}
 	EndGlobalSection
 EndGlobal

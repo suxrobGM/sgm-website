@@ -1,4 +1,5 @@
-﻿using SGM.Application;
+﻿using SGM.WebApp.Options;
+using SGM.WebApp.Services;
 
 namespace SGM.WebApp;
 
@@ -6,7 +7,17 @@ internal static class Setup
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddApplicationLayer(builder.Configuration);
+        var emailSenderOptions = builder.Configuration.GetSection("EmailConfig").Get<EmailSenderOptions>();
+
+        if (emailSenderOptions is not null)
+        {
+            builder.Services.AddSingleton(emailSenderOptions);
+        }
+
+        builder.Services.AddOptions<GoogleRecaptchaOptions>().BindConfiguration("GoogleRecaptcha");
+        builder.Services.AddScoped<IEmailSender, EmailSender>();
+        builder.Services.AddScoped<ICaptchaService, RecaptchaEnterpriseService>();
+
         builder.Services.AddControllers();
         builder.Services.AddRazorPages();
         return builder.Build();
