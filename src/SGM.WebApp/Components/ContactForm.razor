@@ -1,0 +1,126 @@
+@using System.ComponentModel.DataAnnotations
+@rendermode InteractiveServer
+@inject IEmailSender EmailSender
+@inject ICaptchaService CaptchaService
+@inject IJSRuntime JSRuntime
+
+<div id="email" class="form-email contact_form">
+    <EditForm Model="EmailInput" OnValidSubmit="HandleSubmit" FormName="contact-form" method="post">
+        <DataAnnotationsValidator />
+        <div class="row">
+            @if (!string.IsNullOrEmpty(StatusMessage))
+            {
+                var statusMessageClass = StatusMessage.StartsWith("Error") ? "danger" : "success";
+                <div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @StatusMessage
+                </div>
+            }
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <ValidationMessage For="@(() => EmailInput.Name)" class="text-danger" />
+                    <InputText @bind-Value="EmailInput.Name" class="form-control text-light" placeholder="Your name..." aria-label="Your name" />
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <ValidationMessage For="@(() => EmailInput.Email)" class="text-danger" />
+                    <InputText @bind-Value="EmailInput.Email" class="form-control text-light" placeholder="Your email..." aria-label="Your email" />
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="form-group">
+                <ValidationMessage For="@(() => EmailInput.Subject)" class="text-danger" />
+                <InputText @bind-Value="EmailInput.Subject" class="form-control text-light" placeholder="Subject.." aria-label="Subject" />
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <ValidationMessage For="@(() => EmailInput.Message)" class="text-danger" />
+                    <InputTextArea @bind-Value="EmailInput.Message" class="form-control text-light" rows="4" placeholder="Your Message..." />
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="recaptcha_token" name="recaptcha_token" @bind="RecaptchaToken" />
+        <div class="row mt-2">
+            <div class="col-lg-12">
+                <button type="submit" class="btn btn-custom text-uppercase" disabled="@IsSubmitting">
+                    @(IsSubmitting ? "Sending..." : "Send Message")
+                </button>
+            </div>
+        </div>
+    </EditForm>
+</div>
+
+@code {
+    [Parameter]
+    public string CaptchaSiteKey { get; set; } = string.Empty;
+
+    private EmailInputModel EmailInput { get; set; } = new();
+
+    private string? StatusMessage { get; set; }
+    private string RecaptchaToken { get; set; } = string.Empty;
+    private bool IsSubmitting { get; set; }
+
+    private async Task HandleSubmit()
+    {
+        IsSubmitting = true;
+        StatusMessage = null;
+
+        try
+        {
+            // Get reCAPTCHA token from JavaScript
+            RecaptchaToken = await JSRuntime.InvokeAsync<string>("getRecaptchaToken", CaptchaSiteKey);
+
+            if (string.IsNullOrEmpty(RecaptchaToken))
+            {
+                StatusMessage = "Error: Could not verify reCAPTCHA";
+                return;
+            }
+
+            var isHuman = await CaptchaService.VerifyCaptchaAsync(RecaptchaToken);
+
+            if (!isHuman)
+            {
+                StatusMessage = "Error: failed reCAPTCHA check";
+                return;
+            }
+
+            var message = $"""
+                <p><b>{EmailInput.Name}</b> - {EmailInput.Email}</p>
+                <p>{EmailInput.Message}</p>
+                """;
+
+            var sentMail = await EmailSender.SendMailAsync("suxrobgm@gmail.com", EmailInput.Subject!, message);
+
+            StatusMessage = sentMail ? "Your message has been sent successfully" : "Error: could not send email";
+
+            if (sentMail)
+            {
+                EmailInput = new EmailInputModel();
+            }
+        }
+        finally
+        {
+            IsSubmitting = false;
+        }
+    }
+
+    public class EmailInputModel
+    {
+        [Required(ErrorMessage = "Name is required")]
+        public string? Name { get; set; }
+
+        [Required(ErrorMessage = "Subject is required")]
+        public string? Subject { get; set; }
+
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
+        public string? Email { get; set; }
+
+        [Required(ErrorMessage = "Message is required")]
+        public string? Message { get; set; }
+    }
+}

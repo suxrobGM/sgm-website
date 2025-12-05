@@ -11,9 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Cloud.RecaptchaEnterprise.V1" Version="2.19.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="10.0.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.0"/>
     <PackageReference Include="Serilog.AspNetCore" Version="10.0.0"/>
   </ItemGroup>
-  
+
 </Project>

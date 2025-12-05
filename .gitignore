@@ -347,3 +347,7 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+.claude/
+
+BlazorApp1/

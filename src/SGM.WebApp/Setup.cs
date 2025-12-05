@@ -1,4 +1,5 @@
-﻿using SGM.WebApp.Options;
+﻿using SGM.WebApp.Components;
+using SGM.WebApp.Options;
 using SGM.WebApp.Services;
 
 namespace SGM.WebApp;
@@ -19,7 +20,9 @@ internal static class Setup
         builder.Services.AddScoped<ICaptchaService, RecaptchaEnterpriseService>();
 
         builder.Services.AddControllers();
-        builder.Services.AddRazorPages();
+        builder.Services.AddRazorComponents()
+            .AddInteractiveServerComponents();
+
         return builder.Build();
     }
 
@@ -40,12 +43,15 @@ internal static class Setup
         app.UseStaticFiles();
         app.UseRouting();
         app.UseCookiePolicy();
+        app.UseAntiforgery();
 
         app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();
-        app.MapRazorPages();
+        app.MapRazorComponents<App>()
+            .AddInteractiveServerRenderMode();
+
         return app;
     }
 }
