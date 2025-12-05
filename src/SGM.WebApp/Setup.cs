@@ -8,18 +8,12 @@ internal static class Setup
 {
     public static WebApplication ConfigureServices(this WebApplicationBuilder builder)
     {
-        var emailSenderOptions = builder.Configuration.GetSection("EmailConfig").Get<EmailSenderOptions>();
-
-        if (emailSenderOptions is not null)
-        {
-            builder.Services.AddSingleton(emailSenderOptions);
-        }
-
+        builder.Services.AddOptions<EmailSenderOptions>().BindConfiguration("EmailConfig");
         builder.Services.AddOptions<GoogleRecaptchaOptions>().BindConfiguration("GoogleRecaptcha");
+
         builder.Services.AddScoped<IEmailSender, EmailSender>();
         builder.Services.AddScoped<ICaptchaService, RecaptchaEnterpriseService>();
 
-        builder.Services.AddControllers();
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
 
@@ -45,10 +39,6 @@ internal static class Setup
         app.UseCookiePolicy();
         app.UseAntiforgery();
 
-        app.UseAuthentication();
-        app.UseAuthorization();
-
-        app.MapControllers();
         app.MapRazorComponents<App>()
             .AddInteractiveServerRenderMode();
 

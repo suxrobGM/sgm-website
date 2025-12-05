@@ -19,7 +19,8 @@ public sealed class RecaptchaEnterpriseService : ICaptchaService
         _siteKey = options.Value.SiteKey;
         _client = new RecaptchaEnterpriseServiceClientBuilder
         {
-            Credential = GoogleCredential.FromFile(options.Value.KeyPath)
+            Credential = CredentialFactory.FromFile<ServiceAccountCredential>(options.Value.KeyPath)
+                .ToGoogleCredential()
         }.Build();
     }
 
@@ -41,10 +42,16 @@ public sealed class RecaptchaEnterpriseService : ICaptchaService
         });
 
         // Check that Google accepted the token
-        if (!response.TokenProperties.Valid) return false;
+        if (!response.TokenProperties.Valid)
+        {
+            return false;
+        }
 
         // Make sure it was generated for this action
-        if (response.TokenProperties.Action != "contact") return false;
+        if (response.TokenProperties.Action != "contact")
+        {
+            return false;
+        }
 
         // Decide to use the risk score (0.0-1.0). 0.1-0.3 ≈ likely bot.
         return response.RiskAnalysis.Score >= 0.5;
