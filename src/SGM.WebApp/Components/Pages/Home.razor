@@ -2,681 +2,645 @@
 @using Microsoft.Extensions.Options
 @using SGM.WebApp.Options
 @inject IOptions<GoogleRecaptchaOptions> RecaptchaOptions
+@inject IJSRuntime JS
 
-<PageTitle>Sukhrob Ilyosbekov</PageTitle>
+<PageTitle>Sukhrob Ilyosbekov | Full Stack Developer & AI Researcher</PageTitle>
 
 <HeadContent>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="7443Tno6XS-gkMmh5ZvtcwWF1PuGfkPev_q-fVmUF3Y" />
-    <meta name="yandex-verification" content="aad30851e49cf5e7" />
-    <meta name="msvalidate.01" content="6527AC8486CF0C33982F0189EB53F279" />
-
     <meta name="author" content="Sukhrob Ilyosbekov" />
-    <meta name="keywords" content="Suxrob, Sukhrob, Ilyosbekov, SuxrobGM, Suxrob GM, Sukhrob Ilyosbekov, Suxrobbek, Suxrobbek Ilyosbekov,
-          Suxrob Ilyosbekov, Sukhrobbek, Sukhrobbek Ilyosbekov, suxrob_gm, Stephen, Software Enginer, Software Developer, Developer, Software, SGM, .NET, .NET Expert, Freelancer, Freelance,
-          development, game, skills, software, application, mobile, desktop, programmer, programming, C#, C++, Python, JavaScript, full-stack developer, uzbekistan, samarkand" />
+    <meta name="keywords" content="Sukhrob Ilyosbekov, Full Stack Developer, AI Researcher, Computer Vision, Deep Learning, .NET Developer, React, Python, Machine Learning, Software Engineer" />
     <meta name="description" content="@Description" />
     <meta name="image" content="https://suxrobgm.net/img/about.jpg" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://suxrobgm.net" />
-    <meta property="og:title" content="Sukhrob Ilyosbekov" />
+    <meta property="og:title" content="Sukhrob Ilyosbekov | Full Stack Developer & AI Researcher" />
     <meta property="og:description" content="@Description" />
     <meta property="og:image" content="https://suxrobgm.net/img/about.jpg" />
 
-    <meta name="twitter:card" content="Sukhrob Ilyosbekov's official website, Software Engineer." />
-    <meta name="twitter:url" content="https://suxrobgm.net" />
-    <meta name="twitter:title" content="Sukhrob Ilyosbekov" />
-    <meta name="twitter:description" content="@Description" />
-    <meta name="twitter:creator" content="Sukhrob Ilyosbekov" />
-    <meta name="twitter:image" content="https://suxrobgm.net/img/about.jpg" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Bootstrap Css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Vice City Theme -->
+    <link rel="stylesheet" href="css/vice-city.css">
 
-    <!-- Materialdesign icons Css -->
-    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Owl Carousel -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-
-    <!-- Animate Css -->
-    <link rel="stylesheet" href="css/animate.min.css">
-
-    <!-- Magnific-popup -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <!-- Mobirise icons Css -->
-    <link rel="stylesheet" href="css/mobiriseicons.css">
-
-    <!-- Custom Style -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/color/default.css" id="option-color">
+    <!-- reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/enterprise.js?render=@CaptchaSiteKey"></script>
 </HeadContent>
 
-<!-- Loader -->
-<div id="preloader">
-    <div id="status">
-        <div class="spinner">Loading...</div>
-    </div>
-</div>
-
-<!-- Start Navbar -->
-<nav class="navbar navbar-expand-lg custom-nav navbar-light fixed-top sticky">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="mdi mdi-menu"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto" id="main_nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#services">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#work">Work</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#portfolio">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-            </ul>
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+    <div class="nav-container">
+        <a href="#home" class="nav-logo">SUKHROB</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
 </nav>
-<!-- End Navbar -->
 
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-background"></div>
+    <div class="hero-sun"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-palms"></div>
+    <div class="hero-content">
+        <p class="hero-subtitle">Welcome to my world</p>
+        <h1 class="hero-title">
+            <span class="first-name">Sukhrob</span>
+            <span class="last-name">Ilyosbekov</span>
+        </h1>
+        <p class="hero-tagline">Senior Full Stack Developer | AI & Computer Vision Researcher</p>
+        <div class="hero-buttons">
+            <a href="resume.pdf" class="btn btn-primary" download>
+                <i class="fas fa-download"></i> Industry Resume
+            </a>
+            <a href="resume-phd.pdf" class="btn btn-secondary" download>
+                <i class="fas fa-flask"></i> Research CV
+            </a>
+        </div>
+    </div>
+</section>
 
-<!-- START HOME -->
-<section class="section header-bg-img h-100vh align-items-center d-flex jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url('img/header_bg.jpg');" id="home">
-    <div class="bg-overlay"></div>
-    <div class="container z-index">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="text-center header-content mx-auto">
-                    <h4 class="text-white first-title mb-4">Welcome</h4>
-                    <h1 class="header-name text-white text-capitalize mb-0">I'm <span class="simple-text-rotate fw-bold">Sukhrob Ilyosbekov.,a Software Engineer.</span></h1>
-                    <p class="text-white mx-auto header-desc mt-4">Full Stack Developer</p>
-                    <div class="mt-4 pt-2">
-                        <a href="resume.pdf" class="btn btn-outline-custom btn-round" download>Download CV</a>
+<!-- About Section -->
+<section class="section about" id="about">
+    <div class="container">
+        <h2 class="section-title gradient-text">About Me</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="img/about.jpg" alt="Sukhrob Ilyosbekov">
+            </div>
+            <div class="about-content">
+                <h3>Full Stack Developer & AI Researcher</h3>
+                <p>
+                    I'm a passionate software engineer pursuing my Master's in Computer Science at Northeastern University.
+                    With 9+ years of experience spanning full-stack development, game development,
+                    and AI/ML research, I bridge the gap between cutting-edge research and production-ready applications.
+                </p>
+                <p>
+                    My research focuses on Computer Vision, Deep Learning, Medical Image Analysis, and Explainable AI.
+                    I've developed systems for skin cancer classification, monocular depth estimation, and multi-modal
+                    book detection using state-of-the-art architectures.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">9+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Completed</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="scroll_down">
-        <a href="#about" class="scroll">
-            <i class="text-white"></i>
-        </a>
-    </div>
 </section>
-<!-- END HOME -->
 
-<!-- START ABOUT -->
-<section class="section" id="about">
+<!-- Skills Section -->
+<section class="section skills" id="skills">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="mt-3">
-                    <img src="img/about.jpg" alt="" class="img-fluid mx-auto d-block img-thumbnail">
+        <h2 class="section-title gradient-text">Technical Arsenal</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                <h3>AI & Deep Learning</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">PyTorch</span>
+                    <span class="skill-tag">TensorFlow</span>
+                    <span class="skill-tag">OpenCV</span>
+                    <span class="skill-tag">YOLO</span>
+                    <span class="skill-tag">CNNs</span>
+                    <span class="skill-tag">Vision Transformers</span>
+                    <span class="skill-tag">GradCAM++</span>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="mt-3">
-                    <h2><span class="fw-bold">About</span> Me</h2>
-                    <h4 class="mt-4">Hello! <span class="text-custom fw-bold">I'm Sukhrob Ilyosbekov.</span></h4>
-                    <p class="text-muted mt-4">I am a software engineer with over 9 years of extensive experience in complete software development life cycle (SDLC) involving prerequisite analysis, design, development, testing, packaging, deploying, and maintaining web, mobile, and gaming applications.</p>
-                    <p class="text-muted mt-2">My major skills:</p>
-                    <div class="row">
-                        <div class="col-6">
-                            <ul>
-                                <li class="text-muted">C#</li>
-                                <li class="text-muted">ASP.NET Core</li>
-                                <li class="text-muted">WPF</li>
-                                <li class="text-muted">MAUI</li>
-                                <li class="text-muted">Node.js</li>
-                                <li class="text-muted">NestJS</li>
-                                <li class="text-muted">AWS</li>
-                            </ul>
-                        </div>
-                        <div class="col-6">
-                            <ul>
-                                <li class="text-muted">Blazor WebAssembly</li>
-                                <li class="text-muted">Angular</li>
-                                <li class="text-muted">React</li>
-                                <li class="text-muted">JavaScript/TypeScript</li>
-                                <li class="text-muted">HTML/CSS</li>
-                                <li class="text-muted">SQL</li>
-                                <li class="text-muted">Python</li>
-                            </ul>
-                        </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                <h3>Backend Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">ASP.NET Core</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">NestJS</span>
+                    <span class="skill-tag">FastAPI</span>
+                    <span class="skill-tag">Spring Boot</span>
+                    <span class="skill-tag">gRPC</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                <h3>Frontend Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">Next.js</span>
+                    <span class="skill-tag">Blazor</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Tailwind</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>Mobile & Desktop</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">MAUI</span>
+                    <span class="skill-tag">React Native</span>
+                    <span class="skill-tag">WPF</span>
+                    <span class="skill-tag">Avalonia</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-gamepad"></i></div>
+                <h3>Game Development</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">Unity</span>
+                    <span class="skill-tag">Godot</span>
+                    <span class="skill-tag">PhaserJS</span>
+                    <span class="skill-tag">Colyseus</span>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+                <h3>Cloud & DevOps</h3>
+                <div class="skill-tags">
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">CI/CD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Awards Section -->
+<section class="section awards" id="awards">
+    <div class="container">
+        <h2 class="section-title gradient-text">Awards & Honors</h2>
+        <div class="awards-grid">
+            <div class="award-card">
+                <div class="award-icon">🥇</div>
+                <h3 class="award-title">National Physics Olympiad</h3>
+                <p class="award-description">1st Place in Uzbekistan - First student from my high school to win at national level</p>
+            </div>
+            <div class="award-card">
+                <div class="award-icon">⭐</div>
+                <h3 class="award-title">Outstanding Project Award</h3>
+                <p class="award-description">Bookshelf Scanner - Computer Vision Course at Northeastern University</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section class="section experience" id="experience">
+    <div class="container">
+        <h2 class="section-title gradient-text">Work Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Jan 2025 - Jun 2025</div>
+                    <h3 class="timeline-title">Full Stack Developer</h3>
+                    <div class="timeline-company">EmTech Care Labs | Portland, ME</div>
+                    <p class="timeline-description">
+                        Built HIPAA-compliant healthcare platform for Alzheimer's care planning.
+                        Led AWS Amplify Gen 1 to Gen 2 migration. Implemented real-time messaging systems.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Jul 2022 - Present</div>
+                    <h3 class="timeline-title">Freelance Full Stack Developer</h3>
+                    <div class="timeline-company">Upwork | USA</div>
+                    <p class="timeline-description">
+                        Developed MMO game "Chestnut" with real-time sync & Web3. Built AI healthcare app
+                        for medical imaging on Azure AKS. Created full-stack real estate platform with Next.js/NestJS.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Dec 2022 - Dec 2023</div>
+                    <h3 class="timeline-title">.NET Software Engineer</h3>
+                    <div class="timeline-company">Virtuworks | Miami, FL</div>
+                    <p class="timeline-description">
+                        Led migration from ASP.NET Web Forms to Blazor WebAssembly.
+                        Developed responsive UI components and optimized server applications.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Oct 2021 - May 2022</div>
+                    <h3 class="timeline-title">.NET Software Engineer</h3>
+                    <div class="timeline-company">Frost Pixel Studio | Russia</div>
+                    <p class="timeline-description">
+                        Enhanced web app performance by 30%. Developed browser games with PhaserJS
+                        and created knowledge management platform with Node.js, Dgraph, and React.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Sep 2020 - Oct 2021</div>
+                    <h3 class="timeline-title">.NET Software Engineer</h3>
+                    <div class="timeline-company">Smart Meal Service | Russia</div>
+                    <p class="timeline-description">
+                        Developed robotic cashier app and self-service kiosks integrated with POS systems
+                        using WPF, gRPC, and computer vision for product recognition.
+                    </p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-date">Mar 2020 - Feb 2021</div>
+                    <h3 class="timeline-title">Game Developer</h3>
+                    <div class="timeline-company">Pentalight Technology | Malaysia</div>
+                    <p class="timeline-description">
+                        Developed multiplayer VR smart city project in Unity.
+                        Integrated SteamVR and MLAPI networking for real-time collaboration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Research Section -->
+<section class="section research" id="research">
+    <div class="container">
+        <h2 class="section-title gradient-text">Research Projects</h2>
+        <div class="research-grid">
+            <div class="research-card">
+                <div class="research-icon"><i class="fas fa-microscope"></i></div>
+                <div class="research-content">
+                    <h3>MelanomaNet: Explainable Skin Lesion Classification</h3>
+                    <p>
+                        Developed explainable deep learning system for multi-class skin lesion classification
+                        using EfficientNet V2 with GradCAM++ visualization. Implemented novel ABCDE criterion
+                        analysis for clinical interpretability across all 9 ISIC 2019 categories.
+                    </p>
+                    <div class="project-tech">
+                        <span>PyTorch</span>
+                        <span>EfficientNet V2</span>
+                        <span>GradCAM++</span>
+                        <span>OpenCV</span>
                     </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/explainable-melanoma" target="_blank">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="research-card">
+                <div class="research-icon"><i class="fas fa-eye"></i></div>
+                <div class="research-content">
+                    <h3>LightDepth: Lightweight Monocular Depth Estimation</h3>
+                    <p>
+                        Designed lightweight depth estimation model with ResNet18 encoder and U-Net decoder,
+                        achieving 42% fewer parameters than Depth Anything V2, 72% faster inference,
+                        and better relative error metrics on NYU Depth V2 benchmark.
+                    </p>
+                    <div class="project-tech">
+                        <span>PyTorch</span>
+                        <span>ResNet18</span>
+                        <span>U-Net</span>
+                        <span>Depth Estimation</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/lightdepth" target="_blank">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="research-card">
+                <div class="research-icon"><i class="fas fa-expand"></i></div>
+                <div class="research-content">
+                    <h3>FSRCNN: Super-Resolution Neural Network</h3>
+                    <p>
+                        Implemented FSRCNN architecture achieving 40x speedup over SRCNN with end-to-end
+                        learned upsampling. Evaluated on Set5 (+1.78 dB PSNR) and Set14 (+1.26 dB PSNR)
+                        with comprehensive ablation studies.
+                    </p>
+                    <div class="project-tech">
+                        <span>PyTorch</span>
+                        <span>Super-Resolution</span>
+                        <span>Mixed Precision</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/fsrcnn" target="_blank">
+                            <i class="fab fa-github"></i> View Repository
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section class="section projects" id="projects">
+    <div class="container">
+        <h2 class="section-title gradient-text">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Med Image Scanner</h3>
+                    <p class="project-description">
+                        HIPAA-compliant platform connecting to hospital PACS via DICOM for AI-powered
+                        analysis on X-ray, CT, and MRI studies with OHIF Viewer integration.
+                    </p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>FastAPI</span>
+                        <span>Next.js</span>
+                        <span>PyTorch</span>
+                        <span>OHIF</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/med-image-scanner" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Logistics TMS</h3>
+                    <p class="project-description">
+                        Enterprise-scale multi-tenant SaaS fleet management system with real-time tracking,
+                        SignalR messaging, admin/management web apps, and mobile driver application.
+                    </p>
+                    <div class="project-tech">
+                        <span>ASP.NET Core</span>
+                        <span>Angular</span>
+                        <span>Blazor</span>
+                        <span>MAUI</span>
+                        <span>SignalR</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/logistics-app" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-chess"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">ChessMate</h3>
+                    <p class="project-description">
+                        Online chess platform with PvP and AI opponents, supporting rated and unrated
+                        matches with real-time WebSocket communication.
+                    </p>
+                    <div class="project-tech">
+                        <span>Spring Boot</span>
+                        <span>Angular</span>
+                        <span>WebSocket</span>
+                        <span>Auth0</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/online-chess" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Bookshelf Scanner</h3>
+                    <p class="project-description">
+                        End-to-end book detection from bookshelf images using YOLO segmentation
+                        and Moondream2 vision-language model for title/author extraction.
+                    </p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>YOLO</span>
+                        <span>Moondream2</span>
+                        <span>FastAPI</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/bookshelf-scanner" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-wpforms"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Blazor Form Builder</h3>
+                    <p class="project-description">
+                        Comprehensive library for generating and managing forms in Blazor with
+                        drag-and-drop features and JSON schema generation.
+                    </p>
+                    <div class="project-tech">
+                        <span>C#</span>
+                        <span>Blazor</span>
+                        <span>ASP.NET Core</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/blazor-form-builder" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">AoE4 Matchmaking System</h3>
+                    <p class="project-description">
+                        ML-assisted matchmaking combining player clustering, XGBoost predictions,
+                        and ELO rating for balanced competitive Age of Empires IV matches.
+                    </p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>XGBoost</span>
+                        <span>FastAPI</span>
+                        <span>Angular</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/suxrobgm/aoe4-matchmaking" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section class="section education" id="education">
+    <div class="container">
+        <h2 class="section-title gradient-text">Education</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <h3 class="education-degree">M.S. Computer Science</h3>
+                <p class="education-school">Northeastern University, Boston, MA</p>
+                <p class="education-date">January 2024 - May 2026</p>
+                <span class="education-gpa">GPA: 4.0/4.0</span>
+            </div>
+            <div class="education-card">
+                <h3 class="education-degree">B.S. Computer Science</h3>
+                <p class="education-school">Suffolk University, Boston, MA</p>
+                <p class="education-date">September 2021 - May 2023</p>
+                <span class="education-gpa">Cum Laude | GPA: 3.5/4.0</span>
+            </div>
+            <div class="education-card">
+                <h3 class="education-degree">B.S. Computer Science</h3>
+                <p class="education-school">INTI International College, Malaysia</p>
+                <p class="education-date">September 2019 - July 2021</p>
+            </div>
+            <div class="education-card">
+                <h3 class="education-degree">B.S. Software Engineering</h3>
+                <p class="education-school">TUIT, Uzbekistan</p>
+                <p class="education-date">September 2017 - June 2019</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="section contact" id="contact">
+    <div class="container">
+        <h2 class="section-title gradient-text">Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Let's Connect</h3>
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <div>
-                        <ul class="mb-0 about-social list-inline mt-4">
-                            <li class="list-inline-item"><a href="https://instagram.com/suxrob_gm"><i class="mdi mdi-instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="https://facebook.com/suxrobgm"><i class="mdi mdi-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="https://linkedin.com/in/suxrobgm"><i class="mdi mdi-linkedin"></i></a></li>
-                            <li class="list-inline-item"><a href="https://github.com/suxrobgm"><i class="mdi mdi-github-circle"></i></a></li>
-                        </ul>
+                        <p>Email</p>
+                        <a href="mailto:silyosbekov@gmail.com">silyosbekov@gmail.com</a>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END ABOUT -->
-
-<!-- START SERVICES -->
-<section class="section bg-light" id="services">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    <h2><span class="fw-bold">What I do</span></h2>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-lg-4">
-                <div class="text-center services-boxes rounded p-4 mt-4">
-                    <div class="services-boxes-icon">
-                        <i class="mbri-browse text-custom display-4"></i>
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="mb-0">Web Application</h5>
-                        <div class="services-title-border"></div>
-                        <p class="text-muted mt-3">Web application development using ASP.NET Core</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="text-center services-boxes rounded p-4 mt-4">
-                    <div class="services-boxes-icon">
-                        <i class="mbri-windows text-custom display-4"></i>
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="mb-0">Desktop Application</h5>
-                        <div class="services-title-border"></div>
-                        <p class="text-muted mt-3">Desktop application development using WPF or Avalonia.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="text-center services-boxes rounded p-4 mt-4">
-                    <div class="services-boxes-icon">
-                        <i class="mbri-android text-custom display-4"></i>
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="mb-0">Game Development</h5>
-                        <div class="services-title-border"></div>
-                        <p class="text-muted mt-3">Game development using Unity Engine</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="text-center services-boxes rounded p-4 mt-4">
-                    <div class="services-boxes-icon">
-                        <i class="mbri-mobile2 text-custom display-4"></i>
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="mb-0">Mobile Application</h5>
-                        <div class="services-title-border"></div>
-                        <p class="text-muted mt-3">Cross-platform mobile application development using Xamarin.Forms/MAUI</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END SERVICES -->
-
-<!-- START WORK EXPERIENCE -->
-<section class="section" id="work">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12">
-                <ul class="timeline">
-                    <li>
-                        <i class="mbri-briefcase"></i>
-                        <h2 class="timeline-title">Work Experience</h2>
-                    </li>
-                    <li>
-                        <div class="content-text">
-                            <h3 class="line-title">Freelance Full Stack Developer - Upwork, USA</h3>
-                            <span>July 2022 - present</span>
-                            <p class="line-text">
-                                • Collaborated with various clients across diverse industries, including healthcare, real estate and gaming, to develop robust software
-                                solutions. <br />
-                                • Developed "Chestnut", a large-scale MMO game using a client-server architecture. Focused on enhancing player interactions, real-time
-                                synchronization, and integration web3, demonstrating strong leadership and team collaboration. Built a server-side game physics engine
-                                and established real-time synchronization for uninterrupted user engagement. <br />
-                                • Designed and developed a healthcare application that scans medical images using AI models to detect diseases. Deployed the app using
-                                Azure Kubernetes Service (AKS). <br />
-                                • Developed a Blazor-based form builder and renderer library, allowing users to create forms with drag-and-drop features, generating
-                                JSON output. Integrated Radzen components for form customization. <br />
-                                • Developed a full-stack real estate web application using Next.js and NestJS, streamlining communication and transactions between
-                                buyers, agents, and sellers. <br />
-                                • <strong>Tools Used:</strong> C#, TypeScript, Python, React, Nextjs, Angular, PhaserJS, NestJS, FastAPI, PostgreSQL, Redis, Docker, Kubernetes, Azure <br />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-text">
-                            <h3 class="line-title">Full Stack Developer -  EmTech Care Labs, Portland, ME, USA</h3>
-                            <span>January 2025 - June 2025</span>
-                            <p class="line-text">
-                                • Refactored and unified the frontend and backend codebases by integrating TypeScript, significantly enhancing code quality, scalability,
-                                and maintainability. <br />
-                                • Led the migration from AWS Amplify Gen 1 to Gen 2, reducing build and deployment times while modernizing the backend for long-term support. <br />
-                                • Standardized the UI by consolidating multiple libraries into a single component library, resulting in consistent user experience and
-                                simplified maintenance. <br />
-                                • Implemented real-time messaging and notification systems with Amplify Gen 2 backend. <br />
-                                • Integrated mono repository approach by streamlining backend, frontend apps (web and mobile), and libraries into a single,
-                                manageable repository, increasing maintainability. <br />
-                                • Resolved critical bugs and optimized performance, improving overall application stability and responsiveness.
-                                • Added enhanced documentation and API references. <br />
-                                • <strong>Tools Used:</strong> TypeScript, React, Vite, AWS Amplify, S3, API Gateway, DynamoDB, Cognito <br />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-text">
-                            <h3 class="line-title">.NET Software Engineer - Virtuworks, Miami, FL, USA</h3>
-                            <span>December 2022 - December 2023</span>
-                            <p class="line-text">
-                                • Led the successful migration of the legacy ASP.NET Web Forms system to the cutting-edge Blazor WebAssembly framework, resulting in
-                                improved application performance and enhanced ease of maintenance. <br />
-                                • Developed highly efficient and responsive UI components using Blazor, contributing to enhanced user experience. <br />
-                                • Spearheaded the refactoring of server applications, optimizing their performance and streamlining operations, demonstrating problem solving and innovation. <br />
-                                • <strong>Tools Used:</strong> C#, ASP.NET Core, ASP.NET Web Forms, Blazor, MS SQL, Docker, Kubernetes, Azure DevOps <br />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-text">
-                            <h3 class="line-title">Full Stack Developer - Frost Pixel Studio, Russia</h3>
-                            <span>October 2022 - May 2022</span>
-                            <p class="line-text">
-                                • Designed and implemented solutions for cloud-based, browser-based, and mobile applications, from initial R& D to post-release support and maintenance. <br />
-                                • Developed 2 web applications using ASP.NET Core and Angular while ensuring proper and clean code and avoiding redundancy to ensure top performance. <br />
-                                • Optimized web applications by 30% by reducing HTTP requests and using caching when needed. <br />
-                                • Developed 5 browser-based games using PhaserJS, and TypeScript was used as a primary language. <br />
-                                • Developed 2 cross-platform mobile applications using Microsoft's new framework MAUI. Implemented an authentication flow based on a QR code and a mechanism for approving user actions in a mobile application. <br />
-                                • <strong>Tools Used:</strong> C#, TypeScript, Python, ASP.NET Core, Angular, Blazor, MAUI, MySQL, Azure DevOps, PhaserJS <br />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-text">
-                            <h3 class="line-title">Full Stack Developer - Smart Meal Service, Russia</h3>
-                            <span>September 2020 - October 2021</span>
-                            <p class="line-text">
-                                • Participated in all phases of SDLC starting from analysis to the delivery of the application development projects and supported enhancements and maintenance of existing applications. <br />
-                                • Designed and developed a robotic cashier application - a self-service terminal capable of completely replacing the cashier using WPF, gRPC and MS SQL stacks. <br />
-                                • Designed and developed a self-service kiosk - a hardware and software suite that is integrated with POS systems of the catering establishment. <br />
-                                • Developed a library for MVVM applications and significantly improved code maintainability and testability in WPF applications <br />
-                                • Designed and developed a web application using ASP.NET Core, Blazor, MS SQL to support payroll and performance management applications through system driven approach. <br />
-                                • Developed a Telegram tech support bot and framework for building bots. <br />
-                                • Identified and suggested tools to enhance the code quality, maintenance, and reusability. <br />
-                                • Worked with business stakeholders, application developers, and production teams across functional units to identify business needs and discuss solution options. <br />
-                                • <strong>Tools Used:</strong> C#, JavaScript, ASP.NET Core, WPF, Blazor, RabbitMQ, MS SQL, gRPC, Azure DevOps <br />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-text">
-                            <h3 class="line-title">Unity C# Developer - Pentalight Technology, Malaysia</h3>
-                            <span>March 2020 - February 2021</span>
-                            <p class="line-text">
-                                • Developed multiplayer functionality for the smart city project in the Unity platform. <br />
-                                • Integrated user interface (UI) and various HUDs for VR platform. <br />
-                                • Integrated MLAPI (UNet based networking system). <br />
-                                • Integrated SteamVR. <br />
-                                • <strong>Tools Used:</strong> C#, Unity, SteamVR, Photon, MLAPI <br />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-text">
-                            <h3 class="line-title">Freelance Software Developer - Freelancer.com</h3>
-                            <span>Feb 2019 - Feb 2020</span>
-                            <p class="line-text">
-                                • Designed and developed various web, desktop and mobile applications using .NET stack (ASP.NET Core, WPF and Xamarin.Forms) <br />
-                                • Designed and developed various API and wrapper libraries in .NET <br />
-                                • Developed natural language processing applications using Python NLP libraries. <br />
-                                • Designed and maintained front-end parts of web and mobile applications. <br />
-                                • Wrote unit tests to improve code predictability and documentation. <br />
-                                • Developed supporting tools to reduce development time. <br />
-                                • Used coding methods in specific programming languages to initiate and improve program execution and functionality. <br />
-                                • Worked closely with the client to provide a customized website for   their business. <br />
-                                • <strong>Tools Used:</strong> C#, JavaScript, Python, ASP.NET Core, ReactJS, Xamarin.Forms, Unity 3D, WPF, MS SQL, MongoDB <br />
-                            </p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="content-text">
-                            <h3 class="line-title">Game Developer - EC Dev Team, Uzbekistan</h3>
-                            <span>Jul 2016 - Jan 2019</span>
-                            <p class="line-text">
-                                • Developed an RTS game "Hearts of Iron: Economic Crisis" in Clausewitz Engine. <br />
-                                • Managed a team of enthusiastic developers. <br />
-                                • Designed and developed game artificial intelligence (AI) logics. <br />
-                                • Programmed hardcore game mechanics. <br />
-                                • Scripted the world map of the game. <br />
-                                • Developed various software tools for developers. <br />
-                                • Balanced the game's difficulty and technology trees. <br />
-                                • <strong>Tools Used:</strong> Lua, C#, Python, WPF <br />
-                            </p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END WORK EXPERIENCE -->
-
-<!-- START PORTFOLIO -->
-<section class="section bg-light text-center" id="portfolio">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    <h2><span class="fw-bold">Past Projects</span></h2>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5 ">
-            <ul class="col list-unstyled list-inline mb-0 text-uppercase work_menu" id="menu-filter">
-                <li class="list-inline-item"><a class="active" data-filter="*">All</a></li>
-                <li class="list-inline-item"><a class="" data-filter=".web">Web Development</a></li>
-                <li class="list-inline-item"><a class="" data-filter=".desktop">Desktop Development</a></li>
-                <li class="list-inline-item"><a class="" data-filter=".mobile">Mobile Development</a></li>
-                <li class="list-inline-item"><a class="" data-filter=".game">Game Development</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row mt-4 work-filter">
-            <div class="col-lg-4 work_item game">
-                <a href="img/portfolio/ec.jpg" class="img-zoom">
-                    <div class="work_box">
-                        <div class="work_img">
-                            <img src="img/portfolio/ec.jpg" class="img-fluid mx-auto d-block rounded" alt="Hearts of Iron IV: Economic Crisis">
-                        </div>
-                        <div class="work_detail">
-                            <p class="mb-2">Strategy game for PC</p>
-                            <h4 class="mb-0">Hearts of Iron IV: Economic Crisis</h4>
-                            <div class="btn" onclick="window.open('https://vk.com/ec_hoi_mod', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-4 work_item game">
-                <a href="img/portfolio/chestnut.jpg" class="img-zoom">
-                    <div class="work_box">
-                        <div class="work_img">
-                            <img src="img/portfolio/chestnut.jpg" class="img-fluid mx-auto d-block rounded" alt="Chestnut">
-                        </div>
-                        <div class="work_detail">
-                            <p class="mb-2">MMORPG browser game</p>
-                            <h4 class="mb-0">Chestnut</h4>
-                            <div class="btn" onclick="window.open('https://chest-nut.io', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 work_item game mobile">
-                <a href="img/portfolio/trivia_streak.jpg" class="img-zoom">
-                    <div class="work_box">
-                        <div class="work_img">
-                            <img src="img/portfolio/trivia_streak.jpg" class="img-fluid mx-auto d-block rounded" alt="Trivia Streak">
-                        </div>
-                        <div class="work_detail">
-                            <p class="mb-2">Casual mobile game for Android</p>
-                            <h4 class="mb-0">Trivia Streak</h4>
-                            <div class="btn" onclick="window.open('https://play.google.com/store/apps/details?id=com.hendocheese.triviastreak', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 work_item web mobile">
-                <a href="img/portfolio/logistics.jpg" class="img-zoom">
-                    <div class="work_box">
-                        <div class="work_img">
-                            <img src="img/portfolio/logistics.jpg" class="img-fluid mx-auto d-block rounded" alt="RatePic">
-                        </div>
-                        <div class="work_detail">
-                            <p class="mb-2">Survey Service</p>
-                            <h4 class="mb-0">Automate your entire transportation logistics operations with the transportation management system (TMS)</h4>
-                            <div class="btn" onclick="window.open('https://github.com/suxrobGM/logistics-app', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 work_item web">
-                <a href="img/portfolio/ratepic.jpg" class="img-zoom">
-                    <div class="work_box">
-                        <div class="work_img">
-                            <img src="img/portfolio/ratepic.jpg" class="img-fluid mx-auto d-block rounded" alt="RatePic">
-                        </div>
-                        <div class="work_detail">
-                            <p class="mb-2">Survey Service</p>
-                            <h4 class="mb-0">RatePic</h4>
-                            <div class="btn" onclick="window.open('https://ratepic.io', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 work_item web game">
-                <a href="img/portfolio/browser_game.jpg" class="img-zoom">
-                    <div class="work_box">
-                        <div class="work_img">
-                            <img src="img/portfolio/browser_game.jpg" class="img-fluid mx-auto d-block rounded" alt="Browser game">
-                        </div>
-                        <div class="work_detail">
-                            <p class="mb-2">HTML5 Games</p>
-                            <h4 class="mb-0">Casual 2D browser games</h4>
-                            <div class="btn" onclick="window.open('https://suxrobgm.github.io/browser-games/dist/games.html', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 work_item mobile">
-                <a href="img/portfolio/ratepic_mobile.jpg" class="img-zoom">
-                    <div class="work_box">
-                        <div class="work_img">
-                            <img src="img/portfolio/ratepic_mobile.jpg" class="img-fluid mx-auto d-block rounded" alt="RatePic Mobile">
-                        </div>
-                        <div class="work_detail">
-                            <p class="mb-2">Mobile app for RatePic survey service</p>
-                            <h4 class="mb-0">RatePic Mobile</h4>
-                            <div class="btn" onclick="window.open('https://play.google.com/store/apps/details?id=com.frostpixelstudio.ratepic', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 work_item desktop">
-                <a href="img/portfolio/terminal.jpg" class="img-zoom">
-                    <div class="work_box">
-                        <div class="work_img">
-                            <img src="img/portfolio/terminal.jpg" class="img-fluid mx-auto d-block rounded" alt="Launch FastPass">
-                        </div>
-                        <div class="work_detail">
-                            <p class="mb-2">Robotic cashier</p>
-                            <h4 class="mb-0">Launch FastPass</h4>
-                            <div class="btn" onclick="window.open('https://smartmealservice.com/en/robotic-cashiers', '_blank')"><i class="mdi mdi-24px mdi-link"></i></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END PORTFOLIO -->
-
-<!-- START CONTACT -->
-<section class="section" id="contact">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    <h2><span class="fw-bold">Contact</span> Me</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-4">
-                <div class="text-center">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
                     <div>
-                        <i class="mbri-mobile2 text-custom h1"></i>
-                    </div>
-                    <div class="mt-3">
-                        <h5 class="mb-0 contact_detail-title fw-bold">Telegram</h5>
-                        <a class="text-muted" href="https://t.me/suxrobgm">@@suxrobgm</a>
+                        <p>LinkedIn</p>
+                        <a href="https://linkedin.com/in/suxrobgm" target="_blank">linkedin.com/in/suxrobgm</a>
                     </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="text-center">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
                     <div>
-                        <i class="mbri-letter text-custom h1"></i>
-                    </div>
-                    <div class="mt-3">
-                        <h5 class="mb-0 contact_detail-title fw-bold">Email</h5>
-                        <a class="text-muted" href="mailto:suxrobgm@gmail.com">suxrobgm@gmail.com</a>
+                        <p>GitHub</p>
+                        <a href="https://github.com/suxrobgm" target="_blank">github.com/suxrobgm</a>
                     </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="text-center">
+                <div class="contact-item">
+                    <div class="contact-icon"><i class="fab fa-telegram"></i></div>
                     <div>
-                        <i class="mbri-pin text-custom h1"></i>
-                    </div>
-                    <div class="mt-3">
-                        <h5 class="mb-0 contact_detail-title fw-bold">Address</h5>
-                        <p class="text-muted">USA</p>
+                        <p>Telegram</p>
+                        <a href="https://t.me/suxrobgm" target="_blank">@@suxrobgm</a>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-lg-12">
+            <div class="contact-form-wrapper">
                 <ContactForm CaptchaSiteKey="@CaptchaSiteKey" />
             </div>
         </div>
     </div>
 </section>
-<!-- END CONTACT -->
 
-<!--START FOOTER-->
-<footer class="footer bg-light">
+<!-- Footer -->
+<footer class="footer">
     <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-md-12">
-                <div class="text-center text-white footer-alt">
-                    <ul class="list-unstyled list-inline mb-0">
-                        <li class="list-inline-item"><a href="https://facebook.com/suxrobgm"><i class="mdi mdi-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="https://linkedin.com/in/suxrobgm"><i class="mdi mdi-linkedin"></i></a></li>
-                        <li class="list-inline-item"><a href="https://instagram.com/suxrob_gm"><i class="mdi mdi-instagram"></i></a></li>
-                        <li class="list-inline-item"><a href="https://github.com/suxrobgm"><i class="mdi mdi-github-circle"></i></a></li>
-                    </ul>
-                    <p class="copyright_content mb-0 mt-3"> 2025 &copy; Sukhrob Ilyosbekov</p>
-                </div>
+        <div class="footer-content">
+            <div class="footer-logo">SUKHROB.DEV</div>
+            <div class="social-links">
+                <a href="https://github.com/suxrobgm" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/suxrobgm" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://instagram.com/suxrob_gm" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://t.me/suxrobgm" target="_blank" aria-label="Telegram">
+                    <i class="fab fa-telegram"></i>
+                </a>
             </div>
+            <p class="footer-copyright">&copy; 2025 Sukhrob Ilyosbekov. All rights reserved.</p>
         </div>
     </div>
 </footer>
-<!--END FOOTER-->
 
-
-<!-- Back To Top -->
-<a href="#" class="back_top"> <i class="mdi mdi-chevron-up"> </i> </a>
-
-<!-- START SWITCHER -->
-<div id="color-switcher" style="left: 0;">
-    <div>
-        <h3 class="fw-bold text-center text-white">Select your color</h3>
-        <ul class="pattern">
-            <li>
-                <a class="color1" href="#"></a>
-            </li>
-            <li>
-                <a class="color2" href="#"></a>
-            </li>
-            <li>
-                <a class="color3" href="#"></a>
-            </li>
-            <li>
-                <a class="color4" href="#"></a>
-            </li>
-            <li>
-                <a class="color5" href="#"></a>
-            </li>
-            <li>
-                <a class="color6" href="#"></a>
-            </li>
-        </ul>
-    </div>
-    <div class="bottom">
-        <a href="#" class="settings rounded-right"><i class="mdi mdi-settings mdi-spin"></i></a>
-    </div>
-</div>
-<!-- END SWITCHER -->
-
-<!--All Javascript -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-
-<!-- Text Rotate -->
-<script src="js/jquery.simple-text-rotator.js"></script>
-
-<!-- Parallax Js -->
-<script src="js/parallax.js"></script>
-
-<!-- Particles Js -->
-<script src="js/particles.js"></script>
-<script src="js/particles.app.js"></script>
-
-<!-- Switcher Js -->
-<script src="js/switcher.js"></script>
-
-<!-- Owl Carousel -->
-<script src="js/owl.carousel.min.js"></script>
-
-<!-- Work Filter -->
-<script src="js/isotope.js"></script>
-
-<!-- Magnific Popup Js -->
-<script src="js/jquery.magnific-popup.min.js"></script>
-
-<!-- Custom Js -->
-<script src="js/custom.js"></script>
 <script>
-    $(".simple-text-rotate").textrotator({
-        animation: "fade",
-        speed: 3500
+    // Mobile navigation toggle
+    function toggleNav() {
+        document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
     });
-</script>
 
-<script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Close mobile menu if open
+                document.getElementById('navLinks').classList.remove('active');
+            }
+        });
+    });
+
     // Function to get reCAPTCHA token for Blazor
     window.getRecaptchaToken = async function(siteKey) {
         return new Promise((resolve) => {
@@ -689,7 +653,7 @@
 </script>
 
 @code {
-    private const string Description = "Software engineer with over 9 years of extensive experience in complete software development life cycle (SDLC) involving prerequisite analysis, design, development, testing, packaging, deploying, and maintaining web, mobile, and gaming applications.";
+    private const string Description = "Senior Full Stack Developer and AI Researcher with 9+ years of experience. M.S. Computer Science at Northeastern University. Specializing in Computer Vision, Deep Learning, and Full-Stack Development.";
 
     private string CaptchaSiteKey => RecaptchaOptions.Value.SiteKey;
 }
