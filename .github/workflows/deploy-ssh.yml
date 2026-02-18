@@ -63,23 +63,23 @@ jobs:
       - name: Copy Google SA key into app
         uses: appleboy/ssh-action@v1.2.4
         with:
-          host:     ${{ secrets.SSH_HOST }}
+          host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key:      ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             mkdir -p ${{ env.DEPLOY_PATH }}/keys
-            cp /home/persistence/${{ env.GOOGLE_SA_KEY }} ${{ env.DEPLOY_PATH }}/keys/
+            cp ./home/persistence/${{ env.GOOGLE_SA_KEY }} ${{ env.DEPLOY_PATH }}/keys/
             chown www-data:www-data ${{ env.DEPLOY_PATH }}/keys/${{ env.GOOGLE_SA_KEY }}
             chmod 640 ${{ env.DEPLOY_PATH }}/keys/${{ env.GOOGLE_SA_KEY }}
 
       - name: Copy appsettings Production
         uses: appleboy/ssh-action@v1.2.4
         with:
-          host:     ${{ secrets.SSH_HOST }}
+          host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          key:      ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cp /home/persistence/appsettings.Production.json ${{ env.DEPLOY_PATH }}/appsettings.Production.json
+            cp ./home/persistence/appsettings.Production.json ${{ env.DEPLOY_PATH }}/appsettings.Production.json
             chown www-data:www-data ${{ env.DEPLOY_PATH }}/appsettings.Production.json
             chmod 640 ${{ env.DEPLOY_PATH }}/appsettings.Production.json
 
