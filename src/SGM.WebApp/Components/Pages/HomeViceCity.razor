@@ -1,51 +1,31 @@
 @page "/"
+@inherits HomePageBase
 
 <PageTitle>Sukhrob Ilyosbekov | Full Stack Developer & AI Researcher</PageTitle>
 
 <HeadContent>
-    <meta charset="UTF-8">
-    <meta name="google-site-verification" content="7443Tno6XS-gkMmh5ZvtcwWF1PuGfkPev_q-fVmUF3Y"/>
-    <meta name="author" content="Sukhrob Ilyosbekov"/>
-    <meta name="keywords"
-          content="Sukhrob Ilyosbekov, Full Stack Developer, AI Researcher, Computer Vision, Deep Learning, .NET Developer, React, Python, Machine Learning, Software Engineer"/>
-    <meta name="description" content="@Description"/>
-    <meta name="image" content="https://suxrobgm.net/img/about.jpg"/>
-
-    <meta property="og:type" content="website"/>
-    <meta property="og:url" content="https://suxrobgm.net"/>
-    <meta property="og:title" content="Sukhrob Ilyosbekov | Full Stack Developer & AI Researcher"/>
-    <meta property="og:description" content="@Description"/>
-    <meta property="og:image" content="https://suxrobgm.net/img/about.jpg"/>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- Vice City Theme -->
-    <link rel="stylesheet" href="css/vice-city.css">
-
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- reCAPTCHA -->
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=@CaptchaSiteKey"></script>
+  <meta name="description" content="@Description" />
+  <meta property="og:url" content="https://suxrobgm.net/" />
+  <link href="https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Permanent+Marker&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/vice-city-v2.css" />
 </HeadContent>
 
-<!-- Navigation -->
+<!-- VHS & Scanline Overlays -->
+<div class="vhs-overlay"></div>
+<div class="scanlines"></div>
+
+<!-- Navigation - Radio Station Dial -->
 <nav class="navbar" id="navbar">
     <div class="nav-container">
         <a href="#home" class="nav-logo">SUKHROB</a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#research">Research</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" data-freq="88.1">Home</a></li>
+            <li><a href="#about" data-freq="91.3">About</a></li>
+            <li><a href="#skills" data-freq="95.7">Skills</a></li>
+            <li><a href="#experience" data-freq="101.1">Experience</a></li>
+            <li><a href="#research" data-freq="104.5">Research</a></li>
+            <li><a href="#projects" data-freq="107.9">Projects</a></li>
+            <li><a href="#contact" data-freq="110.3">Contact</a></li>
         </ul>
         <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
             <span></span>
@@ -55,37 +35,40 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
-<section class="hero" id="home">
-    <div class="hero-background"></div>
-    <div class="hero-sun"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-palms"></div>
-    <div class="hero-content">
-        <p class="hero-subtitle">Welcome to my world</p>
-        <h1 class="hero-title">
-            <span class="first-name">Sukhrob</span>
-            <span class="last-name">Ilyosbekov</span>
-        </h1>
-        <p class="hero-tagline">Senior Full Stack Developer | AI & Computer Vision Researcher</p>
-        <div class="hero-buttons">
-            <a href="resume.pdf" class="btn btn-primary" target="_blank">
-                <i class="fas fa-file-pdf"></i> Industry Resume
-            </a>
-            <a href="resume-phd.pdf" class="btn btn-secondary" target="_blank">
-                <i class="fas fa-file-pdf"></i> Research CV
-            </a>
-        </div>
+<!-- Hero Section - GTA Vice City Poster Art -->
+<section class="hero has-poster-art" id="home">
+  <div class="hero-background"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-panel-frame">
+      <p class="hero-subtitle">Welcome to Vice City</p>
+      <h1 class="hero-title">
+        <span class="first-name">Sukhrob</span>
+        <div class="hero-title-divider"></div>
+        <span class="last-name">Ilyosbekov</span>
+      </h1>
+      <p class="hero-tagline">Senior Full Stack Developer | AI &amp; Computer Vision Researcher</p>
+      <div class="hero-buttons">
+        <a href="resume.pdf" class="btn btn-primary" target="_blank">
+          <i class="fas fa-file-pdf"></i> Industry Resume
+        </a>
+        <a href="resume-phd.pdf" class="btn btn-secondary" target="_blank">
+          <i class="fas fa-file-pdf"></i> Research CV
+        </a>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- About Section -->
 <section class="section about" id="about">
     <div class="container">
-        <h2 class="section-title gradient-text">About Me</h2>
+        <div class="neon-sign">
+            <h2 class="section-title gradient-text">About Me</h2>
+        </div>
         <div class="about-grid">
             <div class="about-image">
-                <img src="img/about.jpg" alt="Sukhrob Ilyosbekov">
+                <img src="images/about.jpg" alt="Sukhrob Ilyosbekov">
             </div>
             <div class="about-content">
                 <h3>Full Stack Developer & AI Researcher</h3>
@@ -116,10 +99,12 @@
     </div>
 </section>
 
-<!-- Skills Section -->
+<!-- Skills Section - Neon Storefronts -->
 <section class="section skills" id="skills">
     <div class="container">
-        <h2 class="section-title gradient-text">Technical Arsenal</h2>
+        <div class="neon-sign">
+            <h2 class="section-title gradient-text">Technical Arsenal</h2>
+        </div>
         <div class="skills-grid">
             <div class="skill-card">
                 <div class="skill-icon"><i class="fas fa-brain"></i></div>
@@ -196,16 +181,18 @@
 <!-- Awards Section -->
 <section class="section awards" id="awards">
     <div class="container">
-        <h2 class="section-title gradient-text">Awards & Honors</h2>
+        <div class="neon-sign">
+            <h2 class="section-title gradient-text">Awards & Honors</h2>
+        </div>
         <div class="awards-grid">
             <div class="award-card">
-                <div class="award-icon">🥇</div>
+                <div class="award-icon">&#x1F947;</div>
                 <h3 class="award-title">National Physics Olympiad</h3>
                 <p class="award-description">1st Place in Uzbekistan - First student from my high school to win at
                     national level</p>
             </div>
             <div class="award-card">
-                <div class="award-icon">⭐</div>
+                <div class="award-icon">&#x2B50;</div>
                 <h3 class="award-title">Outstanding Project Award</h3>
                 <p class="award-description">Bookshelf Scanner - Computer Vision Course at Northeastern University</p>
             </div>
@@ -213,11 +200,15 @@
     </div>
 </section>
 
-<!-- Experience Section -->
+<!-- Experience Section - Highway Timeline -->
 <section class="section experience" id="experience">
     <div class="container">
-        <h2 class="section-title gradient-text">Work Experience</h2>
+        <div class="neon-sign">
+            <h2 class="section-title gradient-text">Work Experience</h2>
+        </div>
         <div class="timeline">
+            <div class="road-edge-left"></div>
+            <div class="road-edge-right"></div>
             <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <div class="timeline-content">
@@ -297,7 +288,9 @@
 <!-- Research Section -->
 <section class="section research" id="research">
     <div class="container">
-        <h2 class="section-title gradient-text">Research Projects</h2>
+        <div class="neon-sign">
+            <h2 class="section-title gradient-text">Research Projects</h2>
+        </div>
         <div class="research-grid">
             <div class="research-card">
                 <div class="research-icon"><i class="fas fa-microscope"></i></div>
@@ -368,10 +361,12 @@
     </div>
 </section>
 
-<!-- Projects Section -->
+<!-- Projects Section - Wanted Poster Cards -->
 <section class="section projects" id="projects">
     <div class="container">
-        <h2 class="section-title gradient-text">Featured Projects</h2>
+        <div class="neon-sign">
+            <h2 class="section-title gradient-text">Featured Projects</h2>
+        </div>
         <div class="projects-grid">
             <div class="project-card">
                 <div class="project-image">
@@ -519,7 +514,9 @@
 <!-- Education Section -->
 <section class="section education" id="education">
     <div class="container">
-        <h2 class="section-title gradient-text">Education</h2>
+        <div class="neon-sign">
+            <h2 class="section-title gradient-text">Education</h2>
+        </div>
         <div class="education-grid">
             <div class="education-card">
                 <h3 class="education-degree">M.S. Computer Science</h3>
@@ -547,50 +544,54 @@
     </div>
 </section>
 
-<!-- Contact Section -->
+<!-- Contact Section - Phone Booth Frame -->
 <section class="section contact" id="contact">
     <div class="container">
-        <h2 class="section-title gradient-text">Get In Touch</h2>
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h3>Let's Connect</h3>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <p>Email</p>
-                        <a href="mailto:silyosbekov@gmail.com">silyosbekov@gmail.com</a>
+        <div class="neon-sign">
+            <h2 class="section-title gradient-text">Get In Touch</h2>
+        </div>
+        <div class="phone-booth-frame">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Let's Connect</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <p>Email</p>
+                            <a href="mailto:silyosbekov@gmail.com">silyosbekov@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+                        <div>
+                            <p>LinkedIn</p>
+                            <a href="https://linkedin.com/in/suxrobgm" target="_blank">linkedin.com/in/suxrobgm</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-github"></i></div>
+                        <div>
+                            <p>GitHub</p>
+                            <a href="https://github.com/suxrobgm" target="_blank">github.com/suxrobgm</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fab fa-telegram"></i></div>
+                        <div>
+                            <p>Telegram</p>
+                            <a href="https://t.me/suxrobgm" target="_blank">@@suxrobgm</a>
+                        </div>
                     </div>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
-                    <div>
-                        <p>LinkedIn</p>
-                        <a href="https://linkedin.com/in/suxrobgm" target="_blank">linkedin.com/in/suxrobgm</a>
-                    </div>
+                <div class="contact-form-wrapper">
+                    <ContactForm CaptchaSiteKey="@CaptchaSiteKey"/>
                 </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-github"></i></div>
-                    <div>
-                        <p>GitHub</p>
-                        <a href="https://github.com/suxrobgm" target="_blank">github.com/suxrobgm</a>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon"><i class="fab fa-telegram"></i></div>
-                    <div>
-                        <p>Telegram</p>
-                        <a href="https://t.me/suxrobgm" target="_blank">@@suxrobgm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-form-wrapper">
-                <ContactForm CaptchaSiteKey="@CaptchaSiteKey"/>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Footer -->
+<!-- Footer - Miami Skyline -->
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
@@ -614,42 +615,3 @@
     </div>
 </footer>
 
-<script>
-    // Mobile navigation toggle
-    function toggleNav() {
-        document.getElementById("navLinks").classList.toggle("active");
-    }
-
-    // Navbar scroll effect
-    window.addEventListener("scroll", () => {
-        const navbar = document.getElementById("navbar");
-        if (window.scrollY > 50) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
-    });
-
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", (e) => {
-            e.preventDefault();
-            const target = document.querySelector(anchor.getAttribute("href"));
-            if (target) {
-                target.scrollIntoView({behavior: "smooth", block: "start"});
-                // Close mobile menu if open
-                document.getElementById("navLinks").classList.remove("active");
-            }
-        });
-    });
-
-    // Function to get reCAPTCHA token for Blazor
-    window.getRecaptchaToken = async (siteKey) => {
-        return new Promise((resolve) => {
-            grecaptcha.enterprise.ready(async () => {
-                const token = await grecaptcha.enterprise.execute(siteKey, {action: "contact"});
-                resolve(token);
-            });
-        });
-    };
-</script>

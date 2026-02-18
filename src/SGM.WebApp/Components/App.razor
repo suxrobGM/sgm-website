@@ -2,45 +2,53 @@
 <html lang="en-US">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sukhrob Ilyosbekov - Software Engineer & AI Researcher. 9+ years of experience in full-stack development, deep learning, and medical imaging AI." />
-    <meta name="keywords" content="Software Engineer, AI Researcher, Deep Learning, Full Stack Developer, Medical Imaging, Computer Vision" />
-    <meta name="author" content="Sukhrob Ilyosbekov" />
-    <base href="/" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description"
+        content="Sukhrob Ilyosbekov - Software Engineer & AI Researcher. 9+ years of experience in full-stack development, deep learning, and medical imaging AI."/>
+  <meta name="keywords"
+        content="Sukhrob Ilyosbekov, Full Stack Developer, AI Researcher, Computer Vision, Deep Learning, .NET Developer, React, Python, Machine Learning, Software Engineer"/>
+  <meta name="author" content="Sukhrob Ilyosbekov"/>
+  <meta name="google-site-verification" content="7443Tno6XS-gkMmh5ZvtcwWF1PuGfkPev_q-fVmUF3Y"/>
+  <meta name="image" content="https://suxrobgm.net/images/about.jpg"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Sukhrob Ilyosbekov | Full Stack Developer & AI Researcher"/>
+  <meta property="og:description"
+        content="Senior Full Stack Developer and AI Researcher with 9+ years of experience. M.S. Computer Science at Northeastern University. Specializing in Computer Vision, Deep Learning, and Full-Stack Development."/>
+  <meta property="og:image" content="https://suxrobgm.net/images/about.jpg"/>
+  <base href="/"/>
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Pacifico&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Google Fonts preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-    <!-- Vice City Theme -->
-    <link rel="stylesheet" href="css/vice-city.css" />
-
-    <HeadOutlet />
+  <HeadOutlet/>
 </head>
 
 <body>
-    <Routes />
-    <script src="_framework/blazor.web.js"></script>
-    <script src="https://www.google.com/recaptcha/enterprise.js?render=explicit" async defer></script>
-    <script>
-        window.getRecaptchaToken = async function (siteKey) {
-            return new Promise((resolve, reject) => {
-                grecaptcha.enterprise.ready(async () => {
-                    try {
-                        const token = await grecaptcha.enterprise.execute(siteKey, { action: 'contact' });
-                        resolve(token);
-                    } catch (error) {
-                        reject(error);
-                    }
-                });
-            });
-        };
-    </script>
+<Routes/>
+<script src="_framework/blazor.web.js"></script>
+<script src="js/site.js"></script>
+<script src="https://www.google.com/recaptcha/enterprise.js?render=explicit" async defer></script>
+<script>
+  window.getRecaptchaToken = async (siteKey) => {
+    return new Promise((resolve, reject) => {
+      grecaptcha.enterprise.ready(async () => {
+        try {
+          const token = await grecaptcha.enterprise.execute(siteKey, {action: "contact"});
+          resolve(token);
+        } catch (error) {
+          reject(error);
+        }
+      });
+    });
+  };
+</script>
 </body>
 
 </html>

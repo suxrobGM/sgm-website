@@ -1,0 +1,671 @@
+@page "/cli"
+@inherits HomePageBase
+
+<PageTitle>Sukhrob Ilyosbekov | Full Stack Developer & AI Researcher</PageTitle>
+
+<HeadContent>
+  <meta name="description" content="@Description"/>
+  <meta property="og:url" content="https://suxrobgm.net/terminal"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Fira+Code:wght@400;500;700&display=swap"
+    rel="stylesheet"/>
+  <link rel="stylesheet" href="css/terminal.css"/>
+</HeadContent>
+
+<div class="crt-screen">
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="matrix-rain" aria-hidden="true">
+    <div class="matrix-column">アイウエオカキクケコ01100111</div>
+    <div class="matrix-column">サシスセソタチツテト10011001</div>
+    <div class="matrix-column">ナニヌネノハヒフヘホ01010110</div>
+    <div class="matrix-column">マミムメモヤユヨラリ11001010</div>
+    <div class="matrix-column">ルレロワヲンガギグゲ00110101</div>
+    <div class="matrix-column">ゴザジズゼゾダヂヅデ10100110</div>
+    <div class="matrix-column">ドバビブベボパピプペ01101001</div>
+    <div class="matrix-column">ポABCDEFGHIJKLMNOP11010010</div>
+    <div class="matrix-column">QRSTUVWXYZabcdefgh00101101</div>
+    <div class="matrix-column">ijklmnopqrstuvwxyz10110100</div>
+    <div class="matrix-column">0123456789!@@#$%^&*01011010</div>
+    <div class="matrix-column">アカサタナハマヤラワ11100011</div>
+  </div>
+
+  <!-- Navigation - Command Menu -->
+  <nav class="navbar terminal-nav" id="navbar">
+    <div class="nav-container">
+      <span class="nav-logo prompt-user">~</span>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">[1] home</a></li>
+        <li><a href="#about">[2] about</a></li>
+        <li><a href="#skills">[3] skills</a></li>
+        <li><a href="#experience">[4] experience</a></li>
+        <li><a href="#research">[5] research</a></li>
+        <li><a href="#projects">[6] projects</a></li>
+        <li><a href="#contact">[7] contact</a></li>
+      </ul>
+      <div class="nav-toggle" id="navToggle" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section - Boot Sequence -->
+  <section class="hero terminal-boot" id="home">
+    <div class="hero-content">
+      <div class="boot-sequence">
+        <p class="boot-line">$ init portfolio.sys</p>
+        <p class="boot-line">Loading modules.................. [OK]</p>
+        <p class="boot-line">Establishing neural network....... [OK]</p>
+        <p class="boot-line">Mounting /dev/experience.......... [OK]</p>
+        <p class="boot-line">Starting server on port 443....... [OK]</p>
+        <p class="boot-line">&nbsp;</p>
+      </div>
+      <h1 class="hero-title typing-container">
+        <span class="first-name prompt">Sukhrob Ilyosbekov</span>
+      </h1>
+      <p class="hero-tagline">
+        <span class="prompt">Senior Full Stack Developer | AI & Computer Vision Researcher</span>
+      </p>
+      <div class="hero-buttons">
+        <a href="resume.pdf" class="btn btn-primary" target="_blank">
+          $ cat resume.pdf
+        </a>
+        <a href="resume-phd.pdf" class="btn btn-secondary" target="_blank">
+          $ cat research-cv.pdf
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section - Man Page -->
+  <section class="section about" id="about">
+    <div class="container">
+      <h2 class="section-title prompt-user">man sukhrob</h2>
+      <div class="manpage">
+        <div class="manpage-section">
+          <h3>NAME</h3>
+          <p class="manpage-indent">sukhrob - Full Stack Developer & AI Researcher</p>
+        </div>
+        <div class="manpage-section">
+          <h3>SYNOPSIS</h3>
+          <p class="manpage-indent">sukhrob [--fullstack] [--ai-research] [--9-years-exp]</p>
+        </div>
+        <div class="manpage-section">
+          <h3>DESCRIPTION</h3>
+          <div class="about-grid">
+            <div class="about-image">
+              <img src="images/about.jpg" alt="Sukhrob Ilyosbekov">
+            </div>
+            <div class="about-content">
+              <p>
+                I'm a passionate software engineer pursuing my Master's in Computer Science at Northeastern
+                University.
+                With 9+ years of experience spanning full-stack development, game development,
+                and AI/ML research, I bridge the gap between cutting-edge research and production-ready
+                applications.
+              </p>
+              <p>
+                My research focuses on Computer Vision, Deep Learning, Medical Image Analysis, and Explainable AI.
+                I've developed systems for skin cancer classification, monocular depth estimation, and multi-modal
+                book detection using state-of-the-art architectures.
+              </p>
+              <div class="about-stats">
+                <div class="stat-item">
+                  <div class="stat-number">9+</div>
+                  <div class="stat-label">years_experience</div>
+                </div>
+                <div class="stat-item">
+                  <div class="stat-number">50+</div>
+                  <div class="stat-label">projects_completed</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section - ls -la File Listing -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <h2 class="section-title prompt-user">ls -la /home/sukhrob/skills/</h2>
+      <div class="file-listing">
+        <div class="file-header">total 6</div>
+
+        <div class="skill-card file-entry">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">7 items</span>
+          <span class="date">2024-01</span>
+          <span class="filename directory">ai-deep-learning/</span>
+          <div class="skill-tags file-contents">
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">YOLO</span>
+            <span class="skill-tag">CNNs</span>
+            <span class="skill-tag">Vision Transformers</span>
+            <span class="skill-tag">GradCAM++</span>
+          </div>
+        </div>
+
+        <div class="skill-card file-entry">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">6 items</span>
+          <span class="date">2024-06</span>
+          <span class="filename directory">backend-development/</span>
+          <div class="skill-tags file-contents">
+            <span class="skill-tag">ASP.NET Core</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">NestJS</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">Spring Boot</span>
+            <span class="skill-tag">gRPC</span>
+          </div>
+        </div>
+
+        <div class="skill-card file-entry">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">6 items</span>
+          <span class="date">2024-03</span>
+          <span class="filename directory">frontend-development/</span>
+          <div class="skill-tags file-contents">
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Angular</span>
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">Blazor</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Tailwind</span>
+          </div>
+        </div>
+
+        <div class="skill-card file-entry">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">4 items</span>
+          <span class="date">2023-09</span>
+          <span class="filename directory">mobile-desktop/</span>
+          <div class="skill-tags file-contents">
+            <span class="skill-tag">MAUI</span>
+            <span class="skill-tag">React Native</span>
+            <span class="skill-tag">WPF</span>
+            <span class="skill-tag">Avalonia</span>
+          </div>
+        </div>
+
+        <div class="skill-card file-entry">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">4 items</span>
+          <span class="date">2023-05</span>
+          <span class="filename directory">game-development/</span>
+          <div class="skill-tags file-contents">
+            <span class="skill-tag">Unity</span>
+            <span class="skill-tag">Godot</span>
+            <span class="skill-tag">PhaserJS</span>
+            <span class="skill-tag">Colyseus</span>
+          </div>
+        </div>
+
+        <div class="skill-card file-entry">
+          <span class="permissions">drwxr-xr-x</span>
+          <span class="size">5 items</span>
+          <span class="date">2024-08</span>
+          <span class="filename directory">cloud-devops/</span>
+          <div class="skill-tags file-contents">
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Azure</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">CI/CD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards Section -->
+  <section class="section awards" id="awards">
+    <div class="container">
+      <h2 class="section-title prompt-user">cat /var/log/awards.log</h2>
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-icon">*</div>
+          <div>
+            <h3 class="award-title">National Physics Olympiad</h3>
+            <p class="award-description">1st Place in Uzbekistan - First student from my high school to win at national
+              level</p>
+          </div>
+        </div>
+        <div class="award-card">
+          <div class="award-icon">*</div>
+          <div>
+            <h3 class="award-title">Outstanding Project Award</h3>
+            <p class="award-description">Bookshelf Scanner - Computer Vision Course at Northeastern University</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section - Git Log -->
+  <section class="section experience" id="experience">
+    <div class="container">
+      <h2 class="section-title prompt-user">git log --oneline --all</h2>
+      <div class="timeline git-log">
+
+        <div class="timeline-item git-entry">
+          <span class="git-hash">a1b2c3d</span>
+          <span class="git-branch">(HEAD -> main)</span>
+          <div class="timeline-content">
+            <div class="timeline-date">Jan 2025 - Jun 2025</div>
+            <h3 class="timeline-title">Full Stack Developer</h3>
+            <div class="timeline-company">EmTech Care Labs | Portland, ME</div>
+            <p class="timeline-description">
+              Built HIPAA-compliant healthcare platform for Alzheimer's care planning.
+              Led AWS Amplify Gen 1 to Gen 2 migration. Implemented real-time messaging systems.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item git-entry">
+          <span class="git-hash">e4f5a6b</span>
+          <span class="git-branch">(origin/freelance)</span>
+          <div class="timeline-content">
+            <div class="timeline-date">Jul 2022 - Present</div>
+            <h3 class="timeline-title">Freelance Full Stack Developer</h3>
+            <div class="timeline-company">Upwork | USA</div>
+            <p class="timeline-description">
+              Developed MMO game "Chestnut" with real-time sync & Web3. Built AI healthcare app
+              for medical imaging on Azure AKS. Created full-stack real estate platform with Next.js/NestJS.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item git-entry">
+          <span class="git-hash">c7d8e9f</span>
+          <span class="git-branch">(tag: v3.0)</span>
+          <div class="timeline-content">
+            <div class="timeline-date">Dec 2022 - Dec 2023</div>
+            <h3 class="timeline-title">.NET Software Engineer</h3>
+            <div class="timeline-company">Virtuworks | Miami, FL</div>
+            <p class="timeline-description">
+              Led migration from ASP.NET Web Forms to Blazor WebAssembly.
+              Developed responsive UI components and optimized server applications.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item git-entry">
+          <span class="git-hash">f0a1b2c</span>
+          <span class="git-branch">(tag: v2.1)</span>
+          <div class="timeline-content">
+            <div class="timeline-date">Oct 2021 - May 2022</div>
+            <h3 class="timeline-title">.NET Software Engineer</h3>
+            <div class="timeline-company">Frost Pixel Studio | Russia</div>
+            <p class="timeline-description">
+              Enhanced web app performance by 30%. Developed browser games with PhaserJS
+              and created knowledge management platform with Node.js, Dgraph, and React.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item git-entry">
+          <span class="git-hash">d3e4f5a</span>
+          <span class="git-branch">(tag: v2.0)</span>
+          <div class="timeline-content">
+            <div class="timeline-date">Sep 2020 - Oct 2021</div>
+            <h3 class="timeline-title">.NET Software Engineer</h3>
+            <div class="timeline-company">Smart Meal Service | Russia</div>
+            <p class="timeline-description">
+              Developed robotic cashier app and self-service kiosks integrated with POS systems
+              using WPF, gRPC, and computer vision for product recognition.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item git-entry">
+          <span class="git-hash">b6c7d8e</span>
+          <span class="git-branch">(tag: v1.0)</span>
+          <div class="timeline-content">
+            <div class="timeline-date">Mar 2020 - Feb 2021</div>
+            <h3 class="timeline-title">Game Developer</h3>
+            <div class="timeline-company">Pentalight Technology | Malaysia</div>
+            <p class="timeline-description">
+              Developed multiplayer VR smart city project in Unity.
+              Integrated SteamVR and MLAPI networking for real-time collaboration.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Research Section - Grep Results -->
+  <section class="section research" id="research">
+    <div class="container">
+      <h2 class="section-title prompt-user">grep -r "research" ./papers/</h2>
+      <div class="research-grid">
+
+        <div class="research-card">
+          <div class="research-content">
+            <p class="grep-filename">./papers/melanoma/<span class="grep-match">research</span>.py:<span
+                class="grep-line-num">1</span></p>
+            <h3>MelanomaNet: Explainable Skin Lesion Classification</h3>
+            <p>
+              Developed explainable deep learning system for multi-class skin lesion classification
+              using EfficientNet V2 with GradCAM++ visualization. Implemented novel ABCDE criterion
+              analysis for clinical interpretability across all 9 ISIC 2019 categories.
+            </p>
+            <div class="project-tech">
+              <span>PyTorch</span>
+              <span>EfficientNet V2</span>
+              <span>GradCAM++</span>
+              <span>OpenCV</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/explainable-melanoma" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/explainable-melanoma
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-card">
+          <div class="research-content">
+            <p class="grep-filename">./papers/depth/<span class="grep-match">research</span>.py:<span
+                class="grep-line-num">1</span></p>
+            <h3>LightDepth: Lightweight Monocular Depth Estimation</h3>
+            <p>
+              Designed lightweight depth estimation model with ResNet18 encoder and U-Net decoder,
+              achieving 42% fewer parameters than Depth Anything V2, 72% faster inference,
+              and better relative error metrics on NYU Depth V2 benchmark.
+            </p>
+            <div class="project-tech">
+              <span>PyTorch</span>
+              <span>ResNet18</span>
+              <span>U-Net</span>
+              <span>Depth Estimation</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/lightdepth" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/lightdepth
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-card">
+          <div class="research-content">
+            <p class="grep-filename">./papers/super-res/<span class="grep-match">research</span>.py:<span
+                class="grep-line-num">1</span></p>
+            <h3>FSRCNN: Super-Resolution Neural Network</h3>
+            <p>
+              Implemented FSRCNN architecture achieving 40x speedup over SRCNN with end-to-end
+              learned upsampling. Evaluated on Set5 (+1.78 dB PSNR) and Set14 (+1.26 dB PSNR)
+              with comprehensive ablation studies.
+            </p>
+            <div class="project-tech">
+              <span>PyTorch</span>
+              <span>Super-Resolution</span>
+              <span>Mixed Precision</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/fsrcnn" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/fsrcnn
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section - Directory Listing -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <h2 class="section-title prompt-user">ls -la ~/projects/</h2>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-content">
+            <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 med-image-scanner/</p>
+            <h3 class="project-title">Med Image Scanner</h3>
+            <p class="project-description">
+              HIPAA-compliant platform connecting to hospital PACS via DICOM for AI-powered
+              analysis on X-ray, CT, and MRI studies with OHIF Viewer integration.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>FastAPI</span>
+              <span>Next.js</span>
+              <span>PyTorch</span>
+              <span>OHIF</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/med-image-scanner" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/med-image-scanner
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 logistics-app/</p>
+            <h3 class="project-title">Logistics TMS</h3>
+            <p class="project-description">
+              Enterprise-scale multi-tenant SaaS fleet management system with real-time tracking,
+              SignalR messaging, admin/management web apps, and mobile driver application.
+            </p>
+            <div class="project-tech">
+              <span>ASP.NET Core</span>
+              <span>Angular</span>
+              <span>Blazor</span>
+              <span>MAUI</span>
+              <span>SignalR</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/logistics-app" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/logistics-app
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 online-chess/</p>
+            <h3 class="project-title">ChessMate</h3>
+            <p class="project-description">
+              Online chess platform with PvP and AI opponents, supporting rated and unrated
+              matches with real-time WebSocket communication.
+            </p>
+            <div class="project-tech">
+              <span>Spring Boot</span>
+              <span>Angular</span>
+              <span>WebSocket</span>
+              <span>Auth0</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/online-chess" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/online-chess
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 bookshelf-scanner/</p>
+            <h3 class="project-title">Bookshelf Scanner</h3>
+            <p class="project-description">
+              End-to-end book detection from bookshelf images using YOLO segmentation
+              and Moondream2 vision-language model for title/author extraction.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>YOLO</span>
+              <span>Moondream2</span>
+              <span>FastAPI</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/bookshelf-scanner" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/bookshelf-scanner
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 blazor-form-builder/</p>
+            <h3 class="project-title">Blazor Form Builder</h3>
+            <p class="project-description">
+              Comprehensive library for generating and managing forms in Blazor with
+              drag-and-drop features and JSON schema generation.
+            </p>
+            <div class="project-tech">
+              <span>C#</span>
+              <span>Blazor</span>
+              <span>ASP.NET Core</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/blazor-form-builder" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/blazor-form-builder
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-content">
+            <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 aoe4-matchmaking/</p>
+            <h3 class="project-title">AoE4 Matchmaking System</h3>
+            <p class="project-description">
+              ML-assisted matchmaking combining player clustering, XGBoost predictions,
+              and ELO rating for balanced competitive Age of Empires IV matches.
+            </p>
+            <div class="project-tech">
+              <span>Python</span>
+              <span>XGBoost</span>
+              <span>FastAPI</span>
+              <span>Angular</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/suxrobgm/aoe4-matchmaking" target="_blank">
+                <i class="fab fa-github"></i> github.com/suxrobgm/aoe4-matchmaking
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section - Config File -->
+  <section class="section education" id="education">
+    <div class="container">
+      <h2 class="section-title prompt-user">cat /etc/education.conf</h2>
+      <div class="config-file">
+
+        <div class="education-card config-section">
+          <span class="config-header">[northeastern]</span>
+          <p>degree = "M.S. Computer Science"</p>
+          <p>location = "Boston, MA"</p>
+          <p>institution = "Northeastern University"</p>
+          <p>date = "January 2024 - May 2026"</p>
+          <p>gpa = "4.0/4.0"</p>
+        </div>
+
+        <div class="education-card config-section">
+          <span class="config-header">[suffolk]</span>
+          <p>degree = "B.S. Computer Science"</p>
+          <p>location = "Boston, MA"</p>
+          <p>institution = "Suffolk University"</p>
+          <p>date = "September 2021 - May 2023"</p>
+          <p>honors = "Cum Laude"</p>
+          <p>gpa = "3.5/4.0"</p>
+        </div>
+
+        <div class="education-card config-section">
+          <span class="config-header">[inti]</span>
+          <p>degree = "B.S. Computer Science"</p>
+          <p>location = "Malaysia"</p>
+          <p>institution = "INTI International College"</p>
+          <p>date = "September 2019 - July 2021"</p>
+        </div>
+
+        <div class="education-card config-section">
+          <span class="config-header">[tuit]</span>
+          <p>degree = "B.S. Software Engineering"</p>
+          <p>location = "Uzbekistan"</p>
+          <p>institution = "TUIT"</p>
+          <p>date = "September 2017 - June 2019"</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section - Terminal Input -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2 class="section-title prompt-user">./send_message.sh</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3># Connection endpoints:</h3>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <p>email</p>
+              <a href="mailto:silyosbekov@gmail.com">silyosbekov@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+            <div>
+              <p>linkedin</p>
+              <a href="https://linkedin.com/in/suxrobgm" target="_blank">linkedin.com/in/suxrobgm</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-github"></i></div>
+            <div>
+              <p>github</p>
+              <a href="https://github.com/suxrobgm" target="_blank">github.com/suxrobgm</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><i class="fab fa-telegram"></i></div>
+            <div>
+              <p>telegram</p>
+              <a href="https://t.me/suxrobgm" target="_blank">@@suxrobgm</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form-wrapper">
+          <ContactForm CaptchaSiteKey="@CaptchaSiteKey"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-exit">
+        <span class="prompt">Connection closed.</span>
+        <span class="cursor-blink">_</span>
+      </p>
+      <div class="social-links">
+        <a href="https://github.com/suxrobgm" target="_blank">github</a>
+        <a href="https://linkedin.com/in/suxrobgm" target="_blank">linkedin</a>
+        <a href="https://instagram.com/suxrob_gm" target="_blank">instagram</a>
+        <a href="https://t.me/suxrobgm" target="_blank">telegram</a>
+      </div>
+      <p class="footer-copyright">&copy; 2025 sukhrob.dev // all rights reserved</p>
+    </div>
+  </footer>
+
+</div> <!-- .crt-screen -->
