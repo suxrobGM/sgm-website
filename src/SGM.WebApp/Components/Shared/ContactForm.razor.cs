@@ -49,9 +49,9 @@ public partial class ContactForm
             }
 
             var message = $"""
-                <p><b>{EmailInput.Name}</b> - {EmailInput.Email}</p>
-                <p>{EmailInput.Message}</p>
-                """;
+                           <p><b>{EmailInput.Name}</b> - {EmailInput.Email}</p>
+                           <p>{EmailInput.Message}</p>
+                           """;
 
             var sentMail = await EmailSender.SendMailAsync("suxrobgm@gmail.com", EmailInput.Subject!, message);
 

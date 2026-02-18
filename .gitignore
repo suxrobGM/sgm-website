@@ -348,6 +348,8 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 
-.claude/
+.claude/settings.local.json
 
 BlazorApp1/
+
+.playwright-mcp/

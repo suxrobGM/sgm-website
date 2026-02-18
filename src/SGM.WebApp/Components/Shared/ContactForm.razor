@@ -1,55 +1,57 @@
 @rendermode InteractiveServer
 
 <div class="contact-form">
-    <EditForm Model="EmailInput" OnValidSubmit="HandleSubmit" FormName="contact-form" method="post">
-        <DataAnnotationsValidator />
+  <EditForm Model="EmailInput" OnValidSubmit="HandleSubmit" FormName="contact-form" method="post">
+    <DataAnnotationsValidator/>
 
-        @if (!string.IsNullOrEmpty(StatusMessage))
-        {
-            var isError = StatusMessage.StartsWith("Error");
-            <div class="status-message @(isError ? "error" : "success")">
-                <span class="status-icon">@(isError ? "✗" : "✓")</span>
-                @StatusMessage
-            </div>
-        }
+    @if (!string.IsNullOrEmpty(StatusMessage))
+    {
+      var isError = StatusMessage.StartsWith("Error");
+      <div class="status-message @(isError ? "error" : "success")">
+        <span class="status-icon">@(isError ? "✗" : "✓")</span>
+        @StatusMessage
+      </div>
+    }
 
-        <div class="form-row">
-            <div class="form-group">
-                <label class="form-label">Name</label>
-                <InputText @bind-Value="EmailInput.Name" class="form-input" placeholder="Your name..." aria-label="Your name" />
-                <ValidationMessage For="@(() => EmailInput.Name)" class="validation-error" />
-            </div>
-            <div class="form-group">
-                <label class="form-label">Email</label>
-                <InputText @bind-Value="EmailInput.Email" class="form-input" placeholder="Your email..." aria-label="Your email" />
-                <ValidationMessage For="@(() => EmailInput.Email)" class="validation-error" />
-            </div>
-        </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Name</label>
+        <InputText @bind-Value="EmailInput.Name" class="form-input" placeholder="Your name..." aria-label="Your name"/>
+        <ValidationMessage For="@(() => EmailInput.Name)" class="validation-error"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <InputText @bind-Value="EmailInput.Email" class="form-input" placeholder="Your email..."
+                   aria-label="Your email"/>
+        <ValidationMessage For="@(() => EmailInput.Email)" class="validation-error"/>
+      </div>
+    </div>
 
-        <div class="form-group">
-            <label class="form-label">Subject</label>
-            <InputText @bind-Value="EmailInput.Subject" class="form-input" placeholder="Subject..." aria-label="Subject" />
-            <ValidationMessage For="@(() => EmailInput.Subject)" class="validation-error" />
-        </div>
+    <div class="form-group">
+      <label class="form-label">Subject</label>
+      <InputText @bind-Value="EmailInput.Subject" class="form-input" placeholder="Subject..." aria-label="Subject"/>
+      <ValidationMessage For="@(() => EmailInput.Subject)" class="validation-error"/>
+    </div>
 
-        <div class="form-group">
-            <label class="form-label">Message</label>
-            <InputTextArea @bind-Value="EmailInput.Message" class="form-input form-textarea" rows="5" placeholder="Your message..." />
-            <ValidationMessage For="@(() => EmailInput.Message)" class="validation-error" />
-        </div>
+    <div class="form-group">
+      <label class="form-label">Message</label>
+      <InputTextArea @bind-Value="EmailInput.Message" class="form-input form-textarea" rows="5"
+                     placeholder="Your message..."/>
+      <ValidationMessage For="@(() => EmailInput.Message)" class="validation-error"/>
+    </div>
 
-        <input type="hidden" id="recaptcha_token" name="recaptcha_token" @bind="RecaptchaToken" />
+    <input type="hidden" id="recaptcha_token" name="recaptcha_token" @bind="RecaptchaToken"/>
 
-        <button type="submit" class="btn btn-primary btn-glow" disabled="@IsSubmitting">
-            @if (IsSubmitting)
-            {
-                <span class="btn-loading"></span>
-                <span>Sending...</span>
-            }
-            else
-            {
-                <span>Send Message</span>
-            }
-        </button>
-    </EditForm>
+    <button type="submit" class="btn btn-primary btn-glow" disabled="@IsSubmitting">
+      @if (IsSubmitting)
+      {
+        <span class="btn-loading"></span>
+        <span>Sending...</span>
+      }
+      else
+      {
+        <span>Send Message</span>
+      }
+    </button>
+  </EditForm>
 </div>
