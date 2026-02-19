@@ -8,13 +8,13 @@ namespace SGM.WebApp.Components.Shared;
 public partial class ContactForm
 {
     [Inject]
-    private IEmailSender EmailSender { get; set; } = default!;
+    private IEmailSender EmailSender { get; set; } = null!;
 
     [Inject]
-    private ICaptchaService CaptchaService { get; set; } = default!;
+    private ICaptchaService CaptchaService { get; set; } = null!;
 
     [Inject]
-    private IJSRuntime JSRuntime { get; set; } = default!;
+    private IJSRuntime JSRuntime { get; set; } = null!;
 
     [Parameter]
     public string CaptchaSiteKey { get; set; } = string.Empty;

@@ -42,7 +42,7 @@
   <div class="hero-background"></div>
   <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-panel-frame">
+    <div class="hero-center-block">
       <p class="hero-subtitle">Welcome to Vice City</p>
       <h1 class="hero-title">
         <span class="first-name">Sukhrob</span>
@@ -58,41 +58,37 @@
           <i class="fas fa-file-pdf"></i> Research CV
         </a>
       </div>
-      <!-- Cassette Music Player -->
-      <div class="cassette-player" id="cassettePlayer" onclick="toggleVcMusic()">
-        <div class="cassette-body">
-          <!-- Corner screws -->
-          <div class="cassette-screw cassette-screw-tl"></div>
-          <div class="cassette-screw cassette-screw-tr"></div>
-          <div class="cassette-screw cassette-screw-bl"></div>
-          <div class="cassette-screw cassette-screw-br"></div>
-          <!-- Label area -->
-          <div class="cassette-label">
-            <div class="cassette-label-lines"></div>
-            <span class="cassette-title">VICE CITY FM</span>
-            <span class="cassette-side">SIDE A &bull; 80s HITS</span>
-          </div>
-          <!-- Tape window -->
-          <div class="cassette-window">
-            <div class="cassette-reel cassette-reel-left"></div>
-            <div class="cassette-tape"></div>
-            <div class="cassette-reel cassette-reel-right"></div>
-          </div>
-          <!-- Play indicator -->
-          <div class="cassette-controls">
-            <i class="fas fa-play" id="cassetteBtnIcon"></i>
-          </div>
-          <!-- Bottom holes -->
-          <div class="cassette-holes">
-            <div class="cassette-hole"></div>
-            <div class="cassette-hole"></div>
-            <div class="cassette-hole"></div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </section>
+
+<!-- Cassette Music Player - Fixed Floating -->
+<div class="cassette-player cassette-floating" id="cassettePlayer" onclick="toggleVcMusic()">
+  <div class="cassette-body">
+    <div class="cassette-screw cassette-screw-tl"></div>
+    <div class="cassette-screw cassette-screw-tr"></div>
+    <div class="cassette-screw cassette-screw-bl"></div>
+    <div class="cassette-screw cassette-screw-br"></div>
+    <div class="cassette-label">
+      <div class="cassette-label-lines"></div>
+      <span class="cassette-title">VICE CITY FM</span>
+      <span class="cassette-side">SIDE A &bull; 80s HITS</span>
+    </div>
+    <div class="cassette-window">
+      <div class="cassette-reel cassette-reel-left"></div>
+      <div class="cassette-tape"></div>
+      <div class="cassette-reel cassette-reel-right"></div>
+    </div>
+    <div class="cassette-controls">
+      <i class="fas fa-play" id="cassetteBtnIcon"></i>
+    </div>
+    <div class="cassette-holes">
+      <div class="cassette-hole"></div>
+      <div class="cassette-hole"></div>
+      <div class="cassette-hole"></div>
+    </div>
+  </div>
+</div>
 
 <!-- About Section -->
 <section class="section about" id="about">
@@ -102,7 +98,7 @@
     </div>
     <div class="about-grid">
       <div class="about-image">
-        <img src="images/about.jpg" alt="Sukhrob Ilyosbekov">
+        <img src="images/myself-vc.jpg" alt="Sukhrob Ilyosbekov">
       </div>
       <div class="about-content">
         <h3>Full Stack Developer & AI Researcher</h3>
@@ -644,7 +640,7 @@
           <i class="fab fa-telegram"></i>
         </a>
       </div>
-      <p class="footer-copyright">&copy; 2026 Sukhrob Ilyosbekov. All rights reserved.</p>
+      <p class="footer-copyright">&copy; @CurrentYear Sukhrob Ilyosbekov. All rights reserved.</p>
     </div>
   </div>
 </footer>

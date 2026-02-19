@@ -19,4 +19,6 @@ public abstract class HomePageBase : ComponentBase
     protected IJSRuntime JS { get; set; } = null!;
 
     protected string CaptchaSiteKey => RecaptchaOptions.Value.SiteKey;
+
+    protected static int CurrentYear => DateTime.Now.Year;
 }

@@ -43,5 +43,3 @@ dotnet publish src/SGM.WebApp/SGM.WebApp.csproj -c Release -r linux-x64 -p:Publi
 ## Deployment
 
 Automated via `.github/workflows/deploy-ssh.yml` on push to `master`. Deploys as a single-file executable to Linux server running as `sgm-main.service` systemd unit.
-
-Production secrets (appsettings.Production.json, Google SA key) are managed separately on the deployment server in `/home/persistence/`.
