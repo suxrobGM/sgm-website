@@ -1,0 +1,451 @@
+/* ==========================================================================
+   Windows XP Theme - Window Chrome
+   Titlebar, Menu Bar, Toolbar, Address Bar, Buttons, Inputs,
+   Groupbox, Infobar, Welcome Banner, Divider, Status Bar,
+   List View Header, Progress Bar, Animations
+   ========================================================================== */
+
+/* === Main Content Area === */
+.xp-content-area {
+  padding: 10px 40px 60px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* === XP Window Chrome === */
+.xp-window {
+  background: var(--xp-gray);
+  border: 3px solid var(--xp-title-blue-light);
+  border-radius: 8px 8px 0 0;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.xp-titlebar {
+  background: linear-gradient(180deg,
+      #0a246a 0%, #3a6ea5 8%, #4a86c8 18%,
+      #a6caf0 24%, #3a6ea5 32%, #0a246a 100%);
+  padding: 4px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+  min-height: 30px;
+  user-select: none;
+}
+
+.xp-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.xp-titlebar-icon {
+  color: white;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.xp-titlebar-text {
+  color: white;
+  font-weight: bold;
+  font-size: 13px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xp-window-controls {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.xp-btn-minimize,
+.xp-btn-maximize,
+.xp-btn-close {
+  width: 21px;
+  height: 21px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: default;
+  line-height: 1;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+.xp-btn-close {
+  background: linear-gradient(180deg, #e5a49d, #c83232);
+}
+
+.xp-btn-close:hover {
+  background: linear-gradient(180deg, #f0b8b2, #dc4040);
+}
+
+.xp-btn-minimize,
+.xp-btn-maximize {
+  background: linear-gradient(180deg, #6eb0f0, #3a6ea5);
+}
+
+.xp-btn-minimize:hover,
+.xp-btn-maximize:hover {
+  background: linear-gradient(180deg, #8ec4f8, #4a82bc);
+}
+
+.xp-window-body {
+  padding: 16px;
+  background: var(--xp-white);
+  border-top: 1px solid #0a246a;
+}
+
+/* === XP Menu Bar === */
+.xp-menubar {
+  background: var(--xp-gray);
+  border-bottom: 1px solid var(--xp-btn-shadow);
+  padding: 2px 4px;
+  display: flex;
+  gap: 2px;
+}
+
+.xp-menu-item {
+  padding: 2px 8px;
+  font-size: 12px;
+  color: var(--xp-text);
+  cursor: default;
+  border: 1px solid transparent;
+}
+
+.xp-menu-item:hover {
+  background: var(--xp-selection);
+  color: white;
+  border: 1px solid #1a4a8a;
+}
+
+/* === XP Address Bar === */
+.xp-addressbar {
+  background: var(--xp-gray);
+  border-bottom: 1px solid var(--xp-btn-shadow);
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.xp-addressbar-label {
+  color: var(--xp-text);
+  white-space: nowrap;
+}
+
+.xp-addressbar-input {
+  flex: 1;
+  background: white;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  padding: 2px 4px;
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--xp-text);
+}
+
+.xp-addressbar-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--xp-title-blue-light);
+}
+
+/* === XP Toolbar === */
+.xp-toolbar {
+  background: var(--xp-gray);
+  border-bottom: 1px solid var(--xp-btn-shadow);
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.xp-toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 6px;
+  font-size: 11px;
+  color: var(--xp-text);
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: default;
+}
+
+.xp-toolbar-btn:hover {
+  border-top: 1px solid var(--xp-btn-highlight);
+  border-left: 1px solid var(--xp-btn-highlight);
+  border-bottom: 1px solid var(--xp-btn-shadow);
+  border-right: 1px solid var(--xp-btn-shadow);
+  background: var(--xp-gray);
+}
+
+.xp-toolbar-btn i {
+  font-size: 14px;
+  color: var(--xp-title-blue-light);
+}
+
+.xp-toolbar-separator {
+  width: 1px;
+  height: 20px;
+  background: var(--xp-btn-shadow);
+  margin: 0 4px;
+}
+
+/* === Classic 3D Raised Buttons === */
+.xp-button {
+  background: var(--xp-btn-face);
+  border-top: 2px solid var(--xp-btn-highlight);
+  border-left: 2px solid var(--xp-btn-highlight);
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  padding: 4px 16px;
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--xp-text);
+  cursor: pointer;
+  min-width: 75px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.xp-button:hover {
+  background: #f0ede4;
+}
+
+.xp-button:active {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid var(--xp-btn-highlight);
+  border-right: 2px solid var(--xp-btn-highlight);
+  padding: 5px 15px 3px 17px;
+}
+
+.xp-button.primary {
+  background: var(--xp-btn-face);
+  border: 2px solid var(--xp-text);
+  box-shadow: inset 0 0 0 1px var(--xp-btn-highlight), inset 0 0 0 2px var(--xp-btn-shadow);
+}
+
+.xp-button.primary:focus {
+  outline: 1px dotted var(--xp-text);
+  outline-offset: -4px;
+}
+
+/* === Sunken Text Inputs === */
+.xp-input,
+.xp-textarea {
+  background: white;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--xp-text);
+  outline: none;
+  width: 100%;
+}
+
+.xp-input:focus,
+.xp-textarea:focus {
+  border-top: 2px solid var(--xp-selection);
+  border-left: 2px solid var(--xp-selection);
+  border-bottom: 2px solid #a0c0e8;
+  border-right: 2px solid #a0c0e8;
+}
+
+.xp-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* === XP Groupbox === */
+.xp-groupbox {
+  border: 1px solid var(--xp-btn-shadow);
+  border-radius: 4px;
+  padding: 16px 12px 12px;
+  margin: 8px 0;
+  position: relative;
+}
+
+.xp-groupbox-title {
+  position: absolute;
+  top: -9px;
+  left: 10px;
+  background: var(--xp-white);
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: normal;
+  color: var(--xp-title-blue-light);
+}
+
+/* === XP Info Bar (like the yellow bar in IE) === */
+.xp-infobar {
+  background: #ffffcc;
+  border: 1px solid #e8e8a0;
+  padding: 6px 10px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.xp-infobar i {
+  color: #cc9900;
+  font-size: 16px;
+}
+
+/* === XP List View Header (Details view column headers) === */
+.xp-list-header {
+  display: flex;
+  background: var(--xp-gray);
+  border-bottom: 1px solid var(--xp-btn-shadow);
+  font-size: 12px;
+  font-weight: normal;
+  user-select: none;
+}
+
+.xp-list-header-item {
+  padding: 3px 8px;
+  border-right: 1px solid var(--xp-btn-shadow);
+  border-left: 1px solid var(--xp-btn-highlight);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.xp-list-header-item:hover {
+  background: #e0ddd4;
+}
+
+/* === XP Divider Line === */
+.xp-divider {
+  border: none;
+  border-top: 1px solid var(--xp-btn-shadow);
+  border-bottom: 1px solid var(--xp-btn-highlight);
+  margin: 12px 0;
+}
+
+/* === XP Welcome Banner (like the XP login screen header) === */
+.xp-welcome-banner {
+  background: linear-gradient(180deg, #4080d0, #2060b0);
+  color: white;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.xp-welcome-banner h3 {
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.xp-welcome-banner p {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* === XP Status Bar === */
+.xp-statusbar {
+  background: var(--xp-gray);
+  border-top: 1px solid var(--xp-btn-shadow);
+  padding: 2px 8px;
+  font-size: 11px;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+}
+
+.xp-statusbar-section {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* XP Progress Bar */
+.xp-progress-bar {
+  width: 120px;
+  height: 16px;
+  background: white;
+  border-top: 1px solid #808080;
+  border-left: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.xp-progress-fill {
+  height: 100%;
+  background: linear-gradient(180deg, #3a6ea5, #2a5a8f);
+  border-radius: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated segments like XP file transfer */
+.xp-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(90deg,
+      transparent,
+      transparent 6px,
+      rgba(255, 255, 255, 0.3) 6px,
+      rgba(255, 255, 255, 0.3) 8px);
+}
+
+/* === Animations === */
+@keyframes xp-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes xp-progress-animate {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 30px 0;
+  }
+}
+
+.xp-progress-animated .xp-progress-fill::after {
+  animation: xp-progress-animate 1s linear infinite;
+  background-size: 30px 100%;
+}

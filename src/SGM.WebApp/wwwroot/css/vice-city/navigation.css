@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Vice City Theme - Navigation (Radio Station Dial)
+   ========================================================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0;
+  background: linear-gradient(180deg,
+      rgba(18, 10, 34, 0.96) 0%,
+      rgba(18, 10, 34, 0.92) 100%);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--vc-coral);
+  box-shadow: 0 2px 15px rgba(232, 115, 74, 0.2);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(18, 10, 34, 0.99);
+  box-shadow: 0 2px 25px rgba(232, 115, 74, 0.3);
+}
+
+/* Radio tuner strip */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(90deg,
+      var(--vc-coral) 0px,
+      var(--vc-coral) 2px,
+      transparent 2px,
+      transparent 8px,
+      var(--vc-teal) 8px,
+      var(--vc-teal) 10px,
+      transparent 10px,
+      transparent 20px);
+  opacity: 0.6;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 12px 20px;
+}
+
+.nav-logo {
+  font-family: 'Bungee Shade', 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--vc-coral);
+  text-decoration: none;
+  text-shadow: var(--glow-coral);
+  letter-spacing: 3px;
+  animation: neonFlicker 6s infinite;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0;
+  list-style: none;
+  align-items: center;
+  background: rgba(26, 10, 46, 0.4);
+  border-radius: 4px;
+  border: 1px solid rgba(232, 115, 74, 0.15);
+  overflow: hidden;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--vc-coral), transparent);
+  opacity: 0.3;
+}
+
+.nav-links a {
+  color: var(--vc-text-muted);
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 10px 18px;
+  display: block;
+}
+
+.nav-links a::before {
+  content: attr(data-freq);
+  position: absolute;
+  top: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.5rem;
+  color: var(--vc-gold);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.nav-links a:hover::before {
+  opacity: 0.7;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: var(--vc-teal);
+  box-shadow: var(--glow-teal);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--vc-teal);
+  text-shadow: 0 0 8px rgba(64, 200, 184, 0.4);
+  background: rgba(64, 200, 184, 0.04);
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.nav-toggle span {
+  width: 25px;
+  height: 2px;
+  background: var(--vc-coral);
+  box-shadow: 0 0 6px rgba(232, 115, 74, 0.4);
+  transition: all 0.3s ease;
+}

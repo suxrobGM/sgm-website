@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Terminal Theme - CSS Variables
+   ========================================================================== */
+
+:root {
+  --term-black: #0a0a0a;
+  --term-dark: #0d0d0d;
+  --term-green: #00ff41;
+  --term-green-dim: #008f11;
+  --term-green-bright: #66ff66;
+  --term-green-glow: rgba(0, 255, 65, 0.15);
+  --term-green-subtle: rgba(0, 255, 65, 0.05);
+  --term-amber: #ffb000;
+  --term-red: #ff3333;
+  --term-cyan: #00ffff;
+  --term-white: #ccffcc;
+  --term-comment: #006600;
+
+  /* Spacing */
+  --section-padding: 80px 0;
+  --container-max: 1100px;
+}

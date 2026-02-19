@@ -1,0 +1,260 @@
+/* ==========================================================================
+   Terminal Theme - Responsive Design & Print
+   ========================================================================== */
+
+/* Medium Screens */
+@media (max-width: 992px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: left;
+  }
+
+  .about-image {
+    max-width: 200px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .file-entry {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .file-listing .permissions,
+  .file-listing .size,
+  .file-listing .date {
+    min-width: auto;
+    display: inline;
+  }
+
+  .file-entry .file-contents {
+    padding-left: 0;
+  }
+
+  .research-card {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Small Screens */
+@media (max-width: 768px) {
+  body {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .crt-screen {
+    border-radius: 8px;
+    border-width: 2px;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+
+  .section {
+    padding: 50px 0;
+  }
+
+  .section-title {
+    font-size: 0.9rem;
+  }
+
+  /* Mobile Navigation */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    flex-direction: column;
+    padding: 15px;
+    gap: 5px;
+    border-bottom: 1px solid var(--term-green-dim);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links li a {
+    display: block;
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  /* Hero mobile */
+  .hero {
+    min-height: 90vh;
+    padding: 80px 15px 40px;
+  }
+
+  .typing-container .first-name {
+    font-size: 1.3rem;
+  }
+
+  .boot-line {
+    font-size: 0.75rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.8rem;
+  }
+
+  /* About mobile */
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-image {
+    max-width: 150px;
+    margin: 0 auto;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .manpage-indent {
+    padding-left: 15px;
+  }
+
+  /* Skills mobile */
+  .file-entry {
+    flex-direction: column;
+    gap: 3px;
+    padding: 8px 0;
+  }
+
+  /* Timeline mobile */
+  .timeline-item {
+    padding: 10px;
+  }
+
+  /* Prompt prefix mobile */
+  .prompt-user::before {
+    content: '$ ';
+  }
+
+  /* Contact form mobile */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: 15px;
+  }
+
+  /* Footer mobile */
+  .social-links {
+    flex-wrap: wrap;
+  }
+
+  /* Matrix rain less visible on mobile */
+  .matrix-rain {
+    opacity: 0.04;
+  }
+
+  /* Reduce CRT effects on mobile for performance */
+  .crt-screen::after {
+    display: none;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 480px) {
+  body {
+    padding: 3px;
+  }
+
+  .crt-screen {
+    border-radius: 5px;
+  }
+
+  .nav-container {
+    padding: 0 10px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  .hero {
+    padding: 70px 10px 30px;
+  }
+
+  .typing-container .first-name {
+    font-size: 1.1rem;
+  }
+
+  .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .social-links a {
+    padding: 4px 8px;
+    font-size: 0.75rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+    padding: 0;
+  }
+
+  .crt-screen {
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .crt-screen::before,
+  .crt-screen::after {
+    display: none;
+  }
+
+  .scanlines,
+  .matrix-rain {
+    display: none;
+  }
+
+  .navbar {
+    display: none;
+  }
+
+  * {
+    color: #000 !important;
+    border-color: #ccc !important;
+    background: transparent !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+}

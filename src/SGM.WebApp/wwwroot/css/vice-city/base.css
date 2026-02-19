@@ -1,0 +1,177 @@
+/* ==========================================================================
+   Vice City Theme - Base Styles
+   Reset, Typography, Layout, Section Titles, Scrollbar, Selection
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+  background-color: var(--vc-bg-darker);
+  color: var(--vc-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Subtle warm vignette around page edges */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(12, 6, 24, 0.35) 80%, rgba(12, 6, 24, 0.6) 100%);
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Orbitron', 'Rajdhani', sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--vc-teal);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--vc-coral);
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, var(--vc-coral), var(--vc-teal), var(--vc-warm-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Layout */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: var(--section-padding);
+  position: relative;
+}
+
+/* Section Titles - Warm Vintage Neon Sign */
+.section-title {
+  font-family: 'Bungee Shade', 'Orbitron', sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+  color: var(--vc-coral);
+  text-shadow: 0 0 6px rgba(232, 115, 74, 0.5),
+    0 0 15px rgba(232, 115, 74, 0.3),
+    0 0 30px rgba(232, 115, 74, 0.15),
+    3px 3px 0 rgba(26, 10, 46, 0.6);
+  -webkit-text-fill-color: var(--vc-coral);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  animation: neonFlicker 6s infinite;
+}
+
+/* Bracket decorations */
+.section-title::before {
+  content: '\2039\2039';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(calc(-50% - 200px), -50%);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2rem;
+  color: var(--vc-teal);
+  text-shadow: var(--glow-teal);
+  letter-spacing: -5px;
+  opacity: 0.5;
+}
+
+.section-title::after {
+  content: '\203a\203a';
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(calc(50% + 200px), -50%);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2rem;
+  color: var(--vc-teal);
+  text-shadow: var(--glow-teal);
+  letter-spacing: -5px;
+  opacity: 0.5;
+}
+
+.neon-sign {
+  text-align: center;
+  position: relative;
+  padding: 10px 0 20px;
+  margin-bottom: 40px;
+}
+
+.neon-sign::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 3px;
+  background: var(--vc-teal);
+  margin: 15px auto 0;
+  box-shadow: var(--glow-teal);
+  border-radius: 2px;
+  animation: neonPulse 4s ease-in-out infinite;
+}
+
+.neon-sign .section-title {
+  margin-bottom: 20px;
+}
+
+/* Selection */
+::selection {
+  background: var(--vc-coral);
+  color: white;
+  text-shadow: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--vc-bg-darker);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--vc-coral), var(--vc-warm-pink));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--vc-warm-pink), var(--vc-teal));
+  box-shadow: 0 0 6px var(--vc-coral);
+}

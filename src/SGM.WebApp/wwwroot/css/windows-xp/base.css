@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Windows XP Theme - Reset, Base, Typography, Scrollbar, Selection
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--xp-text);
+  line-height: 1.5;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--xp-link);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: #0000cc;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* === Scrollbar (XP-style) === */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1efe2;
+  border: 1px solid #d4d0c8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #ece9d8, #d4d0c8);
+  border: 1px solid #aca899;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #d4d0c8, #bcb8ae);
+}
+
+::-webkit-scrollbar-button {
+  background: var(--xp-gray);
+  border: 1px solid var(--xp-btn-shadow);
+  width: 16px;
+  height: 16px;
+}
+
+/* === Selection === */
+::selection {
+  background: var(--xp-selection);
+  color: white;
+}

@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Windows XP Theme - Footer & Social Links
+   ========================================================================== */
+
+.xp-footer {
+  background: var(--xp-gray);
+  border: 1px solid var(--xp-btn-shadow);
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 40px;
+  border-radius: 2px;
+}
+
+.xp-footer-logo {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--xp-title-blue-dark);
+  margin-bottom: 8px;
+}
+
+.xp-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.xp-social-links a {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--xp-btn-face);
+  border-top: 2px solid var(--xp-btn-highlight);
+  border-left: 2px solid var(--xp-btn-highlight);
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  color: var(--xp-title-blue-light);
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.xp-social-links a:hover {
+  background: #f0ede4;
+  color: var(--xp-title-blue-dark);
+}
+
+.xp-social-links a:active {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid var(--xp-btn-highlight);
+  border-right: 2px solid var(--xp-btn-highlight);
+}
+
+.xp-footer-copyright {
+  font-size: 11px;
+  color: #666;
+}

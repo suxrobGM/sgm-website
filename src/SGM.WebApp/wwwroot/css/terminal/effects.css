@@ -1,0 +1,260 @@
+/* ==========================================================================
+   Terminal Theme - CRT Effects
+   CRT Screen, Scanlines, Matrix Rain, Typing Animation
+   ========================================================================== */
+
+/* CRT Monitor Frame */
+.crt-screen {
+  background: var(--term-black);
+  border-radius: 20px;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 100px rgba(0, 255, 65, 0.05),
+    0 0 40px rgba(0, 255, 65, 0.1),
+    0 0 80px rgba(0, 255, 65, 0.05);
+  border: 3px solid #1a1a1a;
+}
+
+/* CRT curvature vignette */
+.crt-screen::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* CRT flicker effect */
+.crt-screen::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9997;
+  animation: crt-flicker 0.15s infinite;
+  background: transparent;
+}
+
+@keyframes crt-flicker {
+  0% {
+    opacity: 0.97;
+  }
+
+  5% {
+    opacity: 0.95;
+  }
+
+  10% {
+    opacity: 0.98;
+  }
+
+  15% {
+    opacity: 0.96;
+  }
+
+  20% {
+    opacity: 0.99;
+  }
+
+  50% {
+    opacity: 0.96;
+  }
+
+  80% {
+    opacity: 0.98;
+  }
+
+  90% {
+    opacity: 0.95;
+  }
+
+  100% {
+    opacity: 0.98;
+  }
+}
+
+/* Scanlines Overlay */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 1px,
+      rgba(0, 255, 65, 0.03) 1px,
+      rgba(0, 255, 65, 0.03) 2px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Matrix Rain Background */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0.08;
+}
+
+.matrix-column {
+  position: absolute;
+  top: -100%;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  color: var(--term-green);
+  writing-mode: vertical-rl;
+  animation: matrix-fall linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes matrix-fall {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(200vh);
+  }
+}
+
+.matrix-column:nth-child(1) {
+  left: 3%;
+  animation-duration: 12s;
+  animation-delay: 0s;
+  font-size: 13px;
+}
+
+.matrix-column:nth-child(2) {
+  left: 8%;
+  animation-duration: 15s;
+  animation-delay: 2s;
+  font-size: 12px;
+}
+
+.matrix-column:nth-child(3) {
+  left: 13%;
+  animation-duration: 11s;
+  animation-delay: 4s;
+  font-size: 14px;
+}
+
+.matrix-column:nth-child(4) {
+  left: 20%;
+  animation-duration: 14s;
+  animation-delay: 1s;
+  font-size: 11px;
+}
+
+.matrix-column:nth-child(5) {
+  left: 27%;
+  animation-duration: 13s;
+  animation-delay: 3s;
+  font-size: 15px;
+}
+
+.matrix-column:nth-child(6) {
+  left: 34%;
+  animation-duration: 16s;
+  animation-delay: 5s;
+  font-size: 12px;
+}
+
+.matrix-column:nth-child(7) {
+  left: 41%;
+  animation-duration: 10s;
+  animation-delay: 0.5s;
+  font-size: 13px;
+}
+
+.matrix-column:nth-child(8) {
+  left: 50%;
+  animation-duration: 17s;
+  animation-delay: 2.5s;
+  font-size: 14px;
+}
+
+.matrix-column:nth-child(9) {
+  left: 58%;
+  animation-duration: 12s;
+  animation-delay: 4.5s;
+  font-size: 11px;
+}
+
+.matrix-column:nth-child(10) {
+  left: 66%;
+  animation-duration: 14s;
+  animation-delay: 1.5s;
+  font-size: 13px;
+}
+
+.matrix-column:nth-child(11) {
+  left: 74%;
+  animation-duration: 11s;
+  animation-delay: 3.5s;
+  font-size: 12px;
+}
+
+.matrix-column:nth-child(12) {
+  left: 82%;
+  animation-duration: 15s;
+  animation-delay: 0.8s;
+  font-size: 14px;
+}
+
+/* Typing Animation */
+.typing-container {
+  display: inline-block;
+  max-width: 100%;
+}
+
+.typing-container .first-name {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid var(--term-green);
+  animation: typing 2s steps(30) 1s forwards,
+    blink-caret 0.75s step-end infinite;
+  width: 0;
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+
+  from,
+  to {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: var(--term-green);
+  }
+}
+
+/* Blinking cursor for footer */
+.cursor-blink {
+  animation: blink-caret 0.75s step-end infinite;
+  color: var(--term-green);
+}

@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Vice City Theme - VHS & Scanline Effects
+   ========================================================================== */
+
+/* VHS Tracking Overlay */
+.vhs-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9996;
+  overflow: hidden;
+}
+
+.vhs-overlay::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 3px,
+      rgba(232, 115, 74, 0.01) 3px,
+      rgba(232, 115, 74, 0.01) 4px,
+      transparent 4px,
+      transparent 8px);
+  animation: vhsTracking 8s linear infinite;
+}
+
+.vhs-overlay::after {
+  content: '';
+  position: absolute;
+  top: -5%;
+  left: -2%;
+  right: -2%;
+  height: 6px;
+  background: linear-gradient(90deg,
+      rgba(232, 115, 74, 0.08),
+      rgba(64, 200, 184, 0.06),
+      rgba(216, 80, 112, 0.05),
+      transparent);
+  filter: blur(1px);
+  animation: vhsBand 8s ease-in-out infinite;
+  opacity: 0.5;
+}
+
+@keyframes vhsTracking {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-1px);
+  }
+
+  50% {
+    transform: translateY(1px);
+  }
+
+  75% {
+    transform: translateY(-0.5px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes vhsBand {
+  0% {
+    top: -5%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 0.5;
+  }
+
+  45% {
+    opacity: 0.5;
+  }
+
+  50% {
+    top: 105%;
+    opacity: 0;
+  }
+
+  100% {
+    top: -5%;
+    opacity: 0;
+  }
+}
+
+/* Scanlines Effect */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+.scanlines::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent 0px,
+      transparent 1px,
+      rgba(0, 0, 0, 0.04) 1px,
+      rgba(0, 0, 0, 0.04) 2px);
+  pointer-events: none;
+  z-index: 9997;
+}

@@ -1,0 +1,319 @@
+/* ==========================================================================
+   Vice City Theme - Responsive Design
+   ========================================================================== */
+
+/* Tablet */
+@media (max-width: 992px) {
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .section-title::before,
+  .section-title::after {
+    display: none;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-image {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .about-image::before {
+    display: none;
+  }
+
+  .about-stats {
+    margin: 40px auto 0;
+  }
+
+  .about-content h3 {
+    text-align: center;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline::after {
+    left: 20px;
+  }
+
+  .road-edge-left {
+    left: 8px;
+  }
+
+  .road-edge-right {
+    left: 32px;
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    width: calc(100% - 60px);
+    margin-left: 55px;
+    text-align: left;
+    padding-left: 0;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-dot,
+  .timeline-item:nth-child(even) .timeline-dot {
+    left: -47px;
+    top: 20px;
+    transform: none;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content::after,
+  .timeline-item:nth-child(even) .timeline-content::after {
+    display: none;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .phone-booth-frame {
+    padding: 30px 20px;
+  }
+
+  .research-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .research-icon {
+    margin: 0 auto 15px;
+  }
+
+  .research-card::before {
+    display: none;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: 70px 0;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: rgba(18, 10, 34, 0.98);
+    flex-direction: column;
+    padding: 15px;
+    gap: 0;
+    border: none;
+    border-bottom: 2px solid var(--vc-coral);
+    border-radius: 0;
+    box-shadow: 0 10px 25px rgba(232, 115, 74, 0.15);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li:not(:last-child)::after {
+    display: none;
+  }
+
+  .nav-links a {
+    padding: 12px 20px;
+    font-size: 0.8rem;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .hero {
+    min-height: 100svh;
+  }
+
+  .hero.has-poster-art .hero-background {
+    background-position: top center;
+    background-size: cover;
+  }
+
+  .hero-content {
+    padding: 80px 16px 30px;
+  }
+
+  .hero-center-block {
+    padding: 20px 16px;
+    max-width: 100%;
+  }
+
+  .cassette-floating {
+    bottom: 16px;
+    right: 16px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 8vw, 4rem);
+  }
+
+  .hero-title .first-name {
+    font-size: clamp(2.2rem, 10vw, 4.5rem);
+  }
+
+  .hero-title .last-name {
+    letter-spacing: 6px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+  }
+
+  .hero-tagline {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+
+  .hero-title-divider {
+    margin: 8px auto;
+  }
+
+  .about-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero-buttons .btn {
+    justify-content: center;
+  }
+
+  .btn {
+    padding: 12px 28px;
+    font-size: 0.78rem;
+  }
+
+  .cassette-floating .cassette-body {
+    width: 155px;
+    padding: 8px 9px 6px;
+  }
+
+  .cassette-label {
+    padding: 5px 8px 6px;
+    margin-bottom: 5px;
+  }
+
+  .cassette-title {
+    font-size: 0.6rem;
+  }
+
+  .cassette-side {
+    font-size: 0.32rem;
+  }
+
+  .cassette-window {
+    padding: 4px 8px;
+    margin: 0 10px;
+    border-radius: 12px;
+  }
+
+  .cassette-reel {
+    width: 22px;
+    height: 22px;
+  }
+
+  .cassette-reel::before {
+    width: 9px;
+    height: 9px;
+  }
+
+  .cassette-controls {
+    font-size: 0.5rem;
+  }
+
+  .cassette-hole {
+    width: 5px;
+    height: 5px;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card:nth-child(n) {
+    transform: none;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px) !important;
+  }
+
+  .education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .awards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form {
+    padding: 25px 20px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer::before {
+    height: 50px;
+  }
+
+  body::after {
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(12, 6, 24, 0.25) 100%);
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .vhs-overlay,
+  .scanlines {
+    display: none;
+  }
+}

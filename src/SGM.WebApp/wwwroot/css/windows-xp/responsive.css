@@ -1,0 +1,274 @@
+/* ==========================================================================
+   Windows XP Theme - Responsive Design
+   ========================================================================== */
+
+/* === Responsive: Tablet === */
+@media (max-width: 992px) {
+  .xp-desktop {
+    max-height: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    min-height: auto;
+    padding: 20px 15px;
+  }
+
+  .xp-content-area {
+    padding: 10px 15px 60px 15px;
+  }
+
+  .xp-explorer-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .xp-explorer-sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--xp-btn-shadow);
+    max-height: 200px;
+    overflow-y: auto;
+  }
+
+  .xp-about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .xp-about-image {
+    margin: 0 auto;
+  }
+
+  .xp-stats-row {
+    justify-content: center;
+  }
+
+  .xp-dialog-body {
+    grid-template-columns: 1fr;
+  }
+
+  .xp-folder-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .xp-education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .xp-task-area {
+    overflow-x: auto;
+  }
+
+  .xp-task-btn {
+    max-width: 120px;
+    font-size: 10px;
+  }
+}
+
+/* === Responsive: Mobile === */
+@media (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
+
+  .xp-desktop {
+    padding: 15px 10px;
+    gap: 8px;
+  }
+
+  .xp-desktop-icon {
+    width: 70px;
+  }
+
+  .xp-icon-graphic {
+    font-size: 32px;
+  }
+
+  .xp-icon-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .xp-content-area {
+    padding: 8px 8px 50px 8px;
+  }
+
+  .xp-window {
+    margin-bottom: 16px;
+    border-width: 2px;
+  }
+
+  .xp-titlebar {
+    min-height: 26px;
+    padding: 3px 6px;
+  }
+
+  .xp-titlebar-text {
+    font-size: 11px;
+  }
+
+  .xp-btn-minimize,
+  .xp-btn-maximize,
+  .xp-btn-close {
+    width: 18px;
+    height: 18px;
+    font-size: 9px;
+  }
+
+  .xp-window-body {
+    padding: 10px;
+  }
+
+  /* Simplified taskbar */
+  .xp-taskbar {
+    height: 32px;
+  }
+
+  .xp-start-btn {
+    font-size: 11px;
+    height: 26px;
+    padding: 2px 8px 2px 4px;
+  }
+
+  .xp-start-text {
+    display: none;
+  }
+
+  .xp-quick-launch {
+    display: none;
+  }
+
+  .xp-task-area {
+    display: none;
+  }
+
+  .xp-system-tray {
+    margin-left: auto;
+  }
+
+  .xp-clock {
+    font-size: 10px;
+  }
+
+  /* Explorer sidebar hidden on mobile */
+  .xp-explorer-sidebar {
+    display: none;
+  }
+
+  .xp-explorer-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .xp-about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .xp-about-image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+  }
+
+  .xp-stats-row {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .xp-program-item {
+    flex-wrap: wrap;
+  }
+
+  .xp-progress-bar {
+    width: 80px;
+  }
+
+  .xp-folder-grid {
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .xp-folder-icon {
+    font-size: 36px;
+  }
+
+  .xp-dialog-body {
+    grid-template-columns: 1fr;
+  }
+
+  .xp-awards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .xp-education-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .xp-social-links {
+    gap: 8px;
+  }
+}
+
+/* === Responsive: Small Mobile === */
+@media (max-width: 480px) {
+  .xp-desktop-icon {
+    width: 60px;
+  }
+
+  .xp-icon-graphic {
+    font-size: 28px;
+  }
+
+  .xp-icon-label {
+    font-size: 10px;
+    max-width: 58px;
+  }
+
+  .xp-program-icon {
+    display: none;
+  }
+
+  .xp-progress-bar {
+    width: 60px;
+  }
+
+  .xp-folder-grid {
+    grid-template-columns: repeat(auto-fill, minmax(75px, 1fr));
+  }
+
+  .xp-folder-icon {
+    font-size: 30px;
+  }
+
+  .xp-folder-label {
+    font-size: 10px;
+  }
+}
+
+/* === Print styles === */
+@media print {
+  .xp-taskbar {
+    display: none;
+  }
+
+  .xp-bliss-bg {
+    display: none;
+  }
+
+  body {
+    padding-bottom: 0;
+    background: white;
+  }
+
+  .xp-window {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+
+  .xp-desktop {
+    display: none;
+  }
+}

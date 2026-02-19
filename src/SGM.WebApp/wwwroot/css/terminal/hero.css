@@ -1,0 +1,178 @@
+/* ==========================================================================
+   Terminal Theme - Hero Section & Buttons
+   Boot Sequence, Hero Content, Button Styles
+   ========================================================================== */
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 20px 60px;
+}
+
+.terminal-boot .hero-content {
+  max-width: 800px;
+  width: 100%;
+  z-index: 10;
+}
+
+/* Boot Sequence */
+.boot-sequence {
+  margin-bottom: 30px;
+}
+
+.boot-line {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--term-green-dim);
+  line-height: 1.8;
+  opacity: 0;
+  animation: boot-appear 0.3s ease forwards;
+}
+
+.boot-line:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.boot-line:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.boot-line:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+.boot-line:nth-child(4) {
+  animation-delay: 1.3s;
+}
+
+.boot-line:nth-child(5) {
+  animation-delay: 1.7s;
+}
+
+.boot-line:nth-child(6) {
+  animation-delay: 2.0s;
+}
+
+@keyframes boot-appear {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero Content */
+.hero-title {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  margin-bottom: 15px;
+  line-height: 1.2;
+  color: var(--term-green);
+}
+
+.hero-tagline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.95rem;
+  color: var(--term-green-dim);
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.hero-subtitle {
+  font-size: 0.9rem;
+  color: var(--term-green-dim);
+  margin-bottom: 10px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: 1px solid var(--term-green-dim);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  background: transparent;
+  color: var(--term-green);
+}
+
+.btn:hover {
+  background: var(--term-green-subtle);
+  border-color: var(--term-green);
+  text-shadow: 0 0 8px var(--term-green);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+}
+
+.btn-primary {
+  background: rgba(0, 255, 65, 0.1);
+  color: var(--term-green);
+  border: 1px solid var(--term-green-dim);
+}
+
+.btn-primary:hover {
+  background: rgba(0, 255, 65, 0.2);
+  border-color: var(--term-green);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--term-green-dim);
+  border: 1px solid var(--term-comment);
+}
+
+.btn-secondary:hover {
+  background: var(--term-green-subtle);
+  color: var(--term-green);
+  border-color: var(--term-green-dim);
+}
+
+.btn-glow {
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.3),
+    0 0 30px rgba(0, 255, 65, 0.1);
+}
+
+.btn-loading {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--term-green-dim);
+  border-top-color: var(--term-green);
+  border-radius: 50%;
+  animation: btn-spin 0.8s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

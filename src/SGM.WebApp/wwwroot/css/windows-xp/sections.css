@@ -1,0 +1,540 @@
+/* ==========================================================================
+   Windows XP Theme - Content Sections
+   About, Skills/Programs, Awards, Experience/Explorer,
+   Projects/Folders, Research, Education
+   ========================================================================== */
+
+/* === About Section - System Properties === */
+.xp-about-grid {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.xp-about-image {
+  width: 140px;
+  height: 140px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 2px solid var(--xp-title-blue-light);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.xp-about-content h3 {
+  font-size: 14px;
+  color: var(--xp-title-blue-dark);
+  margin-bottom: 8px;
+}
+
+.xp-about-content p {
+  font-size: 12px;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+.xp-system-info {
+  margin-top: 12px;
+}
+
+.xp-system-info-row {
+  display: flex;
+  padding: 3px 0;
+  font-size: 12px;
+  border-bottom: 1px dotted #d4d0c8;
+}
+
+.xp-system-info-label {
+  width: 140px;
+  font-weight: bold;
+  color: var(--xp-title-blue-dark);
+  flex-shrink: 0;
+}
+
+.xp-system-info-value {
+  flex: 1;
+}
+
+/* Stats area */
+.xp-stats-row {
+  display: flex;
+  gap: 30px;
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--xp-gray);
+  border: 1px solid var(--xp-btn-shadow);
+  border-radius: 2px;
+}
+
+.xp-stat-item {
+  text-align: center;
+}
+
+.xp-stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--xp-title-blue-dark);
+  line-height: 1;
+}
+
+.xp-stat-label {
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* === Skills Section - Add/Remove Programs === */
+.xp-program-list {
+  list-style: none;
+  border: 1px solid var(--xp-btn-shadow);
+  background: white;
+}
+
+.xp-program-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid #f0ede4;
+  gap: 12px;
+  cursor: default;
+}
+
+.xp-program-item:nth-child(even) {
+  background: #f6f3eb;
+}
+
+.xp-program-item:hover {
+  background: var(--xp-selection);
+  color: white;
+}
+
+.xp-program-item:hover .xp-program-name,
+.xp-program-item:hover .xp-program-size,
+.xp-program-item:hover .xp-program-tags span {
+  color: white;
+}
+
+.xp-program-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: var(--xp-title-blue-light);
+  flex-shrink: 0;
+}
+
+.xp-program-item:hover .xp-program-icon {
+  color: white;
+}
+
+.xp-program-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.xp-program-name {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--xp-text);
+}
+
+.xp-program-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.xp-program-tags span {
+  font-size: 10px;
+  background: var(--xp-gray);
+  border: 1px solid var(--xp-btn-shadow);
+  padding: 1px 6px;
+  border-radius: 2px;
+  color: #555;
+}
+
+.xp-program-item:hover .xp-program-tags span {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.xp-program-size {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* === Awards Section === */
+.xp-awards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.xp-award-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: var(--xp-gray);
+  border: 1px solid var(--xp-btn-shadow);
+  border-radius: 2px;
+}
+
+.xp-award-icon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.xp-award-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--xp-title-blue-dark);
+  margin-bottom: 4px;
+}
+
+.xp-award-description {
+  font-size: 12px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* === Experience Section - Windows Explorer Tree View === */
+.xp-explorer-layout {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  border: 1px solid var(--xp-btn-shadow);
+  min-height: 400px;
+}
+
+.xp-explorer-sidebar {
+  background: white;
+  border-right: 1px solid var(--xp-btn-shadow);
+  padding: 8px;
+  overflow-y: auto;
+}
+
+.xp-explorer-main {
+  background: white;
+  padding: 12px;
+  overflow-y: auto;
+}
+
+/* Tree View */
+.xp-tree {
+  list-style: none;
+  padding-left: 0;
+  font-size: 12px;
+}
+
+.xp-tree ul {
+  list-style: none;
+  padding-left: 18px;
+  border-left: 1px dotted #ccc;
+  margin-left: 7px;
+}
+
+.xp-tree-item {
+  padding: 2px 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  margin: 1px 0;
+  font-size: 12px;
+}
+
+.xp-tree-item:hover {
+  background: #e8e4db;
+}
+
+.xp-tree-item.selected {
+  background: var(--xp-selection);
+  color: white;
+  border: 1px dotted #8ab5e0;
+}
+
+.xp-tree-toggle {
+  width: 9px;
+  height: 9px;
+  border: 1px solid #808080;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  line-height: 1;
+  flex-shrink: 0;
+  cursor: pointer;
+  font-family: monospace;
+}
+
+.xp-tree-icon {
+  color: #f0c040;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.xp-tree-label {
+  font-size: 12px;
+}
+
+/* Explorer detail pane */
+.xp-detail-pane {
+  padding: 12px 0;
+}
+
+.xp-job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.xp-job-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--xp-title-blue-dark);
+}
+
+.xp-job-company {
+  font-size: 12px;
+  color: #555;
+  margin-top: 2px;
+}
+
+.xp-job-date {
+  font-size: 11px;
+  color: white;
+  background: var(--xp-title-blue-light);
+  padding: 2px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.xp-job-description {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #333;
+  margin-top: 8px;
+  padding: 8px;
+  background: var(--xp-gray);
+  border: 1px solid var(--xp-btn-shadow);
+}
+
+.xp-job-separator {
+  border: none;
+  border-top: 1px solid var(--xp-btn-shadow);
+  margin: 16px 0;
+}
+
+/* === Projects Section - My Documents / Large Icons View === */
+.xp-folder-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  background: white;
+}
+
+.xp-folder-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  text-align: center;
+  text-decoration: none;
+  color: var(--xp-text);
+}
+
+.xp-folder-item:hover {
+  background: rgba(49, 106, 197, 0.15);
+  border: 1px solid rgba(49, 106, 197, 0.3);
+}
+
+.xp-folder-item:hover .xp-folder-label {
+  background: var(--xp-selection);
+  color: white;
+}
+
+.xp-folder-icon {
+  font-size: 48px;
+  margin-bottom: 6px;
+  color: #f0c040;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.xp-folder-icon.blue {
+  color: var(--xp-title-blue-light);
+}
+
+.xp-folder-icon.green {
+  color: var(--xp-start-green);
+}
+
+.xp-folder-icon.red {
+  color: var(--xp-close-red);
+}
+
+.xp-folder-label {
+  font-size: 11px;
+  padding: 1px 4px;
+  max-width: 120px;
+  word-wrap: break-word;
+  line-height: 1.3;
+}
+
+/* Project Detail Panel (expanded below folder grid) */
+.xp-project-detail {
+  padding: 12px 16px;
+  background: var(--xp-gray);
+  border-top: 1px solid var(--xp-btn-shadow);
+}
+
+.xp-project-detail-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--xp-title-blue-dark);
+  margin-bottom: 6px;
+}
+
+.xp-project-detail-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.xp-project-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.xp-project-tech-tags span {
+  font-size: 10px;
+  background: white;
+  border: 1px solid var(--xp-btn-shadow);
+  padding: 1px 6px;
+  border-radius: 2px;
+  color: #555;
+}
+
+/* === Research Section === */
+.xp-research-list {
+  list-style: none;
+}
+
+.xp-research-item {
+  padding: 12px;
+  border-bottom: 1px solid var(--xp-btn-shadow);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.xp-research-item:last-child {
+  border-bottom: none;
+}
+
+.xp-research-icon {
+  font-size: 28px;
+  color: var(--xp-title-blue-light);
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+}
+
+.xp-research-content {
+  flex: 1;
+}
+
+.xp-research-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--xp-title-blue-dark);
+  margin-bottom: 4px;
+}
+
+.xp-research-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.xp-research-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.xp-research-tags span {
+  font-size: 10px;
+  background: var(--xp-gray);
+  border: 1px solid var(--xp-btn-shadow);
+  padding: 1px 6px;
+  border-radius: 2px;
+  color: #555;
+}
+
+.xp-research-links a {
+  font-size: 12px;
+  color: var(--xp-link);
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* === Education Section === */
+.xp-education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.xp-education-card {
+  padding: 12px;
+  background: var(--xp-gray);
+  border: 1px solid var(--xp-btn-shadow);
+  border-radius: 2px;
+}
+
+.xp-education-degree {
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--xp-title-blue-dark);
+  margin-bottom: 4px;
+}
+
+.xp-education-school {
+  font-size: 12px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.xp-education-date {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.xp-education-gpa {
+  font-size: 11px;
+  font-weight: bold;
+  color: var(--xp-start-green);
+}

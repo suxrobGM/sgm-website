@@ -1,0 +1,217 @@
+/* ==========================================================================
+   Vice City Theme - Contact Section & Form
+   Phone Booth Frame, Contact Info, Form Styles
+   ========================================================================== */
+
+.contact {
+  background: linear-gradient(180deg, var(--vc-bg-section) 0%, var(--vc-bg-darker) 100%);
+  position: relative;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+/* Phone Booth Frame */
+.phone-booth-frame {
+  position: relative;
+  padding: 40px 30px;
+  border: 3px solid var(--vc-booth-red);
+  border-radius: 8px;
+  background: var(--vc-booth-glass);
+  box-shadow: inset 0 0 25px rgba(204, 48, 48, 0.06),
+    0 0 20px rgba(204, 48, 48, 0.15),
+    0 0 40px rgba(204, 48, 48, 0.06);
+}
+
+.phone-booth-frame::before {
+  content: 'TELEPHONE';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--vc-booth-red);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  padding: 6px 25px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(204, 48, 48, 0.3);
+}
+
+.phone-booth-frame::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px solid rgba(64, 200, 184, 0.06);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+/* Contact Info */
+.contact-info h3 {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.5rem;
+  color: var(--vc-coral);
+  margin-bottom: 30px;
+  text-shadow: 0 0 8px rgba(232, 115, 74, 0.3);
+  text-transform: none;
+  letter-spacing: 1px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 25px;
+  transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateX(5px);
+}
+
+.contact-icon {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--vc-coral), var(--vc-warm-pink));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(232, 115, 74, 0.2);
+}
+
+.contact-item p {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: var(--vc-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+
+.contact-item a {
+  color: var(--vc-text);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.contact-item a:hover {
+  color: var(--vc-teal);
+  text-shadow: 0 0 6px rgba(64, 200, 184, 0.3);
+}
+
+.contact-item div p {
+  margin: 0 0 3px 0;
+}
+
+/* Contact Form */
+.contact-form-wrapper {
+  position: relative;
+}
+
+.contact-form {
+  background: rgba(28, 16, 53, 0.8);
+  padding: 35px;
+  border-radius: 5px;
+  border: 1px solid rgba(64, 200, 184, 0.15);
+  box-shadow: 0 0 15px rgba(64, 200, 184, 0.03);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: var(--vc-teal);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(18, 10, 34, 0.8);
+  border: 1px solid rgba(64, 200, 184, 0.15);
+  border-radius: 3px;
+  color: var(--vc-text);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--vc-teal);
+  box-shadow: 0 0 10px rgba(64, 200, 184, 0.15), inset 0 0 8px rgba(64, 200, 184, 0.03);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--vc-text-dim);
+}
+
+.form-textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+/* Status Messages */
+.status-message {
+  padding: 14px 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-message.success {
+  background: rgba(64, 200, 184, 0.1);
+  border: 1px solid var(--vc-teal);
+  color: var(--vc-teal);
+}
+
+.status-message.error {
+  background: rgba(232, 115, 74, 0.1);
+  border: 1px solid var(--vc-coral);
+  color: var(--vc-coral);
+}
+
+.status-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.validation-error {
+  color: var(--vc-coral);
+  font-size: 0.8rem;
+  margin-top: 5px;
+  font-family: 'Rajdhani', sans-serif;
+}

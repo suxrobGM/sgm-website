@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Windows XP Theme - CSS Variables
+   ========================================================================== */
+
+:root {
+  --xp-title-blue-dark: #0a246a;
+  --xp-title-blue-light: #3a6ea5;
+  --xp-title-blue-shine: #a6caf0;
+  --xp-start-green: #3c8a3f;
+  --xp-start-green-light: #5cb85c;
+  --xp-sky-blue: #3a6ea5;
+  --xp-sky-light: #87ceeb;
+  --xp-grass-green: #3a7d3c;
+  --xp-grass-light: #6eb841;
+  --xp-silver: #d4d0c8;
+  --xp-gray: #ece9d8;
+  --xp-white: #ffffff;
+  --xp-black: #000000;
+  --xp-btn-face: #ece9d8;
+  --xp-btn-highlight: #ffffff;
+  --xp-btn-shadow: #aca899;
+  --xp-btn-dark-shadow: #716f64;
+  --xp-close-red: #c83232;
+  --xp-minimize-blue: #3a6ea5;
+  --xp-text: #000000;
+  --xp-link: #0000ff;
+  --xp-selection: #316ac5;
+}

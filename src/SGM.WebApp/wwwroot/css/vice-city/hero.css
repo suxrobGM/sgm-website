@@ -1,0 +1,242 @@
+/* ==========================================================================
+   Vice City Theme - Hero Section
+   GTA VC Poster Art, Sunset Background, Hero Content
+   ========================================================================== */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Warm sunset sky gradient */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg,
+      #0c0618 0%,
+      #1a0a2e 8%,
+      #2a1050 16%,
+      #4a2070 24%,
+      #6a3080 30%,
+      #a04070 38%,
+      #c85060 44%,
+      #e07040 50%,
+      #e88040 58%,
+      #f0a050 65%,
+      #f0b860 72%,
+      #f0c870 80%,
+      #f0d888 88%,
+      #f8e8a8 95%,
+      #fff5cc 100%);
+  z-index: -4;
+}
+
+/* Twinkling stars in upper sky */
+.hero-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background-image: radial-gradient(2px 2px at 50px 40px, rgba(255, 240, 220, 0.8), transparent),
+    radial-gradient(1px 1px at 120px 70px, rgba(255, 240, 220, 0.6), transparent),
+    radial-gradient(2px 2px at 200px 30px, rgba(255, 210, 200, 0.5), transparent),
+    radial-gradient(1px 1px at 280px 90px, rgba(255, 240, 220, 0.7), transparent),
+    radial-gradient(2px 2px at 370px 50px, rgba(240, 220, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 450px 20px, rgba(255, 240, 220, 0.5), transparent),
+    radial-gradient(2px 2px at 530px 80px, rgba(255, 210, 200, 0.4), transparent),
+    radial-gradient(1px 1px at 610px 35px, rgba(255, 240, 220, 0.6), transparent),
+    radial-gradient(2px 2px at 700px 60px, rgba(240, 220, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 780px 15px, rgba(255, 240, 220, 0.7), transparent);
+  background-size: 800px 120px;
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+/* Lower sky atmospheric haze */
+.hero-background::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(240, 192, 80, 0.1) 50%,
+      rgba(232, 128, 64, 0.08) 100%);
+  z-index: 1;
+}
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Poster art background override */
+.hero.has-poster-art .hero-background {
+  background-image: url("/images/vc-hero.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Vignette overlay for text legibility */
+.hero.has-poster-art .hero-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  height: auto;
+  background:
+    radial-gradient(ellipse at center, rgba(12, 6, 24, 0.55) 0%, rgba(12, 6, 24, 0.25) 40%, transparent 70%),
+    linear-gradient(180deg,
+      rgba(18, 10, 34, 0.7) 0%,
+      rgba(18, 10, 34, 0.3) 15%,
+      transparent 30%,
+      transparent 70%,
+      rgba(18, 10, 34, 0.3) 85%,
+      rgba(18, 10, 34, 0.7) 100%);
+  z-index: 1;
+}
+
+/* Hero Center Block */
+.hero-center-block {
+  text-align: center;
+  padding: 30px 40px;
+  max-width: 750px;
+  background: radial-gradient(ellipse at center, rgba(12, 6, 24, 0.85) 0%, rgba(12, 6, 24, 0.55) 50%, transparent 80%);
+  border-radius: 16px;
+}
+
+/* Floating Cassette Player position */
+.cassette-floating {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.6));
+  transform: scale(0.65);
+  transform-origin: bottom right;
+}
+
+/* Hero Title Divider */
+.hero-title-divider {
+  width: 60%;
+  height: 3px;
+  margin: 10px auto;
+  background: linear-gradient(90deg, var(--vc-coral), var(--vc-teal), var(--vc-coral));
+  box-shadow: 0 0 8px rgba(232, 115, 74, 0.3), 0 0 16px rgba(64, 200, 184, 0.15);
+  border-radius: 2px;
+}
+
+/* Hero Content */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 80px 20px 40px;
+}
+
+.hero-subtitle {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.2rem;
+  color: var(--vc-gold);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  text-shadow: 0 0 15px rgba(232, 176, 48, 0.9),
+    0 0 30px rgba(224, 112, 64, 0.5),
+    0 0 50px rgba(232, 176, 48, 0.2),
+    2px 2px 0 rgba(0, 0, 0, 0.8),
+    -2px -2px 0 rgba(0, 0, 0, 0.6),
+    2px -2px 0 rgba(0, 0, 0, 0.6),
+    -2px 2px 0 rgba(0, 0, 0, 0.6);
+}
+
+.hero-title {
+  font-size: clamp(3rem, 10vw, 6.5rem);
+  margin-bottom: 20px;
+  line-height: 1;
+}
+
+.hero-title .first-name {
+  display: block;
+  font-family: 'Bungee Shade', 'Orbitron', sans-serif;
+  font-size: clamp(3rem, 8vw, 7rem);
+  color: var(--vc-coral);
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-shadow: 0 0 15px rgba(232, 115, 74, 0.8),
+    0 0 35px rgba(232, 115, 74, 0.5),
+    0 0 60px rgba(232, 115, 74, 0.25),
+    3px 3px 0 var(--vc-deep-purple),
+    6px 6px 0 rgba(0, 0, 0, 0.7),
+    -2px -2px 0 rgba(0, 0, 0, 0.6),
+    2px -2px 0 rgba(0, 0, 0, 0.6),
+    -2px 2px 0 rgba(0, 0, 0, 0.6),
+    2px 2px 0 rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(12, 6, 24, 0.6);
+  animation: neonFlicker 6s infinite;
+}
+
+.hero-title .last-name {
+  display: block;
+  font-family: 'Permanent Marker', cursive;
+  color: var(--vc-teal);
+  font-size: 0.45em;
+  font-weight: 400;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(64, 200, 184, 0.8),
+    0 0 35px rgba(64, 200, 184, 0.5),
+    0 0 60px rgba(64, 200, 184, 0.2),
+    2px 2px 0 var(--vc-deep-purple),
+    4px 4px 0 rgba(0, 0, 0, 0.7),
+    -2px -2px 0 rgba(0, 0, 0, 0.6),
+    2px -2px 0 rgba(0, 0, 0, 0.6),
+    -2px 2px 0 rgba(0, 0, 0, 0.6),
+    2px 2px 0 rgba(0, 0, 0, 0.6),
+    0 0 80px rgba(12, 6, 24, 0.5);
+}
+
+.hero-tagline {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  color: var(--vc-text);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  border-top: 1px solid rgba(64, 200, 184, 0.3);
+  border-bottom: 1px solid rgba(64, 200, 184, 0.3);
+  padding: 10px 0;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.9),
+    0 0 20px rgba(0, 0, 0, 0.6),
+    1px 1px 4px rgba(0, 0, 0, 0.9),
+    -1px -1px 4px rgba(0, 0, 0, 0.9);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}

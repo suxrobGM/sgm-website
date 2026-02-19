@@ -1,0 +1,84 @@
+/* ==========================================================================
+   Terminal Theme - Navigation
+   ========================================================================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 10px 0;
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--term-green-dim);
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  padding: 8px 0;
+  background: rgba(10, 10, 10, 0.98);
+  box-shadow: 0 2px 20px rgba(0, 255, 65, 0.1);
+}
+
+.terminal-nav {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+.nav-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--term-green-dim);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 5px;
+  list-style: none;
+}
+
+.nav-links li a {
+  color: var(--term-green);
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.nav-links li a:hover {
+  color: var(--term-green-bright);
+  text-shadow: 0 0 8px var(--term-green);
+  background: var(--term-green-subtle);
+  border-color: var(--term-green-dim);
+}
+
+.nav-links li a::after {
+  display: none;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.nav-toggle span {
+  width: 20px;
+  height: 2px;
+  background: var(--term-green);
+  transition: all 0.3s ease;
+}

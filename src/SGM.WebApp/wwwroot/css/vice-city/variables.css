@@ -1,0 +1,63 @@
+/* ==========================================================================
+   Vice City Theme - CSS Variables
+   Warm 80s Miami sunset palette
+   ========================================================================== */
+
+:root {
+  /* Primary - Warm sunset tones */
+  --vc-coral: #e8734a;
+  --vc-peach: #f5a070;
+  --vc-salmon: #f08060;
+  --vc-sunset-orange: #e07040;
+  --vc-warm-pink: #d85070;
+  --vc-magenta: #c04080;
+
+  /* Secondary - Soft teals & aqua */
+  --vc-teal: #40c8b8;
+  --vc-aqua: #55d6be;
+  --vc-sky: #6cc0d8;
+  --vc-teal-dark: #2a9a90;
+
+  /* Accent - Golden sunset */
+  --vc-gold: #e8b030;
+  --vc-warm-yellow: #f0c850;
+  --vc-amber: #d4942a;
+
+  /* Backgrounds - Deep warm purples */
+  --vc-night: #100820;
+  --vc-deep-purple: #1a0a2e;
+  --vc-bg-dark: #120a22;
+  --vc-bg-darker: #0c0618;
+  --vc-bg-section: #160c28;
+  --vc-bg-card: #1c1035;
+  --vc-bg-card-hover: #221440;
+  --vc-palm-dark: #1a0a2e;
+
+  /* Road / timeline */
+  --vc-road-gray: #2a2a3e;
+  --vc-road-line: #e8b030;
+
+  /* Paper / poster */
+  --vc-paper-cream: #f5e6c8;
+  --vc-paper-aged: #d4b896;
+
+  /* Phone booth */
+  --vc-booth-red: #cc3030;
+  --vc-booth-glass: rgba(64, 200, 184, 0.06);
+
+  /* Text colors - warm tinted whites */
+  --vc-text: #fff0e0;
+  --vc-text-muted: #c0aaa0;
+  --vc-text-dim: #806858;
+
+  /* Glow effects */
+  --glow-coral: 0 0 6px rgba(232, 115, 74, 0.5), 0 0 12px rgba(232, 115, 74, 0.25);
+  --glow-teal: 0 0 6px rgba(64, 200, 184, 0.5), 0 0 12px rgba(64, 200, 184, 0.25);
+  --glow-pink: 0 0 6px rgba(216, 80, 112, 0.5), 0 0 12px rgba(216, 80, 112, 0.25);
+  --glow-gold: 0 0 6px rgba(232, 176, 48, 0.5), 0 0 12px rgba(232, 176, 48, 0.25);
+  --glow-magenta: 0 0 6px rgba(192, 64, 128, 0.4), 0 0 12px rgba(192, 64, 128, 0.2);
+
+  /* Spacing */
+  --section-padding: 100px 0;
+  --container-max: 1200px;
+}

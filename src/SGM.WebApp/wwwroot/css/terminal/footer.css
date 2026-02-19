@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Terminal Theme - Footer
+   ========================================================================== */
+
+.footer {
+  background: transparent;
+  padding: 40px 0;
+  border-top: 1px solid rgba(0, 255, 65, 0.1);
+}
+
+.footer-content {
+  text-align: center;
+}
+
+.footer-exit {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--term-green-dim);
+  margin-bottom: 20px;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.social-links a {
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: 1px solid var(--term-green-dim);
+  border-radius: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--term-green);
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  transition: all 0.2s ease;
+}
+
+.social-links a:hover {
+  background: var(--term-green-subtle);
+  border-color: var(--term-green);
+  color: var(--term-green-bright);
+  text-shadow: 0 0 8px var(--term-green);
+  transform: none;
+  box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+}
+
+.footer-copyright {
+  color: var(--term-comment);
+  font-size: 0.8rem;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.footer-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  color: var(--term-green);
+  text-shadow: 0 0 10px var(--term-green-glow);
+  margin-bottom: 15px;
+}

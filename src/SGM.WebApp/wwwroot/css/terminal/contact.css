@@ -1,0 +1,170 @@
+/* ==========================================================================
+   Terminal Theme - Contact Section & Form
+   ========================================================================== */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.contact-info h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  color: var(--term-green-bright);
+  margin-bottom: 20px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.contact-icon {
+  width: 35px;
+  height: 35px;
+  background: transparent;
+  border: 1px solid var(--term-green-dim);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: var(--term-green);
+}
+
+.contact-item p {
+  color: var(--term-green-dim);
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+}
+
+.contact-item a {
+  color: var(--term-green);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.contact-item a:hover {
+  color: var(--term-green-bright);
+  text-shadow: 0 0 8px var(--term-green);
+}
+
+/* Contact Form */
+.contact-form-wrapper {
+  width: 100%;
+}
+
+.contact-form {
+  background: transparent;
+  padding: 25px;
+  border-radius: 0;
+  border: 1px solid var(--term-green-dim);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--term-green-dim);
+  margin-bottom: 5px;
+  text-transform: lowercase;
+}
+
+.form-label::before {
+  content: '> ';
+  color: var(--term-comment);
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--term-green-dim);
+  border-radius: 0;
+  color: var(--term-green);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  outline: none;
+  caret-color: var(--term-green);
+}
+
+.form-input::placeholder {
+  color: var(--term-comment);
+  font-style: italic;
+}
+
+.form-input:focus {
+  border-bottom-color: var(--term-green);
+  box-shadow: 0 1px 0 0 var(--term-green);
+  background: var(--term-green-subtle);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  border: 1px solid var(--term-green-dim);
+  padding: 10px 12px;
+}
+
+.form-textarea:focus {
+  border-color: var(--term-green);
+  box-shadow: 0 0 0 1px var(--term-green);
+}
+
+/* Status Messages */
+.status-message {
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  border: 1px solid var(--term-green-dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-message.success {
+  color: var(--term-green);
+  border-color: var(--term-green-dim);
+  background: rgba(0, 255, 65, 0.05);
+}
+
+.status-message.error {
+  color: var(--term-red);
+  border-color: var(--term-red);
+  background: rgba(255, 51, 51, 0.05);
+}
+
+.status-icon {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.validation-error {
+  color: var(--term-red);
+  font-size: 0.75rem;
+  font-family: 'IBM Plex Mono', monospace;
+  margin-top: 4px;
+  display: block;
+}
+
+.validation-error::before {
+  content: '// error: ';
+  color: var(--term-comment);
+}

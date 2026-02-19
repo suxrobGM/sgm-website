@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Windows XP Theme - Contact Section
+   Dialog Body, Contact Info, Form Overrides
+   ========================================================================== */
+
+/* === Contact Section - Dialog Box === */
+.xp-dialog-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.xp-contact-info-list {
+  list-style: none;
+  padding: 0;
+}
+
+.xp-contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px dotted var(--xp-btn-shadow);
+  font-size: 12px;
+}
+
+.xp-contact-info-item:last-child {
+  border-bottom: none;
+}
+
+.xp-contact-info-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--xp-title-blue-light);
+  flex-shrink: 0;
+}
+
+.xp-contact-info-text {
+  flex: 1;
+}
+
+.xp-contact-info-text p {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 1px;
+}
+
+.xp-contact-info-text a {
+  font-size: 12px;
+  color: var(--xp-link);
+}
+
+/* Contact Form inside dialog */
+.xp-contact-form-wrapper {
+  padding: 0;
+}
+
+.xp-form-group {
+  margin-bottom: 10px;
+}
+
+.xp-form-group label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 3px;
+  color: var(--xp-text);
+}
+
+.xp-dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--xp-gray);
+  border-top: 1px solid var(--xp-btn-shadow);
+}
+
+/* ContactForm component class overrides for XP theme */
+.xp-contact-info-column {
+  min-width: 0;
+}
+
+.xp-contact-form-wrapper .contact-form {
+  padding: 0;
+}
+
+.xp-contact-form-wrapper .status-message {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  border: 1px solid;
+  border-radius: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.xp-contact-form-wrapper .status-message.success {
+  background: #dff0d8;
+  border-color: #3a7d3c;
+  color: #2d6a2f;
+}
+
+.xp-contact-form-wrapper .status-message.error {
+  background: #f2dede;
+  border-color: #cc0000;
+  color: #a00000;
+}
+
+.xp-contact-form-wrapper .status-icon {
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.xp-contact-form-wrapper .form-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.xp-contact-form-wrapper .form-row .form-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.xp-contact-form-wrapper .form-group {
+  margin-bottom: 8px;
+}
+
+.xp-contact-form-wrapper .form-label {
+  display: block;
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--xp-text);
+  margin-bottom: 3px;
+}
+
+.xp-contact-form-wrapper .form-input {
+  display: block;
+  width: 100%;
+  background: white;
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid #ffffff;
+  border-right: 2px solid #ffffff;
+  padding: 4px 6px;
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--xp-text);
+  outline: none;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.xp-contact-form-wrapper .form-input:focus {
+  border-top: 2px solid var(--xp-selection);
+  border-left: 2px solid var(--xp-selection);
+  border-bottom: 2px solid #a0c0e8;
+  border-right: 2px solid #a0c0e8;
+}
+
+.xp-contact-form-wrapper .form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.xp-contact-form-wrapper .btn,
+.xp-contact-form-wrapper .btn-primary,
+.xp-contact-form-wrapper .btn-glow {
+  background: var(--xp-btn-face);
+  border-top: 2px solid var(--xp-btn-highlight);
+  border-left: 2px solid var(--xp-btn-highlight);
+  border-bottom: 2px solid #808080;
+  border-right: 2px solid #808080;
+  padding: 5px 20px;
+  font-size: 12px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--xp-text);
+  cursor: pointer;
+  min-width: 90px;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.xp-contact-form-wrapper .btn:hover,
+.xp-contact-form-wrapper .btn-primary:hover,
+.xp-contact-form-wrapper .btn-glow:hover {
+  background: #f0ede4;
+  box-shadow: none;
+  text-shadow: none;
+  color: var(--xp-text);
+}
+
+.xp-contact-form-wrapper .btn:active,
+.xp-contact-form-wrapper .btn-primary:active,
+.xp-contact-form-wrapper .btn-glow:active {
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-bottom: 2px solid var(--xp-btn-highlight);
+  border-right: 2px solid var(--xp-btn-highlight);
+  padding: 6px 19px 4px 21px;
+}
+
+.xp-contact-form-wrapper button[disabled] {
+  color: #888;
+  cursor: default;
+  opacity: 0.7;
+}
+
+.xp-contact-form-wrapper .btn-loading {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--xp-btn-shadow);
+  border-top-color: var(--xp-title-blue-light);
+  border-radius: 50%;
+  animation: xpSpinner 0.8s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes xpSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.xp-contact-form-wrapper .validation-error {
+  font-size: 11px;
+  color: #cc0000;
+  display: block;
+  margin-top: 2px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Override any existing form validation styling */
+.xp-contact-form-wrapper .validation-message,
+.xp-contact-form-wrapper .text-danger {
+  font-size: 11px;
+  color: #cc0000;
+}
+
+.xp-contact-form-wrapper .form-group,
+.xp-contact-form-wrapper .form-field {
+  margin-bottom: 10px;
+}

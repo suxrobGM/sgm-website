@@ -1,0 +1,107 @@
+/* ==========================================================================
+   Vice City Theme - Footer
+   Miami Skyline Silhouette
+   ========================================================================== */
+
+.footer {
+  background: var(--vc-bg-darker);
+  padding: 60px 0 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Miami skyline building silhouettes */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: var(--vc-bg-darker);
+  clip-path: polygon(0% 100%,
+      0% 60%, 2% 60%, 2% 40%, 4% 40%, 4% 55%, 5% 55%, 5% 30%, 7% 30%, 7% 50%,
+      8% 50%, 8% 20%, 10% 20%, 10% 15%, 11% 15%, 11% 20%, 13% 20%, 13% 45%,
+      15% 45%, 15% 35%, 17% 35%, 17% 25%, 19% 25%, 19% 10%, 20% 10%, 20% 8%,
+      21% 8%, 21% 10%, 22% 10%, 22% 30%, 24% 30%, 24% 50%, 26% 50%, 26% 40%,
+      28% 40%, 28% 30%, 30% 30%, 30% 55%, 32% 55%, 32% 35%, 34% 35%, 34% 20%,
+      35% 20%, 35% 5%, 36% 5%, 36% 3%, 37% 3%, 37% 5%, 38% 5%, 38% 20%,
+      40% 20%, 40% 40%, 42% 40%, 42% 50%, 44% 50%, 44% 30%, 46% 30%, 46% 45%,
+      48% 45%, 48% 25%, 50% 25%, 50% 15%, 51% 15%, 51% 12%, 52% 12%, 52% 15%,
+      53% 15%, 53% 35%, 55% 35%, 55% 50%, 57% 50%, 57% 40%, 59% 40%, 59% 30%,
+      61% 30%, 61% 20%, 62% 20%, 62% 8%, 63% 8%, 63% 5%, 64% 5%, 64% 8%,
+      65% 8%, 65% 20%, 67% 20%, 67% 35%, 69% 35%, 69% 45%, 71% 45%, 71% 30%,
+      73% 30%, 73% 50%, 75% 50%, 75% 40%, 77% 40%, 77% 55%, 79% 55%, 79% 35%,
+      81% 35%, 81% 25%, 83% 25%, 83% 15%, 84% 15%, 84% 10%, 85% 10%, 85% 15%,
+      86% 15%, 86% 25%, 88% 25%, 88% 45%, 90% 45%, 90% 55%, 92% 55%, 92% 40%,
+      94% 40%, 94% 50%, 96% 50%, 96% 60%, 98% 60%, 98% 45%, 100% 45%, 100% 100%);
+  z-index: 1;
+}
+
+/* Warm sunset glow along skyline top */
+.footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+      transparent, var(--vc-coral), var(--vc-teal), var(--vc-warm-pink),
+      var(--vc-teal), var(--vc-coral), transparent);
+  box-shadow: 0 0 8px rgba(232, 115, 74, 0.3),
+    0 0 16px rgba(64, 200, 184, 0.2);
+  z-index: 2;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.footer-logo {
+  font-family: 'Bungee Shade', 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: var(--vc-coral);
+  text-shadow: var(--glow-coral);
+  letter-spacing: 2px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+}
+
+.social-links a {
+  width: 45px;
+  height: 45px;
+  background: rgba(28, 16, 53, 0.8);
+  border: 2px solid var(--vc-coral);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--vc-coral);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: var(--vc-coral);
+  color: var(--vc-bg-darker);
+  box-shadow: var(--glow-coral);
+  transform: translateY(-3px);
+}
+
+.footer-copyright {
+  color: var(--vc-text-muted);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+}

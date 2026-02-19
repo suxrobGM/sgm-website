@@ -1,0 +1,252 @@
+/* ==========================================================================
+   Vice City Theme - Cassette Music Player
+   Retro Tape Style Component
+   ========================================================================== */
+
+.cassette-player {
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.cassette-player:hover {
+  transform: scale(0.68);
+}
+
+.cassette-body {
+  width: 180px;
+  padding: 10px 11px 8px;
+  background: linear-gradient(180deg, #3a2a1e 0%, #2e2018 50%, #221810 100%);
+  border: 2px solid #4a3828;
+  border-radius: 8px 8px 4px 4px;
+  position: relative;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.6),
+    0 0 15px rgba(232, 115, 74, 0.08);
+}
+
+/* Corner screws */
+.cassette-screw {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #888, #555 50%, #333);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.cassette-screw::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 1px;
+  background: #222;
+  transform: translate(-50%, -50%) rotate(35deg);
+}
+
+.cassette-screw-tl {
+  top: 5px;
+  left: 5px;
+}
+
+.cassette-screw-tr {
+  top: 5px;
+  right: 5px;
+}
+
+.cassette-screw-bl {
+  bottom: 5px;
+  left: 5px;
+}
+
+.cassette-screw-br {
+  bottom: 5px;
+  right: 5px;
+}
+
+/* Label area */
+.cassette-label {
+  background: linear-gradient(180deg, #f5e6c8 0%, #e8d4a8 45%, var(--vc-coral) 45%, var(--vc-sunset-orange) 100%);
+  border-radius: 4px;
+  padding: 6px 10px 8px;
+  text-align: center;
+  position: relative;
+  margin-bottom: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.cassette-label-lines {
+  position: absolute;
+  top: 5px;
+  left: 12px;
+  right: 12px;
+  height: 15px;
+  background: repeating-linear-gradient(180deg,
+      transparent 0px,
+      transparent 5px,
+      rgba(0, 0, 0, 0.08) 5px,
+      rgba(0, 0, 0, 0.08) 6px);
+}
+
+.cassette-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #1a0a2e;
+  letter-spacing: 2px;
+  position: relative;
+  z-index: 1;
+  text-shadow: none;
+  display: block;
+  margin-top: 2px;
+}
+
+.cassette-side {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.38rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 3px;
+}
+
+/* Tape window */
+.cassette-window {
+  background: #1a1210;
+  border-radius: 16px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+  border: 2px solid #2a1e16;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
+  margin: 0 14px;
+}
+
+/* Reels */
+.cassette-reel {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  background: radial-gradient(circle, #888 0%, #666 30%, #444 60%, #333 100%);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.cassette-reel::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border: 2px solid #777;
+  border-radius: 2px;
+  transform: translate(-50%, -50%);
+  background: #555;
+}
+
+.cassette-reel::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: #999;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* Tape between reels */
+.cassette-tape {
+  flex: 1;
+  height: 12px;
+  margin: 0 4px;
+  position: relative;
+}
+
+.cassette-tape::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 6px;
+  transform: translateY(-50%);
+  background: linear-gradient(180deg, #3a1a10, #2a0e08, #3a1a10);
+  border-radius: 1px;
+}
+
+/* Reel spin animation when playing */
+.cassette-player.playing .cassette-reel {
+  animation: reelSpin 2s linear infinite;
+}
+
+@keyframes reelSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Play/pause indicator */
+.cassette-controls {
+  text-align: center;
+  margin-top: 4px;
+  color: var(--vc-teal);
+  font-size: 0.6rem;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.cassette-player:hover .cassette-controls {
+  opacity: 1;
+  color: var(--vc-coral);
+  text-shadow: 0 0 8px rgba(232, 115, 74, 0.5);
+}
+
+.cassette-player.playing .cassette-controls {
+  opacity: 1;
+  color: var(--vc-coral);
+  text-shadow: 0 0 8px rgba(232, 115, 74, 0.5);
+  animation: neonPulse 2s ease-in-out infinite;
+}
+
+/* Bottom holes */
+.cassette-holes {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.cassette-hole {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #111;
+  border: 1px solid #2a1e16;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Playing state glow */
+.cassette-player.playing .cassette-body {
+  border-color: rgba(232, 115, 74, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.6),
+    0 0 20px rgba(232, 115, 74, 0.15);
+}
+
+.cassette-player.playing .cassette-label {
+  box-shadow: 0 0 10px rgba(232, 115, 74, 0.2);
+}
