@@ -1,0 +1,17 @@
+[Unit]
+Description=SGM Main
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/sgm-main
+ExecStart=/var/www/sgm-main/SGM.WebApp
+Restart=always
+RestartSec=30
+Environment=ASPNETCORE_URLS=http://*:8000
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=ASPNETCORE_FORWARDEDHEADERS_ENABLED=true
+
+[Install]
+WantedBy=multi-user.target
