@@ -295,6 +295,14 @@
         align-items: flex-start;
         gap: 4px;
     }
+    .xp-project-detail {
+        flex-direction: column;
+    }
+    .xp-project-detail-img {
+        width: 100%;
+        min-width: unset;
+        height: 150px;
+    }
 }
 
 /* Theme Switcher responsive */

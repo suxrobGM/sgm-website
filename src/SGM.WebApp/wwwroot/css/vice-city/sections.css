@@ -667,7 +667,7 @@
 }
 
 .project-image {
-  height: 180px;
+  height: 200px;
   background: linear-gradient(135deg, var(--vc-deep-purple), var(--vc-coral));
   display: flex;
   align-items: center;
@@ -675,6 +675,17 @@
   font-size: 4rem;
   position: relative;
   overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
 }
 
 /* Crosshatch overlay */
