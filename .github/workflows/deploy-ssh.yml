@@ -2,9 +2,7 @@ name: Deploy SSH
 
 on:
   push:
-    branches: ["master"]
-  # release:
-  #   types: [created]
+    branches: [prod]
 
 env:
   PROJECT_PATH: src/SGM.WebApp/SGM.WebApp.csproj
@@ -27,12 +25,8 @@ jobs:
       - name: Publish
         run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -r linux-x64 -p:PublishSingleFile=true --output ./publish
 
-      # - name: Add production config
-      #   run: |
-      #     echo '${{ secrets.API_APPSETTINGS }}' > ./publish/appsettings.Production.json
-
       - name: Stop service and clean
-        uses: appleboy/ssh-action@v1.2.4
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -51,7 +45,7 @@ jobs:
           target: ${{ env.DEPLOY_PATH }}
 
       - name: Move files from publish to deploy path
-        uses: appleboy/ssh-action@v1.2.4
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -61,7 +55,7 @@ jobs:
             rm -rf ${{ env.DEPLOY_PATH }}/publish
 
       - name: Copy Google SA key into app
-        uses: appleboy/ssh-action@v1.2.4
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -73,7 +67,7 @@ jobs:
             chmod 640 ${{ env.DEPLOY_PATH }}/keys/${{ env.GOOGLE_SA_KEY }}
 
       - name: Copy appsettings Production
-        uses: appleboy/ssh-action@v1.2.4
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
@@ -84,7 +78,7 @@ jobs:
             chmod 640 ${{ env.DEPLOY_PATH }}/appsettings.Production.json
 
       - name: Restart service
-        uses: appleboy/ssh-action@v1.2.4
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
