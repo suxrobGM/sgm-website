@@ -1,0 +1,70 @@
+<svg width="800" height="380" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Window -->
+  <rect width="800" height="380" rx="12" ry="12" fill="#0d1117"/>
+  <rect width="800" height="380" rx="12" ry="12" fill="none" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Title Bar -->
+  <rect width="800" height="40" rx="12" ry="12" fill="#161b22"/>
+  <rect x="0" y="28" width="800" height="12" fill="#161b22"/>
+  <line x1="0" y1="40" x2="800" y2="40" stroke="#30363d" stroke-width="1"/>
+
+  <!-- Traffic Lights -->
+  <circle cx="24" cy="20" r="7" fill="#ff5f57"/>
+  <circle cx="48" cy="20" r="7" fill="#febc2e"/>
+  <circle cx="72" cy="20" r="7" fill="#28c840"/>
+
+  <!-- Title -->
+  <text x="400" y="25" font-family="'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Fira Code', monospace" font-size="13" fill="#8b949e" text-anchor="middle">sukhrob@dev: ~</text>
+
+  <!-- Terminal Content -->
+  <g font-family="'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Fira Code', monospace" font-size="14">
+
+    <!-- whoami -->
+    <text x="24" y="75">
+      <tspan fill="#7ee787">~</tspan>
+      <tspan fill="#8b949e"> $ </tspan>
+      <tspan fill="#e6edf3">whoami</tspan>
+    </text>
+    <text x="24" y="100" fill="#79c0ff">sukhrob — senior full-stack engineer &amp; computer vision researcher</text>
+
+    <!-- cat credentials.txt -->
+    <text x="24" y="135">
+      <tspan fill="#7ee787">~</tspan>
+      <tspan fill="#8b949e"> $ </tspan>
+      <tspan fill="#e6edf3">cat</tspan>
+      <tspan fill="#a5d6ff"> credentials.txt</tspan>
+    </text>
+    <text x="24" y="160" fill="#e6edf3">MS Computer Science @ Northeastern University</text>
+    <text x="498" y="160" fill="#7ee787" font-weight="bold"> (4.0 GPA)</text>
+    <text x="24" y="185" fill="#e6edf3">Published Researcher — </text>
+    <text x="262" y="185" fill="#ff7b72">arXiv:2512.09289</text>
+    <text x="24" y="210" fill="#e6edf3">Upwork Top Rated Plus — </text>
+    <text x="270" y="210" fill="#ffa657">100% Job Success Score</text>
+    <text x="24" y="235" fill="#e6edf3">9+ years shipping production software</text>
+
+    <!-- echo $DOMAINS -->
+    <text x="24" y="270">
+      <tspan fill="#7ee787">~</tspan>
+      <tspan fill="#8b949e"> $ </tspan>
+      <tspan fill="#e6edf3">echo</tspan>
+      <tspan fill="#ffa657"> $DOMAINS</tspan>
+    </text>
+    <text x="24" y="295" fill="#d2a8ff">healthcare · logistics · gaming · real-estate · computer-vision</text>
+
+    <!-- Blinking cursor -->
+    <text x="24" y="330">
+      <tspan fill="#7ee787">~</tspan>
+      <tspan fill="#8b949e"> $ </tspan>
+    </text>
+    <rect x="52" y="317" width="9" height="18" fill="#58a6ff">
+      <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
+    </rect>
+
+  </g>
+</svg>
