@@ -6,23 +6,16 @@ using Event = Google.Cloud.RecaptchaEnterprise.V1.Event;
 
 namespace SGM.WebApp.Services;
 
-public sealed class RecaptchaEnterpriseService : ICaptchaService
+public sealed class RecaptchaEnterpriseService(IOptions<GoogleRecaptchaOptions> options) : ICaptchaService
 {
-    private readonly RecaptchaEnterpriseServiceClient _client;
-
-    private readonly string _projectId;
-    private readonly string _siteKey;
-
-    public RecaptchaEnterpriseService(IOptions<GoogleRecaptchaOptions> options)
+    private readonly RecaptchaEnterpriseServiceClient _client = new RecaptchaEnterpriseServiceClientBuilder
     {
-        _projectId = options.Value.ProjectId;
-        _siteKey = options.Value.SiteKey;
-        _client = new RecaptchaEnterpriseServiceClientBuilder
-        {
-            Credential = CredentialFactory.FromFile<ServiceAccountCredential>(options.Value.KeyPath)
-                .ToGoogleCredential()
-        }.Build();
-    }
+        Credential = CredentialFactory.FromFile<ServiceAccountCredential>(options.Value.KeyPath)
+            .ToGoogleCredential()
+    }.Build();
+
+    private readonly string _projectId = options.Value.ProjectId;
+    private readonly string _siteKey = options.Value.SiteKey;
 
     public async Task<bool> VerifyCaptchaAsync(string token)
     {

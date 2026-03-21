@@ -1,8 +1,13 @@
+@using Microsoft.Extensions.Options
+@using SGM.WebApp.Options
+@inject IOptions<GoogleRecaptchaOptions> RecaptchaOptions
+
 <!DOCTYPE html>
 <html lang="en-US">
 
 <head>
   <meta charset="utf-8"/>
+  <title>Sukhrob Ilyosbekov | Full Stack Developer & AI Researcher</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description"
         content="Sukhrob Ilyosbekov - Software Engineer & AI Researcher. 9+ years of experience in full-stack development, deep learning, and medical imaging AI."/>
@@ -34,7 +39,8 @@
 <Routes/>
 <script src="_framework/blazor.web.js"></script>
 <script src="js/site.js"></script>
-<script src="https://www.google.com/recaptcha/enterprise.js?render=explicit" async defer></script>
+<script src="https://www.google.com/recaptcha/enterprise.js?render=@RecaptchaOptions.Value.SiteKey" async
+        defer></script>
 <script>
   window.getRecaptchaToken = async (siteKey) => {
     return new Promise((resolve, reject) => {

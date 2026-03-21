@@ -32,7 +32,15 @@ public partial class ContactForm
         try
         {
             // Get reCAPTCHA token from JavaScript
-            RecaptchaToken = await JSRuntime.InvokeAsync<string>("getRecaptchaToken", CaptchaSiteKey);
+            try
+            {
+                RecaptchaToken = await JSRuntime.InvokeAsync<string>("getRecaptchaToken", CaptchaSiteKey);
+            }
+            catch (Exception ex)
+            {
+                StatusMessage = $"Error: reCAPTCHA failed - {ex.Message}";
+                return;
+            }
 
             if (string.IsNullOrEmpty(RecaptchaToken))
             {

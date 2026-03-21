@@ -1,0 +1,17 @@
+<div class="theme-switcher">
+  <span class="theme-switcher-label">Themes:</span>
+  <a href="/" data-enhance-nav="false" class="theme-switcher-link @(CurrentTheme == "vice-city" ? "active" : "")">
+    <i class="fa-solid fa-city"></i> Vice City
+  </a>
+  <a href="/cli" data-enhance-nav="false" class="theme-switcher-link @(CurrentTheme == "terminal" ? "active" : "")">
+    <i class="fa-solid fa-terminal"></i> Terminal
+  </a>
+  <a href="/xp" data-enhance-nav="false" class="theme-switcher-link @(CurrentTheme == "xp" ? "active" : "")">
+    <i class="fa-solid fa-window-maximize"></i> Windows XP
+  </a>
+</div>
+
+@code {
+  [Parameter]
+  public string CurrentTheme { get; set; } = "vice-city";
+}

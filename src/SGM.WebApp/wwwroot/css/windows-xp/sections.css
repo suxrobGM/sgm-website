@@ -538,3 +538,198 @@
   font-weight: bold;
   color: var(--xp-start-green);
 }
+
+/* Theme Switcher */
+.theme-switcher {
+    position: fixed;
+    bottom: 36px;
+    left: 10px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #ece9d8;
+    border: 1px solid #aca899;
+    padding: 3px 8px;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.theme-switcher-label {
+    font-size: 0.7rem;
+    color: #444;
+    font-weight: bold;
+}
+
+.theme-switcher-link {
+    font-size: 0.7rem;
+    color: #316ac5;
+    text-decoration: none;
+    padding: 2px 6px;
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+}
+
+.theme-switcher-link:hover {
+    background: #c1d2ee;
+    border-color: #316ac5;
+}
+
+.theme-switcher-link.active {
+    background: #c1d2ee;
+    border: 1px solid #316ac5;
+    font-weight: bold;
+}
+
+.theme-switcher-link i {
+    margin-right: 3px;
+    font-size: 0.65rem;
+}
+
+/* Hire Me CTA */
+.xp-hire-body {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.xp-hire-icon {
+    flex-shrink: 0;
+    padding: 10px;
+}
+
+.xp-hire-content {
+    flex: 1;
+}
+
+.xp-availability-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #e8f5e9;
+    border: 1px solid #4caf50;
+    color: #2e7d32;
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.xp-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #4caf50;
+    border-radius: 50%;
+    animation: xpPulse 2s ease-in-out infinite;
+}
+
+@keyframes xpPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.xp-hire-content h3 {
+    margin: 8px 0 12px;
+    font-size: 1.1rem;
+    color: #003399;
+}
+
+.xp-services-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.xp-service-item {
+    font-size: 0.85rem;
+    color: #333;
+    background: #f0f0f0;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.xp-hire-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.xp-hire-buttons .xp-btn {
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.xp-hire-buttons .xp-btn-primary {
+    background: linear-gradient(to bottom, #4a90d9, #316ac5);
+    color: white;
+    border: 1px solid #245dab;
+}
+
+.xp-hire-buttons .xp-btn-primary:hover {
+    background: linear-gradient(to bottom, #5a9ee0, #3a7ad5);
+}
+
+.xp-hire-buttons .xp-btn-default {
+    background: linear-gradient(to bottom, #fff, #e8e8e8);
+    color: #333;
+    border: 1px solid #aca899;
+}
+
+.xp-hire-buttons .xp-btn-default:hover {
+    background: linear-gradient(to bottom, #f0f0f0, #ddd);
+}
+
+/* Testimonials - Outlook Express Style */
+.xp-inbox-list {
+    border-top: 1px solid #aca899;
+}
+
+.xp-email-item {
+    border-bottom: 1px solid #e8e8e8;
+    padding: 12px 15px;
+    transition: background 0.15s ease;
+}
+
+.xp-email-item:hover {
+    background: #e8f0fe;
+}
+
+.xp-email-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.xp-email-from {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #333;
+}
+
+.xp-email-from strong {
+    color: #003399;
+}
+
+.xp-email-rating {
+    color: #e8b030;
+    font-size: 0.9rem;
+}
+
+.xp-email-body {
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    font-style: italic;
+    padding-left: 26px;
+}

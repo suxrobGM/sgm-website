@@ -16,20 +16,20 @@
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Name</label>
-        <InputText @bind-Value="EmailInput.Name" class="form-input" placeholder="Your name..." aria-label="Your name"/>
+        <InputText @bind-Value="EmailInput.Name" class="form-input" placeholder="Your name..." aria-label="Your name" autocomplete="name"/>
         <ValidationMessage For="@(() => EmailInput.Name)" class="validation-error"/>
       </div>
       <div class="form-group">
         <label class="form-label">Email</label>
         <InputText @bind-Value="EmailInput.Email" class="form-input" placeholder="Your email..."
-                   aria-label="Your email"/>
+                   aria-label="Your email" type="email" autocomplete="email"/>
         <ValidationMessage For="@(() => EmailInput.Email)" class="validation-error"/>
       </div>
     </div>
 
     <div class="form-group">
       <label class="form-label">Subject</label>
-      <InputText @bind-Value="EmailInput.Subject" class="form-input" placeholder="Subject..." aria-label="Subject"/>
+      <InputText @bind-Value="EmailInput.Subject" class="form-input" placeholder="Subject..." aria-label="Subject" autocomplete="off"/>
       <ValidationMessage For="@(() => EmailInput.Subject)" class="validation-error"/>
     </div>
 

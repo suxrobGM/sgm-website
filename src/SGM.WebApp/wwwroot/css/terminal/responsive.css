@@ -258,3 +258,35 @@
     box-shadow: none !important;
   }
 }
+
+/* Theme Switcher responsive */
+@media (max-width: 768px) {
+    .theme-switcher {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 10px;
+        gap: 4px;
+    }
+    .theme-switcher-label {
+        display: none;
+    }
+    .theme-switcher-link {
+        font-size: 0.65rem;
+        padding: 3px 6px;
+    }
+}
+
+/* Hire Me + Testimonials responsive */
+@media (max-width: 768px) {
+    .notice-ascii {
+        font-size: 0.55rem;
+    }
+    .notice-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .notice-services {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

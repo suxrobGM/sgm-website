@@ -317,3 +317,41 @@
     display: none;
   }
 }
+
+/* Theme Switcher responsive */
+@media (max-width: 768px) {
+    .theme-switcher {
+        bottom: 10px;
+        left: 10px;
+        padding: 6px 10px;
+        gap: 4px;
+    }
+    .theme-switcher-label {
+        display: none;
+    }
+    .theme-switcher-link {
+        font-size: 0.65rem;
+        padding: 3px 6px;
+    }
+}
+
+/* Hire Me + Testimonials responsive */
+@media (max-width: 768px) {
+    .hire-me-title {
+        font-size: 1.4rem;
+    }
+    .hire-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .services-grid {
+        gap: 8px;
+    }
+    .service-pill {
+        font-size: 0.8rem;
+        padding: 6px 14px;
+    }
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+}
