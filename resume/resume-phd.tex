@@ -1,0 +1,250 @@
+%-------------------------
+% Resume - Sukhrobbek Ilyosbekov
+% PhD / Research-focused CV
+%-------------------------
+\documentclass[letterpaper,10.5pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{tabularx}
+
+% Colors
+\definecolor{accent}{HTML}{2B5797}
+\definecolor{darktext}{HTML}{1A1A1A}
+\definecolor{lighttext}{HTML}{444444}
+\definecolor{linkcolor}{HTML}{0563C1}
+\definecolor{rulecolor}{HTML}{2B5797}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    pdfborderstyle={/S/U/W 0},
+}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Section formatting - colored rule
+\titleformat{\section}{
+    \color{darktext}\large\bfseries\scshape
+}{}{0em}{}[\color{rulecolor}\titlerule\vspace{-4pt}]
+\titlespacing*{\section}{0pt}{8pt}{5pt}
+
+% Tighter list spacing
+\setlist[itemize]{leftmargin=1.4em, itemsep=1pt, parsep=0pt, topsep=2pt}
+\setlist[description]{leftmargin=0pt, labelwidth=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=sameline, itemsep=1pt}
+
+% --- Education: university + date on first line, details as bullets ---
+\newcommand{\educationEntry}[2]{%
+    \vspace{2pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{accent}#1} & \textit{\color{lighttext}#2} \\
+    \end{tabular*}\vspace{-3pt}
+}
+
+% --- Experience: role | company | location, date right-aligned ---
+\newcommand{\experienceEntry}[4]{%
+    \vspace{5pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} {\color{lighttext}\textbar} {\color{lighttext}#3} & \textit{\color{lighttext}#4} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+% --- Experience: no location variant ---
+\newcommand{\experienceEntryNoLoc}[3]{%
+    \vspace{5pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} & \textit{\color{lighttext}#3} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+% --- Research project: name + link right-aligned ---
+\newcommand{\projectHeading}[2]{%
+    \vspace{4pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#2}{\color{linkcolor}GitHub}} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+% --- Research project: with paper link ---
+\newcommand{\projectHeadingPaper}[3]{%
+    \vspace{4pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#2}{\color{linkcolor}GitHub} \enspace\color{lighttext}\textbar\enspace \href{#3}{\color{linkcolor}Paper}} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+% --- Personal project: name + link right-aligned, description as bullet ---
+\newcommand{\personalProject}[3]{%
+    \vspace{4pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}#3}} \\
+    \end{tabular*}\vspace{-4pt}
+    \begin{itemize}
+        \item #2
+    \end{itemize}\vspace{-2pt}
+}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge\bfseries\color{darktext} Sukhrobbek Ilyosbekov}\vspace{4pt}\\
+    {\color{lighttext}
+    \faPhone\enspace(857) 867-1942 \quad
+    \faEnvelope\enspace\href{mailto:ilyosbekov.s@northeastern.edu}{ilyosbekov.s@northeastern.edu} \quad
+    \faLinkedin\enspace\href{https://www.linkedin.com/in/suxrobgm}{linkedin.com/in/suxrobgm} \quad
+    \faGithub\enspace\href{https://github.com/suxrobgm}{github.com/suxrobgm}
+    }
+\end{center}\vspace{-6pt}
+
+%----------RESEARCH INTERESTS----------
+\section{Research Interests}
+Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object Detection and Segmentation
+
+%----------EDUCATION----------
+\section{Education}
+
+\educationEntry{Northeastern University, Boston, MA}{January 2024 -- May 2026}
+\begin{itemize}
+    \item Master of Science in Computer Science; GPA: 4.0/4.0
+    \item Relevant Coursework: CS 7180 Advanced Perception, Machine Learning, Computer Vision
+\end{itemize}
+
+\educationEntry{Suffolk University, Boston, MA}{September 2021 -- May 2023}
+\begin{itemize}
+    \item Bachelor of Science in Computer Science; Cum Laude; GPA: 3.5/4.0
+\end{itemize}
+
+\educationEntry{INTI International College Subang, Malaysia}{September 2019 -- July 2021}
+\begin{itemize}
+    \item Bachelor of Science in Computer Science (Transfer Program)
+\end{itemize}
+
+\educationEntry{Tashkent University of Information Technologies, Uzbekistan}{September 2017 -- June 2019}
+\begin{itemize}
+    \item Bachelor of Science in Software Engineering
+\end{itemize}
+
+%----------AWARDS & HONORS----------
+\section{Awards \& Honors}
+\begin{itemize}[itemsep=2pt]
+    \item \textbf{National Physics Olympiad, 1st Place,} Uzbekistan -- First student from my high school to win at national level
+    \item \textbf{University Coding Competition Winner,} Tashkent University of Information Technologies
+    \item \textbf{Outstanding Project Award,} Bookshelf Scanner -- Computer Vision Course, Northeastern University
+\end{itemize}
+
+%----------TECHNICAL SKILLS----------
+\section{Technical Skills}
+\begin{description}
+    \item[Deep Learning \& CV:] PyTorch, TensorFlow/Keras, OpenCV, YOLO, EfficientNet, ResNet, U-Net, GradCAM++, CNNs, Vision Transformers, Image Classification, Object Detection, Depth Estimation, Super-Resolution, Explainable AI
+    \item[Machine Learning:] Supervised/Unsupervised Learning, Transfer Learning, XGBoost, K-means Clustering, Model Evaluation, Hyperparameter Tuning, NLP
+    \item[Languages:] Python, C\#, C++, TypeScript, JavaScript, Kotlin
+    \item[Infrastructure:] Docker, Kubernetes, AWS, Azure, CUDA
+    \item[Frameworks \& Tools:] .NET, Blazor, SignalR, Prisma, NestJS, ElysiaJS, Next.js, Angular, FastAPI, RabbitMQ, PostgreSQL, Unity, Godot
+\end{description}
+
+%----------RESEARCH PROJECTS----------
+\section{Research Projects}
+
+\projectHeadingPaper{MelanomaNet: Explainable Deep Learning for Multi-Class Skin Lesion Classification}
+{https://github.com/suxrobgm/explainable-melanoma}
+{https://arxiv.org/abs/2512.09289}
+\begin{itemize}
+    \item Developed an explainable deep learning system for multi-class skin lesion classification across all 9 ISIC 2019 diagnostic categories using EfficientNet V2 with high-resolution (384$\times$384) input.
+    \item Implemented GradCAM++ attention visualization and novel ABCDE criterion analysis with automated feature extraction (asymmetry quantification, border irregularity, color variation via K-means, diameter calculation).
+    \item Designed GradCAM-ABCDE alignment metrics to validate model attention correlation with clinical dermatological features, producing comprehensive interpretability reports.
+    \item \textbf{Stack:} Python, PyTorch, EfficientNet V2, GradCAM++, OpenCV, Focal Loss, ISIC 2019 Dataset
+\end{itemize}
+
+\projectHeading{LightDepth: Lightweight Monocular Depth Estimation}
+{https://github.com/suxrobgm/lightdepth}
+\begin{itemize}
+    \item Designed a lightweight depth estimation model using ResNet18 encoder with U-Net decoder and skip connections, achieving competitive accuracy with 42\% fewer parameters (14.3M vs 24.8M) than Depth Anything V2.
+    \item Achieved 72\% faster inference while outperforming on relative error metrics (5.3\% better AbsRel, 31.1\% better SqRel) on NYU Depth V2.
+    \item \textbf{Stack:} Python, PyTorch, ResNet18, U-Net Architecture, L1 Loss, NYU Depth V2 Dataset
+\end{itemize}
+
+\projectHeading{FSRCNN: Accelerating Super-Resolution Convolutional Neural Network}
+{https://github.com/suxrobgm/fsrcnn}
+\begin{itemize}
+    \item Implemented FSRCNN for single-image super-resolution (Dong et al., ECCV 2016), achieving 40$\times$ speedup over SRCNN with end-to-end learned upsampling at 2$\times$, 3$\times$, and 4$\times$ scales.
+    \item Evaluated on Set5 (+1.78\,dB PSNR, +0.0507 SSIM) and Set14 (+1.26\,dB PSNR, +0.0477 SSIM) with ablation studies.
+    \item \textbf{Stack:} Python, PyTorch, Mixed Precision Training (AMP), T91/Set5/Set14/DIV2K Datasets
+\end{itemize}
+
+\projectHeading{Bookshelf Scanner: Multi-Modal Book Detection and Recognition}
+{https://github.com/suxrobgm/bookshelf-scanner}
+\begin{itemize}
+    \item Built an end-to-end pipeline combining YOLO segmentation for book instance detection with Moondream2 vision-language model for title/author extraction from bookshelf images.
+    \item Integrated object segmentation with LLMs for multi-modal understanding and text recognition.
+    \item \textbf{Stack:} Python, YOLO, Moondream2 LLM, Llama CPP, PyTorch, FastAPI, Angular
+\end{itemize}
+
+\projectHeading{AoE4 Matchmaking: ML-Assisted Player Matching System}
+{https://github.com/suxrobgm/aoe4-matchmaking}
+\begin{itemize}
+    \item Designed ML-assisted matchmaking combining unsupervised player clustering, XGBoost outcome prediction, and ELO rating for balanced competitive matches.
+    \item Applied feature engineering on player statistics and ensemble methods to optimize match pairing.
+    \item \textbf{Stack:} Python, XGBoost, K-means Clustering, Pandas, NumPy, FastAPI, Angular
+\end{itemize}
+
+%----------WORK EXPERIENCE----------
+\section{Work Experience}
+
+\experienceEntryNoLoc{Freelance Full Stack Developer}{Upwork}{July 2022 -- Present}
+\begin{itemize}
+    \item Designed medical imaging application using deep learning (PyTorch, OpenCV) for disease detection; deployed on Azure Kubernetes Service with HIPAA compliance.
+    \item Built large-scale MMO game ``Chestnut'' with server-side physics, real-time sync, and Web3 integration.
+\end{itemize}
+
+\experienceEntry{Full Stack Developer}{EmTech Care Labs}{Portland, ME}{January 2025 -- June 2025}
+\begin{itemize}
+    \item Built HIPAA-compliant healthcare platform for collaborative Alzheimer's care planning with real-time messaging and notifications.
+    \item Led AWS Amplify Gen 1 to Gen 2 migration, reducing build times and modernizing the backend with a mono-repository architecture.
+\end{itemize}
+
+\experienceEntry{.NET Software Engineer}{Virtuworks}{Miami, FL}{December 2022 -- December 2023}
+\begin{itemize}
+    \item Migrated legacy ASP.NET Web Forms to Blazor WebAssembly; developed responsive UI components and optimized server performance.
+\end{itemize}
+
+\experienceEntry{.NET Software Engineer}{Frost Pixel Studio}{Russia}{October 2021 -- May 2022}
+\begin{itemize}
+    \item Improved web application performance by 30\% through caching optimizations; designed knowledge management platform with Node.js, Dgraph, and React.
+\end{itemize}
+
+\experienceEntry{.NET Software Engineer}{Smart Meal Service}{Russia}{September 2020 -- October 2021}
+\begin{itemize}
+    \item Developed robotic cashier and self-service kiosk with POS integration using computer vision for product recognition.
+\end{itemize}
+
+\experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{March 2020 -- February 2021}
+\begin{itemize}
+    \item Built multiplayer networking for smart city VR project in Unity; integrated UI/HUDs using MLAPI and SteamVR.
+\end{itemize}
+
+%----------PERSONAL SOFTWARE PROJECTS----------
+\section{Personal Software Projects}
+
+\personalProject{DepVault}{Dependency scanner and encrypted secrets vault supporting 8+ ecosystems with CVE detection, AES-256-GCM encryption, and CI/CD secret injection.}{https://depvault.com}
+\personalProject{Meat.gg}{CS2 community platform with social features, in-game admin/ban/report system, shop with Stripe payments, and server integration.}{https://meat.gg}
+\personalProject{Med Image Scanner}{HIPAA-compliant PACS viewer with AI-powered analysis on medical imaging studies (PyTorch, OpenCV, OHIF Viewer).}{https://github.com/suxrobgm/med-image-scanner}
+\personalProject{LogisticsX}{Enterprise multi-tenant SaaS fleet management with real-time tracking and mobile driver app.}{https://logisticsx.app}
+\personalProject{ChessMate}{Online chess platform with PvP and AI opponents using Spring Boot and Angular.}{https://github.com/suxrobgm/online-chess}
+\personalProject{Blazor Form Builder}{Drag-and-drop form builder library for Blazor with JSON schema generation.}{https://github.com/suxrobgm/blazor-form-builder}
+
+\end{document}

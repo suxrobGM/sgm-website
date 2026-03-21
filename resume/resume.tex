@@ -1,0 +1,245 @@
+%-------------------------
+% Resume - Sukhrob Ilyosbekov
+% Senior Full-Stack Developer / Game Developer / CV Researcher
+%-------------------------
+\documentclass[letterpaper,10.5pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{tabularx}
+\usepackage{multicol}
+
+% Colors
+\definecolor{accent}{HTML}{2B5797}
+\definecolor{darktext}{HTML}{1A1A1A}
+\definecolor{lighttext}{HTML}{444444}
+\definecolor{linkcolor}{HTML}{0563C1}
+\definecolor{rulecolor}{HTML}{2B5797}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    pdfborderstyle={/S/U/W 0},
+}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Section formatting - colored rule
+\titleformat{\section}{
+    \color{darktext}\large\bfseries\scshape
+}{}{0em}{}[\color{rulecolor}\titlerule\vspace{-4pt}]
+\titlespacing*{\section}{0pt}{8pt}{5pt}
+
+% Tighter list spacing
+\setlist[itemize]{leftmargin=1.4em, itemsep=1pt, parsep=0pt, topsep=2pt}
+\setlist[description]{leftmargin=0pt, labelwidth=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=sameline, itemsep=1pt}
+
+% --- Education: single row - University, Degree, Location, Date ---
+\newcommand{\educationEntry}[4]{%
+    \vspace{2pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{accent}#1}, {\color{darktext}#2}, {\color{lighttext}#3} & \textit{\color{lighttext}#4} \\
+    \end{tabular*}\vspace{-1pt}
+}
+
+% --- Experience: single-line role | company | location, date right-aligned ---
+\newcommand{\experienceEntry}[4]{%
+    \vspace{5pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} {\color{lighttext}\textbar} {\color{lighttext}#3} & \textit{\color{lighttext}#4} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+% --- Experience: no location variant ---
+\newcommand{\experienceEntryNoLoc}[3]{%
+    \vspace{5pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} & \textit{\color{lighttext}#3} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+% --- Project: name + link on first line, tech stack on second ---
+\newcommand{\projectEntry}[3]{%
+    \vspace{4pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}#3}} \\
+    \end{tabular*}\vspace{-3pt}\\
+    {\small\color{lighttext}\textit{#2}}\vspace{-2pt}
+}
+
+% --- Project: dual links (site + repo, or repo + paper) ---
+\newcommand{\projectEntryDual}[4]{%
+    \vspace{4pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}#3} \enspace\color{lighttext}\textbar\enspace \href{#4}{\color{linkcolor}GitHub}} \\
+    \end{tabular*}\vspace{-3pt}\\
+    {\small\color{lighttext}\textit{#2}}\vspace{-2pt}
+}
+
+% --- Project: dual links with Paper label ---
+\newcommand{\projectEntryPaper}[4]{%
+    \vspace{4pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}GitHub} \enspace\color{lighttext}\textbar\enspace \href{#4}{\color{linkcolor}Paper}} \\
+    \end{tabular*}\vspace{-3pt}\\
+    {\small\color{lighttext}\textit{#2}}\vspace{-2pt}
+}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge\bfseries\color{darktext} Sukhrob Ilyosbekov}\vspace{4pt}\\
+    {\color{lighttext}
+    \faPhone\enspace(857) 867-1942 \quad
+    \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com} \quad
+    \faLinkedin\enspace\href{https://www.linkedin.com/in/suxrobgm}{linkedin.com/in/suxrobgm} \quad
+    \faGithub\enspace\href{https://github.com/suxrobgm}{github.com/suxrobgm}
+    }
+\end{center}\vspace{-6pt}
+
+%----------PROFESSIONAL SUMMARY----------
+\section{Summary}
+Full-stack developer with 9+ years of experience delivering scalable web applications, enterprise SaaS platforms, and multiplayer games across healthcare, real estate, logistics, and gaming. Proven Upwork track record building end-to-end solutions with React, Next.js, .NET, and cloud infrastructure. Specialized in HIPAA-compliant systems, real-time architectures, and AI-powered applications. Active researcher in computer vision, deep learning, and explainable AI for medical imaging.
+
+%----------TECHNICAL SKILLS----------
+\section{Technical Skills}
+\begin{description}
+    \item[Languages:] C\#, C++, Python, JavaScript, TypeScript, Kotlin
+    \item[Backend:] ASP.NET Core, Node.js, Bun, Spring Boot, NestJS, FastAPI, ElysiaJS
+    \item[Frontend:] React, Next.js, Angular, Blazor, Tailwind CSS
+    \item[Mobile:] Kotlin Multiplatform, .NET MAUI, React Native
+    \item[Data:] PostgreSQL, MS SQL, MongoDB, Redis, Firebase, DynamoDB, Prisma
+    \item[AI/ML:] PyTorch, TensorFlow, OpenCV, YOLO, LLM Integration
+    \item[Game Dev:] Unity, Godot, PhaserJS, Colyseus
+    \item[Cloud \& DevOps:] AWS (Amplify, S3, Lambda, Cognito), Azure, Docker, Kubernetes
+\end{description}
+
+%----------EDUCATION----------
+\section{Education}
+\educationEntry{Northeastern University}{M.S.\ in Computer Science}{Boston, MA}{Jan 2024 -- May 2026}
+\educationEntry{Suffolk University}{B.S.\ in Computer Science}{Boston, MA}{Sep 2021 -- May 2023}
+\educationEntry{INTI International College Subang}{B.S.\ in Computer Science}{Malaysia}{Sep 2019 -- Jul 2021}
+\educationEntry{TUIT}{B.S.\ in Software Engineering}{Uzbekistan}{Sep 2017 -- Jun 2019}
+
+%----------PROFESSIONAL EXPERIENCE----------
+\section{Professional Experience}
+
+\experienceEntry{Freelance Full Stack Developer}{Upwork}{USA}{Jul 2022 -- Present}
+\begin{itemize}
+    \item Delivered 10+ projects for clients in healthcare, real estate, and gaming with consistently top-rated feedback.
+    \item Built ``Chestnut,'' an MMO game with custom server-side physics, real-time sync for 100+ concurrent players, and Web3 integration.
+    \item Developed AI-powered medical imaging platform (PyTorch, OpenCV) for disease detection; deployed on Azure Kubernetes Service.
+    \item Created Blazor drag-and-drop form builder with JSON schema generation; architected Next.js/NestJS real estate platform.
+\end{itemize}
+
+\experienceEntry{Full Stack Developer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
+\begin{itemize}
+    \item Built HIPAA-compliant healthcare platform for collaborative Alzheimer's care planning with real-time messaging and notifications.
+    \item Led AWS Amplify Gen 1 to Gen 2 migration, cutting build/deployment times by 40\%; unified codebase into a TypeScript monorepo.
+    \item Standardized UI architecture by consolidating multiple component libraries into a single, reusable design system.
+\end{itemize}
+
+\experienceEntry{.NET Software Engineer}{Virtuworks}{Miami, FL}{Dec 2022 -- Dec 2023}
+\begin{itemize}
+    \item Migrated legacy ASP.NET Web Forms to Blazor WebAssembly, improving load performance and long-term maintainability.
+    \item Developed responsive, reusable UI components in Blazor, improving consistency across the application.
+\end{itemize}
+
+\experienceEntry{.NET Software Engineer}{Frost Pixel Studio}{Russia}{Oct 2021 -- May 2022}
+\begin{itemize}
+    \item Built web applications and browser-based games with ASP.NET Core, Blazor, Angular, and PhaserJS.
+    \item Improved application performance by 30\% through server-side caching optimizations.
+\end{itemize}
+
+\experienceEntry{.NET Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
+\begin{itemize}
+    \item Developed a robotic cashier application and self-service kiosk integrated with POS systems.
+    \item Contributed across full SDLC for multiple concurrent application development projects.
+\end{itemize}
+
+\experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
+\begin{itemize}
+    \item Built multiplayer networking for a smart city VR project in Unity; integrated UI/HUDs using MLAPI and SteamVR.
+\end{itemize}
+
+\experienceEntryNoLoc{Freelance Software Developer}{Freelancer.com}{Feb 2019 -- Feb 2020}
+\begin{itemize}
+    \item Developed web, desktop, and mobile applications using the .NET stack and Python NLP libraries.
+\end{itemize}
+
+\experienceEntry{Game Developer}{EC Dev Team}{Uzbekistan}{Jul 2016 -- Jan 2019}
+\begin{itemize}
+    \item Led development of the RTS game ``Hearts of Iron: Economic Crisis'' in the Clausewitz Engine.
+    \item Designed game AI, core mechanics, and internal developer tooling; balanced gameplay systems across releases.
+\end{itemize}
+
+%----------FEATURED PROJECTS----------
+\section{Featured Projects}
+
+\projectEntry{Meat.gg}{ElysiaJS, Next.js, PostgreSQL, Prisma, Bun, Docker, Stripe}
+{https://meat.gg}
+\begin{itemize}
+    \item Full-featured community platform for CS2 servers with social features (messaging, profiles), in-game admin/ban/report system, integrated shop with Stripe payments, and real-time CS2 server integration.
+\end{itemize}
+
+\projectEntryDual{DepVault}{Next.js, ElysiaJS, PostgreSQL, Prisma, Bun, .NET AOT CLI, Docker}
+{https://depvault.com}
+{https://github.com/suxrobGM/depvault}
+\begin{itemize}
+    \item Dependency scanner and encrypted secrets vault supporting 8+ ecosystems with CVE detection via OSV.dev, AES-256-GCM encryption, one-time secret sharing, and CI/CD token injection.
+\end{itemize}
+
+\projectEntryDual{LogisticsX}{ASP.NET Core, PostgreSQL, Angular, Kotlin KMP, Stripe, Mapbox}
+{https://logisticsx.app}
+{https://github.com/suxrobgm/logistics-app}
+\begin{itemize}
+    \item Enterprise-scale SaaS fleet management system with admin portal, management dashboard, driver mobile app, REST API, and Identity Server.
+\end{itemize}
+
+\projectEntry{Med Image Scanner}{FastAPI, Next.js, PyTorch, OpenCV, OHIF Viewer, PostgreSQL}
+{https://github.com/suxrobgm/med-image-scanner}
+\begin{itemize}
+    \item HIPAA-compliant platform connecting to hospital PACS via DICOM for AI-powered analysis on X-ray, CT, and MRI studies with annotation tools and disease-detection overlays.
+\end{itemize}
+
+\projectEntry{Blazor Form Builder}{Blazor WebAssembly, C\#, JSON Schema}
+{https://github.com/suxrobgm/blazor-form-builder}
+\begin{itemize}
+    \item Drag-and-drop form designer library for Blazor with support for text, numeric, date, and dropdown fields; generates and renders forms from JSON schema.
+\end{itemize}
+
+\projectEntry{ChessMate}{Spring Boot, Angular, WebSocket}
+{https://github.com/suxrobgm/online-chess}
+\begin{itemize}
+    \item Online chess platform with PvP and AI opponents, supporting both rated and friendly matches.
+\end{itemize}
+
+\projectEntry{Bookshelf Scanner}{YOLO, Moondream2 LLM, FastAPI, Angular}
+{https://github.com/suxrobgm/bookshelf-scanner}
+\begin{itemize}
+    \item End-to-end pipeline for detecting books from bookshelf images using YOLO segmentation and a vision-language model for title/author extraction.
+\end{itemize}
+
+\projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
+{https://github.com/suxrobgm/explainable-melanoma}
+{https://arxiv.org/abs/2512.09289}
+\begin{itemize}
+    \item Explainable deep learning system for skin lesion classification across 9 ISIC 2019 categories with GradCAM++ visualization and novel ABCDE criterion analysis for clinical interpretability.
+\end{itemize}
+
+\end{document}

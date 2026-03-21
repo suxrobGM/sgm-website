@@ -352,3 +352,23 @@ ASALocalRun/
 BlazorApp1/
 
 .playwright-mcp/
+
+# LaTeX build files
+*.aux
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+*.lb
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.synctex.gz
+*.synctex(busy)

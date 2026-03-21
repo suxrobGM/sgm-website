@@ -1,5 +1,12 @@
 {
   "editor.formatOnSave": true,
+  "files.exclude": {
+    ".vs": true,
+    "**/bin": true,
+    "**/obj": true,
+    "**/Logs": true,
+    "**/.idea": true
+  },
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
