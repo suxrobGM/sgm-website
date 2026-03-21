@@ -2,7 +2,7 @@
 % Resume - Sukhrobbek Ilyosbekov
 % PhD / Research-focused CV
 %-------------------------
-\documentclass[letterpaper,10.5pt]{article}
+\documentclass[letterpaper,11pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -45,7 +45,7 @@
 
 % Tighter list spacing
 \setlist[itemize]{leftmargin=1.4em, itemsep=1pt, parsep=0pt, topsep=2pt}
-\setlist[description]{leftmargin=0pt, labelwidth=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=sameline, itemsep=1pt}
+\setlist[description]{leftmargin=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=unboxed, itemsep=1pt}
 
 % --- Education: university + date on first line, details as bullets ---
 \newcommand{\educationEntry}[2]{%
@@ -106,6 +106,7 @@
     {\color{lighttext}
     \faPhone\enspace(857) 867-1942 \quad
     \faEnvelope\enspace\href{mailto:ilyosbekov.s@northeastern.edu}{ilyosbekov.s@northeastern.edu} \quad
+    \faGlobe\enspace\href{https://suxrobgm.net}{suxrobgm.net} \quad
     \faLinkedin\enspace\href{https://www.linkedin.com/in/suxrobgm}{linkedin.com/in/suxrobgm} \quad
     \faGithub\enspace\href{https://github.com/suxrobgm}{github.com/suxrobgm}
     }
@@ -138,6 +139,12 @@ Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object D
 \begin{itemize}
     \item Bachelor of Science in Software Engineering
 \end{itemize}
+
+%----------PUBLICATIONS----------
+\section{Publications}
+\begin{enumerate}[leftmargin=1.4em, itemsep=2pt, label={[\arabic*]}]
+    \item S.\ Ilyosbekov, ``MelanomaNet: Explainable Deep Learning for Multi-Class Skin Lesion Classification,'' \textit{arXiv preprint}, arXiv:2512.09289, 2024. \href{https://arxiv.org/abs/2512.09289}{\color{linkcolor}[Paper]}
+\end{enumerate}
 
 %----------AWARDS & HONORS----------
 \section{Awards \& Honors}
@@ -207,19 +214,20 @@ Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object D
 
 \experienceEntryNoLoc{Freelance Full Stack Developer}{Upwork}{July 2022 -- Present}
 \begin{itemize}
+    \item Top Rated Plus freelancer (100\% Job Success Score); delivered 10+ projects across healthcare, real estate, and gaming.
     \item Designed medical imaging application using deep learning (PyTorch, OpenCV) for disease detection; deployed on Azure Kubernetes Service with HIPAA compliance.
-    \item Built large-scale MMO game ``Chestnut'' with server-side physics, real-time sync, and Web3 integration.
+    \item Built large-scale MMO game ``Chestnut'' with server-side physics, real-time sync for 100+ concurrent players, and Web3 integration.
 \end{itemize}
 
 \experienceEntry{Full Stack Developer}{EmTech Care Labs}{Portland, ME}{January 2025 -- June 2025}
 \begin{itemize}
-    \item Built HIPAA-compliant healthcare platform for collaborative Alzheimer's care planning with real-time messaging and notifications.
-    \item Led AWS Amplify Gen 1 to Gen 2 migration, reducing build times and modernizing the backend with a mono-repository architecture.
+    \item Built HIPAA-compliant healthcare platform serving 200+ caregivers and patients with real-time messaging and notifications for collaborative Alzheimer's care planning.
+    \item Led AWS Amplify Gen 1 to Gen 2 migration, cutting build/deployment times by 40\%; unified codebase into a TypeScript monorepo.
 \end{itemize}
 
 \experienceEntry{.NET Software Engineer}{Virtuworks}{Miami, FL}{December 2022 -- December 2023}
 \begin{itemize}
-    \item Migrated legacy ASP.NET Web Forms to Blazor WebAssembly; developed responsive UI components and optimized server performance.
+    \item Migrated legacy ASP.NET Web Forms to Blazor WebAssembly, reducing page load times by 50\%; developed 30+ responsive UI components.
 \end{itemize}
 
 \experienceEntry{.NET Software Engineer}{Frost Pixel Studio}{Russia}{October 2021 -- May 2022}
@@ -229,21 +237,21 @@ Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object D
 
 \experienceEntry{.NET Software Engineer}{Smart Meal Service}{Russia}{September 2020 -- October 2021}
 \begin{itemize}
-    \item Developed robotic cashier and self-service kiosk with POS integration using computer vision for product recognition.
+    \item Developed robotic cashier and self-service kiosk processing 500+ daily transactions with POS integration using computer vision for product recognition.
 \end{itemize}
 
 \experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{March 2020 -- February 2021}
 \begin{itemize}
-    \item Built multiplayer networking for smart city VR project in Unity; integrated UI/HUDs using MLAPI and SteamVR.
+    \item Built multiplayer networking supporting 20+ concurrent VR users for a smart city project in Unity; integrated UI/HUDs using MLAPI and SteamVR.
 \end{itemize}
 
 %----------PERSONAL SOFTWARE PROJECTS----------
 \section{Personal Software Projects}
 
 \personalProject{DepVault}{Dependency scanner and encrypted secrets vault supporting 8+ ecosystems with CVE detection, AES-256-GCM encryption, and CI/CD secret injection.}{https://depvault.com}
-\personalProject{Meat.gg}{CS2 community platform with social features, in-game admin/ban/report system, shop with Stripe payments, and server integration.}{https://meat.gg}
+\personalProject{Meat.gg}{CS2 community platform serving 30K+ users and 1K+ daily active players with social features, in-game admin/ban/report system, Stripe-powered shop, and real-time server integration.}{https://meat.gg}
 \personalProject{Med Image Scanner}{HIPAA-compliant PACS viewer with AI-powered analysis on medical imaging studies (PyTorch, OpenCV, OHIF Viewer).}{https://github.com/suxrobgm/med-image-scanner}
-\personalProject{LogisticsX}{Enterprise multi-tenant SaaS fleet management with real-time tracking and mobile driver app.}{https://logisticsx.app}
+\personalProject{LogisticsX}{Multi-tenant TMS for trucking companies with DDD/CQRS architecture, 4 web apps + mobile driver app, Stripe payments, ELD compliance, and real-time fleet tracking.}{https://logisticsx.app}
 \personalProject{ChessMate}{Online chess platform with PvP and AI opponents using Spring Boot and Angular.}{https://github.com/suxrobgm/online-chess}
 \personalProject{Blazor Form Builder}{Drag-and-drop form builder library for Blazor with JSON schema generation.}{https://github.com/suxrobgm/blazor-form-builder}
 

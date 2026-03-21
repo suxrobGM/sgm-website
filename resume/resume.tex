@@ -2,7 +2,7 @@
 % Resume - Sukhrob Ilyosbekov
 % Senior Full-Stack Developer / Game Developer / CV Researcher
 %-------------------------
-\documentclass[letterpaper,10.5pt]{article}
+\documentclass[letterpaper,11pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -46,7 +46,7 @@
 
 % Tighter list spacing
 \setlist[itemize]{leftmargin=1.4em, itemsep=1pt, parsep=0pt, topsep=2pt}
-\setlist[description]{leftmargin=0pt, labelwidth=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=sameline, itemsep=1pt}
+\setlist[description]{leftmargin=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=unboxed, itemsep=1pt}
 
 % --- Education: single row - University, Degree, Location, Date ---
 \newcommand{\educationEntry}[4]{%
@@ -107,6 +107,7 @@
     {\color{lighttext}
     \faPhone\enspace(857) 867-1942 \quad
     \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com} \quad
+    \faGlobe\enspace\href{https://suxrobgm.net}{suxrobgm.net} \quad
     \faLinkedin\enspace\href{https://www.linkedin.com/in/suxrobgm}{linkedin.com/in/suxrobgm} \quad
     \faGithub\enspace\href{https://github.com/suxrobgm}{github.com/suxrobgm}
     }
@@ -141,7 +142,7 @@ Full-stack developer with 9+ years of experience delivering scalable web applica
 
 \experienceEntry{Freelance Full Stack Developer}{Upwork}{USA}{Jul 2022 -- Present}
 \begin{itemize}
-    \item Delivered 10+ projects for clients in healthcare, real estate, and gaming with consistently top-rated feedback.
+    \item Top Rated Plus freelancer (100\% Job Success Score); delivered 10+ full-stack projects across healthcare, real estate, and gaming.
     \item Built ``Chestnut,'' an MMO game with custom server-side physics, real-time sync for 100+ concurrent players, and Web3 integration.
     \item Developed AI-powered medical imaging platform (PyTorch, OpenCV) for disease detection; deployed on Azure Kubernetes Service.
     \item Created Blazor drag-and-drop form builder with JSON schema generation; architected Next.js/NestJS real estate platform.
@@ -149,15 +150,15 @@ Full-stack developer with 9+ years of experience delivering scalable web applica
 
 \experienceEntry{Full Stack Developer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
 \begin{itemize}
-    \item Built HIPAA-compliant healthcare platform for collaborative Alzheimer's care planning with real-time messaging and notifications.
+    \item Built HIPAA-compliant healthcare platform serving 200+ caregivers and patients with real-time messaging and notifications for collaborative Alzheimer's care planning.
     \item Led AWS Amplify Gen 1 to Gen 2 migration, cutting build/deployment times by 40\%; unified codebase into a TypeScript monorepo.
-    \item Standardized UI architecture by consolidating multiple component libraries into a single, reusable design system.
+    \item Standardized UI architecture by consolidating 3 component libraries into a single design system with 40+ reusable components.
 \end{itemize}
 
 \experienceEntry{.NET Software Engineer}{Virtuworks}{Miami, FL}{Dec 2022 -- Dec 2023}
 \begin{itemize}
-    \item Migrated legacy ASP.NET Web Forms to Blazor WebAssembly, improving load performance and long-term maintainability.
-    \item Developed responsive, reusable UI components in Blazor, improving consistency across the application.
+    \item Migrated legacy ASP.NET Web Forms to Blazor WebAssembly, reducing page load times by 50\% and improving long-term maintainability.
+    \item Developed 30+ responsive, reusable UI components in Blazor, improving consistency across the application.
 \end{itemize}
 
 \experienceEntry{.NET Software Engineer}{Frost Pixel Studio}{Russia}{Oct 2021 -- May 2022}
@@ -168,33 +169,33 @@ Full-stack developer with 9+ years of experience delivering scalable web applica
 
 \experienceEntry{.NET Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
 \begin{itemize}
-    \item Developed a robotic cashier application and self-service kiosk integrated with POS systems.
-    \item Contributed across full SDLC for multiple concurrent application development projects.
+    \item Developed a robotic cashier application and self-service kiosk processing 500+ daily transactions, integrated with POS systems.
+    \item Contributed across full SDLC for 5 concurrent application development projects.
 \end{itemize}
 
 \experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
 \begin{itemize}
-    \item Built multiplayer networking for a smart city VR project in Unity; integrated UI/HUDs using MLAPI and SteamVR.
+    \item Built multiplayer networking supporting 20+ concurrent VR users for a smart city project in Unity; integrated UI/HUDs using MLAPI and SteamVR.
 \end{itemize}
 
-\experienceEntryNoLoc{Freelance Software Developer}{Freelancer.com}{Feb 2019 -- Feb 2020}
-\begin{itemize}
-    \item Developed web, desktop, and mobile applications using the .NET stack and Python NLP libraries.
-\end{itemize}
-
-\experienceEntry{Game Developer}{EC Dev Team}{Uzbekistan}{Jul 2016 -- Jan 2019}
-\begin{itemize}
-    \item Led development of the RTS game ``Hearts of Iron: Economic Crisis'' in the Clausewitz Engine.
-    \item Designed game AI, core mechanics, and internal developer tooling; balanced gameplay systems across releases.
-\end{itemize}
+\vspace{5pt}\noindent
+{\color{lighttext}\textit{Earlier:} Game Developer at EC Dev Team, Uzbekistan (2016--19) -- Led RTS game development in Clausewitz Engine. Freelance Developer at Freelancer.com (2019--20) -- .NET and Python NLP applications.}
 
 %----------FEATURED PROJECTS----------
 \section{Featured Projects}
 
+\projectEntryDual{LogisticsX}{ASP.NET Core, EF Core, SignalR, Angular, Kotlin KMP, PostgreSQL, Stripe, Mapbox, Docker}
+{https://logisticsx.app}
+{https://github.com/suxrobgm/logistics-app}
+\begin{itemize}
+    \item Multi-tenant transportation management system (TMS) for intermodal trucking companies, digitizing dispatch, fleet tracking, invoicing, and compliance workflows across 4 web apps + mobile driver app.
+    \item Architected with DDD and CQRS patterns using MediatR; features load board integrations (DAT, Truckstop), ELD/HOS compliance (Samsara, Motive), Stripe Connect payments, route optimization, and real-time driver tracking via Mapbox.
+\end{itemize}
+
 \projectEntry{Meat.gg}{ElysiaJS, Next.js, PostgreSQL, Prisma, Bun, Docker, Stripe}
 {https://meat.gg}
 \begin{itemize}
-    \item Full-featured community platform for CS2 servers with social features (messaging, profiles), in-game admin/ban/report system, integrated shop with Stripe payments, and real-time CS2 server integration.
+    \item Community platform for CS2 servers serving 30K+ registered users and 1K+ daily active players, featuring social interactions (messaging, profiles), in-game admin/ban/report system, integrated shop with Stripe payments, and real-time server integration.
 \end{itemize}
 
 \projectEntryDual{DepVault}{Next.js, ElysiaJS, PostgreSQL, Prisma, Bun, .NET AOT CLI, Docker}
@@ -202,13 +203,6 @@ Full-stack developer with 9+ years of experience delivering scalable web applica
 {https://github.com/suxrobGM/depvault}
 \begin{itemize}
     \item Dependency scanner and encrypted secrets vault supporting 8+ ecosystems with CVE detection via OSV.dev, AES-256-GCM encryption, one-time secret sharing, and CI/CD token injection.
-\end{itemize}
-
-\projectEntryDual{LogisticsX}{ASP.NET Core, PostgreSQL, Angular, Kotlin KMP, Stripe, Mapbox}
-{https://logisticsx.app}
-{https://github.com/suxrobgm/logistics-app}
-\begin{itemize}
-    \item Enterprise-scale SaaS fleet management system with admin portal, management dashboard, driver mobile app, REST API, and Identity Server.
 \end{itemize}
 
 \projectEntry{Med Image Scanner}{FastAPI, Next.js, PyTorch, OpenCV, OHIF Viewer, PostgreSQL}
