@@ -14,7 +14,8 @@
       "mcp__plugin_playwright_playwright__*",
       "Skill(humanizer)",
       "Skill(upwork-proposal)",
-      "Skill(cover-letter)"
+      "Skill(cover-letter)",
+      "Skill(job-apply)"
     ],
     "deny": []
   }

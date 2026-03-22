@@ -1,10 +1,6 @@
 ---
 name: cover-letter
-description: |
-  Generate a tailored cover letter for job applications based on the provided
-  job description. Uses Sukhrob's full background, experience, and project
-  portfolio to craft a compelling, personalized cover letter. Automatically
-  applies the humanizer skill to ensure natural, human-sounding writing.
+description: Generate a cover letter from a job description using Sukhrob's resume. Applies humanizer for natural tone.
 argument-hint: "<job_description>"
 ---
 

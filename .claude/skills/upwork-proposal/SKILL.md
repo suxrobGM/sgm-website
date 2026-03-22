@@ -1,10 +1,6 @@
 ---
 name: upwork-proposal
-description: |
-  Generate a tailored Upwork job proposal based on the provided job description.
-  Uses Sukhrob's full background, experience, and project portfolio to craft a
-  compelling, personalized proposal. Automatically applies the humanizer skill
-  to ensure natural, human-sounding writing.
+description: Generate an Upwork proposal from a job description using Sukhrob's profile. Applies humanizer for natural tone.
 argument-hint: "<job_description>"
 ---
 
