@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build:*)",
+      "Bash(dotnet run:*)",
+      "Bash(dotnet publish:*)",
+      "Bash(dotnet test:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git mv:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "mcp__plugin_playwright_playwright__*",
+      "Skill(humanizer)",
+      "Skill(upwork-proposal)",
+      "Skill(cover-letter)"
+    ],
+    "deny": []
+  }
+}
