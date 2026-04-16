@@ -120,8 +120,8 @@ jobs:
           script: |
             cd ${{ env.APP_DIR }}
 
-            REPO_LOWER=$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')
-            echo "GITHUB_REPOSITORY=$REPO_LOWER" >> .env
+            export GITHUB_REPOSITORY=$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')
+            echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY" >> .env
             echo "IMAGE_TAG=$IMAGE_TAG" >> .env
 
             docker compose pull
