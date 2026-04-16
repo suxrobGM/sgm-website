@@ -1,0 +1,14 @@
+services:
+  sgm-website:
+    image: ghcr.io/suxrobgm/sgm-website:latest
+    container_name: sgm-website
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_FORWARDEDHEADERS_ENABLED: "true"
+    ports:
+      - "127.0.0.1:8000:8080"
+    volumes:
+      - ./keys:/app/keys:ro
+      - ./logs:/app/logs

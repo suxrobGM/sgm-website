@@ -1,88 +1,104 @@
-name: Deploy SSH
+# Deploy pipeline — builds a Docker image, pushes it to GHCR, then SSHes into the
+# VPS to pull and restart the container via docker compose.
+#
+# Required GitHub secrets:
+#   SSH_HOST           — VPS hostname or IP
+#   SSH_USER           — SSH user with docker permissions
+#   SSH_KEY            — private key matching the user's authorized_keys on the VPS
+#   ENV_DOCKER         — multi-line env file content, e.g. EmailConfig__ApiKey=re_xxx
+#                        (only true secrets; non-secret values stay in appsettings.json)
+#   GOOGLE_CREDENTIALS — full Google service-account JSON (written to keys/sa.json on the VPS)
+#
+# One-time host setup:
+#   - Install docker + docker compose on the VPS
+#   - Make the GHCR package public OR run `docker login ghcr.io` once with a PAT
+#   - Stop the legacy systemd unit: sudo systemctl disable --now sgm-main.service
+#
+# Files deployed to ${DEPLOY_PATH} on the VPS:
+#   docker-compose.yml, .env, keys/sa.json (created/refreshed every run)
+
+name: Deploy
 
 on:
   push:
-    branches: [prod]
+    branches: [ prod ]
 
 env:
-  PROJECT_PATH: src/SGM.WebApp/SGM.WebApp.csproj
+  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/sgm-website
   DEPLOY_PATH: /var/www/sgm-main
-  GOOGLE_SA_KEY: blog-suxrobgm-13a40292a9ba.json
 
 jobs:
-  deploy-main-app:
-    name: Deploy Main App
+  build-and-push:
+    name: Build and push image
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v6
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+      - uses: docker/setup-buildx-action@v4
+
+      - uses: docker/login-action@v4
         with:
-          dotnet-version: 10.0.x
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish
-        run: dotnet publish ${{ env.PROJECT_PATH }} -c Release -r linux-x64 -p:PublishSingleFile=true --output ./publish
+      - uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: src/SGM.WebApp/Dockerfile
+          push: true
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-      - name: Stop service and clean
+  deploy:
+    name: Deploy to VPS
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Stage deploy artifacts
+        env:
+          ENV_DOCKER: ${{ secrets.ENV_DOCKER }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        run: |
+          mkdir -p out/keys
+          printf '%s' "$ENV_DOCKER" > out/.env
+          printf '%s' "$GOOGLE_CREDENTIALS" > out/keys/sa.json
+          cp deploy/docker-compose.yml out/docker-compose.yml
+
+      - name: Ensure deploy directory exists
         uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo systemctl stop sgm-main.service
-            rm -rf ${{ env.DEPLOY_PATH }}/*
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: mkdir -p ${{ env.DEPLOY_PATH }}/keys ${{ env.DEPLOY_PATH }}/logs
 
-      - name: Upload files
+      - name: Upload artifacts
         uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "./publish/*"
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          source: "out/.env,out/docker-compose.yml,out/keys/sa.json"
           target: ${{ env.DEPLOY_PATH }}
+          strip_components: 1
 
-      - name: Move files from publish to deploy path
+      - name: Pull image and restart
         uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            mv ${{ env.DEPLOY_PATH }}/publish/* ${{ env.DEPLOY_PATH }}
-            rm -rf ${{ env.DEPLOY_PATH }}/publish
-
-      - name: Copy Google SA key into app
-        uses: appleboy/ssh-action@v1.2.5
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            mkdir -p ${{ env.DEPLOY_PATH }}/keys
-            cp ./home/persistence/${{ env.GOOGLE_SA_KEY }} ${{ env.DEPLOY_PATH }}/keys/
-            chown www-data:www-data ${{ env.DEPLOY_PATH }}/keys/${{ env.GOOGLE_SA_KEY }}
-            chmod 640 ${{ env.DEPLOY_PATH }}/keys/${{ env.GOOGLE_SA_KEY }}
-
-      - name: Copy appsettings Production
-        uses: appleboy/ssh-action@v1.2.5
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cp ./home/persistence/appsettings.Production.json ${{ env.DEPLOY_PATH }}/appsettings.Production.json
-            chown www-data:www-data ${{ env.DEPLOY_PATH }}/appsettings.Production.json
-            chmod 640 ${{ env.DEPLOY_PATH }}/appsettings.Production.json
-
-      - name: Restart service
-        uses: appleboy/ssh-action@v1.2.5
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo systemctl daemon-reload
-            sudo systemctl start sgm-main.service
+            cd ${{ env.DEPLOY_PATH }}
+            docker compose pull
+            docker compose up -d
+            docker image prune -f

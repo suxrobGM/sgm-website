@@ -6,6 +6,8 @@
 appsettings.Production.json
 appsettings.Development.json
 
+deploy/.env
+
 app_analytics.sqlite
 db_files/
 
