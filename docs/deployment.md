@@ -5,7 +5,7 @@ Push to `prod` → [`deploy-ssh.yml`](../.github/workflows/deploy-ssh.yml) build
 ## Pipeline
 
 - **`build`** — matrix-driven; builds each Dockerfile, caches layers in GHCR (`:buildcache`), pushes `:latest` to `ghcr.io/suxrobgm/sgm-website/<image>`. Concurrency cancels superseded builds per image.
-- **`deploy`** — writes `.env` and `keys/sa.json` from secrets, SCPs them with `docker-compose.yml` to `/var/www/sgm-main`, then `docker compose up -d --force-recreate`. `cancel-in-progress: false` so deploys never abort mid-flight. Final step curls `127.0.0.1:8000/` as a health probe.
+- **`deploy`** — writes `.env` and `keys/sa.json` from secrets, SCPs them with `docker-compose.yml` to `~/deploy/sgm-website`, then `docker compose up -d --force-recreate`. `cancel-in-progress: false` so deploys never abort mid-flight. Final step curls `127.0.0.1:8000/` as a health probe.
 
 ## Compose
 

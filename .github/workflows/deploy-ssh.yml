@@ -20,7 +20,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  APP_DIR: /var/www/sgm-main
+  APP_DIR: ~/deploy/sgm-website
 
 jobs:
   build:
