@@ -10,8 +10,6 @@
 #
 # One-time host setup:
 #   - Install docker + docker compose on the VPS
-#   - After first push, set the GHCR package visibility to Public
-#     (Profile → Packages → sgm-website/web → Package settings → Change visibility)
 
 name: Build and Deploy
 
@@ -64,9 +62,12 @@ jobs:
           context: ${{ matrix.context }}
           file: ${{ matrix.file }}
           push: true
-          tags: ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}/${{ matrix.image }}:latest
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}/${{ matrix.image }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}/${{ matrix.image }}:buildcache,mode=max
+          tags: ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}/${{ matrix.image
+            }}:latest
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name
+            }}/${{ matrix.image }}:buildcache
+          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name
+            }}/${{ matrix.image }}:buildcache,mode=max
 
   deploy:
     name: Deploy to VPS
