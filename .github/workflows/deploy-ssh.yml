@@ -11,7 +11,7 @@
 # One-time host setup:
 #   - Install docker + docker compose on the VPS
 #   - After first push, set the GHCR package visibility to Public
-#     (Profile → Packages → sgm-website/app → Package settings → Change visibility)
+#     (Profile → Packages → sgm-website/web → Package settings → Change visibility)
 
 name: Build and Deploy
 
@@ -38,7 +38,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - image: app
+          - image: web
             context: .
             file: ./src/SGM.WebApp/Dockerfile
 

@@ -1,7 +1,7 @@
 services:
-  sgm-website:
-    image: ghcr.io/${GITHUB_REPOSITORY:-suxrobgm/sgm-website}/app:${IMAGE_TAG:-latest}
-    container_name: sgm-website
+  sgm-web:
+    image: ghcr.io/${GITHUB_REPOSITORY:-suxrobgm/sgm-website}/web:${IMAGE_TAG:-latest}
+    container_name: sgm-web
     restart: unless-stopped
     env_file: .env
     environment:
