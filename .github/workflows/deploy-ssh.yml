@@ -1,75 +1,91 @@
-# Deploy pipeline — builds a Docker image, pushes it to GHCR, then SSHes into the
-# VPS to pull and restart the container via docker compose.
+# Docker-based deployment to VPS
 #
 # Required GitHub secrets:
 #   SSH_HOST           — VPS hostname or IP
 #   SSH_USER           — SSH user with docker permissions
 #   SSH_KEY            — private key matching the user's authorized_keys on the VPS
-#   ENV_DOCKER         — multi-line env file content, e.g. EmailConfig__ApiKey=re_xxx
+#   DOCKER_ENV         — multi-line env file content, e.g. EmailConfig__ApiKey=re_xxx
 #                        (only true secrets; non-secret values stay in appsettings.json)
 #   GOOGLE_CREDENTIALS — full Google service-account JSON (written to keys/sa.json on the VPS)
 #
 # One-time host setup:
 #   - Install docker + docker compose on the VPS
-#   - Make the GHCR package public OR run `docker login ghcr.io` once with a PAT
-#   - Stop the legacy systemd unit: sudo systemctl disable --now sgm-main.service
-#
-# Files deployed to ${DEPLOY_PATH} on the VPS:
-#   docker-compose.yml, .env, keys/sa.json (created/refreshed every run)
+#   - After first push, set the GHCR package visibility to Public
+#     (Profile → Packages → sgm-website/app → Package settings → Change visibility)
 
-name: Deploy
+name: Build and Deploy
 
 on:
   push:
     branches: [ prod ]
+  workflow_dispatch:
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/sgm-website
-  DEPLOY_PATH: /var/www/sgm-main
+  REGISTRY: ghcr.io
+  APP_DIR: /var/www/sgm-main
 
 jobs:
-  build-and-push:
-    name: Build and push image
+  build:
+    name: Build ${{ matrix.image }}
     runs-on: ubuntu-latest
+    concurrency:
+      group: build-${{ matrix.image }}
+      cancel-in-progress: true
     permissions:
       contents: read
       packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: app
+            context: .
+            file: ./src/SGM.WebApp/Dockerfile
+
     steps:
       - uses: actions/checkout@v6
+
+      - name: Set lowercase repository name
+        id: repo
+        run: echo "name=${GITHUB_REPOSITORY,,}" >> $GITHUB_OUTPUT
 
       - uses: docker/setup-buildx-action@v4
 
       - uses: docker/login-action@v4
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: docker/build-push-action@v6
+      - name: Build and push ${{ matrix.image }}
+        uses: docker/build-push-action@v6
+
         with:
-          context: .
-          file: src/SGM.WebApp/Dockerfile
+          context: ${{ matrix.context }}
+          file: ${{ matrix.file }}
           push: true
-          tags: |
-            ${{ env.IMAGE_NAME }}:latest
-            ${{ env.IMAGE_NAME }}:${{ github.sha }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          tags: ${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}/${{ matrix.image }}:latest
+          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}/${{ matrix.image }}:buildcache
+          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ steps.repo.outputs.name }}/${{ matrix.image }}:buildcache,mode=max
 
   deploy:
     name: Deploy to VPS
-    needs: build-and-push
     runs-on: ubuntu-latest
+    needs: build
+    concurrency:
+      group: deploy-prod
+      cancel-in-progress: false
+
     steps:
       - uses: actions/checkout@v6
 
       - name: Stage deploy artifacts
         env:
-          ENV_DOCKER: ${{ secrets.ENV_DOCKER }}
+          DOCKER_ENV: ${{ secrets.DOCKER_ENV }}
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: |
           mkdir -p out/keys
-          printf '%s' "$ENV_DOCKER" > out/.env
+          printf '%s' "$DOCKER_ENV" > out/.env
           printf '%s' "$GOOGLE_CREDENTIALS" > out/keys/sa.json
           cp deploy/docker-compose.yml out/docker-compose.yml
 
@@ -79,7 +95,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          script: mkdir -p ${{ env.DEPLOY_PATH }}/keys ${{ env.DEPLOY_PATH }}/logs
+          script: mkdir -p ${{ env.APP_DIR }}/keys ${{ env.APP_DIR }}/logs
 
       - name: Upload artifacts
         uses: appleboy/scp-action@v1.0.0
@@ -88,17 +104,48 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           source: "out/.env,out/docker-compose.yml,out/keys/sa.json"
-          target: ${{ env.DEPLOY_PATH }}
+          target: ${{ env.APP_DIR }}
           strip_components: 1
 
-      - name: Pull image and restart
+      - name: Deploy with Docker Compose
+        uses: appleboy/ssh-action@v1.2.5
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          IMAGE_TAG: latest
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          envs: GITHUB_REPOSITORY,IMAGE_TAG
+          script: |
+            cd ${{ env.APP_DIR }}
+
+            REPO_LOWER=$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')
+            echo "GITHUB_REPOSITORY=$REPO_LOWER" >> .env
+            echo "IMAGE_TAG=$IMAGE_TAG" >> .env
+
+            docker compose pull
+            docker compose up -d --force-recreate --remove-orphans
+            docker image prune -f
+
+            echo "=== Container Status ==="
+            docker compose ps --format "table {{.Name}}\t{{.Status}}"
+
+      - name: Health check
         uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd ${{ env.DEPLOY_PATH }}
-            docker compose pull
-            docker compose up -d
-            docker image prune -f
+            echo "Waiting for service to start..."
+            sleep 15
+
+            echo "=== App Health Check ==="
+            curl -sfI http://127.0.0.1:8000/ | head -1 || echo "App not responding yet"
+
+            echo "=== Container Status ==="
+            docker compose -f ${{ env.APP_DIR }}/docker-compose.yml ps --format "table {{.Name}}\t{{.Status}}"
+
+            echo "=== Recent Logs ==="
+            docker compose -f ${{ env.APP_DIR }}/docker-compose.yml logs --tail=20 2>/dev/null || true

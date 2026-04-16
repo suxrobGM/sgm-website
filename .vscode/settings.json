@@ -1,5 +1,5 @@
 {
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "files.exclude": {
     ".vs": true,
     "**/bin": true,
@@ -12,5 +12,8 @@
   },
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[yaml]": {
+    "editor.formatOnSave": false
   }
 }
