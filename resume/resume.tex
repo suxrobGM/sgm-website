@@ -115,18 +115,16 @@
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Full-stack developer with 9+ years of experience delivering scalable web applications, enterprise SaaS platforms, and multiplayer games across healthcare, real estate, logistics, and gaming. Proven Upwork track record building end-to-end solutions with React, Next.js, .NET, and cloud infrastructure. Specialized in HIPAA-compliant systems, real-time architectures, and AI-powered applications. Active researcher in computer vision, deep learning, and explainable AI for medical imaging.
+Full-stack developer with 9+ years of experience building scalable web apps, SaaS platforms, and multiplayer games across healthcare, real estate, logistics, and gaming. Specialized in HIPAA-compliant systems, real-time architectures, and AI-powered applications, with active research in explainable AI for medical imaging.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
 \begin{description}
     \item[Languages:] C\#, C++, Python, JavaScript, TypeScript, Kotlin
     \item[Backend:] ASP.NET Core, Node.js, Bun, Spring Boot, NestJS, FastAPI, ElysiaJS
-    \item[Frontend:] React, Next.js, Angular, Blazor, Tailwind CSS
-    \item[Mobile:] Kotlin Multiplatform, .NET MAUI, React Native
+    \item[Frontend \& Mobile:] React, Next.js, Angular, Blazor, Tailwind CSS, Kotlin Multiplatform, .NET MAUI, React Native
     \item[Data:] PostgreSQL, MS SQL, MongoDB, Redis, Firebase, DynamoDB, Prisma
-    \item[AI/ML:] PyTorch, TensorFlow, OpenCV, YOLO, LLM Integration
-    \item[Game Dev:] Unity, Godot, PhaserJS, Colyseus
+    \item[AI/ML \& Game Dev:] PyTorch, TensorFlow, OpenCV, YOLO, LLM Integration, Unity, Godot, PhaserJS, Colyseus
     \item[Cloud \& DevOps:] AWS (Amplify, S3, Lambda, Cognito), Azure, Docker, Kubernetes
 \end{description}
 
@@ -144,8 +142,7 @@ Full-stack developer with 9+ years of experience delivering scalable web applica
 \begin{itemize}
     \item Top Rated Plus freelancer (100\% Job Success Score); delivered 10+ full-stack projects across healthcare, real estate, and gaming.
     \item Built ``Chestnut,'' an MMO game with custom server-side physics, real-time sync for 100+ concurrent players, and Web3 integration.
-    \item Developed AI-powered medical imaging platform (PyTorch, OpenCV) for disease detection; deployed on Azure Kubernetes Service.
-    \item Created Blazor drag-and-drop form builder with JSON schema generation; architected Next.js/NestJS real estate platform.
+    \item Developed AI-powered medical imaging platform (PyTorch, OpenCV) on Azure Kubernetes Service; architected a Next.js/NestJS real estate platform.
 \end{itemize}
 
 \experienceEntry{Full Stack Developer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
@@ -184,18 +181,24 @@ Full-stack developer with 9+ years of experience delivering scalable web applica
 %----------FEATURED PROJECTS----------
 \section{Featured Projects}
 
-\projectEntryDual{LogisticsX}{ASP.NET Core, EF Core, SignalR, Angular, Kotlin KMP, PostgreSQL, Stripe, Mapbox, Docker}
+\projectEntryDual{LogisticsX}{.NET 10, EF Core, MediatR, SignalR, Angular 21, Kotlin KMP, PostgreSQL, Claude API, Stripe, Docker}
 {https://logisticsx.app}
 {https://github.com/suxrobgm/logistics-app}
 \begin{itemize}
-    \item Multi-tenant transportation management system (TMS) for intermodal trucking companies, digitizing dispatch, fleet tracking, invoicing, and compliance workflows across 4 web apps + mobile driver app.
-    \item Architected with DDD and CQRS patterns using MediatR; features load board integrations (DAT, Truckstop), ELD/HOS compliance (Samsara, Motive), Stripe Connect payments, route optimization, and real-time driver tracking via Mapbox.
+    \item AI-first multi-tenant fleet management platform with an agentic dispatcher (Claude API) that autonomously matches loads to trucks, verifies HOS compliance, and optimizes routes with full reasoning transparency; ships an MCP server, 4 Angular portals + Kotlin KMP driver app, load board integrations (DAT, Truckstop, 123Loadboard), ELD (Samsara, Motive), and Stripe Connect payouts.
 \end{itemize}
 
 \projectEntry{Meat.gg}{ElysiaJS, Next.js, PostgreSQL, Prisma, Bun, Docker, Stripe}
 {https://meat.gg}
 \begin{itemize}
     \item Community platform for CS2 servers serving 30K+ registered users and 1K+ daily active players, featuring social interactions (messaging, profiles), in-game admin/ban/report system, integrated shop with Stripe payments, and real-time server integration.
+\end{itemize}
+
+\projectEntryDual{OGStack}{Next.js 16, Elysia, Bun, PostgreSQL, Prisma, Satori, Cloudflare R2, Stripe, Docker}
+{https://ogstack.dev}
+{https://github.com/suxrobgm/ogstack}
+\begin{itemize}
+    \item SaaS that auto-generates on-brand Open Graph images for any URL via a single meta tag, using AI-driven page analysis (Claude, GPT, DeepSeek), Flux 2 image generation, Satori-based JSX$\rightarrow$SVG$\rightarrow$PNG rendering, Stripe subscriptions, and Cloudflare R2/CDN caching.
 \end{itemize}
 
 \projectEntryDual{DepVault}{Next.js, ElysiaJS, PostgreSQL, Prisma, Bun, .NET AOT CLI, Docker}
@@ -209,12 +212,6 @@ Full-stack developer with 9+ years of experience delivering scalable web applica
 {https://github.com/suxrobgm/med-image-scanner}
 \begin{itemize}
     \item HIPAA-compliant platform connecting to hospital PACS via DICOM for AI-powered analysis on X-ray, CT, and MRI studies with annotation tools and disease-detection overlays.
-\end{itemize}
-
-\projectEntry{Blazor Form Builder}{Blazor WebAssembly, C\#, JSON Schema}
-{https://github.com/suxrobgm/blazor-form-builder}
-\begin{itemize}
-    \item Drag-and-drop form designer library for Blazor with support for text, numeric, date, and dropdown fields; generates and renders forms from JSON schema.
 \end{itemize}
 
 \projectEntry{ChessMate}{Spring Boot, Angular, WebSocket}
