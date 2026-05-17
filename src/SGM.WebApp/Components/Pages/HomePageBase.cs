@@ -9,7 +9,7 @@ public abstract class HomePageBase : ComponentBase
 {
     protected const string Description =
         "Senior Full Stack Developer and AI Researcher with 9+ years of experience. " +
-        "M.S. Computer Science at Northeastern University. " +
+        "M.S. in Computer Science from Northeastern University. " +
         "Specializing in Computer Vision, Deep Learning, and Full-Stack Development.";
 
     [Inject]
