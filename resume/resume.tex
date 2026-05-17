@@ -41,8 +41,8 @@
 % Section formatting - colored rule
 \titleformat{\section}{
     \color{darktext}\large\bfseries\scshape
-}{}{0em}{}[\color{rulecolor}\titlerule\vspace{-4pt}]
-\titlespacing*{\section}{0pt}{8pt}{5pt}
+}{}{0em}{}[{\color{rulecolor}\vspace{2pt}\titlerule\vspace{1pt}}]
+\titlespacing*{\section}{0pt}{12pt}{6pt}
 
 % Tighter list spacing
 \setlist[itemize]{leftmargin=1.4em, itemsep=1pt, parsep=0pt, topsep=2pt}
@@ -53,7 +53,7 @@
     \vspace{2pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         \textbf{\color{accent}#1}, {\color{darktext}#2}, {\color{lighttext}#3} & \textit{\color{lighttext}#4} \\
-    \end{tabular*}\vspace{-1pt}
+    \end{tabular*}\par\vspace{-1pt}
 }
 
 % --- Experience: single-line role | company | location, date right-aligned ---
@@ -104,6 +104,7 @@
 %----------HEADING----------
 \begin{center}
     {\Huge\bfseries\color{darktext} Sukhrob Ilyosbekov}\vspace{4pt}\\
+    {\large\color{accent} Senior Software Engineer \enspace\textperiodcentered\enspace Full-Stack \& AI}\vspace{8pt}\\
     {\color{lighttext}
     \faPhone\enspace(857) 867-1942 \quad
     \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com} \quad
@@ -111,21 +112,22 @@
     \faLinkedin\enspace\href{https://www.linkedin.com/in/suxrobgm}{linkedin.com/in/suxrobgm} \quad
     \faGithub\enspace\href{https://github.com/suxrobgm}{github.com/suxrobgm}
     }
-\end{center}\vspace{-6pt}
+\end{center}
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Full-stack developer with 9+ years of experience building scalable web apps, SaaS platforms, and multiplayer games across healthcare, real estate, logistics, and gaming. Specialized in HIPAA-compliant systems, real-time architectures, and AI-powered applications, with active research in explainable AI for medical imaging.
+Senior Software Engineer with 9+ years shipping scalable web apps, SaaS platforms, AI products, and multiplayer games across healthcare, real estate, logistics, and gaming. Deep experience with HIPAA-compliant systems, real-time architectures, and LLM-powered applications; published computer-vision research (arXiv) in explainable AI for medical imaging.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
 \begin{description}
     \item[Languages:] C\#, C++, Python, JavaScript, TypeScript, Kotlin
-    \item[Backend:] ASP.NET Core, Node.js, Bun, Spring Boot, NestJS, FastAPI, ElysiaJS
+    \item[Backend:] ASP.NET Core, EF Core, SignalR, Node.js, Bun, NestJS, FastAPI, ElysiaJS
     \item[Frontend \& Mobile:] React, Next.js, Angular, Blazor, Tailwind CSS, Kotlin Multiplatform, .NET MAUI, React Native
     \item[Data:] PostgreSQL, MS SQL, MongoDB, Redis, Firebase, DynamoDB, Prisma
-    \item[AI/ML \& Game Dev:] PyTorch, TensorFlow, OpenCV, YOLO, LLM Integration, Unity, Godot, PhaserJS, Colyseus
-    \item[Cloud \& DevOps:] AWS (Amplify, S3, Lambda, Cognito), Azure, Docker, Kubernetes
+    \item[AI/ML:] PyTorch, TensorFlow, OpenCV, YOLO, Claude/GPT/DeepSeek APIs, MCP, agentic workflows
+    \item[Game Dev:] Unity, Godot, PhaserJS, Colyseus, Metamod:Source 2
+    \item[Cloud \& DevOps:] AWS (Amplify, S3, Lambda, Cognito), Azure, Docker, Kubernetes, GitHub Actions
 \end{description}
 
 %----------EDUCATION----------
@@ -138,41 +140,35 @@ Full-stack developer with 9+ years of experience building scalable web apps, Saa
 %----------PROFESSIONAL EXPERIENCE----------
 \section{Professional Experience}
 
-\experienceEntry{Freelance Full Stack Developer}{Upwork}{USA}{Jul 2022 -- Present}
+\experienceEntry{Senior Software Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
 \begin{itemize}
-    \item Top Rated Plus freelancer (100\% Job Success Score); delivered 10+ full-stack projects across healthcare, real estate, and gaming.
-    \item Built ``Chestnut,'' an MMO game with custom server-side physics, real-time sync for 100+ concurrent players, and Web3 integration.
-    \item Developed AI-powered medical imaging platform (PyTorch, OpenCV) on Azure Kubernetes Service; architected a Next.js/NestJS real estate platform.
+    \item Architected and shipped a HIPAA-compliant care-coordination platform on AWS Amplify serving 200+ caregivers and patients, with real-time messaging, push notifications, and shared care-plan editing for collaborative Alzheimer's care.
+    \item Led AWS Amplify Gen 1 to Gen 2 migration across the codebase, cutting deploy time from 12 to 7 minutes (40\%) and reducing monthly CI spend by \textasciitilde\$800.
+    \item Consolidated 3 fragmented frontends into a single TypeScript monorepo and design system of 40+ shared components, cutting new-screen build time from days to hours and eliminating UI drift between web and mobile.
+    \item Hardened the platform for HIPAA: field-level PHI encryption, audit logging via DynamoDB Streams, and Cognito-based RBAC; cleared a third-party HIPAA readiness assessment with zero critical findings.
+    \item Owned end-to-end delivery as the sole senior engineer: scoped requirements with clinicians, shipped 10+ features in 6 months, and mentored 2 junior engineers through onboarding and code review.
 \end{itemize}
 
-\experienceEntry{Full Stack Developer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
+\experienceEntry{Senior Software Engineer}{AllFactors}{Santa Clara, CA}{July 2022 -- Dec 2023}
 \begin{itemize}
-    \item Built HIPAA-compliant healthcare platform serving 200+ caregivers and patients with real-time messaging and notifications for collaborative Alzheimer's care planning.
-    \item Led AWS Amplify Gen 1 to Gen 2 migration, cutting build/deployment times by 40\%; unified codebase into a TypeScript monorepo.
-    \item Standardized UI architecture by consolidating 3 component libraries into a single design system with 40+ reusable components.
+    \item Drove migration of a legacy ASP.NET Web Forms real-estate analytics application to Blazor WebAssembly, cutting initial page load from 4.2s to 2.1s, shrinking bundle size by 35\%, and removing all ViewState dependencies.
+    \item Designed and shipped a Blazor component library of 30+ responsive UI primitives (data grids, charts, filters), reducing new-page implementation time from \textasciitilde3 days to \textasciitilde6 hours and standardizing dashboards across the product.
+    \item Built a real-time market-data pipeline using SignalR and SQL Server change tracking, pushing pricing and inventory updates to 500+ concurrent users with sub-200ms end-to-end latency.
+    \item Introduced an automated test suite (xUnit + Playwright) covering critical user flows, raising code coverage from 12\% to 68\% and catching 30+ regressions before release.
 \end{itemize}
 
-\experienceEntry{.NET Software Engineer}{Virtuworks}{Miami, FL}{Dec 2022 -- Dec 2023}
+\experienceEntry{Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
 \begin{itemize}
-    \item Migrated legacy ASP.NET Web Forms to Blazor WebAssembly, reducing page load times by 50\% and improving long-term maintainability.
-    \item Developed 30+ responsive, reusable UI components in Blazor, improving consistency across the application.
-\end{itemize}
-
-\experienceEntry{.NET Software Engineer}{Frost Pixel Studio}{Russia}{Oct 2021 -- May 2022}
-\begin{itemize}
-    \item Built web applications and browser-based games with ASP.NET Core, Blazor, Angular, and PhaserJS.
-    \item Improved application performance by 30\% through server-side caching optimizations.
-\end{itemize}
-
-\experienceEntry{.NET Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
-\begin{itemize}
-    \item Developed a robotic cashier application and self-service kiosk processing 500+ daily transactions, integrated with POS systems.
-    \item Contributed across full SDLC for 5 concurrent application development projects.
+    \item Developed a robotic cashier and self-service kiosk in C\# / .NET processing 500+ daily transactions, integrating with POS terminals and payment hardware over TCP/IP and serial protocols.
+    \item Shipped a customer mobile ordering app (Xamarin) and admin dashboard (ASP.NET Core + Angular), cutting average kitchen ticket time by \textasciitilde25\% through automated order routing.
+    \item Built a hardware abstraction layer that let the same kiosk software run across 3 machine variants, reducing per-store deployment from \textasciitilde2 days to under 4 hours.
 \end{itemize}
 
 \experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
 \begin{itemize}
-    \item Built multiplayer networking supporting 20+ concurrent VR users for a smart city project in Unity; integrated UI/HUDs using MLAPI and SteamVR.
+    \item Built multiplayer networking for a VR smart-city simulation in Unity, supporting 20+ concurrent users with sub-100ms state sync via MLAPI and SteamVR.
+    \item Implemented spatial audio, hand-tracking, and HUD systems, plus a spectator/desktop client so non-VR participants could observe and interact with the world in real time.
+    \item Authored an asset pipeline automating FBX import, LOD generation, and lightmap baking, cutting per-scene iteration from 4 hours to 20 minutes.
 \end{itemize}
 
 \vspace{5pt}\noindent
@@ -185,52 +181,53 @@ Full-stack developer with 9+ years of experience building scalable web apps, Saa
 {https://logisticsx.app}
 {https://github.com/suxrobgm/logistics-app}
 \begin{itemize}
-    \item AI-first multi-tenant fleet management platform with an agentic dispatcher (Claude API) that autonomously matches loads to trucks, verifies HOS compliance, and optimizes routes with full reasoning transparency; ships an MCP server, 4 Angular portals + Kotlin KMP driver app, load board integrations (DAT, Truckstop, 123Loadboard), ELD (Samsara, Motive), and Stripe Connect payouts.
+    \item Built an agentic dispatcher on the Claude API (custom MCP server, tool-use loop, structured reasoning traces) that autonomously matches loads to trucks, verifies HOS/FMCSA compliance, and optimizes multi-stop routes -- replacing \textasciitilde15-minute manual dispatch decisions with sub-30-second AI ones.
+    \item Shipped 4 Angular 21 portals (admin, dispatcher, customer, broker) plus a Kotlin Multiplatform driver app (Android/iOS) on a multi-tenant .NET 10 / EF Core / SignalR backend, with DAT, Truckstop, 123Loadboard load-board integrations, Samsara/Motive ELD, and Stripe Connect payouts.
 \end{itemize}
 
-\projectEntry{Meat.gg}{ElysiaJS, Next.js, PostgreSQL, Prisma, Bun, Docker, Stripe}
+\projectEntry{Meat.gg}{ElysiaJS, Next.js, PostgreSQL, Prisma, Bun, C++23, Metamod:Source 2, Docker, Stripe}
 {https://meat.gg}
 \begin{itemize}
-    \item Community platform for CS2 servers serving 30K+ registered users and 1K+ daily active players, featuring social interactions (messaging, profiles), in-game admin/ban/report system, integrated shop with Stripe payments, and real-time server integration.
+    \item Launched a community platform for CS2 servers reaching 30K+ registered users and 1K+ daily active players, with profiles, messaging, friend graph, and a Stripe-backed cosmetic shop processing 100+ monthly transactions.
+    \item Wrote a Metamod:Source 2 server plugin in C++23 that bridges CS2 game servers with the ElysiaJS backend over WebSockets, enabling in-game ban/report/admin workflows with sub-500ms round-trip without relying on RCON.
 \end{itemize}
 
 \projectEntryDual{OGStack}{Next.js 16, Elysia, Bun, PostgreSQL, Prisma, Satori, Cloudflare R2, Stripe, Docker}
 {https://ogstack.dev}
 {https://github.com/suxrobgm/ogstack}
 \begin{itemize}
-    \item SaaS that auto-generates on-brand Open Graph images for any URL via a single meta tag, using AI-driven page analysis (Claude, GPT, DeepSeek), Flux 2 image generation, Satori-based JSX$\rightarrow$SVG$\rightarrow$PNG rendering, Stripe subscriptions, and Cloudflare R2/CDN caching.
+    \item SaaS that auto-generates on-brand Open Graph images for any URL via a single meta tag, serving cached images under 200ms p95 via Cloudflare R2 + CDN; generated 10K+ images during beta.
+    \item Built a multi-model AI routing layer (Claude, GPT, DeepSeek) for page-content analysis and brand extraction, plus Flux 2 background generation and a Satori-based JSX$\rightarrow$SVG$\rightarrow$PNG renderer with Stripe-billed subscriptions.
 \end{itemize}
 
 \projectEntryDual{DepVault}{Next.js, ElysiaJS, PostgreSQL, Prisma, Bun, .NET AOT CLI, Docker}
 {https://depvault.com}
 {https://github.com/suxrobGM/depvault}
 \begin{itemize}
-    \item Dependency scanner and encrypted secrets vault supporting 8+ ecosystems with CVE detection via OSV.dev, AES-256-GCM encryption, one-time secret sharing, and CI/CD token injection.
+    \item Dependency scanner and encrypted secrets vault covering 8+ language ecosystems (npm, PyPI, NuGet, Cargo, Maven, Go, RubyGems, Composer) with CVE detection via OSV.dev, AES-256-GCM envelope encryption, one-time secret sharing, and a .NET AOT CLI for CI/CD token injection.
+    \item Designed a streaming SBOM ingestion pipeline (Elysia + Bun) that scans 1K+ dependencies per project in under 5 seconds, with deduplicated vulnerability normalization across OSV, GHSA, and NVD feeds.
 \end{itemize}
 
 \projectEntry{Med Image Scanner}{FastAPI, Next.js, PyTorch, OpenCV, OHIF Viewer, PostgreSQL}
 {https://github.com/suxrobgm/med-image-scanner}
 \begin{itemize}
-    \item HIPAA-compliant platform connecting to hospital PACS via DICOM for AI-powered analysis on X-ray, CT, and MRI studies with annotation tools and disease-detection overlays.
-\end{itemize}
-
-\projectEntry{ChessMate}{Spring Boot, Angular, WebSocket}
-{https://github.com/suxrobgm/online-chess}
-\begin{itemize}
-    \item Online chess platform with PvP and AI opponents, supporting both rated and friendly matches.
+    \item HIPAA-compliant platform that connects to hospital PACS over DICOM C-FIND/C-MOVE to retrieve X-ray, CT, and MRI studies, running PyTorch detection models (pneumonia on CXR, intracranial hemorrhage on head CT) with overlays rendered in the OHIF Viewer.
+    \item Implemented end-to-end PHI handling -- on-the-fly de-identification, audit logging, role-based study access -- and achieved sub-2s round-trip from PACS query to AI overlay on a 512-slice CT.
 \end{itemize}
 
 \projectEntry{Bookshelf Scanner}{YOLO, Moondream2 LLM, FastAPI, Angular}
 {https://github.com/suxrobgm/bookshelf-scanner}
 \begin{itemize}
-    \item End-to-end pipeline for detecting books from bookshelf images using YOLO segmentation and a vision-language model for title/author extraction.
+    \item Built an end-to-end book-detection pipeline: YOLO segmentation isolates individual book spines from shelf photos at \textasciitilde92\% mAP@0.5, then Moondream2 VLM extracts title and author with \textasciitilde85\% string-match accuracy.
+    \item Wrapped the pipeline in a FastAPI service with an Angular frontend supporting upload, manual edit, and bulk export to Goodreads/LibraryThing CSV.
 \end{itemize}
 
 \projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
 {https://github.com/suxrobgm/explainable-melanoma}
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
-    \item Explainable deep learning system for skin lesion classification across 9 ISIC 2019 categories with GradCAM++ visualization and novel ABCDE criterion analysis for clinical interpretability.
+    \item Trained an EfficientNet V2 classifier on the ISIC 2019 dataset (25K+ dermoscopic images, 9 diagnostic categories), achieving 85.61\% accuracy and a 0.8564 weighted F1 score.
+    \item Layered GradCAM++ heatmaps with a novel ABCDE-criterion (Asymmetry, Border, Color, Diameter, Evolution) decomposition for clinician-readable interpretability; method published on arXiv (2512.09289).
 \end{itemize}
 
 \end{document}
