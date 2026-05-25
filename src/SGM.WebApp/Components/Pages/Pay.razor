@@ -1,0 +1,52 @@
+@page "/pay/freekassa"
+
+<HeadContent>
+  <link rel="stylesheet" href="css/payment.css" />
+</HeadContent>
+
+<PageTitle>Payment | suxrobgm.net</PageTitle>
+
+<div class="pay-wrap">
+  <div class="pay-card">
+    <div class="pay-brand">
+      <div class="logo">FK</div>
+      <div class="name">
+        FreeKassa
+        <small>secure payment · suxrobgm.net</small>
+      </div>
+    </div>
+
+    @if (!valid)
+    {
+      <h1 class="pay-title">Invalid payment link</h1>
+      <p class="pay-subtitle">
+        This payment request is missing or has an invalid signature. Please return to the
+        store and start the payment again.
+      </p>
+    }
+    else
+    {
+      <h1 class="pay-title">Confirm your payment</h1>
+      <p class="pay-subtitle">You are about to pay via FreeKassa.</p>
+
+      <div class="pay-amount">@Amount @Currency</div>
+
+      <div class="pay-rows">
+        <div class="pay-row">
+          <span class="label">Order</span>
+          <span class="value">#@Order</span>
+        </div>
+        @if (!string.IsNullOrEmpty(Desc))
+        {
+          <div class="pay-row">
+            <span class="label">Description</span>
+            <span class="value">@Desc</span>
+          </div>
+        }
+      </div>
+
+      <a class="pay-btn" href="@checkoutUrl" rel="nofollow noopener">Proceed to payment</a>
+      <p class="pay-note">You will be redirected to FreeKassa's secure checkout.</p>
+    }
+  </div>
+</div>

@@ -10,10 +10,13 @@ internal static class Setup
     {
         builder.Services.AddOptions<EmailSenderOptions>().BindConfiguration("EmailConfig");
         builder.Services.AddOptions<GoogleRecaptchaOptions>().BindConfiguration("GoogleRecaptcha");
+        builder.Services.AddOptions<FreeKassaOptions>().BindConfiguration("FreeKassa");
 
         builder.Services.AddScoped<IEmailSender, EmailSender>();
         builder.Services.AddScoped<ICaptchaService, RecaptchaEnterpriseService>();
+        builder.Services.AddHttpClient<IFreeKassaService, FreeKassaService>();
 
+        builder.Services.AddControllers();
         builder.Services.AddRazorComponents()
             .AddInteractiveServerComponents();
 
@@ -39,6 +42,7 @@ internal static class Setup
         app.UseCookiePolicy();
         app.UseAntiforgery();
 
+        app.MapControllers();
         app.MapRazorComponents<App>()
             .AddInteractiveServerRenderMode();
 
