@@ -123,3 +123,40 @@ body {
 .pay-status-icon.error { color: var(--pay-error); }
 
 .pay-center { text-align: center; }
+
+.pay-field { display: block; margin-bottom: 16px; }
+
+.pay-label {
+  display: block;
+  color: var(--pay-muted);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.pay-input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--pay-border);
+  background: var(--pay-bg);
+  color: var(--pay-text);
+  font-size: 15px;
+  font-family: inherit;
+}
+
+.pay-input:focus {
+  outline: none;
+  border-color: var(--pay-accent);
+}
+
+.pay-error-text {
+  color: var(--pay-error);
+  font-size: 13px;
+  margin: -8px 0 16px;
+}
+
+.pay-result {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--pay-border);
+}

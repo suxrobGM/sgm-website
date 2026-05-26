@@ -8,10 +8,21 @@ namespace SGM.WebApp.Services;
 public interface IFreeKassaService
 {
     /// <summary>
+    /// Computes the proxy-redirect HMAC signature for a payment link. Used both to mint links on
+    /// suxrobgm.net and (via <see cref="VerifyProxyRedirect"/>) to verify links minted by meat.gg.
+    /// </summary>
+    string SignProxyRedirect(string order, string amount, string currency, string ret);
+
+    /// <summary>
     /// Verifies the HMAC signature on a redirect from meat.gg. <paramref name="amount"/> and
     /// <paramref name="ret"/> must be the raw (decoded) query values, exactly as meat.gg signed them.
     /// </summary>
     bool VerifyProxyRedirect(string order, string amount, string currency, string ret, string sign);
+
+    /// <summary>
+    /// Constant-time check of the admin passphrase that unlocks the <c>/pay/new</c> link generator.
+    /// </summary>
+    bool IsAdminKeyValid(string? key);
 
     /// <summary>Builds the FreeKassa hosted-checkout URL (with the SCI <c>s</c> signature).</summary>
     string BuildCheckoutUrl(string order, string amount, string currency, string returnUrl);

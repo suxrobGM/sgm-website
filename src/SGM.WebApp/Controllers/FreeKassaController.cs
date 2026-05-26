@@ -9,7 +9,9 @@ namespace SGM.WebApp.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/freekassa")]
-public sealed class FreeKassaController(IFreeKassaService freeKassa) : ControllerBase
+public sealed class FreeKassaController(
+    IFreeKassaService freeKassa,
+    ILogger<FreeKassaController> logger) : ControllerBase
 {
     /// <summary>
     /// FreeKassa notification (webhook) handler. Verifies the FreeKassa signature, relays a
@@ -37,6 +39,14 @@ public sealed class FreeKassaController(IFreeKassaService freeKassa) : Controlle
         if (!isSignatureValid)
         {
             return Content("NO");
+        }
+
+        // Links minted on suxrobgm.net itself ("gen-" prefix) have no meat.gg order to relay to.
+        // meat.gg order ids are numeric, so the prefix can never collide.
+        if (orderId.StartsWith("gen-", StringComparison.Ordinal))
+        {
+            logger.LogInformation("FreeKassa notify: generic link paid (order {Order})", orderId);
+            return Content("YES");
         }
 
         await freeKassa.RelayToMeatAsync(orderId, amount, externalId);

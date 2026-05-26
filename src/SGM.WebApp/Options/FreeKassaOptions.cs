@@ -25,4 +25,7 @@ public record FreeKassaOptions
 
     /// <summary>FreeKassa hosted checkout base URL.</summary>
     public string PayUrl { get; init; } = "https://pay.fk.money/";
+
+    /// <summary>Passphrase that unlocks the <c>/pay/new</c> link generator (admin only).</summary>
+    public required string AdminKey { get; init; }
 }

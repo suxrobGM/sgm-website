@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using SGM.WebApp.Services;
 
-namespace SGM.WebApp.Components.Pages;
+namespace SGM.WebApp.Components.Pages.Payment;
 
 public partial class Pay
 {

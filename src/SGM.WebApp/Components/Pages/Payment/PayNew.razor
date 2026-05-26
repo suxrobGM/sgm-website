@@ -1,0 +1,79 @@
+@page "/pay/new"
+@rendermode InteractiveServer
+
+<HeadContent>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="css/payment.css" />
+</HeadContent>
+
+<PageTitle>New payment link | suxrobgm.net</PageTitle>
+
+<div class="pay-wrap">
+  <div class="pay-card">
+    <div class="pay-brand">
+      <div class="logo">FK</div>
+      <div class="name">
+        Payment link
+        <small>FreeKassa · suxrobgm.net</small>
+      </div>
+    </div>
+
+    @if (!unlocked)
+    {
+      <h1 class="pay-title">Admin access</h1>
+      <p class="pay-subtitle">Enter the passphrase to generate a payment link.</p>
+
+      <label class="pay-field">
+        <span class="pay-label">Passphrase</span>
+        <input class="pay-input" type="password" autocomplete="off" @bind="adminKey" @bind:event="oninput"
+               @onkeydown="@(e => { if (e.Key == "Enter") Unlock(); })" />
+      </label>
+      @if (keyError)
+      {
+        <p class="pay-error-text">Incorrect passphrase.</p>
+      }
+      <button class="pay-btn" type="button" @onclick="Unlock">Unlock</button>
+    }
+    else
+    {
+      <h1 class="pay-title">New payment link</h1>
+      <p class="pay-subtitle">Fill in the details and send the generated link to your customer.</p>
+
+      <label class="pay-field">
+        <span class="pay-label">Amount</span>
+        <input class="pay-input" type="number" min="1" step="0.01" placeholder="500" @bind="amount" />
+      </label>
+
+      <label class="pay-field">
+        <span class="pay-label">Currency</span>
+        <select class="pay-input" @bind="currency">
+          @foreach (var c in Currencies)
+          {
+            <option value="@c">@c</option>
+          }
+        </select>
+      </label>
+
+      <label class="pay-field">
+        <span class="pay-label">Description</span>
+        <input class="pay-input" type="text" placeholder="Consulting service" @bind="description" />
+      </label>
+
+      @if (formError is not null)
+      {
+        <p class="pay-error-text">@formError</p>
+      }
+
+      <button class="pay-btn" type="button" @onclick="Generate">Generate link</button>
+
+      @if (generatedLink is not null)
+      {
+        <div class="pay-result">
+          <span class="pay-label">Payment link</span>
+          <input class="pay-input" type="text" value="@generatedLink" readonly />
+          <button class="pay-btn secondary" type="button" @onclick="CopyLink">@copyLabel</button>
+        </div>
+      }
+    }
+  </div>
+</div>

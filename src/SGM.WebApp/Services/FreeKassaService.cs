@@ -1,8 +1,8 @@
 using System.Net.Http.Json;
-using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Options;
 using SGM.WebApp.Options;
+using SGM.WebApp.Utils;
 
 namespace SGM.WebApp.Services;
 
@@ -23,16 +23,18 @@ public sealed class FreeKassaService(
         "51.250.54.238",
     ];
 
+    public string SignProxyRedirect(string order, string amount, string currency, string ret)
+        => CryptoUtils.HmacSha256Hex($"{order}:{amount}:{currency}:{ret}", _options.ProxySecret);
+
     public bool VerifyProxyRedirect(string order, string amount, string currency, string ret, string sign)
-    {
-        var expected = HmacSha256Hex($"{order}:{amount}:{currency}:{ret}", _options.ProxySecret);
-        return FixedTimeEqualsHex(expected, sign);
-    }
+        => CryptoUtils.FixedTimeEqualsHex(SignProxyRedirect(order, amount, currency, ret), sign);
+
+    public bool IsAdminKeyValid(string? key) => CryptoUtils.FixedTimeEquals(key, _options.AdminKey);
 
     public string BuildCheckoutUrl(string order, string amount, string currency, string returnUrl)
     {
         // FreeKassa SCI form signature: md5("merchantId:amount:secret1:currency:order").
-        var sign = Md5Hex($"{_options.MerchantId}:{amount}:{_options.Secret1}:{currency}:{order}");
+        var sign = CryptoUtils.Md5Hex($"{_options.MerchantId}:{amount}:{_options.Secret1}:{currency}:{order}");
 
         var sb = new StringBuilder(_options.PayUrl);
         sb.Append(_options.PayUrl.Contains('?') ? '&' : '?');
@@ -55,8 +57,8 @@ public sealed class FreeKassaService(
         }
 
         // FreeKassa notification signature: md5("merchantId:amount:secret2:orderId").
-        var expected = Md5Hex($"{merchantId}:{amount}:{_options.Secret2}:{orderId}");
-        return FixedTimeEqualsHex(expected, sign);
+        var expected = CryptoUtils.Md5Hex($"{merchantId}:{amount}:{_options.Secret2}:{orderId}");
+        return CryptoUtils.FixedTimeEqualsHex(expected, sign);
     }
 
     public bool IsFreeKassaIp(string? ip) => ip is not null && FreeKassaIps.Contains(ip);
@@ -64,7 +66,7 @@ public sealed class FreeKassaService(
     public async Task<bool> RelayToMeatAsync(
         string orderId, string amount, string externalId, CancellationToken ct = default)
     {
-        var sign = HmacSha256Hex($"{orderId}:{amount}:{externalId}", _options.ProxySecret);
+        var sign = CryptoUtils.HmacSha256Hex($"{orderId}:{amount}:{externalId}", _options.ProxySecret);
         var payload = new { orderId, amount, externalId, sign };
 
         try
@@ -86,24 +88,5 @@ public sealed class FreeKassaService(
             logger.LogError(ex, "FreeKassa relay to meat.gg threw for order {Order}", orderId);
             return false;
         }
-    }
-
-    private static string Md5Hex(string input)
-        => Convert.ToHexStringLower(MD5.HashData(Encoding.UTF8.GetBytes(input)));
-
-    private static string HmacSha256Hex(string input, string key)
-        => Convert.ToHexStringLower(
-            HMACSHA256.HashData(Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(input)));
-
-    private static bool FixedTimeEqualsHex(string expected, string actual)
-    {
-        if (string.IsNullOrEmpty(actual) || expected.Length != actual.Length)
-        {
-            return false;
-        }
-
-        var a = Encoding.ASCII.GetBytes(expected.ToLowerInvariant());
-        var b = Encoding.ASCII.GetBytes(actual.ToLowerInvariant());
-        return CryptographicOperations.FixedTimeEquals(a, b);
     }
 }
