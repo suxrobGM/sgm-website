@@ -1,0 +1,87 @@
+/* Palette + page surface. The variables live on .pay-wrap so they cascade to the
+   page-specific markup each consumer renders into ChildContent. */
+.pay-wrap {
+  --pay-bg: #14161c;
+  --pay-card: #1d2029;
+  --pay-border: #2c3140;
+  --pay-text: #e7e9ee;
+  --pay-muted: #9aa1b1;
+  --pay-accent: #ff4757;
+  --pay-accent-2: #ff6b81;
+  --pay-success: #2ecc71;
+  --pay-error: #ff4757;
+
+  /* Full-bleed so we don't depend on a global body reset. */
+  position: fixed;
+  inset: 0;
+  box-sizing: border-box;
+  display: flex;
+  overflow-y: auto;
+  padding: 24px;
+  background: radial-gradient(1200px 600px at 50% -10%, #20232e 0%, var(--pay-bg) 60%);
+  color: var(--pay-text);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* margin:auto centers the card on both axes and stays scroll-safe when it's taller than the viewport. */
+.pay-card {
+  box-sizing: border-box;
+  margin: auto;
+  width: 100%;
+  max-width: 440px;
+  padding: 32px;
+  border: 1px solid var(--pay-border);
+  border-radius: 16px;
+  background: var(--pay-card);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.pay-center { text-align: center; }
+
+.pay-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.pay-brand .logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--pay-accent) 0%, var(--pay-accent-2) 100%);
+}
+
+.pay-brand .name { font-weight: 700; letter-spacing: 0.2px; }
+.pay-brand .name small { display: block; color: var(--pay-muted); font-weight: 400; font-size: 12px; }
+
+/* Shared bits the consumer pages render into ChildContent, reached via ::deep. */
+::deep .pay-title { margin: 0 0 4px; font-size: 20px; }
+::deep .pay-subtitle { margin: 0 0 24px; color: var(--pay-muted); font-size: 14px; }
+
+::deep .pay-btn {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--pay-accent) 0%, var(--pay-accent-2) 100%);
+  transition: filter 0.15s ease, transform 0.05s ease;
+}
+
+::deep .pay-btn:hover { filter: brightness(1.06); }
+::deep .pay-btn:active { transform: translateY(1px); }

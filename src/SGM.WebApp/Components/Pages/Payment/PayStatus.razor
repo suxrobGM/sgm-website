@@ -1,28 +1,22 @@
 @page "/pay/status"
 
-<HeadContent>
-  <link rel="stylesheet" href="css/payment.css"/>
-</HeadContent>
-
 <PageTitle>Payment status | suxrobgm.net</PageTitle>
 
-<div class="pay-wrap">
-  <div class="pay-card pay-center">
-    <div class="pay-status-icon @(IsSuccess ? "success" : "error")">
-      <i class="fa-solid @(IsSuccess ? "fa-circle-check" : "fa-circle-xmark")"></i>
-    </div>
-
-    @if (IsSuccess)
-    {
-      <h1 class="pay-title">Payment successful</h1>
-      <p class="pay-subtitle">Thank you! Your payment has been received and is being processed.</p>
-    }
-    else
-    {
-      <h1 class="pay-title">Payment failed</h1>
-      <p class="pay-subtitle">Your payment was not completed. You can return to the store and try again.</p>
-    }
-
-    <a class="pay-btn" href="@ReturnUrl">@ReturnLabel</a>
+<PaymentLayout Centered="true">
+  <div class="pay-status-icon @(IsSuccess ? "success" : "error")">
+    <i class="fa-solid @(IsSuccess ? "fa-circle-check" : "fa-circle-xmark")"></i>
   </div>
-</div>
+
+  @if (IsSuccess)
+  {
+    <h1 class="pay-title">Payment successful</h1>
+    <p class="pay-subtitle">Thank you! Your payment has been received and is being processed.</p>
+  }
+  else
+  {
+    <h1 class="pay-title">Payment failed</h1>
+    <p class="pay-subtitle">Your payment was not completed. You can return to the store and try again.</p>
+  }
+
+  <a class="pay-btn" href="@ReturnUrl">@ReturnLabel</a>
+</PaymentLayout>

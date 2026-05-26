@@ -1,0 +1,8 @@
+.pay-status-icon {
+  margin-bottom: 12px;
+  font-size: 64px;
+  text-align: center;
+}
+
+.pay-status-icon.success { color: var(--pay-success); }
+.pay-status-icon.error { color: var(--pay-error); }

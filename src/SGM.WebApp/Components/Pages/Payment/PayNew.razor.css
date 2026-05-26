@@ -1,0 +1,45 @@
+.pay-field { display: block; margin-bottom: 16px; }
+
+.pay-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--pay-muted);
+  font-size: 13px;
+}
+
+.pay-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--pay-border);
+  border-radius: 10px;
+  background: var(--pay-bg);
+  color: var(--pay-text);
+  font-family: inherit;
+  font-size: 15px;
+}
+
+.pay-input:focus {
+  outline: none;
+  border-color: var(--pay-accent);
+}
+
+.pay-error-text {
+  margin: -8px 0 16px;
+  color: var(--pay-error);
+  font-size: 13px;
+}
+
+.pay-result {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--pay-border);
+}
+
+/* Overrides the shared .pay-btn (styled in PaymentLayout.razor.css via ::deep). */
+.pay-btn.secondary {
+  margin-top: 12px;
+  border: 1px solid var(--pay-border);
+  background: transparent;
+  color: var(--pay-text);
+}

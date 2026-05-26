@@ -1,0 +1,25 @@
+.pay-amount {
+  margin: 8px 0 24px;
+  font-size: 40px;
+  font-weight: 800;
+  text-align: center;
+}
+
+.pay-rows {
+  margin-bottom: 24px;
+  border-top: 1px solid var(--pay-border);
+}
+
+.pay-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--pay-border);
+  font-size: 14px;
+}
+
+.pay-row .label { color: var(--pay-muted); }
+.pay-row .value { font-weight: 600; text-align: right; word-break: break-word; }
+
+.pay-note { margin-top: 16px; color: var(--pay-muted); font-size: 12px; text-align: center; }
