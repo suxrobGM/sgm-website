@@ -22,7 +22,7 @@ Push to `prod` → [`deploy-ssh.yml`](../.github/workflows/deploy-ssh.yml) build
 | `SSH_HOST`           | VPS hostname or IP                                     |
 | `SSH_USER`           | SSH user with docker permissions                       |
 | `SSH_KEY`            | SSH private key                                        |
-| `DOCKER_ENV`         | Multi-line env file content (only true secrets)        |
+| `ENV_DOCKER`         | Multi-line env file content (only true secrets)        |
 | `GOOGLE_CREDENTIALS` | reCAPTCHA Enterprise service-account JSON              |
 
 Non-secret config stays in `appsettings.json`. Secrets override it via ASP.NET Core's `Section__Key` env-var convention (e.g. `EmailConfig__ApiKey=re_xxx`). Template at [`deploy/.env.example`](../deploy/.env.example).

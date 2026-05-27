@@ -4,7 +4,7 @@
 #   SSH_HOST           — VPS hostname or IP
 #   SSH_USER           — SSH user with docker permissions
 #   SSH_KEY            — private key matching the user's authorized_keys on the VPS
-#   DOCKER_ENV         — multi-line env file content, e.g. EmailConfig__ApiKey=re_xxx
+#   ENV_DOCKER         — multi-line env file content, e.g. EmailConfig__ApiKey=re_xxx
 #                        (only true secrets; non-secret values stay in appsettings.json)
 #   GOOGLE_CREDENTIALS — full Google service-account JSON (written to keys/sa.json on the VPS)
 #
@@ -82,11 +82,11 @@ jobs:
 
       - name: Stage deploy artifacts
         env:
-          DOCKER_ENV: ${{ secrets.DOCKER_ENV }}
+          ENV_DOCKER: ${{ secrets.ENV_DOCKER }}
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: |
           mkdir -p out/keys
-          printf '%s' "$DOCKER_ENV" > out/.env
+          printf '%s' "$ENV_DOCKER" > out/.env
           printf '%s' "$GOOGLE_CREDENTIALS" > out/keys/sa.json
           cp deploy/docker-compose.yml out/docker-compose.yml
 
