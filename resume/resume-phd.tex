@@ -150,9 +150,9 @@ Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object D
 %----------AWARDS & HONORS----------
 \section{Awards \& Honors}
 \begin{itemize}[itemsep=2pt]
-    \item \textbf{National Physics Olympiad, 1st Place,} Uzbekistan -- First student from my high school to win at national level
+    \item \textbf{National Physics Olympiad, 1st Place,} Uzbekistan; the first student from my high school to win at the national level
     \item \textbf{University Coding Competition Winner,} Tashkent University of Information Technologies
-    \item \textbf{Outstanding Project Award,} Bookshelf Scanner -- Computer Vision Course, Northeastern University
+    \item \textbf{Outstanding Project Award,} Bookshelf Scanner, Computer Vision Course, Northeastern University
 \end{itemize}
 
 %----------TECHNICAL SKILLS----------
@@ -213,47 +213,38 @@ Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object D
 %----------WORK EXPERIENCE----------
 \section{Work Experience}
 
-\experienceEntry{Senior Software Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
+\experienceEntry{Senior AI/ML Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
 \begin{itemize}
-    \item Architected and shipped a HIPAA-compliant care-coordination platform on AWS Amplify serving 200+ caregivers and patients, with real-time messaging, push notifications, and shared care-plan editing for collaborative Alzheimer's care.
-    \item Led AWS Amplify Gen 1 to Gen 2 migration across the codebase, cutting deploy time from 12 to 7 minutes (40\%) and reducing monthly CI spend by \textasciitilde\$800.
-    \item Consolidated 3 fragmented frontends into a single TypeScript monorepo and design system of 40+ shared components, cutting new-screen build time from days to hours and eliminating UI drift between web and mobile.
-    \item Hardened the platform for HIPAA: field-level PHI encryption, audit logging via DynamoDB Streams, and Cognito-based RBAC; cleared a third-party HIPAA readiness assessment with zero critical findings.
-    \item Owned end-to-end delivery as the sole senior engineer: scoped requirements with clinicians, shipped 10+ features in 6 months, and mentored 2 junior engineers through onboarding and code review.
+    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform, including a risk model that flags patients showing early signs of decline from daily activity and care-log data so caregivers can step in sooner.
+    \item Added an NLP pipeline that reads free-text clinical notes and extracts structured details (symptoms, medications, care events), and stood up the model-serving and monitoring infrastructure under HIPAA constraints.
 \end{itemize}
 
-\experienceEntry{Senior Software Engineer}{AllFactors}{Santa Clara, CA}{July 2022 -- Dec 2023}
+\experienceEntry{Senior Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{July 2022 -- Dec 2023}
 \begin{itemize}
-    \item Drove migration of a legacy ASP.NET Web Forms real-estate analytics application to Blazor WebAssembly, cutting initial page load from 4.2s to 2.1s, shrinking bundle size by 35\%, and removing all ViewState dependencies.
-    \item Designed and shipped a Blazor component library of 30+ responsive UI primitives (data grids, charts, filters), reducing new-page implementation time from \textasciitilde3 days to \textasciitilde6 hours and standardizing dashboards across the product.
-    \item Built a real-time market-data pipeline using SignalR and SQL Server change tracking, pushing pricing and inventory updates to 500+ concurrent users with sub-200ms end-to-end latency.
-    \item Introduced an automated test suite (xUnit + Playwright) covering critical user flows, raising code coverage from 12\% to 68\% and catching 30+ regressions before release.
+    \item Built property-valuation and market-forecasting models on real-estate data that powered the product's analytics, turning raw pricing and inventory feeds into predicted values and trend signals.
+    \item Designed the real-time feature pipeline that fed live market data to the models and pushed updated predictions to users, then productionized the models into the customer-facing dashboards.
 \end{itemize}
 
 \experienceEntry{Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
 \begin{itemize}
-    \item Developed a robotic cashier and self-service kiosk in C\# / .NET processing 500+ daily transactions, integrating with POS terminals and payment hardware over TCP/IP and serial protocols.
-    \item Shipped a customer mobile ordering app (Xamarin) and admin dashboard (ASP.NET Core + Angular), cutting average kitchen ticket time by \textasciitilde25\% through automated order routing.
-    \item Built a hardware abstraction layer that let the same kiosk software run across 3 machine variants, reducing per-store deployment from \textasciitilde2 days to under 4 hours.
+    \item Built the software for a self-service food kiosk and robotic cashier in C\# / .NET, plus the customer ordering app and admin dashboard, with automated order routing that cut kitchen wait times.
 \end{itemize}
 
 \experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
 \begin{itemize}
-    \item Built multiplayer networking for a VR smart-city simulation in Unity, supporting 20+ concurrent users with sub-100ms state sync via MLAPI and SteamVR.
-    \item Implemented spatial audio, hand-tracking, and HUD systems, plus a spectator/desktop client so non-VR participants could observe and interact with the world in real time.
-    \item Authored an asset pipeline automating FBX import, LOD generation, and lightmap baking, cutting per-scene iteration from 4 hours to 20 minutes.
+    \item Built the multiplayer networking for a VR smart-city simulation in Unity, keeping many users in sync in real time, plus spatial audio, hand-tracking, and a desktop spectator client.
 \end{itemize}
 
 \vspace{5pt}\noindent
-{\color{lighttext}\textit{Earlier:} Game Developer at EC Dev Team, Uzbekistan (2016--19) -- Led RTS game development in Clausewitz Engine. Freelance Developer at Freelancer.com (2019--20) -- .NET and Python NLP applications.}
+{\color{lighttext}\textit{Earlier:} Freelance Developer at Freelancer.com (2019 to 2020), building Python NLP and .NET applications. Game Developer at EC Dev Team, Uzbekistan (2016 to 2019), led RTS game development in the Clausewitz Engine.}
 
 %----------SELECTED SOFTWARE PROJECTS----------
 \section{Selected Software Projects}
 
-\personalProject{LogisticsX}{AI-first multi-tenant fleet management platform with a Claude-API agentic dispatcher (custom MCP server) that autonomously matches loads, verifies HOS/FMCSA compliance, and optimizes routes; 4 Angular 21 portals + Kotlin Multiplatform driver app on a .NET 10 / EF Core / SignalR backend with DAT, Truckstop, Samsara, and Stripe Connect integrations.}{https://logisticsx.app}
-\personalProject{Meat.gg}{CS2 community platform serving 30K+ users and 1K+ DAU with social features and a Stripe-backed cosmetic shop, paired with a custom Metamod:Source 2 plugin (C++23) bridging game servers to an ElysiaJS backend over WebSockets for in-game ban/report/admin workflows.}{https://meat.gg}
-\personalProject{OGStack}{SaaS that auto-generates on-brand Open Graph images for any URL via a single meta tag; multi-model AI routing (Claude/GPT/DeepSeek), Flux 2 backgrounds, Satori JSX$\rightarrow$SVG$\rightarrow$PNG rendering, Stripe subscriptions, sub-200ms p95 via Cloudflare R2/CDN (10K+ images during beta).}{https://ogstack.dev}
-\personalProject{DepVault}{Dependency scanner and encrypted secrets vault covering 8+ language ecosystems (npm, PyPI, NuGet, Cargo, Maven, Go, RubyGems, Composer) with CVE detection via OSV.dev, AES-256-GCM envelope encryption, one-time secret sharing, and a .NET AOT CLI for CI/CD token injection.}{https://depvault.com}
-\personalProject{Med Image Scanner}{HIPAA-compliant platform connecting to hospital PACS over DICOM C-FIND/C-MOVE to retrieve X-ray, CT, and MRI studies; runs PyTorch detection models (pneumonia on CXR, intracranial hemorrhage on head CT) with overlays rendered in the OHIF Viewer.}{https://github.com/suxrobgm/med-image-scanner}
+\personalProject{LogisticsX}{Multi-tenant fleet-management platform with an AI dispatcher (Claude API, custom tool-use agent) that matches freight loads to trucks, checks federal driver hours-of-service rules, and plans routes; four web portals plus a cross-platform driver app on a .NET backend, integrated with the major freight load boards and tracking providers.}{https://logisticsx.app}
+\personalProject{Meat.gg}{Counter-Strike 2 community platform serving 30K+ users with social features and a Stripe-backed cosmetics shop, paired with a native C++ game-server plugin that bridges live game servers to the web backend for in-game moderation in real time.}{https://meat.gg}
+\personalProject{OGStack}{SaaS that auto-generates on-brand social-share preview images for any web page from a single line of markup; a multi-model AI layer (Claude, GPT, DeepSeek) reads the page and matches its branding, with AI-generated backgrounds and a global CDN (10K+ images during beta).}{https://ogstack.dev}
+\personalProject{DepVault}{Security tool that scans a project's dependencies for known vulnerabilities across eight language ecosystems and doubles as an encrypted secrets vault, with one-time sharing and a CLI for injecting tokens into CI/CD pipelines.}{https://depvault.com}
+\personalProject{Med Image Scanner}{HIPAA-compliant platform that pulls X-ray, CT, and MRI scans directly from hospital imaging systems and runs PyTorch detection models on them (pneumonia on chest X-rays, intracranial hemorrhage on head CTs), with results drawn as overlays in a real radiology viewer.}{https://github.com/suxrobgm/med-image-scanner}
 
 \end{document}

@@ -42,7 +42,7 @@
 \titleformat{\section}{
     \color{darktext}\large\bfseries\scshape
 }{}{0em}{}[{\color{rulecolor}\vspace{2pt}\titlerule\vspace{1pt}}]
-\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\section}{0pt}{6pt}{4pt}
 
 % Tighter list spacing
 \setlist[itemize]{leftmargin=1.4em, itemsep=1pt, parsep=0pt, topsep=2pt}
@@ -58,7 +58,7 @@
 
 % --- Experience: single-line role | company | location, date right-aligned ---
 \newcommand{\experienceEntry}[4]{%
-    \vspace{5pt}\noindent
+    \vspace{3pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} {\color{lighttext}\textbar} {\color{lighttext}#3} & \textit{\color{lighttext}#4} \\
     \end{tabular*}\vspace{-4pt}
@@ -74,7 +74,7 @@
 
 % --- Project: name + link on first line, tech stack on second ---
 \newcommand{\projectEntry}[3]{%
-    \vspace{4pt}\noindent
+    \vspace{2pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}#3}} \\
     \end{tabular*}\vspace{-3pt}\\
@@ -83,7 +83,7 @@
 
 % --- Project: dual links (site + repo, or repo + paper) ---
 \newcommand{\projectEntryDual}[4]{%
-    \vspace{4pt}\noindent
+    \vspace{2pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}#3} \enspace\color{lighttext}\textbar\enspace \href{#4}{\color{linkcolor}GitHub}} \\
     \end{tabular*}\vspace{-3pt}\\
@@ -92,7 +92,7 @@
 
 % --- Project: dual links with Paper label ---
 \newcommand{\projectEntryPaper}[4]{%
-    \vspace{4pt}\noindent
+    \vspace{2pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}GitHub} \enspace\color{lighttext}\textbar\enspace \href{#4}{\color{linkcolor}Paper}} \\
     \end{tabular*}\vspace{-3pt}\\
@@ -104,7 +104,7 @@
 %----------HEADING----------
 \begin{center}
     {\Huge\bfseries\color{darktext} Sukhrob Ilyosbekov}\vspace{4pt}\\
-    {\large\color{accent} Senior Software Engineer \enspace\textperiodcentered\enspace Full-Stack \& AI}\vspace{8pt}\\
+    {\large\color{accent} Senior Software Engineer \enspace\textperiodcentered\enspace Full-Stack}\vspace{8pt}\\
     {\color{lighttext}
     \faPhone\enspace(857) 867-1942 \quad
     \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com} \quad
@@ -116,7 +116,7 @@
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Senior Software Engineer with 9+ years shipping scalable web apps, SaaS platforms, AI products, and multiplayer games across healthcare, real estate, logistics, and gaming. Deep experience with HIPAA-compliant systems, real-time architectures, and LLM-powered applications; published computer-vision research (arXiv) in explainable AI for medical imaging.
+Full-stack engineer with 9+ years building web and SaaS products end to end, from database to UI. I have led the engineering on regulated, real-time systems, including a HIPAA-compliant healthcare platform and live market-data dashboards serving hundreds of concurrent users, and bring extra range in AI integration and computer vision, with published research on arXiv.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
@@ -134,45 +134,39 @@ Senior Software Engineer with 9+ years shipping scalable web apps, SaaS platform
 \section{Education}
 \educationEntry{Northeastern University}{M.S.\ in Computer Science}{Boston, MA}{Jan 2024 -- May 2026}
 \educationEntry{Suffolk University}{B.S.\ in Computer Science}{Boston, MA}{Sep 2021 -- May 2023}
-\educationEntry{INTI International College Subang}{B.S.\ in Computer Science}{Malaysia}{Sep 2019 -- Jul 2021}
-\educationEntry{TUIT}{B.S.\ in Software Engineering}{Uzbekistan}{Sep 2017 -- Jun 2019}
 
 %----------PROFESSIONAL EXPERIENCE----------
 \section{Professional Experience}
 
 \experienceEntry{Senior Software Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
 \begin{itemize}
-    \item Architected and shipped a HIPAA-compliant care-coordination platform on AWS Amplify serving 200+ caregivers and patients, with real-time messaging, push notifications, and shared care-plan editing for collaborative Alzheimer's care.
-    \item Led AWS Amplify Gen 1 to Gen 2 migration across the codebase, cutting deploy time from 12 to 7 minutes (40\%) and reducing monthly CI spend by \textasciitilde\$800.
-    \item Consolidated 3 fragmented frontends into a single TypeScript monorepo and design system of 40+ shared components, cutting new-screen build time from days to hours and eliminating UI drift between web and mobile.
-    \item Hardened the platform for HIPAA: field-level PHI encryption, audit logging via DynamoDB Streams, and Cognito-based RBAC; cleared a third-party HIPAA readiness assessment with zero critical findings.
-    \item Owned end-to-end delivery as the sole senior engineer: scoped requirements with clinicians, shipped 10+ features in 6 months, and mentored 2 junior engineers through onboarding and code review.
+    \item Sole senior engineer on a HIPAA-compliant platform that helps families coordinate Alzheimer's care, used by 200+ caregivers and patients on AWS, with real-time messaging, push notifications, and shared care plans.
+    \item Made the platform audit-ready for healthcare data: encrypted patient information, full audit logging, and role-based access control. It passed an outside HIPAA readiness review with no critical findings.
+    \item Merged three separate web and mobile codebases into one TypeScript monorepo with a shared component library, so new screens stopped being rebuilt three times and the apps finally looked consistent.
+    \item Worked directly with clinicians to scope features, delivered the roadmap over six months as the sole engineer, and mentored two juniors.
 \end{itemize}
 
 \experienceEntry{Senior Software Engineer}{AllFactors}{Santa Clara, CA}{July 2022 -- Dec 2023}
 \begin{itemize}
-    \item Drove migration of a legacy ASP.NET Web Forms real-estate analytics application to Blazor WebAssembly, cutting initial page load from 4.2s to 2.1s, shrinking bundle size by 35\%, and removing all ViewState dependencies.
-    \item Designed and shipped a Blazor component library of 30+ responsive UI primitives (data grids, charts, filters), reducing new-page implementation time from \textasciitilde3 days to \textasciitilde6 hours and standardizing dashboards across the product.
-    \item Built a real-time market-data pipeline using SignalR and SQL Server change tracking, pushing pricing and inventory updates to 500+ concurrent users with sub-200ms end-to-end latency.
-    \item Introduced an automated test suite (xUnit + Playwright) covering critical user flows, raising code coverage from 12\% to 68\% and catching 30+ regressions before release.
+    \item Rebuilt a slow legacy real-estate analytics app (ASP.NET Web Forms) as a modern Blazor WebAssembly front end, roughly halving page load time and removing the brittle state-management that had made the old app hard to change.
+    \item Built a real-time market-data pipeline (SignalR + SQL Server change tracking) that streamed live pricing and inventory to hundreds of concurrent users with sub-second updates.
+    \item Created a reusable component library of data grids, charts, and filters that became the standard building blocks for the product's dashboards, and added automated tests that caught regressions before release.
 \end{itemize}
 
 \experienceEntry{Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
 \begin{itemize}
-    \item Developed a robotic cashier and self-service kiosk in C\# / .NET processing 500+ daily transactions, integrating with POS terminals and payment hardware over TCP/IP and serial protocols.
-    \item Shipped a customer mobile ordering app (Xamarin) and admin dashboard (ASP.NET Core + Angular), cutting average kitchen ticket time by \textasciitilde25\% through automated order routing.
-    \item Built a hardware abstraction layer that let the same kiosk software run across 3 machine variants, reducing per-store deployment from \textasciitilde2 days to under 4 hours.
+    \item Built the software for a self-service food kiosk and robotic cashier in C\# / .NET, talking to real payment terminals and hardware over low-level protocols, plus the customer ordering app (Xamarin) and an admin dashboard (ASP.NET Core + Angular).
+    \item Added automated order routing that noticeably cut kitchen wait times, and a hardware abstraction layer so one codebase ran across three machine models.
 \end{itemize}
 
 \experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
 \begin{itemize}
-    \item Built multiplayer networking for a VR smart-city simulation in Unity, supporting 20+ concurrent users with sub-100ms state sync via MLAPI and SteamVR.
-    \item Implemented spatial audio, hand-tracking, and HUD systems, plus a spectator/desktop client so non-VR participants could observe and interact with the world in real time.
-    \item Authored an asset pipeline automating FBX import, LOD generation, and lightmap baking, cutting per-scene iteration from 4 hours to 20 minutes.
+    \item Built the multiplayer networking for a VR smart-city simulation in Unity, keeping many users in sync in real time, plus spatial audio, hand-tracking, and a desktop spectator client so people without a headset could watch and take part.
+    \item Automated the art pipeline (model import, level-of-detail generation, lighting bakes), turning a multi-hour per-scene chore into a quick one.
 \end{itemize}
 
 \vspace{5pt}\noindent
-{\color{lighttext}\textit{Earlier:} Game Developer at EC Dev Team, Uzbekistan (2016--19) -- Led RTS game development in Clausewitz Engine. Freelance Developer at Freelancer.com (2019--20) -- .NET and Python NLP applications.}
+{\color{lighttext}\textit{Earlier:} Game Developer at EC Dev Team, Uzbekistan (2016 to 2019), led RTS game development in the Clausewitz Engine. Freelance Developer at Freelancer.com (2019 to 2020), building .NET and Python NLP applications.}
 
 %----------FEATURED PROJECTS----------
 \section{Featured Projects}
@@ -181,53 +175,49 @@ Senior Software Engineer with 9+ years shipping scalable web apps, SaaS platform
 {https://logisticsx.app}
 {https://github.com/suxrobgm/logistics-app}
 \begin{itemize}
-    \item Built an agentic dispatcher on the Claude API (custom MCP server, tool-use loop, structured reasoning traces) that autonomously matches loads to trucks, verifies HOS/FMCSA compliance, and optimizes multi-stop routes -- replacing \textasciitilde15-minute manual dispatch decisions with sub-30-second AI ones.
-    \item Shipped 4 Angular 21 portals (admin, dispatcher, customer, broker) plus a Kotlin Multiplatform driver app (Android/iOS) on a multi-tenant .NET 10 / EF Core / SignalR backend, with DAT, Truckstop, 123Loadboard load-board integrations, Samsara/Motive ELD, and Stripe Connect payouts.
+    \item Built an AI dispatcher that matches freight loads to trucks, checks federal driver hours-of-service rules, and plans multi-stop routes on its own, turning a manual 15-minute decision into a near-instant one (Claude API, custom tool-use agent).
+    \item Shipped the full product: four web portals (admin, dispatcher, customer, broker), a cross-platform Android/iOS driver app, and a multi-tenant .NET backend integrated with the major freight load boards and truck-tracking providers (DAT, Truckstop, Samsara, Motive) plus Stripe payouts.
 \end{itemize}
 
 \projectEntry{Meat.gg}{ElysiaJS, Next.js, PostgreSQL, Prisma, Bun, C++23, Metamod:Source 2, Docker, Stripe}
 {https://meat.gg}
 \begin{itemize}
-    \item Launched a community platform for CS2 servers reaching 30K+ registered users and 1K+ daily active players, with profiles, messaging, friend graph, and a Stripe-backed cosmetic shop processing 100+ monthly transactions.
-    \item Wrote a Metamod:Source 2 server plugin in C++23 that bridges CS2 game servers with the ElysiaJS backend over WebSockets, enabling in-game ban/report/admin workflows with sub-500ms round-trip without relying on RCON.
+    \item Launched a community platform for Counter-Strike 2 servers that grew to 30K+ registered users, with player profiles, messaging, a friends system, and a Stripe-backed cosmetics shop.
+    \item Wrote a native C++ game-server plugin connecting the live game servers to the web backend, so admins can ban, report, and moderate players from inside the game in real time.
 \end{itemize}
 
 \projectEntryDual{OGStack}{Next.js 16, Elysia, Bun, PostgreSQL, Prisma, Satori, Cloudflare R2, Stripe, Docker}
 {https://ogstack.dev}
 {https://github.com/suxrobgm/ogstack}
 \begin{itemize}
-    \item SaaS that auto-generates on-brand Open Graph images for any URL via a single meta tag, serving cached images under 200ms p95 via Cloudflare R2 + CDN; generated 10K+ images during beta.
-    \item Built a multi-model AI routing layer (Claude, GPT, DeepSeek) for page-content analysis and brand extraction, plus Flux 2 background generation and a Satori-based JSX$\rightarrow$SVG$\rightarrow$PNG renderer with Stripe-billed subscriptions.
+    \item SaaS that automatically creates on-brand social-share preview images for any web page from a single line of markup, served from a global CDN. It generated 10K+ images during the beta.
+    \item Built the engine behind it: a layer that routes work across several AI models (Claude, GPT, DeepSeek) to read a page and match its branding, plus AI background generation and an HTML-to-image renderer, billed through Stripe.
 \end{itemize}
 
 \projectEntryDual{DepVault}{Next.js, ElysiaJS, PostgreSQL, Prisma, Bun, .NET AOT CLI, Docker}
 {https://depvault.com}
 {https://github.com/suxrobGM/depvault}
 \begin{itemize}
-    \item Dependency scanner and encrypted secrets vault covering 8+ language ecosystems (npm, PyPI, NuGet, Cargo, Maven, Go, RubyGems, Composer) with CVE detection via OSV.dev, AES-256-GCM envelope encryption, one-time secret sharing, and a .NET AOT CLI for CI/CD token injection.
-    \item Designed a streaming SBOM ingestion pipeline (Elysia + Bun) that scans 1K+ dependencies per project in under 5 seconds, with deduplicated vulnerability normalization across OSV, GHSA, and NVD feeds.
+    \item Tool that scans a project's software dependencies for known security vulnerabilities across eight language ecosystems (npm, PyPI, NuGet, Cargo, Maven, and more) and doubles as an encrypted vault for secrets, with a CLI for injecting tokens into CI/CD pipelines. The scanner checks a thousand-plus dependencies per project in seconds.
 \end{itemize}
 
 \projectEntry{Med Image Scanner}{FastAPI, Next.js, PyTorch, OpenCV, OHIF Viewer, PostgreSQL}
 {https://github.com/suxrobgm/med-image-scanner}
 \begin{itemize}
-    \item HIPAA-compliant platform that connects to hospital PACS over DICOM C-FIND/C-MOVE to retrieve X-ray, CT, and MRI studies, running PyTorch detection models (pneumonia on CXR, intracranial hemorrhage on head CT) with overlays rendered in the OHIF Viewer.
-    \item Implemented end-to-end PHI handling -- on-the-fly de-identification, audit logging, role-based study access -- and achieved sub-2s round-trip from PACS query to AI overlay on a 512-slice CT.
+    \item HIPAA-compliant platform that pulls X-ray, CT, and MRI scans straight from hospital imaging systems and runs deep-learning models to flag findings (pneumonia on chest X-rays, brain bleeds on head CTs), drawing the results as overlays a radiologist can review.
 \end{itemize}
 
 \projectEntry{Bookshelf Scanner}{YOLO, Moondream2 LLM, FastAPI, Angular}
 {https://github.com/suxrobgm/bookshelf-scanner}
 \begin{itemize}
-    \item Built an end-to-end book-detection pipeline: YOLO segmentation isolates individual book spines from shelf photos at \textasciitilde92\% mAP@0.5, then Moondream2 VLM extracts title and author with \textasciitilde85\% string-match accuracy.
-    \item Wrapped the pipeline in a FastAPI service with an Angular frontend supporting upload, manual edit, and bulk export to Goodreads/LibraryThing CSV.
+    \item Computer-vision pipeline that takes a photo of a bookshelf, detects each individual book spine, reads the title and author off each one with a vision-language model, and exports the recognized library to Goodreads or LibraryThing.
 \end{itemize}
 
 \projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
 {https://github.com/suxrobgm/explainable-melanoma}
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
-    \item Trained an EfficientNet V2 classifier on the ISIC 2019 dataset (25K+ dermoscopic images, 9 diagnostic categories), achieving 85.61\% accuracy and a 0.8564 weighted F1 score.
-    \item Layered GradCAM++ heatmaps with a novel ABCDE-criterion (Asymmetry, Border, Color, Diameter, Evolution) decomposition for clinician-readable interpretability; method published on arXiv (2512.09289).
+    \item Published arXiv research on explainable AI for skin-cancer detection: a deep-learning classifier (roughly 86\% accuracy) paired with heatmaps broken down along the ABCDE criteria dermatologists already use, making the model's reasoning legible.
 \end{itemize}
 
 \end{document}

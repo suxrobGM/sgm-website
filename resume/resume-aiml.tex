@@ -1,0 +1,209 @@
+%-------------------------
+% Resume - Sukhrob Ilyosbekov
+% AI/ML & Computer Vision focus
+%-------------------------
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{charter}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{tabularx}
+\usepackage{multicol}
+
+% Colors
+\definecolor{accent}{HTML}{2B5797}
+\definecolor{darktext}{HTML}{1A1A1A}
+\definecolor{lighttext}{HTML}{444444}
+\definecolor{linkcolor}{HTML}{0563C1}
+\definecolor{rulecolor}{HTML}{2B5797}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    pdfborderstyle={/S/U/W 0},
+}
+
+% Page style
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Section formatting - colored rule
+\titleformat{\section}{
+    \color{darktext}\large\bfseries\scshape
+}{}{0em}{}[{\color{rulecolor}\vspace{2pt}\titlerule\vspace{1pt}}]
+\titlespacing*{\section}{0pt}{6pt}{4pt}
+
+% Tighter list spacing
+\setlist[itemize]{leftmargin=1.4em, itemsep=1pt, parsep=0pt, topsep=2pt}
+\setlist[description]{leftmargin=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=unboxed, itemsep=1pt}
+
+% --- Education: single row - University, Degree, Location, Date ---
+\newcommand{\educationEntry}[4]{%
+    \vspace{2pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{accent}#1}, {\color{darktext}#2}, {\color{lighttext}#3} & \textit{\color{lighttext}#4} \\
+    \end{tabular*}\par\vspace{-1pt}
+}
+
+% --- Experience: single-line role | company | location, date right-aligned ---
+\newcommand{\experienceEntry}[4]{%
+    \vspace{3pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} {\color{lighttext}\textbar} {\color{lighttext}#3} & \textit{\color{lighttext}#4} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+% --- Experience: no location variant ---
+\newcommand{\experienceEntryNoLoc}[3]{%
+    \vspace{5pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} & \textit{\color{lighttext}#3} \\
+    \end{tabular*}\vspace{-4pt}
+}
+
+% --- Project: name + link on first line, tech stack on second ---
+\newcommand{\projectEntry}[3]{%
+    \vspace{2pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}#3}} \\
+    \end{tabular*}\vspace{-3pt}\\
+    {\small\color{lighttext}\textit{#2}}\vspace{-2pt}
+}
+
+% --- Project: dual links (site + repo, or repo + paper) ---
+\newcommand{\projectEntryDual}[4]{%
+    \vspace{2pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}#3} \enspace\color{lighttext}\textbar\enspace \href{#4}{\color{linkcolor}GitHub}} \\
+    \end{tabular*}\vspace{-3pt}\\
+    {\small\color{lighttext}\textit{#2}}\vspace{-2pt}
+}
+
+% --- Project: dual links with Paper label ---
+\newcommand{\projectEntryPaper}[4]{%
+    \vspace{2pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#3}{\color{linkcolor}GitHub} \enspace\color{lighttext}\textbar\enspace \href{#4}{\color{linkcolor}Paper}} \\
+    \end{tabular*}\vspace{-3pt}\\
+    {\small\color{lighttext}\textit{#2}}\vspace{-2pt}
+}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge\bfseries\color{darktext} Sukhrob Ilyosbekov}\vspace{4pt}\\
+    {\large\color{accent} Senior Software Engineer \enspace\textperiodcentered\enspace AI/ML \& Computer Vision}\vspace{8pt}\\
+    {\color{lighttext}
+    \faPhone\enspace(857) 867-1942 \quad
+    \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com} \quad
+    \faGlobe\enspace\href{https://suxrobgm.net}{suxrobgm.net} \quad
+    \faLinkedin\enspace\href{https://www.linkedin.com/in/suxrobgm}{linkedin.com/in/suxrobgm} \quad
+    \faGithub\enspace\href{https://github.com/suxrobgm}{github.com/suxrobgm}
+    }
+\end{center}
+
+%----------PROFESSIONAL SUMMARY----------
+\section{Summary}
+Engineer working at the intersection of machine learning and production software, with published computer-vision research on arXiv (explainable AI for medical imaging). I build deep-learning and LLM systems that actually ship: medical-imaging models wired into hospital workflows, an AI freight dispatcher, and multi-model AI pipelines in production SaaS. Backed by 9+ years of full-stack engineering, so my models do not stop at a notebook, they run as real services in front of real users.
+
+%----------TECHNICAL SKILLS----------
+\section{Technical Skills}
+\begin{description}
+    \item[AI/ML:] PyTorch, TensorFlow, EfficientNet, YOLO, GradCAM++, OpenCV, computer vision, LLM/agentic systems, MCP, Claude/GPT/DeepSeek APIs
+    \item[Languages:] Python, C\#, C++, TypeScript, JavaScript, Kotlin
+    \item[ML Tooling \& Data:] FastAPI, OHIF/DICOM, PostgreSQL, MongoDB, Redis, Prisma, NumPy/pandas
+    \item[Backend:] ASP.NET Core, EF Core, SignalR, Node.js, Bun, NestJS, ElysiaJS
+    \item[Frontend:] React, Next.js, Angular, Blazor, Tailwind CSS
+    \item[Cloud \& DevOps:] AWS (S3, Lambda, Cognito, Amplify), Azure, Docker, Kubernetes, GitHub Actions
+\end{description}
+
+%----------EDUCATION----------
+\section{Education}
+\educationEntry{Northeastern University}{M.S.\ in Computer Science}{Boston, MA}{Jan 2024 -- May 2026}
+\educationEntry{Suffolk University}{B.S.\ in Computer Science}{Boston, MA}{Sep 2021 -- May 2023}
+
+%----------PROFESSIONAL EXPERIENCE----------
+\section{Professional Experience}
+
+\experienceEntry{Senior AI/ML Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
+\begin{itemize}
+    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform, including a risk model that flags patients showing early signs of decline from daily activity and care-log data so caregivers can step in sooner.
+    \item Added an NLP pipeline that reads free-text clinical notes and pulls out structured details (symptoms, medications, care events), cutting the manual charting load for the care team.
+    \item Stood up the ML infrastructure under HIPAA constraints, with de-identified training data, model serving behind the API, and monitoring. The platform cleared an outside HIPAA readiness review with no critical findings.
+\end{itemize}
+
+\experienceEntry{Senior Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{July 2022 -- Dec 2023}
+\begin{itemize}
+    \item Built property-valuation and market-forecasting models on real-estate data that powered the product's analytics, turning raw pricing and inventory feeds into predicted values and trend signals.
+    \item Designed the real-time feature pipeline (SignalR + SQL Server change tracking) that fed live market data to the models and pushed updated predictions to hundreds of concurrent users with sub-second latency.
+    \item Productionized the models into the customer-facing dashboards and added automated tests around the data and prediction flows.
+\end{itemize}
+
+\experienceEntry{Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
+\begin{itemize}
+    \item Built the software for a self-service food kiosk and robotic cashier in C\# / .NET, integrating with payment terminals and hardware over low-level protocols, plus the customer ordering app and an admin dashboard.
+    \item Added automated order routing that noticeably cut kitchen wait times, and a hardware abstraction layer so one codebase ran across three machine models.
+\end{itemize}
+
+\experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
+\begin{itemize}
+    \item Built the multiplayer networking for a VR smart-city simulation in Unity, keeping many users in sync in real time with low latency, plus spatial audio, hand-tracking, and a desktop spectator client.
+\end{itemize}
+
+\vspace{5pt}\noindent
+{\color{lighttext}\textit{Earlier:} Freelance Developer at Freelancer.com (2019 to 2020), building Python NLP and .NET applications. Game Developer at EC Dev Team, Uzbekistan (2016 to 2019), led RTS game development in the Clausewitz Engine.}
+
+%----------FEATURED PROJECTS----------
+\section{Selected AI/ML Projects}
+
+\projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
+{https://github.com/suxrobgm/explainable-melanoma}
+{https://arxiv.org/abs/2512.09289}
+\begin{itemize}
+    \item Trained a deep-learning model to classify skin lesions across nine diagnostic categories on a standard public dermatology dataset of 25K+ images, reaching roughly 86\% accuracy.
+    \item The research contribution is interpretability: the model produces heatmaps of what it looked at, decomposed along the same ABCDE criteria (Asymmetry, Border, Color, Diameter, Evolution) dermatologists already use, so a clinician can follow and trust the reasoning rather than getting an opaque score. Published on arXiv.
+\end{itemize}
+
+\projectEntry{Med Image Scanner}{FastAPI, PyTorch, OpenCV, OHIF Viewer, DICOM, Next.js}
+{https://github.com/suxrobgm/med-image-scanner}
+\begin{itemize}
+    \item HIPAA-compliant platform that pulls X-ray, CT, and MRI scans directly from hospital imaging systems and runs PyTorch detection models on them, flagging pneumonia on chest X-rays and intracranial hemorrhage on head CTs.
+    \item Renders model predictions as overlays inside a real radiology viewer (OHIF), and handles patient data safely throughout, with on-the-fly de-identification, audit logging, and role-based access.
+\end{itemize}
+
+\projectEntry{Bookshelf Scanner}{YOLO, Moondream2 VLM, FastAPI, Angular}
+{https://github.com/suxrobgm/bookshelf-scanner}
+\begin{itemize}
+    \item Two-stage computer-vision pipeline: a YOLO segmentation model isolates each individual book spine from a shelf photo, then a vision-language model reads the title and author off each spine.
+    \item Wrapped it in a web app for uploading photos, correcting misreads, and exporting the recognized library to Goodreads or LibraryThing.
+\end{itemize}
+
+\projectEntryDual{LogisticsX}{Claude API, MCP, .NET 10, EF Core, SignalR, Angular 21, Kotlin KMP, PostgreSQL}
+{https://logisticsx.app}
+{https://github.com/suxrobgm/logistics-app}
+\begin{itemize}
+    \item Built an AI dispatcher that matches freight loads to trucks, checks federal driver hours-of-service rules, and plans multi-stop routes on its own, turning a manual 15-minute decision into a near-instant one. Runs on the Claude API through a custom tool-use agent with its own set of tools.
+    \item Shipped it as a real product: web portals for dispatchers, customers, and brokers, a cross-platform driver app, and a multi-tenant .NET backend integrated with the major freight load boards and tracking providers.
+\end{itemize}
+
+\projectEntryDual{OGStack}{Next.js 16, Elysia, Bun, Satori, Cloudflare R2, Stripe}
+{https://ogstack.dev}
+{https://github.com/suxrobgm/ogstack}
+\begin{itemize}
+    \item Built a multi-model AI layer that routes work across Claude, GPT, and DeepSeek to read a web page and match its branding, then generates an on-brand social-share image, including AI-generated backgrounds.
+    \item Productionized it as a SaaS serving cached images from a global CDN; it generated 10K+ images during the beta.
+\end{itemize}
+
+\end{document}
