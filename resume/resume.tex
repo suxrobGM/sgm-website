@@ -106,6 +106,7 @@
     {\Huge\bfseries\color{darktext} Sukhrob Ilyosbekov}\vspace{4pt}\\
     {\large\color{accent} Senior Software Engineer \enspace\textperiodcentered\enspace Full-Stack}\vspace{8pt}\\
     {\color{lighttext}
+    \faMapMarker*\enspace Boston, MA \quad
     \faPhone\enspace(857) 867-1942 \quad
     \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com} \quad
     \faGlobe\enspace\href{https://suxrobgm.net}{suxrobgm.net} \quad
@@ -116,24 +117,19 @@
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Full-stack engineer with 9+ years shipping web and SaaS products, solo or as the senior on small teams. I've built a HIPAA-compliant healthcare platform and real-time market-data dashboards, and I work across the whole stack, including AI integration and computer vision, with published research papers.
+Full-stack engineer with 9+ years shipping web and SaaS products, solo or as the senior on small teams. I've built a HIPAA-compliant healthcare platform and real-time market-data dashboards, and I work across the whole stack, including AI integration and computer vision, with published research.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
 \begin{description}
     \item[Languages:] C\#, C++, Python, JavaScript, TypeScript, Kotlin
-    \item[Backend:] ASP.NET Core, EF Core, SignalR, Node.js, Bun, NestJS, FastAPI, ElysiaJS
+    \item[Backend:] ASP.NET Core, EF Core, SignalR, Node.js, NestJS, FastAPI
     \item[Frontend \& Mobile:] React, Next.js, Angular, Blazor, Tailwind CSS, Kotlin Multiplatform, .NET MAUI, React Native
     \item[Data:] PostgreSQL, MS SQL, MongoDB, Redis, Firebase, DynamoDB, Prisma
     \item[AI/ML:] PyTorch, TensorFlow, OpenCV, YOLO, Claude/GPT/DeepSeek APIs, MCP, agentic workflows
-    \item[Game Dev:] Unity, Godot, PhaserJS, Colyseus, Metamod:Source 2
+    \item[Game Dev:] Unity, Godot, PhaserJS, Colyseus
     \item[Cloud \& DevOps:] AWS (Amplify, S3, Lambda, Cognito), Azure, Docker, Kubernetes, GitHub Actions
 \end{description}
-
-%----------EDUCATION----------
-\section{Education}
-\educationEntry{Northeastern University}{M.S.\ in Computer Science}{Boston, MA}{Jan 2024 -- May 2026}
-\educationEntry{Suffolk University}{B.S.\ in Computer Science}{Boston, MA}{Sep 2021 -- May 2023}
 
 %----------PROFESSIONAL EXPERIENCE----------
 \section{Professional Experience}
@@ -146,7 +142,7 @@ Full-stack engineer with 9+ years shipping web and SaaS products, solo or as the
     \item Worked directly with clinicians to scope features, delivered the roadmap over six months as the sole engineer, and mentored two juniors.
 \end{itemize}
 
-\experienceEntry{Senior Software Engineer}{AllFactors}{Santa Clara, CA}{July 2022 -- Dec 2023}
+\experienceEntry{Senior Software Engineer}{AllFactors}{Santa Clara, CA}{Jul 2022 -- Dec 2023}
 \begin{itemize}
     \item Rebuilt a slow legacy real-estate analytics app (ASP.NET Web Forms) as a modern Blazor WebAssembly front end, roughly halving page load time and removing the brittle state-management that had made the old app hard to change.
     \item Built a real-time market-data pipeline (SignalR + SQL Server change tracking) that streamed live pricing and inventory to hundreds of concurrent users with sub-second updates.
@@ -156,17 +152,22 @@ Full-stack engineer with 9+ years shipping web and SaaS products, solo or as the
 \experienceEntry{Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
 \begin{itemize}
     \item Built the software for a self-service food kiosk and robotic cashier in C\# / .NET, talking to real payment terminals and hardware over low-level protocols, plus the customer ordering app (Xamarin) and an admin dashboard (ASP.NET Core + Angular).
-    \item Added automated order routing that noticeably cut kitchen wait times, and a hardware abstraction layer so one codebase ran across three machine models.
+    \item Added automated order routing that sent each order straight to the right kitchen station, and a hardware abstraction layer so one codebase ran across three machine models.
 \end{itemize}
 
 \experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
 \begin{itemize}
-    \item Built the multiplayer networking for a VR smart-city simulation in Unity, keeping many users in sync in real time, plus spatial audio, hand-tracking, and a desktop spectator client so people without a headset could watch and take part.
+    \item Built the multiplayer networking for a VR smart-city simulation in Unity, syncing every participant's view in real time, plus spatial audio, hand-tracking, and a desktop spectator client so people without a headset could watch and take part.
     \item Automated the art pipeline (model import, level-of-detail generation, lighting bakes), turning a multi-hour per-scene chore into a quick one.
 \end{itemize}
 
 \vspace{5pt}\noindent
-{\color{lighttext}\textit{Earlier:} Game Developer at EC Dev Team, Uzbekistan (2016 to 2019), led RTS game development in the Clausewitz Engine. Freelance Developer at Freelancer.com (2019 to 2020), building .NET and Python NLP applications.}
+{\color{lighttext}\textit{Earlier:} Game Developer at EC Dev Team, Uzbekistan (2016 -- 2019), led development of an RTS mod for Paradox's Clausewitz Engine. Freelance Developer at Freelancer.com (2019 -- 2020), building .NET and Python NLP applications.}
+
+%----------EDUCATION----------
+\section{Education}
+\educationEntry{Northeastern University}{M.S.\ in Computer Science}{Boston, MA}{Jan 2024 -- May 2026}
+\educationEntry{Suffolk University}{B.S.\ in Computer Science}{Boston, MA}{Sep 2021 -- May 2023}
 
 %----------FEATURED PROJECTS----------
 \section{Featured Projects}
@@ -186,7 +187,7 @@ Full-stack engineer with 9+ years shipping web and SaaS products, solo or as the
     \item Wrote a native C++ game-server plugin connecting the live game servers to the web backend, so admins can ban, report, and moderate players from inside the game in real time.
 \end{itemize}
 
-\projectEntryDual{OGStack}{Next.js 16, Elysia, Bun, PostgreSQL, Prisma, Satori, Cloudflare R2, Stripe, Docker}
+\projectEntryDual{OGStack}{Next.js 16, ElysiaJS, Bun, PostgreSQL, Prisma, Satori, Cloudflare R2, Stripe, Docker}
 {https://ogstack.dev}
 {https://github.com/suxrobgm/ogstack}
 \begin{itemize}
@@ -201,23 +202,11 @@ Full-stack engineer with 9+ years shipping web and SaaS products, solo or as the
     \item Tool that scans a project's software dependencies for known security vulnerabilities across eight language ecosystems (npm, PyPI, NuGet, Cargo, Maven, and more) and doubles as an encrypted vault for secrets, with a CLI for injecting tokens into CI/CD pipelines. The scanner checks a thousand-plus dependencies per project in seconds.
 \end{itemize}
 
-\projectEntry{Med Image Scanner}{FastAPI, Next.js, PyTorch, OpenCV, OHIF Viewer, PostgreSQL}
-{https://github.com/suxrobgm/med-image-scanner}
-\begin{itemize}
-    \item HIPAA-compliant platform that pulls X-ray, CT, and MRI scans straight from hospital imaging systems and runs deep-learning models to flag findings (pneumonia on chest X-rays, brain bleeds on head CTs), drawing the results as overlays a radiologist can review.
-\end{itemize}
-
-\projectEntry{Bookshelf Scanner}{YOLO, Moondream2 LLM, FastAPI, Angular}
-{https://github.com/suxrobgm/bookshelf-scanner}
-\begin{itemize}
-    \item Computer-vision pipeline that takes a photo of a bookshelf, detects each individual book spine, reads the title and author off each one with a vision-language model, and exports the recognized library to Goodreads or LibraryThing.
-\end{itemize}
-
 \projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
 {https://github.com/suxrobgm/explainable-melanoma}
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
-    \item Published arXiv research on explainable AI for skin-cancer detection: a deep-learning classifier (roughly 86\% accuracy) paired with heatmaps broken down along the ABCDE criteria dermatologists already use, making the model's reasoning legible.
+    \item Published arXiv research on explainable AI for skin-cancer detection: a deep-learning classifier (0.86 weighted F1 across nine diagnostic categories) paired with heatmaps broken down along the ABCDE criteria dermatologists already use, making the model's reasoning legible.
 \end{itemize}
 
 \end{document}

@@ -106,6 +106,7 @@
     {\Huge\bfseries\color{darktext} Sukhrob Ilyosbekov}\vspace{4pt}\\
     {\large\color{accent} Senior Software Engineer \enspace\textperiodcentered\enspace AI/ML \& Computer Vision}\vspace{8pt}\\
     {\color{lighttext}
+    \faMapMarker*\enspace Boston, MA \quad
     \faPhone\enspace(857) 867-1942 \quad
     \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com} \quad
     \faGlobe\enspace\href{https://suxrobgm.net}{suxrobgm.net} \quad
@@ -116,7 +117,7 @@
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Machine-learning engineer with a published computer-vision research papers and 9+ years building production software. I take deep-learning and LLM work past the prototype stage: imaging models pulled into hospital workflows, an AI freight dispatcher, and multi-model pipelines running in live SaaS. The full-stack background is what gets the models deployed and keeps them running once they're out.
+Machine-learning engineer with published computer-vision research and 9+ years building production software. I take deep-learning and LLM work past the prototype stage: imaging models pulled into hospital workflows, an AI freight dispatcher, and multi-model pipelines running in live SaaS. The full-stack background is what gets the models deployed and keeps them running once they're out.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
@@ -144,7 +145,7 @@ Machine-learning engineer with a published computer-vision research papers and 9
     \item Stood up the ML infrastructure under HIPAA constraints, with de-identified training data, model serving behind the API, and monitoring. The platform cleared an outside HIPAA readiness review with no critical findings.
 \end{itemize}
 
-\experienceEntry{Senior Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{July 2022 -- Dec 2023}
+\experienceEntry{Senior Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{Jul 2022 -- Dec 2023}
 \begin{itemize}
     \item Built property-valuation and market-forecasting models on real-estate data that powered the product's analytics, turning raw pricing and inventory feeds into predicted values and trend signals.
     \item Designed the real-time feature pipeline (SignalR + SQL Server change tracking) that fed live market data to the models and pushed updated predictions to hundreds of concurrent users with sub-second latency.
@@ -154,16 +155,16 @@ Machine-learning engineer with a published computer-vision research papers and 9
 \experienceEntry{Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Oct 2021}
 \begin{itemize}
     \item Built the software for a self-service food kiosk and robotic cashier in C\# / .NET, integrating with payment terminals and hardware over low-level protocols, plus the customer ordering app and an admin dashboard.
-    \item Added automated order routing that noticeably cut kitchen wait times, and a hardware abstraction layer so one codebase ran across three machine models.
+    \item Added automated order routing that sent each order straight to the right kitchen station, and a hardware abstraction layer so one codebase ran across three machine models.
 \end{itemize}
 
 \experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
 \begin{itemize}
-    \item Built the multiplayer networking for a VR smart-city simulation in Unity, keeping many users in sync in real time with low latency, plus spatial audio, hand-tracking, and a desktop spectator client.
+    \item Built the multiplayer networking for a VR smart-city simulation in Unity, syncing every participant's view in real time, plus spatial audio, hand-tracking, and a desktop spectator client.
 \end{itemize}
 
 \vspace{5pt}\noindent
-{\color{lighttext}\textit{Earlier:} Freelance Developer at Freelancer.com (2019 to 2020), building Python NLP and .NET applications. Game Developer at EC Dev Team, Uzbekistan (2016 to 2019), led RTS game development in the Clausewitz Engine.}
+{\color{lighttext}\textit{Earlier:} Freelance Developer at Freelancer.com (2019 -- 2020), building Python NLP and .NET applications. Game Developer at EC Dev Team, Uzbekistan (2016 -- 2019), led development of an RTS mod for Paradox's Clausewitz Engine.}
 
 %----------FEATURED PROJECTS----------
 \section{Selected AI/ML Projects}
@@ -172,7 +173,7 @@ Machine-learning engineer with a published computer-vision research papers and 9
 {https://github.com/suxrobgm/explainable-melanoma}
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
-    \item Trained a deep-learning model to classify skin lesions across nine diagnostic categories on a standard public dermatology dataset of 25K+ images, reaching roughly 86\% accuracy.
+    \item Trained a deep-learning model to classify skin lesions across nine diagnostic categories on a standard public dermatology dataset of 25K+ images, reaching 0.86 weighted F1.
     \item The research contribution is interpretability: the model produces heatmaps of what it looked at, decomposed along the same ABCDE criteria (Asymmetry, Border, Color, Diameter, Evolution) dermatologists already use, so a clinician can follow and trust the reasoning rather than getting an opaque score. Published on arXiv.
 \end{itemize}
 
@@ -198,7 +199,7 @@ Machine-learning engineer with a published computer-vision research papers and 9
     \item Shipped it as a real product: web portals for dispatchers, customers, and brokers, a cross-platform driver app, and a multi-tenant .NET backend integrated with the major freight load boards and tracking providers.
 \end{itemize}
 
-\projectEntryDual{OGStack}{Next.js 16, Elysia, Bun, Satori, Cloudflare R2, Stripe}
+\projectEntryDual{OGStack}{Next.js 16, ElysiaJS, Bun, Satori, Cloudflare R2, Stripe}
 {https://ogstack.dev}
 {https://github.com/suxrobgm/ogstack}
 \begin{itemize}
