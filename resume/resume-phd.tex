@@ -2,7 +2,7 @@
 % Resume - Sukhrob Ilyosbekov
 % PhD / Research-focused CV
 %-------------------------
-\documentclass[letterpaper,11pt]{article}
+\documentclass[letterpaper,10.5pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -41,15 +41,15 @@
 \titleformat{\section}{
     \color{darktext}\large\bfseries\scshape
 }{}{0em}{}[{\color{rulecolor}\vspace{2pt}\titlerule\vspace{1pt}}]
-\titlespacing*{\section}{0pt}{12pt}{6pt}
+\titlespacing*{\section}{0pt}{8pt}{4pt}
 
 % Tighter list spacing
-\setlist[itemize]{leftmargin=1.4em, itemsep=1pt, parsep=0pt, topsep=2pt}
-\setlist[description]{leftmargin=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=unboxed, itemsep=1pt}
+\setlist[itemize]{leftmargin=1.4em, itemsep=0pt, parsep=0pt, topsep=1pt}
+\setlist[description]{leftmargin=0pt, labelsep=0.5em, font=\bfseries\color{darktext}, style=unboxed, itemsep=0pt}
 
 % --- Education: university + date on first line, details as bullets ---
 \newcommand{\educationEntry}[2]{%
-    \vspace{2pt}\noindent
+    \vspace{1pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         \textbf{\color{accent}#1} & \textit{\color{lighttext}#2} \\
     \end{tabular*}\vspace{-3pt}
@@ -57,7 +57,7 @@
 
 % --- Experience: role | company | location, date right-aligned ---
 \newcommand{\experienceEntry}[4]{%
-    \vspace{5pt}\noindent
+    \vspace{3pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} {\color{lighttext}\textbar} {\color{lighttext}#3} & \textit{\color{lighttext}#4} \\
     \end{tabular*}\vspace{-4pt}
@@ -65,7 +65,7 @@
 
 % --- Experience: no location variant ---
 \newcommand{\experienceEntryNoLoc}[3]{%
-    \vspace{5pt}\noindent
+    \vspace{3pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} & \textit{\color{lighttext}#3} \\
     \end{tabular*}\vspace{-4pt}
@@ -73,18 +73,26 @@
 
 % --- Research project: name + link right-aligned ---
 \newcommand{\projectHeading}[2]{%
-    \vspace{4pt}\noindent
+    \vspace{2pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         {\textbf{\color{accent}#1}} & {\small\href{#2}{\color{linkcolor}GitHub}} \\
-    \end{tabular*}\vspace{-4pt}
+    \end{tabular*}\vspace{-3pt}
 }
 
 % --- Research project: with paper link ---
 \newcommand{\projectHeadingPaper}[3]{%
-    \vspace{4pt}\noindent
+    \vspace{2pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
         {\textbf{\color{accent}#1}} & {\small\href{#2}{\color{linkcolor}GitHub} \enspace\color{lighttext}\textbar\enspace \href{#3}{\color{linkcolor}Paper}} \\
-    \end{tabular*}\vspace{-4pt}
+    \end{tabular*}\vspace{-3pt}
+}
+
+% --- Research project: paper link only (no repo) ---
+\newcommand{\projectHeadingPaperOnly}[2]{%
+    \vspace{2pt}\noindent
+    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
+        {\textbf{\color{accent}#1}} & {\small\href{#2}{\color{linkcolor}Paper}} \\
+    \end{tabular*}\vspace{-3pt}
 }
 
 % --- Personal project: name + link right-aligned, description as bullet ---
@@ -145,13 +153,15 @@ Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object D
 %----------PUBLICATIONS----------
 \section{Publications}
 \begin{enumerate}[leftmargin=1.4em, itemsep=2pt, label={[\arabic*]}]
+    \item S.\ Ilyosbekov, S.\ Gajjar, and R.\ Jin, ``MorphoCLIP: Text-Supervised Contrastive Learning for Perturbation Matching in Cell Painting Images,'' \textit{arXiv preprint}, arXiv:2608.22690, 2026. \href{https://arxiv.org/abs/2608.22690}{\color{linkcolor}[Paper]}
+    \item S.\ Ilyosbekov, ``Localize, Don't Beautify: Client-Side Control of Image-Editing APIs for Cosmetic Surgery Previews,'' \textit{arXiv preprint}, arXiv:2608.02841, 2026. \href{https://arxiv.org/abs/2608.02841}{\color{linkcolor}[Paper]}
     \item S.\ Ilyosbekov, ``MelanomaNet: Explainable Deep Learning for Multi-Class Skin Lesion Classification,'' \textit{arXiv preprint}, arXiv:2512.09289, 2025. \href{https://arxiv.org/abs/2512.09289}{\color{linkcolor}[Paper]}
 \end{enumerate}
 
 %----------AWARDS & HONORS----------
 \section{Awards \& Honors}
 \begin{itemize}[itemsep=2pt]
-    \item \textbf{National Physics Olympiad, 1st Place,} Uzbekistan; the first student from my high school to win at the national level
+    \item \textbf{National Physics Olympiad, 1st Place,} Uzbekistan; first student from my high school to win nationally
     \item \textbf{University Coding Competition Winner,} Tashkent University of Information Technologies
     \item \textbf{Outstanding Project Award,} Bookshelf Scanner, Computer Vision Course, Northeastern University
 \end{itemize}
@@ -168,6 +178,23 @@ Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object D
 
 %----------RESEARCH PROJECTS----------
 \section{Research Projects}
+
+\projectHeadingPaper{MorphoCLIP: Text-Supervised Cell Painting Retrieval}
+{https://github.com/suxrobgm/morphoclip}
+{https://arxiv.org/abs/2608.22690}
+\begin{itemize}
+    \item Built a text-supervised contrastive model that matches Cell Painting microscopy images of drug- and gene-perturbed cells to natural-language treatment descriptions, pairing frozen vision/language backbones (DINOv3, BioClinical ModernBERT) with trainable projection heads so it trains on a single consumer GPU.
+    \item Evaluated bidirectional image-to-text and text-to-image retrieval on the CPJUMP1 benchmark (51 plates, 3M+ cell images, 303 drugs, 160 genes) with integrated batch correction to remove plate-to-plate variation.
+    \item \textbf{Stack:} Python, PyTorch, DINOv3, BioClinical ModernBERT, Contrastive Learning, CPJUMP1 Dataset
+\end{itemize}
+
+\projectHeadingPaperOnly{Localize, Don't Beautify: Client-Side Control of Image-Editing APIs for Cosmetic Surgery Previews}
+{https://arxiv.org/abs/2608.02841}
+\begin{itemize}
+    \item Studied why commercial image-editing APIs over-edit the face during cosmetic-surgery preview generation and how much of that can be fixed client-side without accessing the model.
+    \item Compared prompt-only, masked-compositing, and model-based inpainting across six commercial editors and one inpainting model on facelift and rhinoplasty edits, scoring identity preservation (ArcFace) and localization accuracy on 196 edits; masked compositing beat model-based inpainting for localization.
+    \item \textbf{Stack:} Image-Editing APIs, Inpainting Models, ArcFace, Prompt Engineering
+\end{itemize}
 
 \projectHeadingPaper{MelanomaNet: Explainable Deep Learning for Multi-Class Skin Lesion Classification}
 {https://github.com/suxrobgm/explainable-melanoma}
@@ -238,14 +265,5 @@ Computer Vision, Deep Learning, Medical Image Analysis, Explainable AI, Object D
 
 \vspace{5pt}\noindent
 {\color{lighttext}\textit{Earlier:} Freelance Developer at Freelancer.com (2019 -- 2020), building Python NLP and .NET applications. Game Developer at EC Dev Team, Uzbekistan (2016 -- 2019), led development of an RTS mod for Paradox's Clausewitz Engine.}
-
-%----------SELECTED SOFTWARE PROJECTS----------
-\section{Selected Software Projects}
-
-\personalProject{LogisticsX}{Multi-tenant fleet-management platform with an AI dispatcher (Claude API, custom tool-use agent) that matches freight loads to trucks, checks federal driver hours-of-service rules, and plans routes; four web portals plus a cross-platform driver app on a .NET backend, integrated with the major freight load boards and tracking providers.}{https://logisticsx.app}
-\personalProject{Meat.gg}{Counter-Strike 2 community platform serving 50K+ users with social features and a Stripe-backed cosmetics shop, paired with a native C++ game-server plugin that bridges live game servers to the web backend for in-game moderation in real time.}{https://meat.gg}
-\personalProject{OGStack}{SaaS that auto-generates on-brand social-share preview images for any web page from a single line of markup; a multi-model AI layer (Claude, GPT, DeepSeek) reads the page and matches its branding, with AI-generated backgrounds and a global CDN (10K+ images during beta).}{https://ogstack.dev}
-\personalProject{DepVault}{Security tool that scans a project's dependencies for known vulnerabilities across eight language ecosystems and doubles as an encrypted secrets vault, with one-time sharing and a CLI for injecting tokens into CI/CD pipelines.}{https://depvault.com}
-\personalProject{Med Image Scanner}{HIPAA-compliant platform that pulls X-ray, CT, and MRI scans directly from hospital imaging systems and runs PyTorch detection models on them (pneumonia on chest X-rays, intracranial hemorrhage on head CTs), with results drawn as overlays in a real radiology viewer.}{https://github.com/suxrobgm/med-image-scanner}
 
 \end{document}
