@@ -138,14 +138,14 @@ Machine-learning engineer with published computer-vision research and 9+ years b
 %----------PROFESSIONAL EXPERIENCE----------
 \section{Professional Experience}
 
-\experienceEntry{Senior AI/ML Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Jun 2025}
+\experienceEntry{Senior AI/ML Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Present}
 \begin{itemize}
     \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform, including a risk model that flags patients showing early signs of decline from daily activity and care-log data so caregivers can step in sooner.
     \item Added an NLP pipeline that reads free-text clinical notes and pulls out structured details (symptoms, medications, care events), cutting the manual charting load for the care team.
     \item Stood up the ML infrastructure under HIPAA constraints, with de-identified training data, model serving behind the API, and monitoring. The platform cleared an outside HIPAA readiness review with no critical findings.
 \end{itemize}
 
-\experienceEntry{Senior Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{Jul 2022 -- Dec 2023}
+\experienceEntry{Senior Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{Oct 2021 -- Dec 2024}
 \begin{itemize}
     \item Built property-valuation and market-forecasting models on real-estate data that powered the product's analytics, turning raw pricing and inventory feeds into predicted values and trend signals.
     \item Designed the real-time feature pipeline (SignalR + SQL Server change tracking) that fed live market data to the models and pushed updated predictions to hundreds of concurrent users with sub-second latency.
@@ -168,6 +168,19 @@ Machine-learning engineer with published computer-vision research and 9+ years b
 
 %----------FEATURED PROJECTS----------
 \section{Selected AI/ML Projects}
+
+\projectEntryPaper{MorphoCLIP}{PyTorch, DINOv3, BioClinical ModernBERT, contrastive learning, CPJUMP1}
+{https://github.com/suxrobgm/morphoclip}
+{https://arxiv.org/abs/2608.22690}
+\begin{itemize}
+    \item Built a text-supervised contrastive model, pairing frozen vision/language backbones (DINOv3, BioClinical ModernBERT) with trainable projection heads, that matches Cell Painting microscopy images of drug- and gene-perturbed cells to natural-language treatment descriptions, evaluated on the CPJUMP1 benchmark (51 plates, 3M+ images). Published on arXiv with two Northeastern University co-authors.
+\end{itemize}
+
+\projectEntry{Localize, Don't Beautify}{Image-editing APIs, inpainting, ArcFace, prompt engineering}
+{https://arxiv.org/abs/2608.02841}
+\begin{itemize}
+    \item Studied why commercial image-editing APIs over-edit the face during cosmetic-surgery preview generation and how much of that can be fixed client-side without touching the model; tested prompt-only, masked-compositing, and model-based inpainting across six editors, and found simple masking beat model-based inpainting on localization accuracy. Published on arXiv.
+\end{itemize}
 
 \projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
 {https://github.com/suxrobgm/explainable-melanoma}
