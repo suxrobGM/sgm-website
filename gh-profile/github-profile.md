@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Animated Header Banner -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&section=header&text=Sukhrob%20Ilyosbekov&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Senior%20Full-Stack%20Engineer%20%7C%20CV%20Researcher&descSize=18&descAlignY=55&descColor=8b949e" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&section=header&text=Sukhrob%20Ilyosbekov&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Machine%20Learning%20Engineer%20%7C%20Computer%20Vision%20Researcher&descSize=18&descAlignY=55&descColor=8b949e" width="100%"/>
 
 <!-- Terminal-Style Introduction -->
 <img src="./assets/terminal-intro.svg" alt="Terminal Introduction" width="800"/>
@@ -9,7 +9,8 @@
 <!-- Badge Row -->
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/suxrobgm)
 [![Portfolio](https://img.shields.io/badge/suxrobgm.net-000?style=for-the-badge&logo=vercel&logoColor=white)](https://suxrobgm.net)
-[![arXiv](https://img.shields.io/badge/arXiv-2512.09289-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2512.09289)
+[![Google Scholar](https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en)
+[![Research](https://img.shields.io/badge/Publications-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://suxrobgm.net/research)
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/suxrobgm)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/suxrobgm)
 
@@ -22,17 +23,15 @@
 
 ### Tech Stack
 
-<img src="https://skillicons.dev/icons?i=cs,ts,js,python,kotlin,cpp&theme=dark" alt="Languages" />
+<img src="https://skillicons.dev/icons?i=pytorch,tensorflow,opencv,python&theme=dark" alt="AI/ML" />
+<br/>
+<img src="https://skillicons.dev/icons?i=cs,cpp,ts,kotlin&theme=dark" alt="Languages" />
+<br/>
+<img src="https://skillicons.dev/icons?i=fastapi,nodejs,bun,postgres,redis&theme=dark" alt="Backend & Data" />
 <br/>
 <img src="https://skillicons.dev/icons?i=react,nextjs,angular,tailwind&theme=dark" alt="Frontend" />
 <br/>
-<img src="https://skillicons.dev/icons?i=nodejs,bun,fastapi,redis&theme=dark" alt="Backend" />
-<br/>
-<img src="https://skillicons.dev/icons?i=postgres,dynamodb,firebase,prisma&theme=dark" alt="Data" />
-<br/>
 <img src="https://skillicons.dev/icons?i=docker,kubernetes,aws,azure&theme=dark" alt="Cloud & DevOps" />
-<br/>
-<img src="https://skillicons.dev/icons?i=pytorch,tensorflow,opencv,unity,godot&theme=dark" alt="AI & Games" />
 
 </div>
 
@@ -73,7 +72,11 @@
 
 ---
 
-### Research & Publications
+### Publications
+
+Three first-author papers in computer vision and multimodal ML.
+Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.net/research)** ·
+[Google Scholar](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en)
 
 <table>
 <tr>
@@ -81,19 +84,64 @@
 
 <div align="center">
 
-**[MelanomaNet](https://github.com/suxrobgm/explainable-melanoma)**
+**MorphoCLIP**
 
-[![arXiv](https://img.shields.io/badge/arXiv-2512.09289-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2512.09289)
+[![arXiv](https://img.shields.io/badge/arXiv-2608.22690-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2608.22690)
+[![Code](https://img.shields.io/badge/-Code-181717?style=flat-square&logo=github)](https://github.com/suxrobgm/morphoclip)
 
 </div>
 
-Explainable deep learning for skin lesion classification across **9 ISIC 2019 categories** with GradCAM++ visualization and automated ABCDE feature extraction.
+Text-supervised contrastive model matching Cell Painting microscopy of perturbed cells to natural-language treatment descriptions. Frozen DINOv3 + BioClinical ModernBERT backbones with trainable projection heads, evaluated on **CPJUMP1** (51 plates, 3M+ images).
 
-![Python](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![Contrastive](https://img.shields.io/badge/Contrastive_Learning-333?style=flat-square)
 
 </td>
 <td width="33%">
+
+<div align="center">
+
+**Localize, Don't Beautify**
+
+[![arXiv](https://img.shields.io/badge/arXiv-2608.02841-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2608.02841)
+
+</div>
+
+How much of a black-box image editor's behaviour can be controlled from outside the model? Compares prompt-only, masked compositing, and inpainting across **six commercial editors** on 196 edits, scoring identity preservation and localization.
+
+![ArcFace](https://img.shields.io/badge/ArcFace-333?style=flat-square)
+![Inpainting](https://img.shields.io/badge/Inpainting-333?style=flat-square)
+
+</td>
+<td width="33%">
+
+<div align="center">
+
+**MelanomaNet**
+
+[![arXiv](https://img.shields.io/badge/arXiv-2512.09289-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2512.09289)
+[![Code](https://img.shields.io/badge/-Code-181717?style=flat-square&logo=github)](https://github.com/suxrobgm/explainable-melanoma)
+
+</div>
+
+Explainable classification across all **9 ISIC 2019 categories** (0.856 weighted F1 on 25,331 images). GradCAM++ attention decomposed along the ABCDE criteria clinicians already use, with alignment metrics so interpretability is measured, not asserted.
+
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![GradCAM](https://img.shields.io/badge/GradCAM++-333?style=flat-square)
+
+</td>
+</tr>
+</table>
+
+---
+
+### Course & Side Projects
+
+Graduate coursework, listed separately from the peer-facing work above.
+
+<table>
+<tr>
+<td width="50%">
 
 <div align="center">
 
@@ -101,13 +149,13 @@ Explainable deep learning for skin lesion classification across **9 ISIC 2019 ca
 
 </div>
 
-Lightweight monocular depth estimation — **42% fewer params** than Depth Anything V2, **72% faster inference**, superior error metrics on NYU Depth V2.
+Lightweight monocular depth estimation — **42% fewer params** than Depth Anything V2, **72% faster inference**, better relative error on NYU Depth V2.
 
-![Python](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![Model](https://img.shields.io/badge/ResNet18_+_UNet-333?style=flat-square)
 
 </td>
-<td width="33%">
+<td width="50%">
 
 <div align="center">
 
@@ -115,9 +163,9 @@ Lightweight monocular depth estimation — **42% fewer params** than Depth Anyth
 
 </div>
 
-Super-resolution CNN achieving **40x speedup** over SRCNN with end-to-end upsampling at 2x/3x/4x scales (+1.78 dB PSNR on Set5).
+Reproduction of FSRCNN (Dong et al., ECCV 2016) for super-resolution — **40x speedup** over SRCNN with end-to-end upsampling at 2x/3x/4x (+1.78 dB PSNR on Set5).
 
-![Python](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![AMP](https://img.shields.io/badge/Mixed_Precision-333?style=flat-square)
 
 </td>

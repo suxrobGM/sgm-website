@@ -8,9 +8,9 @@ namespace SGM.WebApp.Components.Pages;
 public abstract class HomePageBase : ComponentBase
 {
     protected const string Description =
-        "Senior Full Stack Developer and AI Researcher with 9+ years of experience. " +
-        "M.S. in Computer Science from Northeastern University. " +
-        "Specializing in Computer Vision, Deep Learning, and Full-Stack Development.";
+        "Machine learning engineer and computer vision researcher with three published papers " +
+        "and 9+ years building production software. M.S. in Computer Science from Northeastern " +
+        "University. Deep learning, explainable AI, medical imaging, and LLM systems.";
 
     [Inject]
     protected IOptions<GoogleRecaptchaOptions> RecaptchaOptions { get; set; } = null!;

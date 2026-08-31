@@ -1,0 +1,237 @@
+@page "/research"
+@using System.Text.Json
+@using SGM.WebApp.Data
+
+<PageTitle>Sukhrob Ilyosbekov | Computer Vision Research</PageTitle>
+
+<HeadContent>
+  <meta name="description" content="@ResearchData.PageDescription" />
+  <meta property="og:url" content="https://suxrobgm.net/research" />
+  <meta property="og:title" content="Sukhrob Ilyosbekov | Computer Vision Research" />
+  <meta property="og:description" content="@ResearchData.PageDescription" />
+  <link rel="canonical" href="https://suxrobgm.net/research" />
+  <style>
+      /* No global reset in this app, and scoped CSS cannot reach the body element. */
+      body {
+        margin: 0;
+        background: #fbfaf8;
+      }
+
+      @@media (prefers-color-scheme: dark) {
+        body {
+          background: #16171a;
+        }
+      }
+
+      .grecaptcha-badge {
+        visibility: hidden;
+      }
+  </style>
+</HeadContent>
+
+<div class="rp">
+  <div class="rp-inner">
+
+    <header class="rp-head">
+      <h1>Sukhrob Ilyosbekov</h1>
+      <p class="rp-sub">Computer Vision &middot; Deep Learning &middot; Explainable AI</p>
+      <p class="rp-affil">M.S. Computer Science, Northeastern University &middot; Boston, MA</p>
+      <nav class="rp-links" aria-label="Profiles">
+        <a href="mailto:@ResearchData.Email">
+          <i class="fas fa-envelope" aria-hidden="true"></i> Email
+        </a>
+        <a href="@ResearchData.ScholarUrl" target="_blank" rel="noopener">
+          <i class="fas fa-graduation-cap" aria-hidden="true"></i> Google Scholar
+        </a>
+        <a href="@ResearchData.GitHubUrl" target="_blank" rel="noopener">
+          <i class="fab fa-github" aria-hidden="true"></i> GitHub
+        </a>
+        <a href="@ResearchData.LinkedInUrl" target="_blank" rel="noopener">
+          <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
+        </a>
+      </nav>
+      <div class="rp-cvs">
+        <a class="rp-btn rp-btn-primary" href="resume-phd.pdf" target="_blank">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i> Research CV
+        </a>
+        <a class="rp-btn" href="resume-aiml.pdf" target="_blank">
+          <i class="fas fa-file-pdf" aria-hidden="true"></i> ML Engineering Résumé
+        </a>
+      </div>
+    </header>
+
+    <section class="rp-statement" aria-label="Research statement">
+      <p>@ResearchData.ResearchStatement</p>
+    </section>
+
+    <section aria-labelledby="publications">
+      <h2 id="publications">Publications</h2>
+
+      @foreach (var pub in ResearchData.Publications)
+      {
+        <article class="rp-pub">
+          <h3>
+            <a href="@pub.ArxivUrl" target="_blank" rel="noopener">@pub.Title</a>
+          </h3>
+          <p class="rp-authors">@BoldSelf(pub.Authors)</p>
+          <p class="rp-venue">@pub.Venue &middot; arXiv:@pub.ArxivId</p>
+
+          <ul class="rp-tags">
+            @foreach (var tag in pub.Tags)
+            {
+              <li>@tag</li>
+            }
+          </ul>
+
+          <p class="rp-actions">
+            <a href="@pub.ArxivUrl" target="_blank" rel="noopener">
+              <i class="fas fa-file-lines" aria-hidden="true"></i> Paper
+            </a>
+            @if (pub.RepoUrl is not null)
+            {
+              <a href="@pub.RepoUrl" target="_blank" rel="noopener">
+                <i class="fab fa-github" aria-hidden="true"></i> Code
+              </a>
+            }
+          </p>
+
+          <details class="rp-details">
+            <summary>Summary</summary>
+            <p>@pub.Summary</p>
+          </details>
+
+          <details class="rp-details">
+            <summary>BibTeX</summary>
+            <pre><code>@pub.BibTex</code></pre>
+          </details>
+        </article>
+      }
+    </section>
+
+    <section aria-labelledby="applied">
+      <h2 id="applied">Applied Work</h2>
+      <p class="rp-note">
+        Research questions above, running in production. Both handle real clinical or
+        operational data.
+      </p>
+
+      @foreach (var proj in ResearchData.AppliedProjects)
+      {
+        <article class="rp-item">
+          <h3>@proj.Name</h3>
+          <p>@proj.Summary</p>
+          <ul class="rp-tags">
+            @foreach (var tag in proj.Tags)
+            {
+              <li>@tag</li>
+            }
+          </ul>
+          <p class="rp-actions">
+            @if (proj.SiteUrl is not null)
+            {
+              <a href="@proj.SiteUrl" target="_blank" rel="noopener">
+                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> Site
+              </a>
+            }
+            @if (proj.RepoUrl is not null)
+            {
+              <a href="@proj.RepoUrl" target="_blank" rel="noopener">
+                <i class="fab fa-github" aria-hidden="true"></i> Code
+              </a>
+            }
+          </p>
+        </article>
+      }
+    </section>
+
+    <section aria-labelledby="coursework">
+      <h2 id="coursework">Selected Coursework</h2>
+      <p class="rp-note">
+        Graduate course projects, listed separately from the peer-facing work above.
+      </p>
+
+      @foreach (var proj in ResearchData.CourseProjects)
+      {
+        <article class="rp-item">
+          <h3>@proj.Title</h3>
+          <p>@proj.Summary</p>
+          <ul class="rp-tags">
+            @foreach (var tag in proj.Tags)
+            {
+              <li>@tag</li>
+            }
+          </ul>
+          <p class="rp-actions">
+            <a href="@proj.RepoUrl" target="_blank" rel="noopener">
+              <i class="fab fa-github" aria-hidden="true"></i> Code
+            </a>
+          </p>
+        </article>
+      }
+    </section>
+
+    <footer class="rp-foot">
+      <p>
+        <a href="mailto:@ResearchData.Email">@ResearchData.Email</a>
+        &middot;
+        <a href="/">Portfolio site</a>
+      </p>
+      <p class="rp-copy">&copy; @DateTime.Now.Year Sukhrob Ilyosbekov</p>
+    </footer>
+
+  </div>
+</div>
+
+@* Emitted as raw markup because Razor encodes the "+" in the type attribute to &#x2B;. *@
+@JsonLdScript
+
+@code {
+
+  /// <summary>Inputs are static, never user data.</summary>
+  private static MarkupString BoldSelf(string authors) =>
+      (MarkupString)authors.Replace("S. Ilyosbekov", "<strong>S. Ilyosbekov</strong>");
+
+  /// <summary>JsonSerializer escapes &lt; and &gt;, so the payload cannot break out.</summary>
+  private static MarkupString JsonLdScript { get; } = (MarkupString)(
+      """<script type="application/ld+json">""" + BuildJsonLd() + "</script>");
+
+  private static string BuildJsonLd()
+  {
+    var person = new Dictionary<string, object?>
+    {
+      ["@context"] = "https://schema.org",
+      ["@type"] = "Person",
+      ["name"] = "Sukhrob Ilyosbekov",
+      ["url"] = "https://suxrobgm.net/research",
+      ["email"] = ResearchData.Email,
+      ["jobTitle"] = "Machine Learning Engineer",
+      ["alumniOf"] = new Dictionary<string, object?>
+      {
+        ["@type"] = "CollegeOrUniversity",
+        ["name"] = "Northeastern University",
+      },
+      ["sameAs"] = new[]
+        {
+                ResearchData.ScholarUrl,
+                ResearchData.GitHubUrl,
+                ResearchData.LinkedInUrl,
+            },
+      ["knowsAbout"] = new[]
+        {
+                "Computer Vision", "Deep Learning", "Explainable AI",
+                "Medical Image Analysis", "Representation Learning",
+            },
+      ["subjectOf"] = ResearchData.Publications.Select(p => new Dictionary<string, object?>
+      {
+        ["@type"] = "ScholarlyArticle",
+        ["headline"] = p.Title,
+        ["author"] = "Sukhrob Ilyosbekov",
+        ["url"] = p.ArxivUrl,
+        ["identifier"] = $"arXiv:{p.ArxivId}",
+      }).ToArray(),
+    };
+
+    return JsonSerializer.Serialize(person, new JsonSerializerOptions { WriteIndented = false });
+  }
+
+}

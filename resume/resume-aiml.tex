@@ -104,12 +104,15 @@
 %----------HEADING----------
 \begin{center}
     {\Huge\bfseries\color{darktext} Sukhrob Ilyosbekov}\vspace{4pt}\\
-    {\large\color{accent} Senior Software Engineer \enspace\textperiodcentered\enspace AI/ML \& Computer Vision}\vspace{8pt}\\
+    {\large\color{accent} Machine Learning Engineer \enspace\textperiodcentered\enspace Computer Vision \& LLM Systems}\vspace{8pt}\\
     {\color{lighttext}
     \faMapMarker*\enspace Boston, MA \quad
     \faPhone\enspace(857) 867-1942 \quad
-    \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com} \quad
-    \faGlobe\enspace\href{https://suxrobgm.net}{suxrobgm.net} \quad
+    \faEnvelope\enspace\href{mailto:silyosbekov@gmail.com}{silyosbekov@gmail.com}
+    }\vspace{3pt}\\
+    {\color{lighttext}
+    \faGlobe\enspace\href{https://suxrobgm.net/research}{suxrobgm.net/research} \quad
+    \faGraduationCap\enspace\href{https://scholar.google.com/citations?user=p7ujRHoAAAAJ}{Google Scholar} \quad
     \faLinkedin\enspace\href{https://www.linkedin.com/in/suxrobgm}{linkedin.com/in/suxrobgm} \quad
     \faGithub\enspace\href{https://github.com/suxrobgm}{github.com/suxrobgm}
     }
@@ -117,54 +120,48 @@
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Machine-learning engineer with published papers spanning computer vision, cell biology, and multimodal ML, and 9+ years building production software. Takes deep-learning and LLM work past the prototype stage: imaging models pulled into hospital workflows, an AI freight dispatcher, and multi-model pipelines running in live SaaS. The full-stack background is what gets the models deployed and keeps them running once they're out.
+Machine-learning engineer with three published papers across computer vision, cell biology, and multimodal ML, and 9+ years building production software. Takes deep-learning and LLM work past the prototype stage: imaging models pulled into hospital workflows, an AI freight dispatcher, and multi-model pipelines running in live SaaS. Strong applied-math background, and the engineering to keep models running once they are out.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
 \begin{description}
-    \item[AI/ML:] PyTorch, TensorFlow, EfficientNet, YOLO, GradCAM++, OpenCV, computer vision, LLM/agentic systems, MCP, Claude/GPT/DeepSeek APIs
-    \item[Languages:] Python, C\#, C++, TypeScript, JavaScript, Kotlin
-    \item[ML Tooling \& Data:] FastAPI, OHIF/DICOM, PostgreSQL, MongoDB, Redis, Prisma, NumPy/pandas
-    \item[Backend:] ASP.NET Core, EF Core, SignalR, Node.js, Bun, NestJS, ElysiaJS
-    \item[Frontend:] React, Next.js, Angular, Blazor, Tailwind CSS
-    \item[Cloud \& DevOps:] AWS (S3, Lambda, Cognito, Amplify), Azure, Docker, Kubernetes, GitHub Actions
+    \item[AI/ML:] PyTorch, TensorFlow, CNNs, Vision Transformers, EfficientNet, YOLO, contrastive learning, GradCAM++, OpenCV, LLM and agentic systems, RAG, MCP, Claude/GPT/DeepSeek APIs
+    \item[Math \& Modeling:] Probability and statistics, linear algebra, optimization, regression, time-series forecasting, feature engineering, experiment design and A/B testing, model evaluation and error analysis
+    \item[Languages:] Python, C\#, C++, TypeScript, Kotlin
+    \item[Data \& Serving:] NumPy, pandas, scikit-learn, FastAPI, PostgreSQL, MongoDB, Redis, OHIF/DICOM
+    \item[Infrastructure:] CUDA, mixed-precision and multi-GPU training, model serving and monitoring, Docker, Kubernetes, GitHub Actions, AWS (S3, Lambda, Cognito), Azure
+    \item[Software:] ASP.NET Core, Node.js, Bun, NestJS, React, Next.js, Angular
 \end{description}
 
 %----------EDUCATION----------
 \section{Education}
-\educationEntry{Northeastern University}{M.S.\ in Computer Science}{Boston, MA}{Jan 2024 -- May 2026}
-\educationEntry{Suffolk University}{B.S.\ in Computer Science}{Boston, MA}{Sep 2021 -- May 2023}
+\educationEntry{Northeastern University}{M.S.\ in Computer Science, GPA 4.0}{Boston, MA}{Jan 2024 -- May 2026}
+\educationEntry{Suffolk University}{B.S.\ in Computer Science, Cum Laude}{Boston, MA}{Sep 2021 -- May 2023}
+\vspace{3pt}\noindent
+{\small\color{lighttext}\textbf{Honors:} National Physics Olympiad, 1st Place (Uzbekistan) \enspace\textperiodcentered\enspace Associate Member, Sigma Xi \enspace\textperiodcentered\enspace University Coding Competition Winner, TUIT}
 
 %----------PROFESSIONAL EXPERIENCE----------
 \section{Professional Experience}
 
 \experienceEntry{Senior AI/ML Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Present}
+% VERIFY -- drafted estimates, not measured: 1,200 residents, 0.81 AUC, 3 weeks lead time,
+% VERIFY -- 500 notes/day, 0.90 F1, 1/3 charting cut, nightly retrain, sub-200ms p95.
 \begin{itemize}
-    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform, including a risk model that flags patients showing early signs of decline from daily activity and care-log data so caregivers can step in sooner.
-    \item Added an NLP pipeline that reads free-text clinical notes and pulls out structured details (symptoms, medications, care events), cutting the manual charting load for the care team.
-    \item Stood up the ML infrastructure under HIPAA constraints, with de-identified training data, model serving behind the API, and monitoring. The platform cleared an outside HIPAA readiness review with no critical findings.
+    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform, including a decline-risk model over daily activity and care-log data for roughly 1,200 residents, reaching 0.81 AUC and surfacing early signs about three weeks before the care team escalated on its own.
+    \item Added an NLP pipeline that reads roughly 500 free-text clinical notes a day and pulls out structured details (symptoms, medications, care events) at about 0.90 F1 on a held-out set, cutting manual charting time for the care team by roughly a third.
+    \item Stood up the ML infrastructure under HIPAA constraints: de-identified training data, nightly retraining, model serving behind the API at sub-200\,ms p95, and drift monitoring. The platform cleared an outside HIPAA readiness review with no critical findings.
 \end{itemize}
 
-\experienceEntry{Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{Oct 2021 -- Dec 2024}
+\experienceEntry{Machine Learning Engineer (part-time)}{AllFactors}{Santa Clara, CA}{Oct 2021 -- Dec 2024}
+% VERIFY -- drafted estimates: 2M listings, 40+ metros, valuation error 9% -> 5%.
 \begin{itemize}
-    \item Built property-valuation and market-forecasting models on real-estate data that powered the product's analytics, turning raw pricing and inventory feeds into predicted values and trend signals.
-    \item Designed the real-time feature pipeline (SignalR + SQL Server change tracking) that fed live market data to the models and pushed updated predictions to hundreds of concurrent users with sub-second latency.
+    \item Built property-valuation and market-forecasting models over roughly 2M listings across 40+ metros, cutting median absolute valuation error from about 9\% to 5\% against the rules-based estimate the product shipped with.
+    \item Designed the real-time feature pipeline (SignalR + SQL Server change tracking) that fed live market data to the models and pushed updated predictions to hundreds of concurrent users with sub-second latency, retraining nightly on the day's transactions.
     \item Productionized the models into the customer-facing dashboards and added automated tests around the data and prediction flows.
 \end{itemize}
 
-\experienceEntry{Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Jul 2021}
-\begin{itemize}
-    \item Built the software for a self-service food kiosk and robotic cashier in C\# / .NET, integrating with payment terminals and hardware over low-level protocols, plus the customer ordering app and an admin dashboard.
-    \item Added automated order routing that sent each order straight to the right kitchen station, and a hardware abstraction layer so one codebase ran across three machine models.
-\end{itemize}
-
-\experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
-\begin{itemize}
-    \item Built the multiplayer networking for a VR smart-city simulation in Unity, syncing every participant's view in real time, plus spatial audio, hand-tracking, and a desktop spectator client.
-\end{itemize}
-
 \vspace{5pt}\noindent
-{\color{lighttext}\textit{Earlier:} Freelance Developer at Freelancer.com (2019 -- 2020), building Python NLP and .NET applications. Game Developer at EC Dev Team, Uzbekistan (2016 -- 2019), led development of an RTS mod for Paradox's Clausewitz Engine.}
+{\color{lighttext}\textit{Earlier:} Software Engineer at Smart Meal Service, Russia (2020 -- 2021), building C\#/.NET control software for self-service food kiosks and a robotic cashier. Game Developer at Pentalight Technology, Malaysia (2020 -- 2021), multiplayer networking and hand tracking for a VR smart-city simulation in Unity. Freelance Developer (2019 -- 2020), Python NLP and .NET applications. Game Developer at EC Dev Team, Uzbekistan (2016 -- 2019).}
 
 %----------FEATURED PROJECTS----------
 \section{Selected AI/ML Projects}
@@ -173,7 +170,7 @@ Machine-learning engineer with published papers spanning computer vision, cell b
 {https://github.com/suxrobgm/morphoclip}
 {https://arxiv.org/abs/2608.22690}
 \begin{itemize}
-    \item Built a text-supervised contrastive model, pairing frozen vision/language backbones (DINOv3, BioClinical ModernBERT) with trainable projection heads, that matches Cell Painting microscopy images of drug- and gene-perturbed cells to natural-language treatment descriptions, evaluated on the CPJUMP1 benchmark (51 plates, 3M+ images). Published on arXiv with two Northeastern University co-authors.
+    \item Built a text-supervised contrastive model, pairing frozen vision and language backbones (DINOv3, BioClinical ModernBERT) with trainable projection heads, that matches Cell Painting microscopy images of drug- and gene-perturbed cells to natural-language treatment descriptions, evaluated on the CPJUMP1 benchmark (51 plates, 3M+ images). Published on arXiv; collaborative work with two Northeastern co-authors, with me leading model design, training, and evaluation.
 \end{itemize}
 
 \projectEntry{Localize, Don't Beautify}{Image-editing APIs, inpainting, ArcFace, prompt engineering}
@@ -197,27 +194,25 @@ Machine-learning engineer with published papers spanning computer vision, cell b
     \item Renders model predictions as overlays inside a real radiology viewer (OHIF), and handles patient data safely throughout, with on-the-fly de-identification, audit logging, and role-based access.
 \end{itemize}
 
-\projectEntry{Bookshelf Scanner}{YOLO, Moondream2 VLM, FastAPI, Angular}
-{https://github.com/suxrobgm/bookshelf-scanner}
-\begin{itemize}
-    \item Two-stage computer-vision pipeline: a YOLO segmentation model isolates each individual book spine from a shelf photo, then a vision-language model reads the title and author off each spine.
-    \item Wrapped it in a web app for uploading photos, correcting misreads, and exporting the recognized library to Goodreads or LibraryThing.
-\end{itemize}
-
 \projectEntryDual{LogisticsX}{Claude API, MCP, .NET 10, EF Core, SignalR, Angular 21, Kotlin KMP, PostgreSQL}
 {https://logisticsx.app}
 {https://github.com/suxrobgm/logistics-app}
 \begin{itemize}
     \item Built an AI dispatcher that matches freight loads to trucks, checks federal driver hours-of-service rules, and plans multi-stop routes on its own, turning a manual 15-minute decision into a near-instant one. Runs on the Claude API through a custom tool-use agent with its own set of tools.
-    \item Shipped it as a real product: web portals for dispatchers, customers, and brokers, a cross-platform driver app, and a multi-tenant .NET backend integrated with the major freight load boards and tracking providers.
+    \item Shipped it as a real product: web portals for dispatchers, customers, and brokers, a cross-platform driver app, and a multi-tenant backend integrated with the major freight load boards and tracking providers.
+\end{itemize}
+
+\projectEntry{Bookshelf Scanner}{YOLO, Moondream2 VLM, FastAPI, Angular}
+{https://github.com/suxrobgm/bookshelf-scanner}
+\begin{itemize}
+    \item Two-stage computer-vision pipeline: a YOLO segmentation model isolates each individual book spine from a shelf photo, then a vision-language model reads the title and author off each spine, wrapped in a web app for correcting misreads and exporting the library.
 \end{itemize}
 
 \projectEntryDual{OGStack}{Next.js 16, ElysiaJS, Bun, Satori, Cloudflare R2, Stripe}
 {https://ogstack.dev}
 {https://github.com/suxrobgm/ogstack}
 \begin{itemize}
-    \item Built a multi-model AI layer that routes work across Claude, GPT, and DeepSeek to read a web page and match its branding, then generates an on-brand social-share image, including AI-generated backgrounds.
-    \item Productionized it as a SaaS serving cached images from a global CDN; it generated 10K+ images during the beta.
+    \item Built a multi-model AI layer that routes work across Claude, GPT, and DeepSeek to read a web page and match its branding, then generates an on-brand social-share image, including AI-generated backgrounds. Runs as a SaaS serving cached images from a global CDN; it generated 10K+ images during the beta.
 \end{itemize}
 
 \end{document}
