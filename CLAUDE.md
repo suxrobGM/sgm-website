@@ -19,6 +19,27 @@ dotnet run --project src/SGM.WebApp
 dotnet publish src/SGM.WebApp/SGM.WebApp.csproj -c Release -r linux-x64 -p:PublishSingleFile=true --output ./publish
 ```
 
+### Resumes (LaTeX)
+
+`resume/build.ps1` compiles the `.tex` resumes with latexmk and copies each PDF into
+`src/SGM.WebApp/wwwroot/`, which is where the site serves them from. Compiling without
+that copy is how the site ends up serving a stale PDF.
+
+```powershell
+./resume/build.ps1              # all three resumes, then sync to wwwroot
+./resume/build.ps1 phd          # partial name match: resume-phd only
+./resume/build.ps1 aiml -NoSync # compile without touching wwwroot
+```
+
+Requires latexmk on PATH (MiKTeX or TeX Live). For a shorter invocation, add to your
+PowerShell profile:
+
+```powershell
+function texbuild { & "$HOME\source\repos\sgm-website\resume\build.ps1" @args }
+epos\sgm-website
+esumeuild.ps1" @args }
+```
+
 ## Architecture
 
 **Entry point flow:** `Program.cs` → `Setup.ConfigureServices()` → `Setup.ConfigurePipeline()`

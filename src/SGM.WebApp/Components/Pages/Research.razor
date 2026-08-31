@@ -1,32 +1,15 @@
 @page "/research"
 @using System.Text.Json
-@using SGM.WebApp.Data
 
-<PageTitle>Sukhrob Ilyosbekov | Computer Vision Research</PageTitle>
+<PageTitle>@Title</PageTitle>
 
 <HeadContent>
   <meta name="description" content="@ResearchData.PageDescription" />
   <meta property="og:url" content="https://suxrobgm.net/research" />
-  <meta property="og:title" content="Sukhrob Ilyosbekov | Computer Vision Research" />
+  <meta property="og:title" content="@Title" />
   <meta property="og:description" content="@ResearchData.PageDescription" />
   <link rel="canonical" href="https://suxrobgm.net/research" />
-  <style>
-      /* No global reset in this app, and scoped CSS cannot reach the body element. */
-      body {
-        margin: 0;
-        background: #fbfaf8;
-      }
-
-      @@media (prefers-color-scheme: dark) {
-        body {
-          background: #16171a;
-        }
-      }
-
-      .grecaptcha-badge {
-        visibility: hidden;
-      }
-  </style>
+  <link rel="stylesheet" href="css/research.css" />
 </HeadContent>
 
 <div class="rp">
@@ -76,12 +59,7 @@
           <p class="rp-authors">@BoldSelf(pub.Authors)</p>
           <p class="rp-venue">@pub.Venue &middot; arXiv:@pub.ArxivId</p>
 
-          <ul class="rp-tags">
-            @foreach (var tag in pub.Tags)
-            {
-              <li>@tag</li>
-            }
-          </ul>
+          <TagList Tags="pub.Tags" />
 
           <p class="rp-actions">
             <a href="@pub.ArxivUrl" target="_blank" rel="noopener">
@@ -117,30 +95,7 @@
 
       @foreach (var proj in ResearchData.AppliedProjects)
       {
-        <article class="rp-item">
-          <h3>@proj.Name</h3>
-          <p>@proj.Summary</p>
-          <ul class="rp-tags">
-            @foreach (var tag in proj.Tags)
-            {
-              <li>@tag</li>
-            }
-          </ul>
-          <p class="rp-actions">
-            @if (proj.SiteUrl is not null)
-            {
-              <a href="@proj.SiteUrl" target="_blank" rel="noopener">
-                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> Site
-              </a>
-            }
-            @if (proj.RepoUrl is not null)
-            {
-              <a href="@proj.RepoUrl" target="_blank" rel="noopener">
-                <i class="fab fa-github" aria-hidden="true"></i> Code
-              </a>
-            }
-          </p>
-        </article>
+        <ProjectCard Project="proj" />
       }
     </section>
 
@@ -152,21 +107,7 @@
 
       @foreach (var proj in ResearchData.CourseProjects)
       {
-        <article class="rp-item">
-          <h3>@proj.Title</h3>
-          <p>@proj.Summary</p>
-          <ul class="rp-tags">
-            @foreach (var tag in proj.Tags)
-            {
-              <li>@tag</li>
-            }
-          </ul>
-          <p class="rp-actions">
-            <a href="@proj.RepoUrl" target="_blank" rel="noopener">
-              <i class="fab fa-github" aria-hidden="true"></i> Code
-            </a>
-          </p>
-        </article>
+        <ProjectCard Project="proj" />
       }
     </section>
 
@@ -176,7 +117,7 @@
         &middot;
         <a href="/">Portfolio site</a>
       </p>
-      <p class="rp-copy">&copy; @DateTime.Now.Year Sukhrob Ilyosbekov</p>
+      <p class="rp-copy">&copy; @DateTime.UtcNow.Year Sukhrob Ilyosbekov</p>
     </footer>
 
   </div>
@@ -186,6 +127,8 @@
 @JsonLdScript
 
 @code {
+
+  private const string Title = "Sukhrob Ilyosbekov | Computer Vision Research";
 
   /// <summary>Inputs are static, never user data.</summary>
   private static MarkupString BoldSelf(string authors) =>
@@ -210,17 +153,12 @@
         ["@type"] = "CollegeOrUniversity",
         ["name"] = "Northeastern University",
       },
-      ["sameAs"] = new[]
-        {
-                ResearchData.ScholarUrl,
-                ResearchData.GitHubUrl,
-                ResearchData.LinkedInUrl,
-            },
+      ["sameAs"] = new[] { ResearchData.ScholarUrl, ResearchData.GitHubUrl, ResearchData.LinkedInUrl },
       ["knowsAbout"] = new[]
-        {
-                "Computer Vision", "Deep Learning", "Explainable AI",
-                "Medical Image Analysis", "Representation Learning",
-            },
+      {
+        "Computer Vision", "Deep Learning", "Explainable AI",
+        "Medical Image Analysis", "Representation Learning",
+      },
       ["subjectOf"] = ResearchData.Publications.Select(p => new Dictionary<string, object?>
       {
         ["@type"] = "ScholarlyArticle",
@@ -231,7 +169,7 @@
       }).ToArray(),
     };
 
-    return JsonSerializer.Serialize(person, new JsonSerializerOptions { WriteIndented = false });
+    return JsonSerializer.Serialize(person);
   }
 
 }

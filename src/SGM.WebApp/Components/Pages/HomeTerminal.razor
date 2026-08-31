@@ -1,11 +1,15 @@
 @page "/cli"
 @inherits HomePageBase
+@code {
+  // Rendered twice below, as <PageTitle> and as og:title.
+  private const string Title = "Sukhrob Ilyosbekov | ML Engineer (Terminal)";
+}
 
-<PageTitle>Sukhrob Ilyosbekov | ML Engineer (Terminal)</PageTitle>
+<PageTitle>@Title</PageTitle>
 
 <HeadContent>
   <meta name="description" content="@Description" />
-  <meta property="og:title" content="Sukhrob Ilyosbekov | ML Engineer (Terminal)" />
+  <meta property="og:title" content="@Title" />
   <meta property="og:description" content="@Description" />
   <meta property="og:url" content="https://suxrobgm.net/cli" />
   <link

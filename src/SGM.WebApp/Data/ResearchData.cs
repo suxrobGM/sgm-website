@@ -24,19 +24,13 @@ public sealed record Publication
     public string ArxivUrl => $"https://arxiv.org/abs/{ArxivId}";
 }
 
-/// <summary>Kept separate from <see cref="Publication"/> on purpose.</summary>
-public sealed record CourseProject
+/// <summary>
+/// Coursework and applied work. Kept separate from <see cref="Publication"/> on purpose;
+/// which list an entry sits in is what distinguishes the two kinds.
+/// </summary>
+public sealed record Project
 {
     public required string Title { get; init; }
-    public required string Summary { get; init; }
-    public required string RepoUrl { get; init; }
-    public required string[] Tags { get; init; }
-}
-
-/// <summary>The deployment half of the research agenda.</summary>
-public sealed record AppliedProject
-{
-    public required string Name { get; init; }
     public required string Summary { get; init; }
     public string? SiteUrl { get; init; }
     public string? RepoUrl { get; init; }
@@ -154,9 +148,9 @@ public static class ResearchData
         },
     ];
 
-    public static readonly IReadOnlyList<CourseProject> CourseProjects =
+    public static readonly IReadOnlyList<Project> CourseProjects =
     [
-        new CourseProject
+        new Project
         {
             Title = "LightDepth: Lightweight Monocular Depth Estimation",
             Summary =
@@ -166,7 +160,7 @@ public static class ResearchData
             RepoUrl = "https://github.com/suxrobgm/lightdepth",
             Tags = ["PyTorch", "ResNet18", "U-Net", "NYU Depth V2"],
         },
-        new CourseProject
+        new Project
         {
             Title = "FSRCNN: Accelerating Super-Resolution CNN",
             Summary =
@@ -176,7 +170,7 @@ public static class ResearchData
             RepoUrl = "https://github.com/suxrobgm/fsrcnn",
             Tags = ["PyTorch", "Mixed-Precision Training", "Set5/Set14/DIV2K"],
         },
-        new CourseProject
+        new Project
         {
             Title = "Bookshelf Scanner: Multi-Modal Book Detection and Recognition",
             Summary =
@@ -188,11 +182,11 @@ public static class ResearchData
         },
     ];
 
-    public static readonly IReadOnlyList<AppliedProject> AppliedProjects =
+    public static readonly IReadOnlyList<Project> AppliedProjects =
     [
-        new AppliedProject
+        new Project
         {
-            Name = "Med Image Scanner",
+            Title = "Med Image Scanner",
             Summary =
                 "A HIPAA-compliant platform that pulls X-ray, CT, and MRI scans directly from hospital imaging " +
                 "systems and runs PyTorch detection models on them, flagging pneumonia on chest X-rays and " +
@@ -201,9 +195,9 @@ public static class ResearchData
             RepoUrl = "https://github.com/suxrobgm/med-image-scanner",
             Tags = ["FastAPI", "PyTorch", "OHIF", "DICOM"],
         },
-        new AppliedProject
+        new Project
         {
-            Name = "LogisticsX",
+            Title = "LogisticsX",
             Summary =
                 "An AI dispatcher that matches freight loads to trucks, checks federal driver hours-of-service " +
                 "rules, and plans multi-stop routes on its own, turning a manual 15-minute decision into a " +

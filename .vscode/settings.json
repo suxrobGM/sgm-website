@@ -7,6 +7,18 @@
     "**/Logs": true,
     "**/.idea": true
   },
+  "[latex]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[tex]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[bibtex]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },

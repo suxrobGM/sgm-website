@@ -1,0 +1,26 @@
+<article class="rp-item">
+  <h3>@Project.Title</h3>
+  <p>@Project.Summary</p>
+  <TagList Tags="Project.Tags" />
+  <p class="rp-actions">
+    @if (Project.SiteUrl is not null)
+    {
+      <a href="@Project.SiteUrl" target="_blank" rel="noopener">
+        <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i> Site
+      </a>
+    }
+    @if (Project.RepoUrl is not null)
+    {
+      <a href="@Project.RepoUrl" target="_blank" rel="noopener">
+        <i class="fab fa-github" aria-hidden="true"></i> Code
+      </a>
+    }
+  </p>
+</article>
+
+@code {
+
+  [Parameter, EditorRequired]
+  public required Project Project { get; set; }
+
+}

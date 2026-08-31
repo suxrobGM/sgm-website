@@ -1,11 +1,15 @@
 @page "/"
 @inherits HomePageBase
+@code {
+  // Rendered twice below, as <PageTitle> and as og:title.
+  private const string Title = "Sukhrob Ilyosbekov | Machine Learning Engineer & CV Researcher";
+}
 
-<PageTitle>Sukhrob Ilyosbekov | Machine Learning Engineer & CV Researcher</PageTitle>
+<PageTitle>@Title</PageTitle>
 
 <HeadContent>
   <meta name="description" content="@Description" />
-  <meta property="og:title" content="Sukhrob Ilyosbekov | Machine Learning Engineer & CV Researcher" />
+  <meta property="og:title" content="@Title" />
   <meta property="og:description" content="@Description" />
   <meta property="og:url" content="https://suxrobgm.net/" />
   <link

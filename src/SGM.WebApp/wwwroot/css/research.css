@@ -1,5 +1,24 @@
-/* Sober counterpart to the themed pages. No global reset or base typography exists
- outside the three theme stylesheets, so .rp sets up its own surface. */
+/* Sober counterpart to the themed pages. Linked from Research.razor rather than
+ CSS-isolated: every selector is already .rp-scoped, and the scoped bundle in
+ App.razor is served to every page on the site. */
+
+/* No global reset or base typography exists outside the three theme stylesheets,
+ so this page sets up the body surface itself. */
+body {
+  margin: 0;
+  background: #fbfaf8;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #16171a;
+  }
+}
+
+/* App.razor loads reCAPTCHA on every page; this one has no form to protect. */
+.grecaptcha-badge {
+  visibility: hidden;
+}
 
 .rp {
   --rp-bg: #fbfaf8;
@@ -216,7 +235,7 @@
 
 /* ---------- actions ---------- */
 
-.rp-actions {
+.rp .rp-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;

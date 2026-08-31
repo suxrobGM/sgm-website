@@ -1,0 +1,13 @@
+<ul class="rp-tags">
+  @foreach (var tag in Tags)
+  {
+    <li>@tag</li>
+  }
+</ul>
+
+@code {
+
+  [Parameter, EditorRequired]
+  public required string[] Tags { get; set; }
+
+}
