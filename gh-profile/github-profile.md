@@ -58,7 +58,7 @@ Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.
 
 <table>
 <tr>
-<td width="33%">
+<td width="33%" valign="top">
 
 <div align="center">
 
@@ -70,31 +70,34 @@ Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.
 
 </div>
 
-Matches Cell Painting microscopy of perturbed cells to descriptions of the treatment in ordinary language. DINOv3 and BioClinical ModernBERT stay frozen and only small projection heads train, so it fits on one consumer GPU. Tested on **CPJUMP1** (51 plates, 3M+ images).
+Matches microscopy of drug-perturbed cells to plain-language descriptions of the treatment. Encoders stay frozen and only projection heads train, so it fits one consumer GPU.
 
-The precomputed DINOv3 embeddings are [on the Hub](https://huggingface.co/datasets/suxrobgm/cpjump1-dinov3-features) as WebDataset shards, so the expensive pass over the images does not have to be repeated.
+<sub>**CPJUMP1** · 51 plates · 3M+ images</sub>
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![Contrastive](https://img.shields.io/badge/Contrastive_Learning-333?style=flat-square)
+![Contrastive](https://img.shields.io/badge/Contrastive-333?style=flat-square)
 
 </td>
-<td width="33%">
+<td width="33%" valign="top">
 
 <div align="center">
 
 **Localize, Don't Beautify**
 
 [![arXiv](https://img.shields.io/badge/arXiv-2608.02841-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2608.02841)
+[![Code](https://img.shields.io/badge/-Code-181717?style=flat-square&logo=github)](https://github.com/suxrobGM/localize-dont-beautify)
 
 </div>
 
-Ask a commercial image editor to change one feature of a face and it beautifies the whole thing. Compares prompt-only steering, masked compositing, and inpainting across **six commercial editors** on 196 edits, scoring identity preservation and whether the edit stayed put. Plain masking localized better.
+Ask a commercial editor to change one facial feature and it beautifies the whole face. Benchmarks three localization strategies; plain masking beat prompt-only steering.
+
+<sub>**6 editors** · 196 edits · identity scored</sub>
 
 ![ArcFace](https://img.shields.io/badge/ArcFace-333?style=flat-square)
 ![Inpainting](https://img.shields.io/badge/Inpainting-333?style=flat-square)
 
 </td>
-<td width="33%">
+<td width="33%" valign="top">
 
 <div align="center">
 
@@ -105,7 +108,9 @@ Ask a commercial image editor to change one feature of a face and it beautifies 
 
 </div>
 
-Explainable classification across all **9 ISIC 2019 categories** (0.856 weighted F1 on 25,331 images). GradCAM++ attention is broken down along the ABCDE criteria clinicians already use, then scored against those same features, so the interpretability claim rests on a metric.
+Skin lesion classification across all nine ISIC 2019 classes. GradCAM++ attention is scored against the ABCDE criteria clinicians already use, so interpretability gets a number.
+
+<sub>**ISIC 2019** · 25,331 images · 0.856 F1</sub>
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![GradCAM](https://img.shields.io/badge/GradCAM++-333?style=flat-square)
@@ -120,7 +125,7 @@ Models built against real inputs rather than a clean benchmark split.
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -136,7 +141,7 @@ Pulls studies straight from hospital PACS over DICOM and runs detection models o
 ![Next.js](https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white)
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -161,7 +166,7 @@ Kept separate from the published work above.
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -175,7 +180,7 @@ Lightweight monocular depth estimation. Holds accuracy at **14.3M params** where
 ![Model](https://img.shields.io/badge/ResNet18_+_UNet-333?style=flat-square)
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -228,7 +233,7 @@ Reproduction of FSRCNN (Dong et al., ECCV 2016) for super-resolution at 2x/3x/4x
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -245,7 +250,7 @@ Multi-tenant TMS for intermodal trucking. Wired into the big load boards (DAT, T
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -264,7 +269,7 @@ Community platform for Counter-Strike 2 servers. Profiles and messaging, a shop 
 </td>
 </tr>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -280,7 +285,7 @@ Scans a project's dependencies across **8+ ecosystems** for known vulnerabilitie
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -304,7 +309,7 @@ Drag-and-drop form designer that outputs JSON schema with a runtime renderer, so
 
 <table>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -318,7 +323,7 @@ Large-scale mod with custom mechanics, AI behaviors, and balance systems.
 <img src="./assets/hoi-4-ec.jpg" alt="HOI4 EC" width="100%"/>
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -334,7 +339,7 @@ Real-time MMO with authoritative server, custom physics, and sync for **100+ con
 </td>
 </tr>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
@@ -348,7 +353,7 @@ Online chess platform with AI opponents, rated/friendly PvP matchmaking.
 <img src="https://raw.githubusercontent.com/suxrobGM/online-chess/main/screenshots/screenshot-3.jpg" alt="ChessMate" width="100%"/>
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
 <div align="center">
 
