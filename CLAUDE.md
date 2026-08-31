@@ -31,15 +31,6 @@ that copy is how the site ends up serving a stale PDF.
 ./resume/build.ps1 aiml -NoSync # compile without touching wwwroot
 ```
 
-Requires latexmk on PATH (MiKTeX or TeX Live). For a shorter invocation, add to your
-PowerShell profile:
-
-```powershell
-function texbuild { & "$HOME\source\repos\sgm-website\resume\build.ps1" @args }
-epos\sgm-website
-esumeuild.ps1" @args }
-```
-
 ## Architecture
 
 **Entry point flow:** `Program.cs` → `Setup.ConfigureServices()` → `Setup.ConfigurePipeline()`
