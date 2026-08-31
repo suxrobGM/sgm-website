@@ -1,16 +1,17 @@
 <div align="center">
 
 <!-- Animated Header Banner -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&section=header&text=Sukhrob%20Ilyosbekov&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Machine%20Learning%20Engineer%20%7C%20Computer%20Vision%20Researcher&descSize=18&descAlignY=55&descColor=8b949e" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&section=header&text=Sukhrob%20Ilyosbekov&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=AI%20Research%20%C2%B7%20Computer%20Vision%20%26%20Multimodal%20ML&descSize=18&descAlignY=55&descColor=8b949e" width="100%"/>
 
 <!-- Terminal-Style Introduction -->
 <img src="./assets/terminal-intro.svg" alt="Terminal Introduction" width="800"/>
 
 <!-- Badge Row -->
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/suxrobgm)
-[![Portfolio](https://img.shields.io/badge/suxrobgm.net-000?style=for-the-badge&logo=vercel&logoColor=white)](https://suxrobgm.net)
 [![Google Scholar](https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en)
 [![Research](https://img.shields.io/badge/Publications-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://suxrobgm.net/research)
+[![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/suxrobgm)
+[![Portfolio](https://img.shields.io/badge/suxrobgm.net-000?style=for-the-badge&logo=vercel&logoColor=white)](https://suxrobgm.net)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/suxrobgm)
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/suxrobgm)
 [![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/suxrobgm)
 
@@ -18,65 +19,42 @@
 
 ---
 
-<!-- Tech Stack Icons -->
 <div align="center">
 
-### Tech Stack
+## Primary Stack &nbsp;·&nbsp; AI Research
 
-<img src="https://skillicons.dev/icons?i=pytorch,tensorflow,opencv,python&theme=dark" alt="AI/ML" />
+<img src="https://skillicons.dev/icons?i=pytorch,python,opencv,tensorflow,anaconda&theme=dark" alt="AI/ML core" width="440"/>
+
+![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black)
+![CUDA](https://img.shields.io/badge/CUDA-76B900?style=flat-square&logo=nvidia&logoColor=white)
+![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white)
+![Weights & Biases](https://img.shields.io/badge/W%26B-FFBE00?style=flat-square&logo=weightsandbiases&logoColor=black)
+![ONNX](https://img.shields.io/badge/ONNX-005CED?style=flat-square&logo=onnx&logoColor=white)
+
+`vision-language models` &nbsp; `contrastive learning` &nbsp; `explainable AI` &nbsp; `medical imaging` &nbsp; `diffusion & inpainting`
+
 <br/>
-<img src="https://skillicons.dev/icons?i=cs,cpp,ts,kotlin&theme=dark" alt="Languages" />
+
+### Secondary Stack &nbsp;·&nbsp; Software Engineering
+
+<sub>Nine years of production work, now mostly in service of shipping research.</sub>
+
+<img src="https://skillicons.dev/icons?i=cs,ts,cpp,kotlin,fastapi,nodejs,bun&theme=dark" alt="Languages and backend" width="330"/>
 <br/>
-<img src="https://skillicons.dev/icons?i=fastapi,nodejs,bun,postgres,redis&theme=dark" alt="Backend & Data" />
-<br/>
-<img src="https://skillicons.dev/icons?i=react,nextjs,angular,tailwind&theme=dark" alt="Frontend" />
-<br/>
-<img src="https://skillicons.dev/icons?i=docker,kubernetes,aws,azure&theme=dark" alt="Cloud & DevOps" />
+<img src="https://skillicons.dev/icons?i=react,nextjs,angular,postgres,redis,docker,kubernetes,aws&theme=dark" alt="Frontend, data and cloud" width="376"/>
 
 </div>
 
 ---
 
-<!-- Impact by Numbers -->
-<div align="center">
-
-### Impact by Numbers
-
-<table>
-<tr>
-<td align="center" width="25%">
-<img width="60" src="https://img.icons8.com/fluency/96/user-group-man-man.png" alt="users"/>
-<br/>
-<strong>30K+</strong>
-<br/>
-<sub>Users on Meat.gg</sub>
-</td>
-<td align="center" width="25%">
-<img width="60" src="https://img.icons8.com/fluency/96/rocket.png" alt="projects"/>
-<br/>
-<strong>10+</strong>
-<br/>
-<sub>Shipped Projects</sub>
-</td>
-<td align="center" width="25%">
-<img width="60" src="https://img.icons8.com/fluency/96/checkmark.png" alt="jss"/>
-<br/>
-<strong>100%</strong>
-<br/>
-<sub>Upwork Job Success</sub>
-</td>
-</tr>
-</table>
-
-</div>
-
----
-
-### Publications
+## Research
 
 Three first-author papers in computer vision and multimodal ML.
 Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.net/research)** ·
 [Google Scholar](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en)
+
+### Publications
 
 <table>
 <tr>
@@ -88,10 +66,13 @@ Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.
 
 [![arXiv](https://img.shields.io/badge/arXiv-2608.22690-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2608.22690)
 [![Code](https://img.shields.io/badge/-Code-181717?style=flat-square&logo=github)](https://github.com/suxrobgm/morphoclip)
+[![Data](https://img.shields.io/badge/%F0%9F%A4%97_Data-FFD21E?style=flat-square)](https://huggingface.co/datasets/suxrobgm/cpjump1-dinov3-features)
 
 </div>
 
 Matches Cell Painting microscopy of perturbed cells to descriptions of the treatment in ordinary language. DINOv3 and BioClinical ModernBERT stay frozen and only small projection heads train, so it fits on one consumer GPU. Tested on **CPJUMP1** (51 plates, 3M+ images).
+
+The precomputed DINOv3 embeddings are [on the Hub](https://huggingface.co/datasets/suxrobgm/cpjump1-dinov3-features) as WebDataset shards, so the expensive pass over the images does not have to be repeated.
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![Contrastive](https://img.shields.io/badge/Contrastive_Learning-333?style=flat-square)
@@ -133,11 +114,50 @@ Explainable classification across all **9 ISIC 2019 categories** (0.856 weighted
 </tr>
 </table>
 
----
+### Applied Vision Work
 
-### Course & Side Projects
+Models built against real inputs rather than a clean benchmark split.
 
-Graduate coursework, kept separate from the published work above.
+<table>
+<tr>
+<td width="50%">
+
+<div align="center">
+
+**[Med Image Scanner](https://github.com/suxrobgm/med-image-scanner)**
+
+</div>
+
+Pulls studies straight from hospital PACS over DICOM and runs detection models over them. Predictions show up as overlays in the viewer, alongside measurement and segmentation tools. HIPAA-ready.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white)
+
+</td>
+<td width="50%">
+
+<div align="center">
+
+**[Bookshelf Scanner](https://github.com/suxrobgm/bookshelf-scanner)**
+
+</div>
+
+Point a camera at a bookshelf and get back a list of what is on it. YOLO segmentation cuts out each spine, then a vision-language model reads the title and author off it.
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![YOLO](https://img.shields.io/badge/YOLO-00FFFF?style=flat-square&logoColor=black)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
+
+</td>
+</tr>
+</table>
+
+### Graduate Coursework
+
+Kept separate from the published work above.
 
 <table>
 <tr>
@@ -174,7 +194,37 @@ Reproduction of FSRCNN (Dong et al., ECCV 2016) for super-resolution at 2x/3x/4x
 
 ---
 
-### Featured Projects
+## Software Engineering
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="33%">
+<img width="60" src="https://img.icons8.com/fluency/96/user-group-man-man.png" alt="users"/>
+<br/>
+<strong>60K+</strong>
+<br/>
+<sub>Users on Meat.gg</sub>
+</td>
+<td align="center" width="33%">
+<img width="60" src="https://img.icons8.com/fluency/96/rocket.png" alt="projects"/>
+<br/>
+<strong>10+</strong>
+<br/>
+<sub>Shipped Projects</sub>
+</td>
+<td align="center" width="33%">
+<img width="60" src="https://img.icons8.com/fluency/96/checkmark.png" alt="jss"/>
+<br/>
+<strong>100%</strong>
+<br/>
+<sub>Upwork Job Success</sub>
+</td>
+</tr>
+</table>
+
+</div>
 
 <table>
 <tr>
@@ -199,7 +249,7 @@ Multi-tenant TMS for intermodal trucking. Wired into the big load boards (DAT, T
 
 <div align="center">
 
-**[Meat.gg](https://meat.gg)** &nbsp; `30K+ users` `1K+ DAU`
+**[Meat.gg](https://meat.gg)** &nbsp; `60K+ users` `1K+ DAU`
 
 </div>
 
@@ -234,45 +284,11 @@ Scans a project's dependencies across **8+ ecosystems** for known vulnerabilitie
 
 <div align="center">
 
-**[Med Image Scanner](https://github.com/suxrobgm/med-image-scanner)**
-
-</div>
-
-Pulls studies straight from hospital PACS over DICOM and runs detection models over them. Predictions show up as overlays in the viewer, alongside measurement and segmentation tools. HIPAA-ready.
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-<div align="center">
-
-**[Bookshelf Scanner](https://github.com/suxrobgm/bookshelf-scanner)**
-
-</div>
-
-Point a camera at a bookshelf and get back a list of what is on it. YOLO segmentation cuts out each spine, then a vision-language model reads the title and author off it.
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![YOLO](https://img.shields.io/badge/YOLO-00FFFF?style=flat-square&logoColor=black)
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-
-</td>
-<td width="50%">
-
-<div align="center">
-
 **[Blazor Form Builder](https://github.com/suxrobgm/blazor-form-builder)**
 
 </div>
 
-Drag-and-drop form designer that outputs JSON schema with a runtime renderer — speeds up admin dashboard development.
+Drag-and-drop form designer that outputs JSON schema with a runtime renderer, so admin dashboards stop needing hand-written forms.
 
 ![C#](https://img.shields.io/badge/C%23-512BD4?style=flat-square&logo=dotnet&logoColor=white)
 ![Blazor](https://img.shields.io/badge/Blazor-512BD4?style=flat-square&logo=blazor&logoColor=white)
@@ -284,7 +300,7 @@ Drag-and-drop form designer that outputs JSON schema with a runtime renderer —
 
 ---
 
-### Games
+## Games
 
 <table>
 <tr>
@@ -365,13 +381,14 @@ Online chess platform with AI opponents, rated/friendly PvP matchmaking.
 
 ### Let's Connect
 
-Open to collaborations, research opportunities, or chatting about **.NET**, **TypeScript**, **computer vision**, or **game dev**.
+Open to research collaborations and PhD-adjacent work. Happy to talk about **computer vision**, **multimodal ML**, and **explainable AI**, or about **.NET**, **TypeScript**, and **game dev**.
 
+[![Google Scholar](https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en)
+[![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/suxrobgm)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/suxrobgm)
 [![Portfolio](https://img.shields.io/badge/Portfolio-000?style=for-the-badge&logo=vercel&logoColor=white)](https://suxrobgm.net)
 [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/suxrobgm)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:silyosbekov@gmail.com)
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy_Me_a_Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/suxrobgm)
 
 </div>
 

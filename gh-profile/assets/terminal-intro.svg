@@ -31,31 +31,40 @@
       <tspan fill="#8b949e"> $ </tspan>
       <tspan fill="#e6edf3">whoami</tspan>
     </text>
-    <text x="24" y="100" fill="#79c0ff">sukhrob — senior full-stack engineer &amp; computer vision researcher</text>
+    <text x="24" y="100" fill="#79c0ff">sukhrob · ai researcher in computer vision and multimodal ml</text>
 
-    <!-- cat credentials.txt -->
+    <!-- cat research.txt -->
     <text x="24" y="135">
       <tspan fill="#7ee787">~</tspan>
       <tspan fill="#8b949e"> $ </tspan>
       <tspan fill="#e6edf3">cat</tspan>
-      <tspan fill="#a5d6ff"> credentials.txt</tspan>
+      <tspan fill="#a5d6ff"> research.txt</tspan>
     </text>
-    <text x="24" y="160" fill="#e6edf3">MS Computer Science @ Northeastern University</text>
-    <text x="498" y="160" fill="#7ee787" font-weight="bold"> (4.0 GPA)</text>
-    <text x="24" y="185" fill="#e6edf3">Published Researcher — </text>
-    <text x="262" y="185" fill="#ff7b72">arXiv:2512.09289</text>
-    <text x="24" y="210" fill="#e6edf3">Upwork Top Rated Plus — </text>
-    <text x="270" y="210" fill="#ffa657">100% Job Success Score</text>
-    <text x="24" y="235" fill="#e6edf3">9+ years shipping production software</text>
+    <text x="24" y="160">
+      <tspan fill="#e6edf3">MS Computer Science @ Northeastern University</tspan>
+      <tspan fill="#7ee787" font-weight="bold"> (4.0 GPA)</tspan>
+    </text>
+    <text x="24" y="185">
+      <tspan fill="#e6edf3">3 first-author papers · latest </tspan>
+      <tspan fill="#ff7b72">arXiv:2608.22690</tspan>
+    </text>
+    <text x="24" y="210">
+      <tspan fill="#8b949e">focus: </tspan>
+      <tspan fill="#d2a8ff">vision-language models · explainable ai · medical imaging</tspan>
+    </text>
 
-    <!-- echo $DOMAINS -->
-    <text x="24" y="270">
+    <!-- cat engineering.txt -->
+    <text x="24" y="245">
       <tspan fill="#7ee787">~</tspan>
       <tspan fill="#8b949e"> $ </tspan>
-      <tspan fill="#e6edf3">echo</tspan>
-      <tspan fill="#ffa657"> $DOMAINS</tspan>
+      <tspan fill="#e6edf3">cat</tspan>
+      <tspan fill="#a5d6ff"> engineering.txt</tspan>
     </text>
-    <text x="24" y="295" fill="#d2a8ff">healthcare · logistics · gaming · real-estate · computer-vision</text>
+    <text x="24" y="270">
+      <tspan fill="#e6edf3">9+ years shipping production software · </tspan>
+      <tspan fill="#ffa657">100% Upwork JSS</tspan>
+    </text>
+    <text x="24" y="295" fill="#8b949e">.net · typescript · kotlin · healthcare, logistics, gaming</text>
 
     <!-- Blinking cursor -->
     <text x="24" y="330">
