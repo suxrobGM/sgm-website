@@ -6,35 +6,35 @@
 <html lang="en-US">
 
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  @* Title, description and og:title are per-page. Setting them here too would shadow
-     those values: a static tag precedes HeadOutlet, and the first one wins. *@
-  <meta name="keywords"
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    @* Title, description and og:title are per-page. Setting them here too would shadow
+        those values: a static tag precedes HeadOutlet, and the first one wins. *@
+    <meta name="keywords"
         content="Sukhrob Ilyosbekov, Full Stack Developer, AI Researcher, Computer Vision, Deep Learning, .NET Developer, React, Python, Machine Learning, Software Engineer"/>
-  <meta name="author" content="Sukhrob Ilyosbekov"/>
-  <meta name="google-site-verification" content="7443Tno6XS-gkMmh5ZvtcwWF1PuGfkPev_q-fVmUF3Y"/>
-  <meta name="image" content="https://suxrobgm.net/images/about.jpg"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="https://ogstack.dev/api/og/a6bb1e2f78af?url=https://suxrobgm.net&ai=true" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <base href="/"/>
+    <meta name="author" content="Sukhrob Ilyosbekov"/>
+    <meta name="google-site-verification" content="7443Tno6XS-gkMmh5ZvtcwWF1PuGfkPev_q-fVmUF3Y"/>
+    <meta name="image" content="https://suxrobgm.net/images/about.jpg"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="https://ogstack.dev/api/og/a6bb1e2f78af?url=https://suxrobgm.net&ai=true" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <base href="/"/>
 
-  <!-- Google Fonts preconnect -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <!-- Google Fonts preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+                crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
-  <!-- Scoped (CSS-isolated) component styles -->
-  <link rel="stylesheet" href="SGM.WebApp.styles.css"/>
+    <!-- Scoped (CSS-isolated) component styles -->
+    <link rel="stylesheet" href="SGM.WebApp.styles.css"/>
 
-  <HeadOutlet/>
+    <HeadOutlet/>
 </head>
 
 <body>
@@ -42,20 +42,20 @@
 <script src="_framework/blazor.web.js"></script>
 <script src="js/site.js"></script>
 <script src="https://www.google.com/recaptcha/enterprise.js?render=@RecaptchaOptions.Value.SiteKey" async
-        defer></script>
+    defer></script>
 <script>
-  window.getRecaptchaToken = async (siteKey) => {
-    return new Promise((resolve, reject) => {
-      grecaptcha.enterprise.ready(async () => {
-        try {
-          const token = await grecaptcha.enterprise.execute(siteKey, {action: "contact"});
-          resolve(token);
-        } catch (error) {
-          reject(error);
-        }
-      });
-    });
-  };
+    window.getRecaptchaToken = async (siteKey) => {
+        return new Promise((resolve, reject) => {
+            grecaptcha.enterprise.ready(async () => {
+                try {
+                    const token = await grecaptcha.enterprise.execute(siteKey, {action: "contact"});
+                    resolve(token);
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        });
+    };
 </script>
 </body>
 

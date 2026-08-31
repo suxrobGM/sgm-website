@@ -1,355 +1,355 @@
 /* Sober counterpart to the themed pages. No global reset or base typography exists
-   outside the three theme stylesheets, so .rp sets up its own surface. */
+ outside the three theme stylesheets, so .rp sets up its own surface. */
 
 .rp {
-    --rp-bg: #fbfaf8;
-    --rp-surface: #ffffff;
-    --rp-border: #e3e0da;
-    --rp-text: #1f2024;
-    --rp-muted: #61636b;
-    --rp-accent: #2b5797;
-    --rp-accent-soft: #eef2f9;
-    --rp-tag: #f1efeb;
+  --rp-bg: #fbfaf8;
+  --rp-surface: #ffffff;
+  --rp-border: #e3e0da;
+  --rp-text: #1f2024;
+  --rp-muted: #61636b;
+  --rp-accent: #2b5797;
+  --rp-accent-soft: #eef2f9;
+  --rp-tag: #f1efeb;
 
-    /* Normal flow, unlike the fixed .pay-wrap: an inner scroll container would break
-       printing, anchor links, and mobile URL-bar behaviour. */
-    min-height: 100vh;
-    box-sizing: border-box;
-    padding: 56px 24px 72px;
-    background: var(--rp-bg);
-    color: var(--rp-text);
-    font-family: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, Cambria, serif;
-    font-size: 17px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
+  /* Normal flow, unlike the fixed .pay-wrap: an inner scroll container would break
+   printing, anchor links, and mobile URL-bar behaviour. */
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 56px 24px 72px;
+  background: var(--rp-bg);
+  color: var(--rp-text);
+  font-family: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, Cambria, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
 
 .rp *,
 .rp *::before,
 .rp *::after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 .rp-inner {
-    max-width: 46rem;
-    margin: 0 auto;
+  max-width: 46rem;
+  margin: 0 auto;
 }
 
 /* ---------- header ---------- */
 
 .rp-head h1 {
-    margin: 0;
-    font-size: 2.1rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
+  margin: 0;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
 }
 
 /* FocusOnNavigate focuses this heading on navigation. Chromium matches :focus-visible even
-   for that, and tabindex="-1" means nothing keyboard-reachable loses a ring. */
+ for that, and tabindex="-1" means nothing keyboard-reachable loses a ring. */
 .rp-head h1:focus {
-    outline: none;
+  outline: none;
 }
 
 .rp-sub {
-    margin: 6px 0 2px;
-    font-size: 1.05rem;
-    color: var(--rp-accent);
+  margin: 6px 0 2px;
+  font-size: 1.05rem;
+  color: var(--rp-accent);
 }
 
 .rp-affil {
-    margin: 0 0 14px;
-    font-size: 0.92rem;
-    color: var(--rp-muted);
+  margin: 0 0 14px;
+  font-size: 0.92rem;
+  color: var(--rp-muted);
 }
 
 .rp-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px 18px;
-    font-size: 0.92rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  font-size: 0.92rem;
 }
 
 .rp-links a {
-    color: var(--rp-muted);
-    text-decoration: none;
+  color: var(--rp-muted);
+  text-decoration: none;
 }
 
 .rp-links a:hover {
-    color: var(--rp-accent);
-    text-decoration: underline;
+  color: var(--rp-accent);
+  text-decoration: underline;
 }
 
 .rp-cvs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .rp-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 14px;
-    border: 1px solid var(--rp-border);
-    border-radius: 4px;
-    background: var(--rp-surface);
-    color: var(--rp-text);
-    font-size: 0.88rem;
-    text-decoration: none;
-    transition: border-color 0.15s ease, color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border: 1px solid var(--rp-border);
+  border-radius: 4px;
+  background: var(--rp-surface);
+  color: var(--rp-text);
+  font-size: 0.88rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
 }
 
 .rp-btn:hover {
-    border-color: var(--rp-accent);
-    color: var(--rp-accent);
+  border-color: var(--rp-accent);
+  color: var(--rp-accent);
 }
 
 .rp-btn-primary {
-    border-color: var(--rp-accent);
-    background: var(--rp-accent);
-    color: #fff;
+  border-color: var(--rp-accent);
+  background: var(--rp-accent);
+  color: #fff;
 }
 
 .rp-btn-primary:hover {
-    background: #24487d;
-    border-color: #24487d;
-    color: #fff;
+  background: #24487d;
+  border-color: #24487d;
+  color: #fff;
 }
 
 /* ---------- statement ---------- */
 
 .rp-statement {
-    margin: 30px 0 8px;
-    padding: 18px 22px;
-    border-left: 3px solid var(--rp-accent);
-    background: var(--rp-accent-soft);
+  margin: 30px 0 8px;
+  padding: 18px 22px;
+  border-left: 3px solid var(--rp-accent);
+  background: var(--rp-accent-soft);
 }
 
 .rp-statement p {
-    margin: 0;
+  margin: 0;
 }
 
 /* ---------- sections ---------- */
 
 .rp h2 {
-    margin: 42px 0 6px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--rp-border);
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+  margin: 42px 0 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rp-border);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .rp-note {
-    margin: 0 0 4px;
-    font-size: 0.9rem;
-    font-style: italic;
-    color: var(--rp-muted);
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--rp-muted);
 }
 
 .rp-pub,
 .rp-item {
-    padding: 18px 0;
-    border-bottom: 1px solid var(--rp-border);
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rp-border);
 }
 
 .rp-pub:last-child,
 .rp-item:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .rp-pub h3,
 .rp-item h3 {
-    margin: 0 0 4px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.4;
+  margin: 0 0 4px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 .rp-pub h3 a {
-    color: var(--rp-text);
-    text-decoration: none;
+  color: var(--rp-text);
+  text-decoration: none;
 }
 
 .rp-pub h3 a:hover {
-    color: var(--rp-accent);
+  color: var(--rp-accent);
 }
 
 .rp-item p {
-    margin: 0 0 8px;
+  margin: 0 0 8px;
 }
 
 .rp-authors {
-    margin: 0;
-    font-size: 0.94rem;
+  margin: 0;
+  font-size: 0.94rem;
 }
 
 .rp-venue {
-    margin: 2px 0 8px;
-    font-size: 0.88rem;
-    font-style: italic;
-    color: var(--rp-muted);
+  margin: 2px 0 8px;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--rp-muted);
 }
 
 /* ---------- tags ---------- */
 
 .rp-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 0 0 10px;
-    padding: 0;
-    list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
 }
 
 .rp-tags li {
-    padding: 2px 9px;
-    border-radius: 3px;
-    background: var(--rp-tag);
-    color: var(--rp-muted);
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
+  padding: 2px 9px;
+  border-radius: 3px;
+  background: var(--rp-tag);
+  color: var(--rp-muted);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
 }
 
 /* ---------- actions ---------- */
 
 .rp-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin: 0 0 6px;
-    font-size: 0.88rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 0 6px;
+  font-size: 0.88rem;
 }
 
 .rp-actions a {
-    color: var(--rp-accent);
-    text-decoration: none;
+  color: var(--rp-accent);
+  text-decoration: none;
 }
 
 .rp-actions a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* ---------- disclosures (work with JS disabled) ---------- */
 
 .rp-details {
-    margin-top: 6px;
+  margin-top: 6px;
 }
 
 .rp-details summary {
-    cursor: pointer;
-    color: var(--rp-muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    user-select: none;
+  cursor: pointer;
+  color: var(--rp-muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  user-select: none;
 }
 
 .rp-details summary:hover {
-    color: var(--rp-accent);
+  color: var(--rp-accent);
 }
 
 .rp-details p {
-    margin: 8px 0 0;
-    font-size: 0.95rem;
+  margin: 8px 0 0;
+  font-size: 0.95rem;
 }
 
 .rp-details pre {
-    margin: 8px 0 0;
-    padding: 12px 14px;
-    overflow-x: auto;
-    border: 1px solid var(--rp-border);
-    border-radius: 4px;
-    background: var(--rp-surface);
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  overflow-x: auto;
+  border: 1px solid var(--rp-border);
+  border-radius: 4px;
+  background: var(--rp-surface);
 }
 
 .rp-details code {
-    font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 0.78rem;
-    line-height: 1.5;
-    white-space: pre;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  white-space: pre;
 }
 
 /* ---------- footer ---------- */
 
 .rp-foot {
-    margin-top: 48px;
-    padding-top: 18px;
-    border-top: 1px solid var(--rp-border);
-    font-size: 0.88rem;
-    color: var(--rp-muted);
+  margin-top: 48px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rp-border);
+  font-size: 0.88rem;
+  color: var(--rp-muted);
 }
 
 .rp-foot a {
-    color: var(--rp-accent);
-    text-decoration: none;
+  color: var(--rp-accent);
+  text-decoration: none;
 }
 
 .rp-foot a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .rp-copy {
-    margin: 4px 0 0;
-    font-size: 0.82rem;
+  margin: 4px 0 0;
+  font-size: 0.82rem;
 }
 
 /* ---------- responsive ---------- */
 
 @media (max-width: 640px) {
-    .rp {
-        padding: 32px 18px 56px;
-        font-size: 16px;
-    }
+  .rp {
+    padding: 32px 18px 56px;
+    font-size: 16px;
+  }
 
-    .rp-head h1 {
-        font-size: 1.7rem;
-    }
+  .rp-head h1 {
+    font-size: 1.7rem;
+  }
 }
 
 /* ---------- dark mode ---------- */
 
 @media (prefers-color-scheme: dark) {
-    .rp {
-        --rp-bg: #16171a;
-        --rp-surface: #1d1f23;
-        --rp-border: #2f3237;
-        --rp-text: #e6e6e4;
-        --rp-muted: #9b9ea6;
-        --rp-accent: #7aa2e3;
-        --rp-accent-soft: #1c2330;
-        --rp-tag: #24262b;
-    }
+  .rp {
+    --rp-bg: #16171a;
+    --rp-surface: #1d1f23;
+    --rp-border: #2f3237;
+    --rp-text: #e6e6e4;
+    --rp-muted: #9b9ea6;
+    --rp-accent: #7aa2e3;
+    --rp-accent-soft: #1c2330;
+    --rp-tag: #24262b;
+  }
 
-    .rp-btn-primary {
-        color: #14161a;
-    }
+  .rp-btn-primary {
+    color: #14161a;
+  }
 
-    .rp-btn-primary:hover {
-        background: #9bb9ea;
-        border-color: #9bb9ea;
-        color: #14161a;
-    }
+  .rp-btn-primary:hover {
+    background: #9bb9ea;
+    border-color: #9bb9ea;
+    color: #14161a;
+  }
 }
 
 /* ---------- print ---------- */
 
 @media print {
-    .rp {
-        min-height: 0;
-        padding: 0;
-        background: #fff;
-    }
+  .rp {
+    min-height: 0;
+    padding: 0;
+    background: #fff;
+  }
 
-    .rp-cvs,
-    .rp-links {
-        display: none;
-    }
+  .rp-cvs,
+  .rp-links {
+    display: none;
+  }
 
-    .rp-details[open] summary {
-        display: none;
-    }
+  .rp-details[open] summary {
+    display: none;
+  }
 }

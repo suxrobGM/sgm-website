@@ -1,0 +1,45 @@
+# Normalize all text to LF in the repository. Working-tree endings are left to the
+# platform, so Windows checkouts are unaffected while the Linux deploy target and
+# CI always see LF. Overrides core.autocrlf, which was producing mixed endings.
+* text=auto eol=lf
+
+# Windows tooling that expects CRLF.
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+*.ps1  text eol=crlf
+*.slnx text eol=crlf
+
+# Shell scripts must stay LF even on a Windows checkout.
+*.sh text eol=lf
+
+# Language hints for better diffs and hunk headers.
+*.cs     text diff=csharp
+*.razor  text
+*.css    text diff=css
+*.js     text
+*.json   text
+*.md     text diff=markdown
+*.tex    text
+*.xml    text
+*.xsl    text
+*.svg    text
+*.yml    text
+*.yaml   text
+*.csproj text
+
+# Binary: never diffed, never line-ending converted.
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.mp3  binary
+*.m4a  binary
+*.wav  binary
+*.ogg  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
