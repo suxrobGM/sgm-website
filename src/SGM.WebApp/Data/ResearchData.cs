@@ -49,16 +49,18 @@ public static class ResearchData
     public const string Email = "ilyosbekov.s@northeastern.edu";
 
     public const string PageDescription =
-        "Sukhrob Ilyosbekov — computer vision and deep learning research. Publications on " +
-        "explainable medical imaging, text-supervised representation learning for Cell Painting " +
-        "microscopy, and client-side control of black-box image-editing models.";
+        "Sukhrob Ilyosbekov: computer vision and deep learning research. Papers on explainable " +
+        "medical imaging, text-supervised representation learning for Cell Painting microscopy, " +
+        "and client-side control of black-box image-editing models.";
 
     public const string ResearchStatement =
-        "I work on making vision models trustworthy enough to deploy. Three threads run through " +
-        "the work: interpretability a clinician can audit rather than take on faith, control over " +
-        "black-box generative systems from outside the model, and representation learning that " +
-        "transfers to scientific imaging. Building ML for a HIPAA-regulated clinical platform is " +
-        "where those same questions arrive with consequences attached.";
+        "I want vision models that people can trust enough to actually deploy. Three questions " +
+        "keep coming up in my work. Can a clinician check what the model looked at, instead of " +
+        "taking a score on faith? How much of a black-box generative model's behavior can you " +
+        "control from the outside, without retraining it? And do learned representations hold up " +
+        "on scientific imaging, where the data looks nothing like ImageNet and the labels are " +
+        "noisy? I also build ML for a HIPAA-regulated clinical platform, so I run into the same " +
+        "questions with real patients on the other end.";
 
     public static readonly IReadOnlyList<Publication> Publications =
     [
@@ -70,13 +72,14 @@ public static class ResearchData
             ArxivId = "2608.22690",
             RepoUrl = "https://github.com/suxrobgm/morphoclip",
             Summary =
-                "A text-supervised contrastive model that matches Cell Painting microscopy images of drug- and " +
-                "gene-perturbed cells to natural-language treatment descriptions. Frozen vision and language " +
-                "backbones (DINOv3, BioClinical ModernBERT) are paired with trainable projection heads, so the " +
-                "whole model trains on a single consumer GPU. Evaluated on bidirectional image-to-text and " +
-                "text-to-image retrieval over the CPJUMP1 benchmark (51 plates, 3M+ cell images, 303 drugs, " +
-                "160 genes), with batch correction in the embedding space to remove plate-to-plate variation. " +
-                "Collaborative work with Northeastern co-authors; I led the model design, training, and evaluation.",
+                "MorphoCLIP matches Cell Painting microscopy images of drug- and gene-perturbed cells to " +
+                "descriptions of the treatment written in ordinary language. The vision and language backbones " +
+                "stay frozen (DINOv3, BioClinical ModernBERT) and only small projection heads train on top, " +
+                "which is what lets the whole thing run on one consumer GPU. We tested retrieval in both " +
+                "directions on the CPJUMP1 benchmark: 51 plates, over 3 million cell images, 303 drugs, 160 " +
+                "genes. Plate-to-plate variation is corrected in the embedding space, so the model is not just " +
+                "learning which plate an image came from. Joint work with two Northeastern co-authors; I led " +
+                "the model design, training, and evaluation.",
             BibTex =
                 """
                 @article{ilyosbekov2026morphoclip,
@@ -98,12 +101,13 @@ public static class ResearchData
             ArxivId = "2608.02841",
             RepoUrl = null,
             Summary =
-                "How much of a black-box image editor's behaviour can be controlled from outside the model? " +
-                "Cosmetic-surgery previews are the test case: commercial APIs beautify the whole face when asked " +
-                "to change a single feature. This paper compares prompt-only steering, masked compositing, and " +
-                "model-based inpainting across six commercial editors and one inpainting model on 196 facelift " +
-                "and rhinoplasty edits, scoring identity preservation with ArcFace alongside localization " +
-                "accuracy. Masked compositing beat model-based inpainting on localization.",
+                "Ask a commercial image editor to change one feature of a face and it tends to beautify the " +
+                "whole thing, which is a real problem when the picture is meant to be a surgical preview. The " +
+                "question here is how much of that you can fix from the client side, without touching the " +
+                "model. I compared prompt-only steering, masked compositing, and model-based inpainting across " +
+                "six commercial editors and one inpainting model, over 196 facelift and rhinoplasty edits, " +
+                "scoring how well identity survived (ArcFace) and how well the edit stayed where it was asked " +
+                "to stay. Plain masked compositing localized better than model-based inpainting.",
             BibTex =
                 """
                 @article{ilyosbekov2026localize,
@@ -125,14 +129,14 @@ public static class ResearchData
             ArxivId = "2512.09289",
             RepoUrl = "https://github.com/suxrobgm/explainable-melanoma",
             Summary =
-                "An EfficientNet V2 classifier trained across all nine ISIC 2019 diagnostic categories at " +
-                "384x384 resolution, reaching 85.6% accuracy and 0.856 weighted F1 on 25,331 dermoscopic images, " +
-                "with focal loss against the heavy class imbalance. The contribution is interpretability: " +
-                "GradCAM++ attention is decomposed along the ABCDE criteria dermatologists already use, " +
-                "quantifying asymmetry, border irregularity, colour variation via K-means, and diameter directly " +
-                "from the lesion mask. Alignment metrics between model attention and those extracted clinical " +
-                "features let the interpretability claim be measured rather than argued from a handful of " +
-                "example heatmaps.",
+                "An EfficientNet V2 classifier over all nine ISIC 2019 diagnostic categories at 384x384, " +
+                "trained with focal loss to cope with the heavy class imbalance, reaching 85.6% accuracy and " +
+                "0.856 weighted F1 on 25,331 dermoscopic images. The more interesting part is what happens " +
+                "after the prediction. GradCAM++ attention is broken down along the ABCDE criteria " +
+                "dermatologists already use, with asymmetry, border irregularity, color variation (K-means), " +
+                "and diameter measured straight off the lesion mask. Because those clinical features come out " +
+                "as numbers, how well they line up with the model's attention can be scored, so the " +
+                "interpretability claim rests on a metric instead of a few good-looking heatmaps.",
             BibTex =
                 """
                 @article{ilyosbekov2025melanomanet,
@@ -154,9 +158,9 @@ public static class ResearchData
         {
             Title = "LightDepth: Lightweight Monocular Depth Estimation",
             Summary =
-                "A ResNet18 encoder with a U-Net decoder and skip connections, holding accuracy with 42% fewer " +
-                "parameters (14.3M vs 24.8M) than Depth Anything V2 and running 72% faster at inference, while " +
-                "improving relative error on NYU Depth V2.",
+                "A ResNet18 encoder with a U-Net decoder and skip connections. It holds accuracy at 14.3M " +
+                "parameters against Depth Anything V2's 24.8M, runs 72% faster at inference, and comes " +
+                "out slightly ahead on relative error on NYU Depth V2.",
             RepoUrl = "https://github.com/suxrobgm/lightdepth",
             Tags = ["PyTorch", "ResNet18", "U-Net", "NYU Depth V2"],
         },
@@ -164,9 +168,9 @@ public static class ResearchData
         {
             Title = "FSRCNN: Accelerating Super-Resolution CNN",
             Summary =
-                "A reproduction of FSRCNN (Dong et al., ECCV 2016) for single-image super-resolution at 2x, 3x, " +
-                "and 4x, matching the reported gains on Set5 and Set14 with ablations on the shrinking and " +
-                "mapping layers.",
+                "A reproduction of FSRCNN (Dong et al., ECCV 2016) for single-image super-resolution at 2x, " +
+                "3x, and 4x. The reported gains on Set5 and Set14 held up, with extra ablations on the " +
+                "shrinking and mapping layers.",
             RepoUrl = "https://github.com/suxrobgm/fsrcnn",
             Tags = ["PyTorch", "Mixed-Precision Training", "Set5/Set14/DIV2K"],
         },
@@ -174,9 +178,9 @@ public static class ResearchData
         {
             Title = "Bookshelf Scanner: Multi-Modal Book Detection and Recognition",
             Summary =
-                "YOLO instance segmentation isolates each book spine on a shelf, then the Moondream2 " +
-                "vision-language model reads title and author off each spine. Received the Outstanding Project " +
-                "Award in the graduate Computer Vision course.",
+                "Point a camera at a bookshelf and get back a list of what is on it. YOLO instance " +
+                "segmentation cuts out each spine, then the Moondream2 vision-language model reads the title " +
+                "and author off it. Won the Outstanding Project Award in the graduate Computer Vision course.",
             RepoUrl = "https://github.com/suxrobgm/bookshelf-scanner",
             Tags = ["YOLO", "Moondream2 VLM", "llama.cpp", "FastAPI"],
         },
@@ -188,10 +192,11 @@ public static class ResearchData
         {
             Title = "Med Image Scanner",
             Summary =
-                "A HIPAA-compliant platform that pulls X-ray, CT, and MRI scans directly from hospital imaging " +
-                "systems and runs PyTorch detection models on them, flagging pneumonia on chest X-rays and " +
-                "intracranial hemorrhage on head CTs. Predictions render as overlays inside a real radiology " +
-                "viewer (OHIF), with on-the-fly de-identification, audit logging, and role-based access.",
+                "A HIPAA-compliant platform that pulls X-ray, CT, and MRI scans straight from hospital " +
+                "imaging systems and runs PyTorch detection models over them, flagging pneumonia on chest " +
+                "X-rays and intracranial hemorrhage on head CTs. Predictions show up as overlays inside OHIF, " +
+                "the radiology viewer clinicians already work in, with de-identification on the fly, audit " +
+                "logging, and role-based access.",
             RepoUrl = "https://github.com/suxrobgm/med-image-scanner",
             Tags = ["FastAPI", "PyTorch", "OHIF", "DICOM"],
         },
@@ -199,9 +204,10 @@ public static class ResearchData
         {
             Title = "LogisticsX",
             Summary =
-                "An AI dispatcher that matches freight loads to trucks, checks federal driver hours-of-service " +
-                "rules, and plans multi-stop routes on its own, turning a manual 15-minute decision into a " +
-                "near-instant one. Runs on the Claude API through a custom tool-use agent.",
+                "An AI dispatcher that matches freight loads to trucks, checks the federal hours-of-service " +
+                "rules for the driver, and plans multi-stop routes without a human in the loop. It runs on the " +
+                "Claude API through a custom tool-use agent, and does in seconds what used to take a " +
+                "dispatcher about fifteen minutes.",
             SiteUrl = "https://logisticsx.app",
             RepoUrl = "https://github.com/suxrobgm/logistics-app",
             Tags = ["Claude API", "MCP", "Agentic Tool Use", ".NET"],

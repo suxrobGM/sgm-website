@@ -91,7 +91,7 @@ Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.
 
 </div>
 
-Text-supervised contrastive model matching Cell Painting microscopy of perturbed cells to natural-language treatment descriptions. Frozen DINOv3 + BioClinical ModernBERT backbones with trainable projection heads, evaluated on **CPJUMP1** (51 plates, 3M+ images).
+Matches Cell Painting microscopy of perturbed cells to descriptions of the treatment in ordinary language. DINOv3 and BioClinical ModernBERT stay frozen and only small projection heads train, so it fits on one consumer GPU. Tested on **CPJUMP1** (51 plates, 3M+ images).
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![Contrastive](https://img.shields.io/badge/Contrastive_Learning-333?style=flat-square)
@@ -107,7 +107,7 @@ Text-supervised contrastive model matching Cell Painting microscopy of perturbed
 
 </div>
 
-How much of a black-box image editor's behaviour can be controlled from outside the model? Compares prompt-only, masked compositing, and inpainting across **six commercial editors** on 196 edits, scoring identity preservation and localization.
+Ask a commercial image editor to change one feature of a face and it beautifies the whole thing. Compares prompt-only steering, masked compositing, and inpainting across **six commercial editors** on 196 edits, scoring identity preservation and whether the edit stayed put. Plain masking localized better.
 
 ![ArcFace](https://img.shields.io/badge/ArcFace-333?style=flat-square)
 ![Inpainting](https://img.shields.io/badge/Inpainting-333?style=flat-square)
@@ -124,7 +124,7 @@ How much of a black-box image editor's behaviour can be controlled from outside 
 
 </div>
 
-Explainable classification across all **9 ISIC 2019 categories** (0.856 weighted F1 on 25,331 images). GradCAM++ attention decomposed along the ABCDE criteria clinicians already use, with alignment metrics so interpretability is measured, not asserted.
+Explainable classification across all **9 ISIC 2019 categories** (0.856 weighted F1 on 25,331 images). GradCAM++ attention is broken down along the ABCDE criteria clinicians already use, then scored against those same features, so the interpretability claim rests on a metric.
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![GradCAM](https://img.shields.io/badge/GradCAM++-333?style=flat-square)
@@ -137,7 +137,7 @@ Explainable classification across all **9 ISIC 2019 categories** (0.856 weighted
 
 ### Course & Side Projects
 
-Graduate coursework, listed separately from the peer-facing work above.
+Graduate coursework, kept separate from the published work above.
 
 <table>
 <tr>
@@ -149,7 +149,7 @@ Graduate coursework, listed separately from the peer-facing work above.
 
 </div>
 
-Lightweight monocular depth estimation — **42% fewer params** than Depth Anything V2, **72% faster inference**, better relative error on NYU Depth V2.
+Lightweight monocular depth estimation. Holds accuracy at **14.3M params** where Depth Anything V2 needs 24.8M, runs **72% faster**, and comes out slightly ahead on relative error on NYU Depth V2.
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![Model](https://img.shields.io/badge/ResNet18_+_UNet-333?style=flat-square)
@@ -163,7 +163,7 @@ Lightweight monocular depth estimation — **42% fewer params** than Depth Anyth
 
 </div>
 
-Reproduction of FSRCNN (Dong et al., ECCV 2016) for super-resolution — **40x speedup** over SRCNN with end-to-end upsampling at 2x/3x/4x (+1.78 dB PSNR on Set5).
+Reproduction of FSRCNN (Dong et al., ECCV 2016) for super-resolution at 2x/3x/4x. Upsampling is learned end to end, which is where the **40x speedup** over SRCNN comes from (+1.78 dB PSNR on Set5).
 
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 ![AMP](https://img.shields.io/badge/Mixed_Precision-333?style=flat-square)
@@ -186,7 +186,7 @@ Reproduction of FSRCNN (Dong et al., ECCV 2016) for super-resolution — **40x s
 
 </div>
 
-Enterprise multi-tenant TMS for intermodal trucking. Load board integrations (DAT, Truckstop), ELD/HOS compliance, Stripe Connect, route optimization, real-time tracking. **DDD + CQRS architecture.**
+Multi-tenant TMS for intermodal trucking. Wired into the big load boards (DAT, Truckstop), with ELD/HOS compliance, Stripe Connect, route optimization, and live tracking. **DDD + CQRS architecture.**
 
 ![C#](https://img.shields.io/badge/C%23-512BD4?style=flat-square&logo=dotnet&logoColor=white)
 ![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
@@ -203,7 +203,7 @@ Enterprise multi-tenant TMS for intermodal trucking. Load board integrations (DA
 
 </div>
 
-CS2 community platform with social interactions, in-game admin/ban/report system, integrated shop with Stripe payments, and real-time game server integration.
+Community platform for Counter-Strike 2 servers. Profiles and messaging, a shop running on Stripe, and a native plugin that lets admins ban, report, and moderate from inside the game.
 
 ![Next.js](https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white)
 ![Bun](https://img.shields.io/badge/Bun-000?style=flat-square&logo=bun&logoColor=white)
@@ -222,7 +222,7 @@ CS2 community platform with social interactions, in-game admin/ban/report system
 
 </div>
 
-Dependency scanner & encrypted secrets vault. Scans **8+ ecosystems** for CVEs via OSV.dev. AES-256-GCM encryption, one-time secret sharing, CI/CD token injection.
+Scans a project's dependencies across **8+ ecosystems** for known vulnerabilities via OSV.dev, and doubles as an encrypted secrets vault: AES-256-GCM, one-time secret sharing, CI/CD token injection.
 
 ![Next.js](https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white)
 ![.NET](https://img.shields.io/badge/.NET_AOT-512BD4?style=flat-square&logo=dotnet&logoColor=white)
@@ -238,7 +238,7 @@ Dependency scanner & encrypted secrets vault. Scans **8+ ecosystems** for CVEs v
 
 </div>
 
-HIPAA-ready DICOM viewer with AI-powered analysis. Connects to hospital PACS, provides measurement/segmentation tools and disease-detection overlays.
+Pulls studies straight from hospital PACS over DICOM and runs detection models over them. Predictions show up as overlays in the viewer, alongside measurement and segmentation tools. HIPAA-ready.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
@@ -256,7 +256,7 @@ HIPAA-ready DICOM viewer with AI-powered analysis. Connects to hospital PACS, pr
 
 </div>
 
-CV + LLM book detection pipeline. Detects book spines from photos and extracts titles/authors using YOLO segmentation + vision-language model.
+Point a camera at a bookshelf and get back a list of what is on it. YOLO segmentation cuts out each spine, then a vision-language model reads the title and author off it.
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![YOLO](https://img.shields.io/badge/YOLO-00FFFF?style=flat-square&logoColor=black)

@@ -1,4 +1,4 @@
-﻿namespace SGM.WebApp.Options;
+namespace SGM.WebApp.Options;
 
 public record GoogleRecaptchaOptions
 {

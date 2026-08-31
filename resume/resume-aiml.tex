@@ -120,7 +120,7 @@
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Machine-learning engineer with three published papers across computer vision, cell biology, and multimodal ML, and 9+ years building production software. Takes deep-learning and LLM work past the prototype stage: imaging models pulled into hospital workflows, an AI freight dispatcher, and multi-model pipelines running in live SaaS. Strong applied-math background, and the engineering to keep models running once they are out.
+Machine-learning engineer with three papers across computer vision, cell biology, and multimodal ML, plus nine years of production software work. Most of it comes down to getting deep-learning and LLM systems out of the notebook and into something people use: imaging models inside hospital workflows, an AI freight dispatcher, multi-model pipelines in a live SaaS product. Applied-math background, and comfortable with the part nobody writes papers about, keeping a model working after it ships.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
@@ -147,16 +147,16 @@ Machine-learning engineer with three published papers across computer vision, ce
 % VERIFY -- drafted estimates, not measured: 1,200 residents, 0.81 AUC, 3 weeks lead time,
 % VERIFY -- 500 notes/day, 0.90 F1, 1/3 charting cut, nightly retrain, sub-200ms p95.
 \begin{itemize}
-    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform, including a decline-risk model over daily activity and care-log data for roughly 1,200 residents, reaching 0.81 AUC and surfacing early signs about three weeks before the care team escalated on its own.
-    \item Added an NLP pipeline that reads roughly 500 free-text clinical notes a day and pulls out structured details (symptoms, medications, care events) at about 0.90 F1 on a held-out set, cutting manual charting time for the care team by roughly a third.
-    \item Stood up the ML infrastructure under HIPAA constraints: de-identified training data, nightly retraining, model serving behind the API at sub-200\,ms p95, and drift monitoring. The platform cleared an outside HIPAA readiness review with no critical findings.
+    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform. The main one is a decline-risk model over daily activity and care-log data for roughly 1,200 residents; it holds 0.81 AUC and flags someone about three weeks before the care team escalates on its own.
+    \item Added an NLP pipeline that reads roughly 500 free-text clinical notes a day and pulls out structured details (symptoms, medications, care events) at about 0.90 F1 on a held-out set. Manual charting time for the care team dropped by roughly a third.
+    \item Stood up the ML infrastructure under HIPAA constraints: de-identified training data, nightly retraining, serving behind the API at sub-200\,ms p95, drift monitoring. The platform cleared an outside HIPAA readiness review with no critical findings.
 \end{itemize}
 
 \experienceEntry{Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{Oct 2021 -- Dec 2024}
 % VERIFY -- drafted estimates: 2M listings, 40+ metros, valuation error 9% -> 5%.
 \begin{itemize}
-    \item Built property-valuation and market-forecasting models over roughly 2M listings across 40+ metros, cutting median absolute valuation error from about 9\% to 5\% against the rules-based estimate the product shipped with.
-    \item Designed the real-time feature pipeline (SignalR + SQL Server change tracking) that fed live market data to the models and pushed updated predictions to hundreds of concurrent users with sub-second latency, retraining nightly on the day's transactions.
+    \item Built property-valuation and market-forecasting models over roughly 2M listings across 40+ metros. Median absolute valuation error went from about 9\% to 5\% against the rules-based estimate the product shipped with.
+    \item Designed the real-time feature pipeline (SignalR + SQL Server change tracking) that fed live market data to the models and pushed updated predictions out to hundreds of concurrent users in under a second. The models retrained nightly on the day's transactions.
     \item Productionized the models into the customer-facing dashboards and added automated tests around the data and prediction flows.
 \end{itemize}
 
@@ -170,49 +170,49 @@ Machine-learning engineer with three published papers across computer vision, ce
 {https://github.com/suxrobgm/morphoclip}
 {https://arxiv.org/abs/2608.22690}
 \begin{itemize}
-    \item Built a text-supervised contrastive model, pairing frozen vision and language backbones (DINOv3, BioClinical ModernBERT) with trainable projection heads, that matches Cell Painting microscopy images of drug- and gene-perturbed cells to natural-language treatment descriptions, evaluated on the CPJUMP1 benchmark (51 plates, 3M+ images). Published on arXiv; collaborative work with two Northeastern co-authors, with me leading model design, training, and evaluation.
+    \item Built a text-supervised contrastive model that matches Cell Painting microscopy images of drug- and gene-perturbed cells to descriptions of the treatment in ordinary language. The backbones (DINOv3, BioClinical ModernBERT) stay frozen and only small projection heads train, so it fits on one consumer GPU. Tested on CPJUMP1: 51 plates, 3M+ images. Published on arXiv, joint work with two Northeastern co-authors; I led the design, training, and evaluation.
 \end{itemize}
 
 \projectEntry{Localize, Don't Beautify}{Image-editing APIs, inpainting, ArcFace, prompt engineering}
 {https://arxiv.org/abs/2608.02841}
 \begin{itemize}
-    \item Studied why commercial image-editing APIs over-edit the face during cosmetic-surgery preview generation and how much of that can be fixed client-side without touching the model; tested prompt-only, masked-compositing, and model-based inpainting across six editors, and found simple masking beat model-based inpainting on localization accuracy. Published on arXiv.
+    \item Ask a commercial image editor to change one feature of a face and it beautifies the whole thing, a problem when the picture is meant to be a surgical preview. Tested how much of that can be fixed client-side, without touching the model: prompt-only steering, masked compositing, and model-based inpainting across six editors. Plain masking localized better. Published on arXiv.
 \end{itemize}
 
 \projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
 {https://github.com/suxrobgm/explainable-melanoma}
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
-    \item Trained a deep-learning model to classify skin lesions across nine diagnostic categories on a standard public dermatology dataset of 25K+ images, reaching 0.86 weighted F1.
-    \item The research contribution is interpretability: the model produces heatmaps of what it looked at, decomposed along the same ABCDE criteria (Asymmetry, Border, Color, Diameter, Evolution) dermatologists already use, so a clinician can follow and trust the reasoning rather than getting an opaque score. Published on arXiv.
+    \item Trained a deep-learning model to classify skin lesions across nine diagnostic categories on a standard public dermatology dataset of 25K+ images. It reaches 0.86 weighted F1.
+    \item The interesting part is the interpretability. The model shows heatmaps of where it looked, broken down along the same ABCDE criteria (Asymmetry, Border, Color, Diameter, Evolution) dermatologists already work from, so a clinician can check the reasoning. Published on arXiv.
 \end{itemize}
 
 \projectEntry{Med Image Scanner}{FastAPI, PyTorch, OpenCV, OHIF Viewer, DICOM, Next.js}
 {https://github.com/suxrobgm/med-image-scanner}
 \begin{itemize}
-    \item HIPAA-compliant platform that pulls X-ray, CT, and MRI scans directly from hospital imaging systems and runs PyTorch detection models on them, flagging pneumonia on chest X-rays and intracranial hemorrhage on head CTs.
-    \item Renders model predictions as overlays inside a real radiology viewer (OHIF), and handles patient data safely throughout, with on-the-fly de-identification, audit logging, and role-based access.
+    \item HIPAA-compliant platform that pulls X-ray, CT, and MRI scans straight from hospital imaging systems and runs PyTorch detection models over them. It flags pneumonia on chest X-rays and intracranial hemorrhage on head CTs.
+    \item Predictions render as overlays inside OHIF, the viewer radiologists already work in. De-identification happens on the fly, with audit logging and role-based access behind it.
 \end{itemize}
 
 \projectEntryDual{LogisticsX}{Claude API, MCP, .NET 10, EF Core, SignalR, Angular 21, Kotlin KMP, PostgreSQL}
 {https://logisticsx.app}
 {https://github.com/suxrobgm/logistics-app}
 \begin{itemize}
-    \item Built an AI dispatcher that matches freight loads to trucks, checks federal driver hours-of-service rules, and plans multi-stop routes on its own, turning a manual 15-minute decision into a near-instant one. Runs on the Claude API through a custom tool-use agent with its own set of tools.
-    \item Shipped it as a real product: web portals for dispatchers, customers, and brokers, a cross-platform driver app, and a multi-tenant backend integrated with the major freight load boards and tracking providers.
+    \item Built an AI dispatcher that matches freight loads to trucks, checks the driver's federal hours-of-service, and plans the multi-stop route, no human in the loop. Runs on the Claude API through a custom tool-use agent. Assigning a load used to take about fifteen minutes; now it takes seconds.
+    \item Shipped the whole product around it: web portals for dispatchers, customers, and brokers, a cross-platform driver app, and a multi-tenant backend wired into the big freight load boards and tracking providers.
 \end{itemize}
 
 \projectEntry{Bookshelf Scanner}{YOLO, Moondream2 VLM, FastAPI, Angular}
 {https://github.com/suxrobgm/bookshelf-scanner}
 \begin{itemize}
-    \item Two-stage computer-vision pipeline: a YOLO segmentation model isolates each individual book spine from a shelf photo, then a vision-language model reads the title and author off each spine, wrapped in a web app for correcting misreads and exporting the library.
+    \item Point a camera at a bookshelf and get back a list of what is on it. A YOLO segmentation model cuts out each spine, then a vision-language model reads the title and author off it, with a web app for fixing misreads and exporting the library.
 \end{itemize}
 
 \projectEntryDual{OGStack}{Next.js 16, ElysiaJS, Bun, Satori, Cloudflare R2, Stripe}
 {https://ogstack.dev}
 {https://github.com/suxrobgm/ogstack}
 \begin{itemize}
-    \item Built a multi-model AI layer that routes work across Claude, GPT, and DeepSeek to read a web page and match its branding, then generates an on-brand social-share image, including AI-generated backgrounds. Runs as a SaaS serving cached images from a global CDN; it generated 10K+ images during the beta.
+    \item Built the multi-model layer that routes work across Claude, GPT, and DeepSeek to read a web page and pick up its branding, then generates the social-share image, backgrounds included. Runs as a SaaS serving cached images off a global CDN; 10K+ images during the beta.
 \end{itemize}
 
 \end{document}

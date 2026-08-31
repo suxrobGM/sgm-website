@@ -127,7 +127,7 @@
 
 %----------RESEARCH INTERESTS----------
 \section{Research Interests}
-Making vision models trustworthy enough to deploy. My work runs along three threads: interpretability a clinician can audit rather than take on faith, control over black-box generative systems from outside the model, and representation learning that transfers to scientific imaging. Building ML for a HIPAA-regulated clinical platform is where those same questions arrive with consequences attached.
+I want vision models that people can trust enough to actually deploy. Three questions keep coming up in my work. Can a clinician check what the model looked at, instead of taking a score on faith? How much of a black-box generative model's behavior can you control from the outside, without retraining it? And do learned representations hold up on scientific imaging, where the data looks nothing like ImageNet and the labels are noisy? I also build ML for a HIPAA-regulated clinical platform, so I run into the same questions with real patients on the other end.
 
 %----------EDUCATION----------
 \section{Education}
@@ -174,8 +174,8 @@ Making vision models trustworthy enough to deploy. My work runs along three thre
 {https://github.com/suxrobgm/morphoclip}
 {https://arxiv.org/abs/2608.22690}
 \begin{itemize}
-    \item Built a text-supervised contrastive model that matches Cell Painting microscopy images of drug- and gene-perturbed cells to natural-language treatment descriptions, pairing frozen vision and language backbones (DINOv3, BioClinical ModernBERT) with trainable projection heads so the whole model trains on a single consumer GPU.
-    \item Evaluated bidirectional image-to-text and text-to-image retrieval on the CPJUMP1 benchmark (51 plates, 3M+ cell images, 303 drugs, 160 genes), with batch correction in the embedding space to remove plate-to-plate variation.
+    \item Built a text-supervised contrastive model that matches Cell Painting microscopy images of drug- and gene-perturbed cells to descriptions of the treatment written in ordinary language. The vision and language backbones (DINOv3, BioClinical ModernBERT) stay frozen and only small projection heads train, which is what keeps the whole thing on a single consumer GPU.
+    \item Tested retrieval in both directions, image-to-text and text-to-image, on the CPJUMP1 benchmark: 51 plates, 3M+ cell images, 303 drugs, 160 genes. Batch correction in the embedding space keeps the model from simply learning which plate an image came from.
     \item Collaborative work with Northeastern co-authors S.\ Gajjar and R.\ Jin; I led the model design, training, and evaluation.
     \item \textbf{Stack:} PyTorch, DINOv3, BioClinical ModernBERT, contrastive learning, CPJUMP1
 \end{itemize}
@@ -183,8 +183,8 @@ Making vision models trustworthy enough to deploy. My work runs along three thre
 \projectHeadingPaperOnly{Localize, Don't Beautify: Client-Side Control of Image-Editing APIs}
 {https://arxiv.org/abs/2608.02841}
 \begin{itemize}
-    \item Asked how much of a black-box editor's behavior can be controlled from outside the model, with cosmetic-surgery previews as the test case: commercial APIs beautify the whole face when asked to change one feature.
-    \item Compared prompt-only, masked-compositing, and model-based inpainting across six commercial editors and one inpainting model on 196 facelift and rhinoplasty edits, scoring identity preservation (ArcFace) and localization accuracy. Masked compositing beat model-based inpainting on localization.
+    \item Ask a commercial image editor to change one feature of a face and it beautifies the whole thing. Cosmetic-surgery previews are where that goes wrong most visibly, which makes them a good test case for how much of a black-box model's behavior you can control from the outside.
+    \item Compared prompt-only steering, masked compositing, and model-based inpainting across six commercial editors and one inpainting model, over 196 facelift and rhinoplasty edits, scored on identity preservation (ArcFace) and on whether the edit stayed where it was asked to. Plain masked compositing came out ahead of model-based inpainting on localization.
     \item \textbf{Stack:} Image-editing APIs, inpainting models, ArcFace, prompt engineering
 \end{itemize}
 
@@ -192,9 +192,9 @@ Making vision models trustworthy enough to deploy. My work runs along three thre
 {https://github.com/suxrobgm/explainable-melanoma}
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
-    \item Trained an EfficientNet V2 classifier across all 9 ISIC 2019 diagnostic categories at 384$\times$384 resolution, reaching 85.6\% accuracy and 0.856 weighted F1 on 25{,}331 dermoscopic images, using focal loss against the heavy class imbalance.
-    \item Decomposed GradCAM++ attention along the ABCDE criteria dermatologists already use, quantifying asymmetry, border irregularity, color variation (K-means), and diameter directly from the lesion mask.
-    \item Designed alignment metrics between model attention and the extracted clinical features, so the interpretability claim is measured rather than argued from a handful of example heatmaps.
+    \item Trained an EfficientNet V2 classifier across all 9 ISIC 2019 diagnostic categories at 384$\times$384, with focal loss to cope with the heavy class imbalance. It reaches 85.6\% accuracy and 0.856 weighted F1 on 25{,}331 dermoscopic images.
+    \item Broke GradCAM++ attention down along the ABCDE criteria dermatologists already use, with asymmetry, border irregularity, color variation (K-means), and diameter measured straight off the lesion mask.
+    \item Because those clinical features come out as numbers, how well they line up with the model's attention can be scored. The interpretability claim rests on a metric instead of a few good-looking heatmaps.
     \item \textbf{Stack:} PyTorch, EfficientNet V2, GradCAM++, OpenCV, focal loss, ISIC 2019
 \end{itemize}
 
@@ -204,23 +204,23 @@ Making vision models trustworthy enough to deploy. My work runs along three thre
 \projectHeading{LightDepth: Lightweight Monocular Depth Estimation}
 {https://github.com/suxrobgm/lightdepth}
 \begin{itemize}
-    \item Designed a ResNet18 encoder with a U-Net decoder and skip connections for monocular depth, holding accuracy with 42\% fewer parameters (14.3M vs 24.8M) than Depth Anything V2.
-    \item Ran 72\% faster at inference while improving relative error on NYU Depth V2 (5.3\% better AbsRel, 31.1\% better SqRel).
+    \item Designed a ResNet18 encoder with a U-Net decoder and skip connections for monocular depth. It holds accuracy at 14.3M parameters where Depth Anything V2 needs 24.8M, a 42\% cut.
+    \item Inference runs 72\% faster, and relative error on NYU Depth V2 improved too: 5.3\% on AbsRel, 31.1\% on SqRel.
     \item \textbf{Stack:} PyTorch, ResNet18, U-Net, NYU Depth V2
 \end{itemize}
 
 \projectHeading{FSRCNN: Accelerating Super-Resolution Convolutional Neural Network}
 {https://github.com/suxrobgm/fsrcnn}
 \begin{itemize}
-    \item Reproduced FSRCNN (Dong et al., ECCV 2016) for single-image super-resolution at 2$\times$, 3$\times$, and 4$\times$ scales, with end-to-end learned upsampling giving a 40$\times$ speedup over SRCNN.
-    \item Matched the reported gains on Set5 (+1.78\,dB PSNR, +0.0507 SSIM) and Set14 (+1.26\,dB PSNR, +0.0477 SSIM), with ablations on the shrinking and mapping layers.
+    \item Reproduced FSRCNN (Dong et al., ECCV 2016) for single-image super-resolution at 2$\times$, 3$\times$, and 4$\times$. Upsampling is learned end to end, which is where the 40$\times$ speedup over SRCNN comes from.
+    \item The reported gains held up on Set5 (+1.78\,dB PSNR, +0.0507 SSIM) and Set14 (+1.26\,dB PSNR, +0.0477 SSIM). Added ablations on the shrinking and mapping layers.
     \item \textbf{Stack:} PyTorch, mixed-precision training, T91/Set5/Set14/DIV2K
 \end{itemize}
 
 \projectHeading{Bookshelf Scanner: Multi-Modal Book Detection and Recognition}
 {https://github.com/suxrobgm/bookshelf-scanner}
 \begin{itemize}
-    \item Combined YOLO instance segmentation to isolate each book spine on a shelf with the Moondream2 vision-language model to read title and author off each spine, an end-to-end detect-then-ground pipeline. Received the course Outstanding Project Award.
+    \item Point a camera at a bookshelf and get back a list of what is on it. YOLO instance segmentation cuts out each spine, then the Moondream2 vision-language model reads the title and author off it. Won the course Outstanding Project Award.
     \item \textbf{Stack:} YOLO, Moondream2 VLM, llama.cpp, PyTorch, FastAPI
 \end{itemize}
 
@@ -230,14 +230,14 @@ Making vision models trustworthy enough to deploy. My work runs along three thre
 \experienceEntry{Senior AI/ML Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Present}
 % VERIFY -- drafted estimates, not measured: 1,200 residents, 0.81 AUC, 3 weeks lead time, 0.90 F1.
 \begin{itemize}
-    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform, including a decline-risk model over daily activity and care-log data for roughly 1,200 residents, reaching 0.81 AUC and surfacing early signs about three weeks before the care team escalated on its own.
-    \item Added an NLP pipeline that reads free-text clinical notes and extracts structured details (symptoms, medications, care events) at roughly 0.90 F1 on a held-out set, and stood up model serving and monitoring on de-identified data under HIPAA constraints.
+    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform. The main one is a decline-risk model over daily activity and care-log data for roughly 1,200 residents; it holds 0.81 AUC and tends to flag someone about three weeks before the care team escalates on its own.
+    \item Added an NLP pipeline that reads free-text clinical notes and pulls out structured details (symptoms, medications, care events) at roughly 0.90 F1 on a held-out set. Also stood up model serving and monitoring on de-identified data, under HIPAA constraints.
 \end{itemize}
 
 \experienceEntry{Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{Oct 2021 -- Dec 2024}
 % VERIFY -- drafted estimates: 2M listings, 40+ metros, valuation error 9% -> 5%.
 \begin{itemize}
-    \item Built property-valuation and market-forecasting models over roughly 2M listings across 40+ metros, cutting median absolute valuation error from about 9\% to 5\% against the rules-based estimate the product shipped with.
+    \item Built property-valuation and market-forecasting models over roughly 2M listings across 40+ metros. Median absolute valuation error went from about 9\% to 5\% against the rules-based estimate the product had shipped with.
     \item Designed the real-time feature pipeline that fed live market data to the models and pushed updated predictions to users, then productionized the models into the customer-facing dashboards.
 \end{itemize}
 

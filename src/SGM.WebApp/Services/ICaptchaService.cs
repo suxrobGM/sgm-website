@@ -1,4 +1,4 @@
-﻿namespace SGM.WebApp.Services;
+namespace SGM.WebApp.Services;
 
 public interface ICaptchaService
 {

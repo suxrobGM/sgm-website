@@ -1,4 +1,4 @@
-﻿using SGM.WebApp.Components;
+using SGM.WebApp.Components;
 using SGM.WebApp.Options;
 using SGM.WebApp.Services;
 

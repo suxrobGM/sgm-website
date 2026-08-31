@@ -105,16 +105,14 @@
             </div>
             <div class="about-content">
               <p>
-                I'm a passionate software engineer with a Master's in Computer Science from Northeastern
-                University.
-                With 9+ years of experience spanning full-stack development, game development,
-                and AI/ML research, I bridge the gap between cutting-edge research and production-ready
-                applications.
+                I write software and I do computer vision research. Nine years of the first, and a Master's in
+                Computer Science from Northeastern for the second. The work I like best sits where the two meet,
+                taking a model that only runs in a notebook and turning it into something people can actually use.
               </p>
               <p>
-                My research focuses on Computer Vision, Deep Learning, Medical Image Analysis, and Explainable AI.
-                I've developed systems for skin cancer classification, monocular depth estimation, and multi-modal
-                book detection using state-of-the-art architectures.
+                My research is in computer vision and deep learning, mostly medical imaging and explainable AI, with
+                three papers on arXiv. Along the way I have built systems that classify skin cancer, estimate depth
+                from a single photo, and read the titles off a shelf of books.
               </p>
               <div class="about-stats">
                 <div class="stat-item">
@@ -273,12 +271,12 @@
               <h3 class="timeline-title">Senior Software Engineer</h3>
               <div class="timeline-company">EmTech Care Labs | Portland, ME</div>
               <p class="timeline-description">
-                Sole senior engineer on a HIPAA-compliant platform that helps families coordinate Alzheimer's care, used
-                by 200+ caregivers and patients on AWS, with real-time messaging, push notifications, and shared care
-                plans. Made it audit-ready for healthcare data with encrypted patient information, full audit logging, and
-                role-based access, passing an outside HIPAA readiness review with no critical findings. Merged three
-                separate web and mobile codebases into one TypeScript monorepo, worked directly with clinicians, and
-                mentored two junior engineers.
+                Sole senior engineer on a HIPAA-compliant platform that helps families coordinate Alzheimer's care.
+                200+ caregivers and patients use it for real-time messaging, push notifications, and shared care
+                plans, all running on AWS. I made it audit-ready for healthcare data with encrypted patient
+                information, full audit logging, and role-based access, and it cleared an outside HIPAA readiness
+                review with no critical findings. I also merged three separate web and mobile codebases into one
+                TypeScript monorepo, scoped features directly with clinicians, and mentored two junior engineers.
               </p>
             </div>
           </div>
@@ -291,11 +289,11 @@
               <h3 class="timeline-title">Senior Software Engineer</h3>
               <div class="timeline-company">AllFactors | Santa Clara, CA</div>
               <p class="timeline-description">
-                Rebuilt a slow legacy real-estate analytics app as a modern Blazor WebAssembly front end, roughly halving
-                page load time and removing the brittle state management that made it hard to change. Built a real-time
-                market-data pipeline with SignalR and SQL Server change tracking that streamed live pricing and inventory
-                to hundreds of concurrent users with sub-second updates, and created a reusable library of data grids,
-                charts, and filters that became the standard building blocks for the product's dashboards.
+                Rebuilt a slow legacy real-estate analytics app on Blazor WebAssembly. Page loads got about twice as
+                fast, and the brittle state management that had made the old app risky to touch went away with it. I
+                also built a real-time market-data pipeline on SignalR and SQL Server change tracking that streamed
+                live pricing and inventory to hundreds of concurrent users in under a second, plus a reusable library
+                of data grids, charts, and filters that every dashboard in the product ended up built on.
               </p>
             </div>
           </div>
@@ -308,10 +306,10 @@
               <h3 class="timeline-title">Software Engineer</h3>
               <div class="timeline-company">Smart Meal Service | Russia</div>
               <p class="timeline-description">
-                Built the software for a self-service food kiosk and robotic cashier in C# / .NET, talking to real payment
-                terminals and hardware over low-level protocols, plus the customer ordering app (Xamarin) and an admin
-                dashboard (ASP.NET Core and Angular). Added automated order routing that noticeably cut kitchen wait
-                times, and a hardware abstraction layer so one codebase ran across three machine models.
+                Wrote the C# / .NET software running a self-service food kiosk and a robotic cashier, down to the
+                low-level protocols for the payment terminals and the hardware. Also built the customer ordering app
+                (Xamarin) and the admin dashboard (ASP.NET Core and Angular). Automated order routing cut kitchen wait
+                times noticeably, and a hardware abstraction layer let one codebase run on all three machine models.
               </p>
             </div>
           </div>
@@ -324,10 +322,10 @@
               <h3 class="timeline-title">Game Developer</h3>
               <div class="timeline-company">Pentalight Technology | Malaysia</div>
               <p class="timeline-description">
-                Built the multiplayer networking for a VR smart-city simulation in Unity, keeping many users in sync in
-                real time, plus spatial audio, hand-tracking, and on-screen interfaces. Added a desktop spectator client
-                so people without a headset could watch and take part, and automated the art pipeline to turn a multi-hour
-                per-scene chore into a quick one.
+                Built the multiplayer networking for a VR smart-city simulation in Unity, so everyone in a session saw
+                the same world in real time. Also did the spatial audio, the hand tracking, and the in-world
+                interfaces, plus a desktop spectator client for people without a headset. Automating the art pipeline
+                turned a multi-hour job per scene into something an artist could start and walk away from.
               </p>
             </div>
           </div>
@@ -385,10 +383,10 @@
                       class="grep-line-num">1</span></p>
                       <h3>MorphoCLIP: Text-Supervised Cell Painting Retrieval</h3>
                       <p>
-                        Built a text-supervised contrastive model that matches Cell Painting microscopy images
-                        of drug- and gene-perturbed cells to natural-language treatment descriptions, pairing
-                        frozen vision/language backbones (DINOv3, BioClinical ModernBERT) with trainable
-                        projection heads. Evaluated on the CPJUMP1 benchmark (51 plates, 3M+ images).
+                        Matches Cell Painting microscopy images of drug- and gene-perturbed cells to descriptions of
+                        the treatment written in ordinary language. The vision and language backbones (DINOv3,
+                        BioClinical ModernBERT) stay frozen and only small projection heads train, so the whole thing
+                        fits on one consumer GPU. Tested on the CPJUMP1 benchmark: 51 plates, 3M+ images.
                       </p>
                       <div class="project-tech">
                         <span>PyTorch</span>
@@ -413,10 +411,10 @@
                         class="grep-line-num">1</span></p>
                         <h3>Localize, Don't Beautify: Controlling Image-Editing APIs</h3>
                         <p>
-                          Studied why commercial image-editing APIs over-edit the face during cosmetic-surgery
-                          preview generation, and how much of that can be fixed client-side without touching
-                          the model. Simple masked compositing beat model-based inpainting on localization
-                          accuracy across six commercial editors.
+                          Ask a commercial image editor to change one feature of a face and it beautifies the whole
+                          thing, which is a problem when the picture is meant to be a surgical preview. I tested how
+                          much of that can be fixed from the client side, without touching the model. Across six
+                          editors, plain masked compositing localized better than model-based inpainting.
                         </p>
                         <div class="project-tech">
                           <span>Image-Editing APIs</span>
@@ -437,9 +435,9 @@
                       class="grep-line-num">1</span></p>
                       <h3>MelanomaNet: Explainable Skin Lesion Classification</h3>
                       <p>
-                        Developed explainable deep learning system for multi-class skin lesion classification
-                        using EfficientNet V2 with GradCAM++ visualization. Implemented novel ABCDE criterion
-                        analysis for clinical interpretability across all 9 ISIC 2019 categories.
+                        An EfficientNet V2 classifier over all nine ISIC 2019 diagnostic categories. The interesting
+                        part is what happens after the prediction: GradCAM++ heatmaps get broken down along the ABCDE
+                        criteria dermatologists already work from, so a clinician can check what the model looked at.
                       </p>
                       <div class="project-tech">
                         <span>PyTorch</span>
@@ -464,9 +462,9 @@
                         class="grep-line-num">1</span></p>
                         <h3>LightDepth: Lightweight Monocular Depth Estimation <small>(course project)</small></h3>
                         <p>
-                          Designed lightweight depth estimation model with ResNet18 encoder and U-Net decoder,
-                          achieving 42% fewer parameters than Depth Anything V2, 72% faster inference,
-                          and better relative error metrics on NYU Depth V2 benchmark.
+                          A ResNet18 encoder with a U-Net decoder for monocular depth. It holds accuracy at 14.3M
+                          parameters where Depth Anything V2 needs 24.8M, runs 72% faster at inference, and comes out
+                          slightly ahead on relative error on NYU Depth V2.
                         </p>
                         <div class="project-tech">
                           <span>PyTorch</span>
@@ -488,9 +486,10 @@
                           class="grep-line-num">1</span></p>
                           <h3>FSRCNN: Super-Resolution Neural Network <small>(course project)</small></h3>
                           <p>
-                            Implemented FSRCNN architecture achieving 40x speedup over SRCNN with end-to-end
-                            learned upsampling. Evaluated on Set5 (+1.78 dB PSNR) and Set14 (+1.26 dB PSNR)
-                            with comprehensive ablation studies.
+                            A reproduction of FSRCNN for single-image super-resolution. Upsampling is learned end to
+                            end, which is where the 40x speedup over SRCNN comes from. The reported gains held up on
+                            Set5 (+1.78 dB PSNR) and Set14 (+1.26 dB PSNR), with extra ablations on the shrinking and
+                            mapping layers.
                           </p>
                           <div class="project-tech">
                             <span>PyTorch</span>
@@ -520,8 +519,9 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 logisticsx/</p>
                           <h3 class="project-title">LogisticsX</h3>
                           <p class="project-description">
-                            Multi-tenant transportation management system for trucking companies with DDD/CQRS architecture,
-                            4 web apps + mobile driver app, Stripe payments, ELD compliance, and real-time fleet tracking.
+                            A transportation management system for trucking companies: four web portals, an
+                            Android/iOS driver app, and a multi-tenant backend built on DDD/CQRS, with Stripe
+                            payments, ELD compliance, and live fleet tracking.
                           </p>
                           <div class="project-tech">
                             <span>ASP.NET Core</span>
@@ -546,9 +546,9 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 meat-gg/</p>
                           <h3 class="project-title">Meat.gg</h3>
                           <p class="project-description">
-                            Community platform for CS2 servers serving 50K+ registered users and 1K+ daily active players
-                            with social features, in-game admin/ban/report system, Stripe-powered shop, and real-time server
-                            integration.
+                            A community platform for Counter-Strike 2 servers, now at 50K+ registered users and 1K+
+                            daily actives. Profiles, messaging, and a shop running on Stripe, plus a native plugin
+                            that lets admins ban, report, and moderate players from inside the game.
                           </p>
                           <div class="project-tech">
                             <span>ElysiaJS</span>
@@ -572,8 +572,9 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 depvault/</p>
                           <h3 class="project-title">DepVault</h3>
                           <p class="project-description">
-                            Dependency scanner and encrypted secrets vault supporting 8+ ecosystems with CVE detection
-                            via OSV.dev, AES-256-GCM encryption, one-time secret sharing, and CI/CD token injection.
+                            Scans a project's dependencies for known vulnerabilities across eight language ecosystems,
+                            checking each one against OSV.dev. It doubles as an encrypted secrets vault (AES-256-GCM)
+                            with one-time sharing and a CLI that injects tokens into CI/CD pipelines.
                           </p>
                           <div class="project-tech">
                             <span>Next.js</span>
@@ -600,8 +601,9 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 med-image-scanner/</p>
                           <h3 class="project-title">Med Image Scanner</h3>
                           <p class="project-description">
-                            HIPAA-compliant platform connecting to hospital PACS via DICOM for AI-powered
-                            analysis on X-ray, CT, and MRI studies with OHIF Viewer integration.
+                            Pulls X-ray, CT, and MRI studies straight from hospital PACS over DICOM and runs detection
+                            models over them. Predictions show up as overlays inside OHIF, the viewer radiologists
+                            already work in.
                           </p>
                           <div class="project-tech">
                             <span>Python</span>
@@ -623,8 +625,8 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 online-chess/</p>
                           <h3 class="project-title">ChessMate</h3>
                           <p class="project-description">
-                            Online chess platform with PvP and AI opponents, supporting rated and unrated
-                            matches with real-time WebSocket communication.
+                            An online chess platform with both human and AI opponents, rated or casual. Moves go over
+                            WebSockets, so both boards stay in sync as the game runs.
                           </p>
                           <div class="project-tech">
                             <span>Spring Boot</span>
@@ -645,8 +647,9 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 bookshelf-scanner/</p>
                           <h3 class="project-title">Bookshelf Scanner</h3>
                           <p class="project-description">
-                            End-to-end book detection from bookshelf images using YOLO segmentation
-                            and Moondream2 vision-language model for title/author extraction.
+                            Point a camera at a bookshelf and get back a list of what is on it. YOLO segmentation cuts
+                            out each spine, then the Moondream2 vision-language model reads the title and author off
+                            it.
                           </p>
                           <div class="project-tech">
                             <span>Python</span>
