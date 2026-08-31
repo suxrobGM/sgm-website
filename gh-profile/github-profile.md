@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- Animated Header Banner -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&section=header&text=Sukhrob%20Ilyosbekov&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=AI%20Research%20%C2%B7%20Computer%20Vision%20%26%20Multimodal%20ML&descSize=18&descAlignY=55&descColor=8b949e" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:161b22,100:1f6feb&height=220&section=header&text=Sukhrob%20Ilyosbekov&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=AI%20Research%20%C2%B7%20Computer%20Vision%20%C2%B7%20Multimodal%20ML&descSize=18&descAlignY=55&descColor=8b949e" width="100%"/>
 
 <!-- Terminal-Style Introduction -->
 <img src="./assets/terminal-intro.svg" alt="Terminal Introduction" width="800"/>
