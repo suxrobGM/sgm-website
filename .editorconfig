@@ -45,9 +45,11 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 quote_type = double
 
+# Razor is HTML-dominant and nests 15+ levels deep in the themed pages; at 4
+# spaces the content starts past column 60. C# stays at 4 above.
 [*.razor]
 indent_style = space
-indent_size = 4
+indent_size = 2
 end_of_line = lf
 charset = utf-8
 insert_final_newline = true
