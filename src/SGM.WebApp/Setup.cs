@@ -15,6 +15,7 @@ internal static class Setup
         builder.Services.AddScoped<IEmailSender, EmailSender>();
         builder.Services.AddScoped<ICaptchaService, RecaptchaEnterpriseService>();
         builder.Services.AddHttpClient<IFreeKassaService, FreeKassaService>();
+        builder.Services.AddSingleton<StaticAssetVersion>();
 
         builder.Services.AddControllers();
         builder.Services.AddRazorComponents()
@@ -37,7 +38,17 @@ internal static class Setup
 
         app.UseHttpsRedirection();
 
-        app.UseStaticFiles();
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            OnPrepareResponse = ctx =>
+            {
+                // Resume PDFs are replaced in place, so force revalidation; unchanged files still 304 via ETag.
+                if (ctx.File.Name.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase))
+                {
+                    ctx.Context.Response.Headers.CacheControl = "no-cache, must-revalidate";
+                }
+            },
+        });
         app.UseRouting();
         app.UseCookiePolicy();
         app.UseAntiforgery();
