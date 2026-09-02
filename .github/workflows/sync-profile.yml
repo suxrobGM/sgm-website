@@ -1,0 +1,55 @@
+# Mirrors gh-profile/ into the suxrobGM/suxrobGM profile repo.
+#
+# Required GitHub secret:
+#   PROFILE_SYNC_TOKEN — fine-grained PAT scoped to suxrobGM/suxrobGM with
+#                        Contents: read/write and Workflows: read/write
+#                        (Workflows is needed because .github/workflows/ is synced).
+#
+# gh-profile/ has the same layout as the profile repo (README.md, assets/,
+# scripts/, .github/workflows/), so it is copied over as-is. Files are copied,
+# never deleted, so anything the profile repo's own workflows generate
+# (github-metrics.svg, refreshed activity SVGs) survives.
+
+name: Sync GitHub profile
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - gh-profile/**
+      - .github/workflows/sync-profile.yml
+  workflow_dispatch:
+
+concurrency:
+  group: sync-profile
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/checkout@v7
+        with:
+          repository: suxrobGM/suxrobGM
+          token: ${{ secrets.PROFILE_SYNC_TOKEN }}
+          path: profile
+
+      - name: Copy profile files
+        run: cp -r gh-profile/. profile/
+
+      - name: Commit and push
+        working-directory: profile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "profile already up to date"
+            exit 0
+          fi
+          git commit -m "Sync profile from sgm-website@${GITHUB_SHA::7}"
+          git push

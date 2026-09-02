@@ -31,6 +31,18 @@ that copy is how the site ends up serving a stale PDF.
 ./resume/build.ps1 aiml -NoSync # compile without touching wwwroot
 ```
 
+### GitHub profile activity chart
+
+`gh-profile/scripts/activity_chart.py` renders four charts from the GraphQL API as
+`assets/<name>-{light,dark}.svg`: `activity` (per month, one row per year),
+`cumulative`, `mix` (by contribution type) and `languages` (by project start year).
+Drawing code lives in `scripts/charts/`, one module per chart plus `theme`, `svg`
+and `github`. The profile repo reruns it daily. Locally: `$env:GITHUB_TOKEN = gh auth token` then
+`python gh-profile/scripts/activity_chart.py --user suxrobGM --out gh-profile/assets`
+(`--charts mix,languages` for a subset).
+The README uses one-column blockquote cards, not multi-column tables, so it reads on
+phones; use `<small>` not `<sub>` for captions that may wrap.
+
 ## Architecture
 
 **Entry point flow:** `Program.cs` → `Setup.ConfigureServices()` → `Setup.ConfigurePipeline()`
@@ -41,7 +53,10 @@ that copy is how the site ends up serving a stale PDF.
 - `src/SGM.WebApp/Services/` - Business logic services (email sender, captcha verification)
 - `src/SGM.WebApp/Options/` - Strongly-typed configuration classes bound from appsettings
 - `resume/` - LaTeX resume source files and GitHub profile markdown
-- `gh-profile/` - GitHub profile README and assets (terminal SVG, screenshots)
+- `gh-profile/` - Source of truth for the `suxrobGM/suxrobGM` profile repo, same
+  layout (`README.md`, `assets/`, `scripts/`, `.github/workflows/`).
+  `sync-profile.yml` copies it there on every push to `master` that touches
+  `gh-profile/` (needs the `PROFILE_SYNC_TOKEN` secret).
 
 **Pages (themed portfolio variants, all inherit `HomePageBase`):**
 

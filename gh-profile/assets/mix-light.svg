@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="274" viewBox="0 0 680 274" role="img" aria-labelledby="t d">
+<title id="t">What the contributions were</title>
+<desc id="d">Per year, by type · 2019–2026 · updated 2026-09-02</desc>
+<g font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+<text x="16.0" y="28.0" font-size="17" fill="#1f2328" font-weight="600">What the contributions were</text>
+<text x="16.0" y="50.0" font-size="12" fill="#6e7781">Per year, by type · 2019–2026 · updated 2026-09-02</text>
+<rect x="60.0" y="61.0" width="10.0" height="10.0" rx="2" fill="#2a78d6"/>
+<text x="75.0" y="70.0" font-size="11" fill="#59636e">Commits</text>
+<rect x="136.7" y="61.0" width="10.0" height="10.0" rx="2" fill="#eb6834"/>
+<text x="151.7" y="70.0" font-size="11" fill="#59636e">Pull requests</text>
+<rect x="251.6" y="61.0" width="10.0" height="10.0" rx="2" fill="#1baf7a"/>
+<text x="266.6" y="70.0" font-size="11" fill="#59636e">Issues</text>
+<rect x="321.9" y="61.0" width="10.0" height="10.0" rx="2" fill="#eda100"/>
+<text x="336.9" y="70.0" font-size="11" fill="#59636e">Reviews</text>
+<rect x="398.5" y="61.0" width="10.0" height="10.0" rx="2" fill="#8c959f"/>
+<text x="413.5" y="70.0" font-size="11" fill="#59636e">In private repos</text>
+<line x1="60.0" y1="244.0" x2="664.0" y2="244.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="52.0" y="248.0" font-size="11" fill="#6e7781" text-anchor="end" style="font-variant-numeric: tabular-nums">0</text>
+<line x1="60.0" y1="194.0" x2="664.0" y2="194.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="52.0" y="198.0" font-size="11" fill="#6e7781" text-anchor="end" style="font-variant-numeric: tabular-nums">2K</text>
+<line x1="60.0" y1="144.0" x2="664.0" y2="144.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="52.0" y="148.0" font-size="11" fill="#6e7781" text-anchor="end" style="font-variant-numeric: tabular-nums">4K</text>
+<line x1="60.0" y1="94.0" x2="664.0" y2="94.0" stroke="#d0d7de" stroke-width="1"/>
+<text x="52.0" y="98.0" font-size="11" fill="#6e7781" text-anchor="end" style="font-variant-numeric: tabular-nums">6K</text>
+<path d="M85.8,244.0 V235.7 Q85.8,231.7 89.8,231.7 H105.8 Q109.8,231.7 109.8,235.7 V244.0 Z" fill="#2a78d6"/>
+<text x="97.8" y="262.0" font-size="11" fill="#6e7781" text-anchor="middle">2019</text>
+<rect x="161.2" y="240.4" width="24.0" height="3.5" rx="0" fill="#2a78d6"/>
+<text x="173.2" y="262.0" font-size="11" fill="#6e7781" text-anchor="middle">2020</text>
+<rect x="236.8" y="239.0" width="24.0" height="5.0" rx="0" fill="#2a78d6"/>
+<text x="248.8" y="262.0" font-size="11" fill="#6e7781" text-anchor="middle">2021</text>
+<rect x="312.2" y="230.2" width="24.0" height="13.8" rx="0" fill="#2a78d6"/>
+<path d="M312.2,227.9 V218.6 Q312.2,214.6 316.2,214.6 H332.2 Q336.2,214.6 336.2,218.6 V227.9 Z" fill="#8c959f"/>
+<text x="324.2" y="262.0" font-size="11" fill="#6e7781" text-anchor="middle">2022</text>
+<rect x="387.8" y="235.7" width="24.0" height="8.3" rx="0" fill="#2a78d6"/>
+<path d="M387.8,233.7 V217.2 Q387.8,213.2 391.8,213.2 H407.8 Q411.8,213.2 411.8,217.2 V233.7 Z" fill="#8c959f"/>
+<text x="399.8" y="262.0" font-size="11" fill="#6e7781" text-anchor="middle">2023</text>
+<rect x="463.2" y="225.6" width="24.0" height="18.4" rx="0" fill="#2a78d6"/>
+<path d="M463.2,223.6 V216.0 Q463.2,212.0 467.2,212.0 H483.2 Q487.2,212.0 487.2,216.0 V223.6 Z" fill="#8c959f"/>
+<text x="475.2" y="262.0" font-size="11" fill="#6e7781" text-anchor="middle">2024</text>
+<rect x="538.8" y="223.6" width="24.0" height="20.4" rx="0" fill="#2a78d6"/>
+<path d="M538.8,221.2 V183.9 Q538.8,179.9 542.8,179.9 H558.8 Q562.8,179.9 562.8,183.9 V221.2 Z" fill="#8c959f"/>
+<text x="550.8" y="262.0" font-size="11" fill="#6e7781" text-anchor="middle">2025</text>
+<rect x="614.2" y="160.5" width="24.0" height="83.5" rx="0" fill="#2a78d6"/>
+<path d="M614.2,155.2 V117.9 Q614.2,113.9 618.2,113.9 H634.2 Q638.2,113.9 638.2,117.9 V155.2 Z" fill="#8c959f"/>
+<text x="626.2" y="262.0" font-size="11" fill="#6e7781" text-anchor="middle">2026</text>
+<text x="626.2" y="107.9" font-size="11" fill="#59636e" text-anchor="middle" style="font-variant-numeric: tabular-nums">5,202</text>
+</g></svg>
