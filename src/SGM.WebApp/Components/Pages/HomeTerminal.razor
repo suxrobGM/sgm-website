@@ -74,10 +74,10 @@
         <span class="prompt">Senior Full Stack Developer | AI & Computer Vision Researcher</span>
       </p>
       <div class="hero-buttons">
-        <a href="resume.pdf" class="btn btn-primary" target="_blank">
+        <a href="@Assets.Url("resume.pdf")" class="btn btn-primary" target="_blank">
           $ cat resume.pdf
         </a>
-        <a href="resume-phd.pdf" class="btn btn-secondary" target="_blank">
+        <a href="@Assets.Url("resume-phd.pdf")" class="btn btn-secondary" target="_blank">
           $ cat research-cv.pdf
         </a>
       </div>
@@ -106,13 +106,14 @@
             <div class="about-content">
               <p>
                 I write software and I do computer vision research. Nine years of the first, and a Master's in
-                Computer Science from Northeastern for the second. The work I like best sits where the two meet,
-                taking a model that only runs in a notebook and turning it into something people can actually use.
+                Computer Science from Northeastern for the second. The work I like best is taking a model that
+                only runs in a notebook and turning it into something people use.
               </p>
               <p>
-                My research is in computer vision and deep learning, mostly medical imaging and explainable AI, with
-                three papers on arXiv. Along the way I have built systems that classify skin cancer, estimate depth
-                from a single photo, and read the titles off a shelf of books.
+                My research is in computer vision and deep learning, mostly medical imaging and explainable AI,
+                with three papers on arXiv. Along the way I have built systems that classify skin lesions, match
+                microscopy images to text, estimate depth from a single photo, and read the titles off a shelf
+                of books.
               </p>
               <div class="about-stats">
                 <div class="stat-item">
@@ -271,12 +272,12 @@
               <h3 class="timeline-title">Senior Software Engineer</h3>
               <div class="timeline-company">EmTech Care Labs | Portland, ME</div>
               <p class="timeline-description">
-                Sole senior engineer on a HIPAA-compliant platform that helps families coordinate Alzheimer's care.
-                200+ caregivers and patients use it for real-time messaging, push notifications, and shared care
-                plans, all running on AWS. I made it audit-ready for healthcare data with encrypted patient
-                information, full audit logging, and role-based access, and it cleared an outside HIPAA readiness
-                review with no critical findings. I also merged three separate web and mobile codebases into one
-                TypeScript monorepo, scoped features directly with clinicians, and mentored two junior engineers.
+                Lead engineer on a HIPAA-compliant Alzheimer's care platform on AWS: real-time messaging, push
+                notifications, and shared care plans for 200+ caregivers and patients. Consolidated three web
+                and mobile codebases into one TypeScript monorepo with a shared component library. Encrypted
+                PHI, audit logging, and role-based access took the platform through an outside HIPAA readiness
+                review with no critical findings. Also built its ML features, a decline-risk model over care-log
+                data and an NLP pipeline that structures clinical notes, and mentored two junior engineers.
               </p>
             </div>
           </div>
@@ -289,11 +290,12 @@
               <h3 class="timeline-title">Senior Software Engineer</h3>
               <div class="timeline-company">AllFactors | Santa Clara, CA</div>
               <p class="timeline-description">
-                Rebuilt a slow legacy real-estate analytics app on Blazor WebAssembly. Page loads got about twice as
-                fast, and the brittle state management that had made the old app risky to touch went away with it. I
-                also built a real-time market-data pipeline on SignalR and SQL Server change tracking that streamed
-                live pricing and inventory to hundreds of concurrent users in under a second, plus a reusable library
-                of data grids, charts, and filters that every dashboard in the product ended up built on.
+                Rebuilt a legacy ASP.NET Web Forms real-estate analytics app on Blazor WebAssembly, with page
+                loads about twice as fast. Built the real-time market-data pipeline on SignalR and SQL Server
+                change tracking that streams live pricing to hundreds of concurrent users in under a second, and
+                the shared Blazor component library every dashboard is built on. Property-valuation and
+                market-forecast models retrain nightly on the day's transactions and serve into those same
+                dashboards.
               </p>
             </div>
           </div>
@@ -306,10 +308,11 @@
               <h3 class="timeline-title">Software Engineer</h3>
               <div class="timeline-company">Smart Meal Service | Russia</div>
               <p class="timeline-description">
-                Wrote the C# / .NET software running a self-service food kiosk and a robotic cashier, down to the
-                low-level protocols for the payment terminals and the hardware. Also built the customer ordering app
-                (Xamarin) and the admin dashboard (ASP.NET Core and Angular). Automated order routing cut kitchen wait
-                times noticeably, and a hardware abstraction layer let one codebase run on all three machine models.
+                C# / .NET control software for a self-service food kiosk and a robotic cashier, down to the
+                payment-terminal and hardware protocols. Customer ordering app in Xamarin, admin dashboard in
+                ASP.NET Core and Angular. A hardware abstraction layer lets one codebase run on all three
+                machine models, and automated order routing sends each order straight to the right kitchen
+                station.
               </p>
             </div>
           </div>
@@ -322,10 +325,10 @@
               <h3 class="timeline-title">Game Developer</h3>
               <div class="timeline-company">Pentalight Technology | Malaysia</div>
               <p class="timeline-description">
-                Built the multiplayer networking for a VR smart-city simulation in Unity, so everyone in a session saw
-                the same world in real time. Also did the spatial audio, the hand tracking, and the in-world
-                interfaces, plus a desktop spectator client for people without a headset. Automating the art pipeline
-                turned a multi-hour job per scene into something an artist could start and walk away from.
+                Multiplayer networking, spatial audio, hand tracking, and in-world interfaces for a VR
+                smart-city simulation in Unity, plus a desktop spectator client for people without a headset.
+                Automated the art pipeline (model import, LOD generation, lighting bakes), so a multi-hour job
+                per scene became one an artist could start and walk away from.
               </p>
             </div>
           </div>
@@ -383,10 +386,10 @@
                       class="grep-line-num">1</span></p>
                       <h3>MorphoCLIP: Text-Supervised Cell Painting Retrieval</h3>
                       <p>
-                        Matches Cell Painting microscopy images of drug- and gene-perturbed cells to descriptions of
-                        the treatment written in ordinary language. The vision and language backbones (DINOv3,
-                        BioClinical ModernBERT) stay frozen and only small projection heads train, so the whole thing
-                        fits on one consumer GPU. Tested on the CPJUMP1 benchmark: 51 plates, 3M+ images.
+                        Contrastive image-text model that matches Cell Painting images of drug- and
+                        gene-perturbed cells to plain-language treatment descriptions. DINOv3 and BioClinical
+                        ModernBERT backbones stay frozen with small projection heads trained on top, so it
+                        trains on one consumer GPU. Evaluated on CPJUMP1: 51 plates, 3M+ images.
                       </p>
                       <div class="project-tech">
                         <span>PyTorch</span>
@@ -411,10 +414,11 @@
                         class="grep-line-num">1</span></p>
                         <h3>Localize, Don't Beautify: Controlling Image-Editing APIs</h3>
                         <p>
-                          Ask a commercial image editor to change one feature of a face and it beautifies the whole
-                          thing, which is a problem when the picture is meant to be a surgical preview. I tested how
-                          much of that can be fixed from the client side, without touching the model. Across six
-                          editors, plain masked compositing localized better than model-based inpainting.
+                          Ask a commercial image editor to change one feature of a face and it beautifies the
+                          whole thing, a problem when the picture is a surgical preview. Compared prompt
+                          steering, masked compositing, and model-based inpainting across six editors on 196
+                          edits, scored with ArcFace for identity and a localization metric. Plain masked
+                          compositing localized best.
                         </p>
                         <div class="project-tech">
                           <span>Image-Editing APIs</span>
@@ -435,9 +439,9 @@
                       class="grep-line-num">1</span></p>
                       <h3>MelanomaNet: Explainable Skin Lesion Classification</h3>
                       <p>
-                        An EfficientNet V2 classifier over all nine ISIC 2019 diagnostic categories. The interesting
-                        part is what happens after the prediction: GradCAM++ heatmaps get broken down along the ABCDE
-                        criteria dermatologists already work from, so a clinician can check what the model looked at.
+                        EfficientNet V2 classifier with focal loss over all nine ISIC 2019 categories, 0.86
+                        weighted F1 on 25K images. GradCAM++ heatmaps are broken down along the ABCDE criteria
+                        dermatologists already use, so a clinician can check what the model looked at.
                       </p>
                       <div class="project-tech">
                         <span>PyTorch</span>
@@ -462,9 +466,9 @@
                         class="grep-line-num">1</span></p>
                         <h3>LightDepth: Lightweight Monocular Depth Estimation <small>(course project)</small></h3>
                         <p>
-                          A ResNet18 encoder with a U-Net decoder for monocular depth. It holds accuracy at 14.3M
-                          parameters where Depth Anything V2 needs 24.8M, runs 72% faster at inference, and comes out
-                          slightly ahead on relative error on NYU Depth V2.
+                          ResNet18 encoder with a U-Net decoder for monocular depth. 42% fewer parameters than
+                          Depth Anything V2 (14.3M against 24.8M), 72% faster inference, and lower relative
+                          error on NYU Depth V2.
                         </p>
                         <div class="project-tech">
                           <span>PyTorch</span>
@@ -486,10 +490,9 @@
                           class="grep-line-num">1</span></p>
                           <h3>FSRCNN: Super-Resolution Neural Network <small>(course project)</small></h3>
                           <p>
-                            A reproduction of FSRCNN for single-image super-resolution. Upsampling is learned end to
-                            end, which is where the 40x speedup over SRCNN comes from. The reported gains held up on
-                            Set5 (+1.78 dB PSNR) and Set14 (+1.26 dB PSNR), with extra ablations on the shrinking and
-                            mapping layers.
+                            Reproduction of FSRCNN (Dong et al., ECCV 2016) at 2x, 3x, and 4x with end-to-end
+                            learned upsampling. The paper's gains over SRCNN held up on Set5 (+1.78 dB PSNR) and
+                            Set14 (+1.26 dB), with added ablations on the shrinking and mapping layers.
                           </p>
                           <div class="project-tech">
                             <span>PyTorch</span>
@@ -519,16 +522,19 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 logisticsx/</p>
                           <h3 class="project-title">LogisticsX</h3>
                           <p class="project-description">
-                            A transportation management system for trucking companies: four web portals, an
-                            Android/iOS driver app, and a multi-tenant backend built on DDD/CQRS, with Stripe
-                            payments, ELD compliance, and live fleet tracking.
+                            Transportation management system for trucking companies. A Claude tool-use agent
+                            matches loads to trucks, checks federal hours-of-service, and plans multi-stop
+                            routes. Around it: four web portals, a Kotlin Multiplatform driver app, a
+                            multi-tenant .NET backend on DDD/CQRS, Stripe payments, and integrations with DAT,
+                            Truckstop, Samsara, and Motive.
                           </p>
                           <div class="project-tech">
                             <span>ASP.NET Core</span>
                             <span>Angular</span>
                             <span>Blazor</span>
-                            <span>MAUI</span>
+                            <span>Kotlin Multiplatform</span>
                             <span>SignalR</span>
+                            <span>Claude API</span>
                           </div>
                           <div class="project-links">
                             <a href="https://logisticsx.app" target="_blank">
@@ -546,9 +552,10 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 meat-gg/</p>
                           <h3 class="project-title">Meat.gg</h3>
                           <p class="project-description">
-                            A community platform for Counter-Strike 2 servers, now at 50K+ registered users and 1K+
-                            daily actives. Profiles, messaging, and a shop running on Stripe, plus a native plugin
-                            that lets admins ban, report, and moderate players from inside the game.
+                            Community platform for Counter-Strike 2 servers, 50K+ registered users and 1K+ daily
+                            actives: profiles, messaging, friends, and a cosmetics shop on Stripe. A native C++
+                            Metamod:Source 2 plugin links the live game servers to the web backend, so admins
+                            ban, report, and moderate from inside the game.
                           </p>
                           <div class="project-tech">
                             <span>ElysiaJS</span>
@@ -572,9 +579,10 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 depvault/</p>
                           <h3 class="project-title">DepVault</h3>
                           <p class="project-description">
-                            Scans a project's dependencies for known vulnerabilities across eight language ecosystems,
-                            checking each one against OSV.dev. It doubles as an encrypted secrets vault (AES-256-GCM)
-                            with one-time sharing and a CLI that injects tokens into CI/CD pipelines.
+                            Dependency vulnerability scanner across eight language ecosystems (npm, PyPI, NuGet,
+                            Cargo, Maven, and more), checking each against OSV.dev; 1,000+ dependencies in
+                            seconds. Doubles as an encrypted secrets vault (AES-256-GCM) with one-time sharing
+                            and a .NET AOT CLI that injects tokens into CI/CD pipelines.
                           </p>
                           <div class="project-tech">
                             <span>Next.js</span>
@@ -601,9 +609,10 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 med-image-scanner/</p>
                           <h3 class="project-title">Med Image Scanner</h3>
                           <p class="project-description">
-                            Pulls X-ray, CT, and MRI studies straight from hospital PACS over DICOM and runs detection
-                            models over them. Predictions show up as overlays inside OHIF, the viewer radiologists
-                            already work in.
+                            Pulls X-ray, CT, and MRI studies from hospital PACS over DICOM and runs PyTorch
+                            detectors: pneumonia on chest X-ray, intracranial hemorrhage on head CT. Predictions
+                            render as overlays inside OHIF, with on-the-fly de-identification, audit logging,
+                            and role-based access. FastAPI backend, Next.js frontend.
                           </p>
                           <div class="project-tech">
                             <span>Python</span>
@@ -647,9 +656,10 @@
                           <p class="project-permissions">drwxr-xr-x sukhrob staff 4096 bookshelf-scanner/</p>
                           <h3 class="project-title">Bookshelf Scanner</h3>
                           <p class="project-description">
-                            Point a camera at a bookshelf and get back a list of what is on it. YOLO segmentation cuts
-                            out each spine, then the Moondream2 vision-language model reads the title and author off
-                            it.
+                            Point a camera at a bookshelf and get back a list of what is on it. YOLO instance
+                            segmentation isolates each spine, then Moondream2 (via llama.cpp) reads the title
+                            and author. FastAPI backend, Angular UI for corrections and export. Course
+                            Outstanding Project Award.
                           </p>
                           <div class="project-tech">
                             <span>Python</span>

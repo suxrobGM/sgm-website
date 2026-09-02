@@ -117,18 +117,18 @@
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Full-stack engineer with nine years of shipping web and SaaS products, usually as the only developer or the senior one on a small team. Currently the engineering lead on a HIPAA-compliant healthcare platform; before that, real-time market-data dashboards. Happy anywhere in the stack, and lately doing a lot of AI and computer vision work, with three papers on arXiv.
+Full-stack engineer, nine years shipping web and SaaS products on .NET and TypeScript, usually as the only developer or the senior one on a small team. Currently lead engineer on a HIPAA-compliant care platform on AWS. Also does applied ML and computer vision work, with three papers on arXiv.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
 \begin{description}
-    \item[Languages:] C\#, C++, Python, JavaScript, TypeScript, Kotlin
-    \item[Backend:] ASP.NET Core, EF Core, SignalR, Node.js, NestJS, FastAPI
+    \item[Languages:] C\#, TypeScript, Python, C++, Kotlin, JavaScript
+    \item[Backend:] ASP.NET Core, EF Core, SignalR, MediatR, Node.js, NestJS, ElysiaJS, Bun, FastAPI
     \item[Frontend \& Mobile:] React, Next.js, Angular, Blazor, Tailwind CSS, Kotlin Multiplatform, .NET MAUI, React Native
-    \item[Data:] PostgreSQL, MS SQL, MongoDB, Redis, Firebase, DynamoDB, Prisma
-    \item[AI/ML:] PyTorch, TensorFlow, OpenCV, YOLO, Claude/GPT/DeepSeek APIs, MCP, agentic workflows
-    \item[Game Dev:] Unity, Godot, PhaserJS, Colyseus
-    \item[Cloud \& DevOps:] AWS (Amplify, S3, Lambda, Cognito), Azure, Docker, Kubernetes, GitHub Actions
+    \item[Data:] PostgreSQL, SQL Server, MongoDB, Redis, DynamoDB, Firebase, Prisma
+    \item[AI/ML:] PyTorch, TensorFlow, OpenCV, YOLO, Claude/GPT/DeepSeek APIs, MCP, tool-use agents
+    \item[Game Dev:] Unity, Godot, PhaserJS, Colyseus, Metamod:Source 2
+    \item[Cloud \& DevOps:] AWS (Amplify, S3, Lambda, Cognito), Azure, Cloudflare, Docker, Kubernetes, GitHub Actions
 \end{description}
 
 %----------PROFESSIONAL EXPERIENCE----------
@@ -136,77 +136,80 @@ Full-stack engineer with nine years of shipping web and SaaS products, usually a
 
 \experienceEntry{Senior Software Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Present}
 \begin{itemize}
-    \item Sole senior engineer on a HIPAA-compliant platform that helps families coordinate Alzheimer's care. 200+ caregivers and patients use it for real-time messaging, push notifications, and shared care plans, all running on AWS.
-    \item Made the platform audit-ready for healthcare data: encrypted patient information, full audit logging, role-based access control. It cleared an outside HIPAA readiness review with no critical findings.
-    \item Merged three separate web and mobile codebases into one TypeScript monorepo with a shared component library. New screens no longer get built three times, and the apps finally look like the same product.
-    \item Scoped features directly with clinicians, delivered the six-month roadmap as the only engineer on it, and mentored two juniors.
+    \item Lead engineer on a HIPAA-compliant Alzheimer's care platform on AWS: real-time messaging, push notifications, and shared care plans for 200+ caregivers and patients.
+    \item Consolidated three web and mobile codebases into one TypeScript monorepo with a shared component library.
+    \item Encrypted PHI, audit logging, and role-based access; passed an outside HIPAA readiness review with no critical findings.
+    \item Scoped features with clinicians, delivered the six-month roadmap solo, mentored two junior engineers.
 \end{itemize}
 
 \experienceEntry{Senior Software Engineer}{AllFactors}{Santa Clara, CA}{Oct 2021 -- Dec 2024}
 \begin{itemize}
-    \item Rebuilt a slow legacy real-estate analytics app (ASP.NET Web Forms) on Blazor WebAssembly. Page loads got about twice as fast, and the brittle state management that had made the old app risky to touch went away with it.
-    \item Built a real-time market-data pipeline (SignalR + SQL Server change tracking) that streamed live pricing and inventory to hundreds of concurrent users, with updates landing in under a second.
-    \item Created a reusable component library of data grids, charts, and filters. Every dashboard in the product ended up built on it, and the automated tests I added around it caught regressions before release.
+    \item Rebuilt a legacy ASP.NET Web Forms real-estate analytics app on Blazor WebAssembly; page loads about twice as fast.
+    \item Built a real-time market-data pipeline on SignalR and SQL Server change tracking; sub-second updates to hundreds of concurrent users.
+    \item Wrote the shared Blazor component library (data grids, charts, filters) every dashboard is built on, with automated regression tests.
 \end{itemize}
 
 \experienceEntry{Software Engineer}{Smart Meal Service}{Russia}{Sep 2020 -- Jul 2021}
 \begin{itemize}
-    \item Wrote the C\#/.NET software running a self-service food kiosk and a robotic cashier, down to the low-level protocols for the payment terminals and the hardware. Also built the customer ordering app (Xamarin) and the admin dashboard (ASP.NET Core + Angular).
-    \item Added automated order routing so each order went straight to the right kitchen station, plus a hardware abstraction layer that let one codebase run on all three machine models.
+    \item C\#/.NET control software for a self-service food kiosk and a robotic cashier, down to the payment-terminal and hardware protocols.
+    \item Customer ordering app in Xamarin; admin dashboard in ASP.NET Core and Angular.
+    \item Hardware abstraction layer so one codebase runs on all three machine models; automated order routing to kitchen stations.
 \end{itemize}
 
 \experienceEntry{Game Developer}{Pentalight Technology}{Malaysia}{Mar 2020 -- Feb 2021}
 \begin{itemize}
-    \item Built the multiplayer networking for a VR smart-city simulation in Unity, so every participant saw the same world in real time. Also did the spatial audio, the hand tracking, and a desktop spectator client for people without a headset.
-    \item Automated the art pipeline: model import, level-of-detail generation, lighting bakes. What had been a multi-hour job for every scene became something an artist could start and walk away from.
+    \item Multiplayer networking, spatial audio, and hand tracking for a VR smart-city simulation in Unity, plus a desktop spectator client.
+    \item Automated the art pipeline (model import, LOD generation, lighting bakes); multi-hour scene builds became unattended jobs.
 \end{itemize}
 
 \vspace{5pt}\noindent
-{\color{lighttext}\textit{Earlier:} Game Developer at EC Dev Team, Uzbekistan (2016 -- 2019), led development of an RTS mod for Paradox's Clausewitz Engine. Freelance Developer at Freelancer.com (2019 -- 2020), building .NET and Python NLP applications.}
+{\color{lighttext}\textit{Earlier:} Game Developer at EC Dev Team, Uzbekistan (2016 -- 2019), led an RTS mod for Paradox's Clausewitz Engine. Freelance Developer (2019 -- 2020), .NET and Python NLP applications.}
 
 %----------EDUCATION----------
 \section{Education}
-\educationEntry{Northeastern University}{M.S.\ in Computer Science}{Boston, MA}{Jan 2024 -- May 2026}
-\educationEntry{Suffolk University}{B.S.\ in Computer Science}{Boston, MA}{Sep 2021 -- May 2023}
+\educationEntry{Northeastern University}{M.S.\ in Computer Science, GPA 4.0}{Boston, MA}{Jan 2024 -- May 2026}
+\educationEntry{Suffolk University}{B.S.\ in Computer Science, Cum Laude}{Boston, MA}{Sep 2021 -- May 2023}
 
 %----------FEATURED PROJECTS----------
 \section{Featured Projects}
 
-\projectEntryDual{LogisticsX}{.NET 10, EF Core, MediatR, SignalR, Angular 21, Kotlin KMP, PostgreSQL, Claude API, Stripe, Docker}
+\projectEntryDual{LogisticsX}{.NET 10, EF Core, MediatR, SignalR, Angular 21, Kotlin Multiplatform, PostgreSQL, Claude API, Stripe, Docker}
 {https://logisticsx.app}
 {https://github.com/suxrobgm/logistics-app}
 \begin{itemize}
-    \item Built an AI dispatcher on the Claude API, through a custom tool-use agent, that matches freight loads to trucks, checks the federal hours-of-service rules for the driver, and plans the multi-stop route. Assigning a load used to take a dispatcher about fifteen minutes; now it takes seconds.
-    \item Shipped the whole product around it: four web portals (admin, dispatcher, customer, broker), an Android/iOS driver app, and a multi-tenant .NET backend wired into the big load boards and truck-tracking providers (DAT, Truckstop, Samsara, Motive), with Stripe handling payouts.
+    \item AI dispatcher on the Claude API with custom tool use: matches loads to trucks, checks federal hours-of-service, plans multi-stop routes.
+    \item Four web portals (admin, dispatcher, customer, broker), an Android/iOS driver app, and a multi-tenant .NET backend.
+    \item Integrations with DAT, Truckstop, Samsara, and Motive; Stripe payouts.
 \end{itemize}
 
 \projectEntry{Meat.gg}{ElysiaJS, Next.js, PostgreSQL, Prisma, Bun, C++23, Metamod:Source 2, Docker, Stripe}
 {https://meat.gg}
 \begin{itemize}
-    \item Launched a community platform for Counter-Strike 2 servers, now at 50K+ registered users, with player profiles, messaging, a friends system, and a cosmetics shop running on Stripe.
-    \item Wrote the native C++ game-server plugin that connects the live servers to the web backend, so admins can ban, report, and moderate players from inside the game.
+    \item Community platform for Counter-Strike 2 servers, 50K+ registered users: profiles, messaging, friends, and a Stripe cosmetics shop.
+    \item Native C++ Metamod:Source 2 plugin linking live game servers to the web backend for in-game bans, reports, and moderation.
 \end{itemize}
 
 \projectEntryDual{OGStack}{Next.js 16, ElysiaJS, Bun, PostgreSQL, Prisma, Satori, Cloudflare R2, Stripe, Docker}
 {https://ogstack.dev}
 {https://github.com/suxrobgm/ogstack}
 \begin{itemize}
-    \item SaaS that generates the social-share preview image for any web page from a single line of markup, served off a global CDN. It made 10K+ images during the beta.
-    \item The engine routes work across several AI models (Claude, GPT, DeepSeek) to read a page and pick up its branding, then generates a background and renders the final image out of HTML. Billing runs through Stripe.
+    \item SaaS that renders the social-share image for any web page from one line of markup; 10K+ images during beta, served from Cloudflare R2.
+    \item Multi-model pipeline (Claude, GPT, DeepSeek) extracts page branding, generates a background, and renders the image with Satori.
 \end{itemize}
 
 \projectEntryDual{DepVault}{Next.js, ElysiaJS, PostgreSQL, Prisma, Bun, .NET AOT CLI, Docker}
 {https://depvault.com}
 {https://github.com/suxrobGM/depvault}
 \begin{itemize}
-    \item Scans a project's dependencies for known security vulnerabilities across eight language ecosystems (npm, PyPI, NuGet, Cargo, Maven, and more), and doubles as an encrypted vault for secrets, with a CLI that injects tokens into CI/CD pipelines. It gets through a thousand-plus dependencies per project in seconds.
+    \item Dependency vulnerability scanner across eight ecosystems (npm, PyPI, NuGet, Cargo, Maven, and more); 1,000+ dependencies in seconds.
+    \item Encrypted secrets vault with a .NET AOT CLI that injects tokens into CI/CD pipelines.
 \end{itemize}
 
-\projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
+\projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV, ISIC 2019}
 {https://github.com/suxrobgm/explainable-melanoma}
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
-    \item Published arXiv research on explainable AI for skin-cancer detection. The classifier reaches 0.86 weighted F1 across nine diagnostic categories, and its heatmaps are broken down along the ABCDE criteria dermatologists already use, so a clinician can check what the model actually looked at.
+    \item EfficientNet V2 classifier over nine skin-lesion categories, 0.86 weighted F1; GradCAM++ heatmaps mapped to the ABCDE criteria dermatologists use. On arXiv.
 \end{itemize}
 
 \end{document}

@@ -54,13 +54,12 @@ public static class ResearchData
         "and client-side control of black-box image-editing models.";
 
     public const string ResearchStatement =
-        "I want vision models that people can trust enough to actually deploy. Three questions " +
-        "keep coming up in my work. Can a clinician check what the model looked at, instead of " +
-        "taking a score on faith? How much of a black-box generative model's behavior can you " +
-        "control from the outside, without retraining it? And do learned representations hold up " +
-        "on scientific imaging, where the data looks nothing like ImageNet and the labels are " +
-        "noisy? I also build ML for a HIPAA-regulated clinical platform, so I run into the same " +
-        "questions with real patients on the other end.";
+        "I work on vision models that clinicians and scientists can trust enough to deploy. Three " +
+        "questions run through the work. Can a clinician check what a model attended to, instead of " +
+        "taking a score on faith? How much of a black-box generative model can be controlled from " +
+        "outside, without retraining? And do learned representations hold up on scientific imaging, " +
+        "where the data looks nothing like ImageNet and the labels are noisy? I also build ML for a " +
+        "HIPAA-regulated clinical platform, where the same questions have patients behind them.";
 
     public static readonly IReadOnlyList<Publication> Publications =
     [
@@ -158,9 +157,9 @@ public static class ResearchData
         {
             Title = "LightDepth: Lightweight Monocular Depth Estimation",
             Summary =
-                "A ResNet18 encoder with a U-Net decoder and skip connections. It holds accuracy at 14.3M " +
-                "parameters against Depth Anything V2's 24.8M, runs 72% faster at inference, and comes " +
-                "out slightly ahead on relative error on NYU Depth V2.",
+                "A ResNet18 encoder with a U-Net decoder and skip connections for monocular depth. 42% fewer " +
+                "parameters than Depth Anything V2 (14.3M against 24.8M), 72% faster inference, and lower " +
+                "relative error on NYU Depth V2.",
             RepoUrl = "https://github.com/suxrobgm/lightdepth",
             Tags = ["PyTorch", "ResNet18", "U-Net", "NYU Depth V2"],
         },
@@ -169,8 +168,8 @@ public static class ResearchData
             Title = "FSRCNN: Accelerating Super-Resolution CNN",
             Summary =
                 "A reproduction of FSRCNN (Dong et al., ECCV 2016) for single-image super-resolution at 2x, " +
-                "3x, and 4x. The reported gains on Set5 and Set14 held up, with extra ablations on the " +
-                "shrinking and mapping layers.",
+                "3x, and 4x. The paper's gains over SRCNN held up on Set5 (+1.78 dB PSNR) and Set14 (+1.26 dB), " +
+                "with added ablations on the shrinking and mapping layers.",
             RepoUrl = "https://github.com/suxrobgm/fsrcnn",
             Tags = ["PyTorch", "Mixed-Precision Training", "Set5/Set14/DIV2K"],
         },
@@ -179,8 +178,9 @@ public static class ResearchData
             Title = "Bookshelf Scanner: Multi-Modal Book Detection and Recognition",
             Summary =
                 "Point a camera at a bookshelf and get back a list of what is on it. YOLO instance " +
-                "segmentation cuts out each spine, then the Moondream2 vision-language model reads the title " +
-                "and author off it. Won the Outstanding Project Award in the graduate Computer Vision course.",
+                "segmentation isolates each spine, then Moondream2 (via llama.cpp) reads the title and author. " +
+                "FastAPI backend, Angular UI for corrections and export. Outstanding Project Award in the " +
+                "graduate Computer Vision course.",
             RepoUrl = "https://github.com/suxrobgm/bookshelf-scanner",
             Tags = ["YOLO", "Moondream2 VLM", "llama.cpp", "FastAPI"],
         },
@@ -192,25 +192,24 @@ public static class ResearchData
         {
             Title = "Med Image Scanner",
             Summary =
-                "A HIPAA-compliant platform that pulls X-ray, CT, and MRI scans straight from hospital " +
-                "imaging systems and runs PyTorch detection models over them, flagging pneumonia on chest " +
-                "X-rays and intracranial hemorrhage on head CTs. Predictions show up as overlays inside OHIF, " +
-                "the radiology viewer clinicians already work in, with de-identification on the fly, audit " +
-                "logging, and role-based access.",
+                "Pulls X-ray, CT, and MRI studies from hospital PACS over DICOM and runs PyTorch detectors " +
+                "over them: pneumonia on chest X-ray, intracranial hemorrhage on head CT. Predictions render " +
+                "as overlays inside OHIF, the viewer radiologists already work in, with on-the-fly " +
+                "de-identification, audit logging, and role-based access. FastAPI backend, Next.js frontend.",
             RepoUrl = "https://github.com/suxrobgm/med-image-scanner",
-            Tags = ["FastAPI", "PyTorch", "OHIF", "DICOM"],
+            Tags = ["FastAPI", "PyTorch", "OpenCV", "OHIF", "DICOM", "Next.js"],
         },
         new Project
         {
             Title = "LogisticsX",
             Summary =
-                "An AI dispatcher that matches freight loads to trucks, checks the federal hours-of-service " +
-                "rules for the driver, and plans multi-stop routes without a human in the loop. It runs on the " +
-                "Claude API through a custom tool-use agent, and does in seconds what used to take a " +
-                "dispatcher about fifteen minutes.",
+                "A Claude tool-use agent that matches freight loads to trucks, checks federal hours-of-service " +
+                "for the driver, and plans multi-stop routes without a dispatcher in the loop. It sits inside " +
+                "a full transportation management system: multi-tenant .NET backend, Angular portals, Kotlin " +
+                "Multiplatform driver app, and load-board and telematics integrations.",
             SiteUrl = "https://logisticsx.app",
             RepoUrl = "https://github.com/suxrobgm/logistics-app",
-            Tags = ["Claude API", "MCP", "Agentic Tool Use", ".NET"],
+            Tags = ["Claude API", "MCP", "Tool-Use Agents", ".NET 10", "Angular", "Kotlin Multiplatform"],
         },
     ];
 }

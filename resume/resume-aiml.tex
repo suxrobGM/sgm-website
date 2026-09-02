@@ -64,14 +64,6 @@
     \end{tabular*}\vspace{-4pt}
 }
 
-% --- Experience: no location variant ---
-\newcommand{\experienceEntryNoLoc}[3]{%
-    \vspace{5pt}\noindent
-    \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
-        \textbf{\color{darktext}#1} {\color{lighttext}\textbar} {\color{accent}#2} & \textit{\color{lighttext}#3} \\
-    \end{tabular*}\vspace{-4pt}
-}
-
 % --- Project: name + link on first line, tech stack on second ---
 \newcommand{\projectEntry}[3]{%
     \vspace{2pt}\noindent
@@ -81,7 +73,7 @@
     {\small\color{lighttext}\textit{#2}}\vspace{-2pt}
 }
 
-% --- Project: dual links (site + repo, or repo + paper) ---
+% --- Project: dual links (site + repo) ---
 \newcommand{\projectEntryDual}[4]{%
     \vspace{2pt}\noindent
     \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}r@{}}
@@ -120,17 +112,18 @@
 
 %----------PROFESSIONAL SUMMARY----------
 \section{Summary}
-Machine-learning engineer with three papers across computer vision, cell biology, and multimodal ML, plus nine years of production software work. Most of it comes down to getting deep-learning and LLM systems out of the notebook and into something people use: imaging models inside hospital workflows, an AI freight dispatcher, multi-model pipelines in a live SaaS product. Applied-math background, and comfortable with the part nobody writes papers about, keeping a model working after it ships.
+Machine learning engineer with three arXiv papers in computer vision and multimodal learning and nine years of production software. Ships deep-learning and LLM systems end to end: PyTorch models behind FastAPI, clinical imaging inside OHIF, a Claude tool-use agent dispatching freight. Applied-math background.
 
 %----------TECHNICAL SKILLS----------
 \section{Technical Skills}
 \begin{description}
-    \item[AI/ML:] PyTorch, TensorFlow, CNNs, Vision Transformers, EfficientNet, YOLO, contrastive learning, GradCAM++, OpenCV, LLM and agentic systems, RAG, MCP, Claude/GPT/DeepSeek APIs
-    \item[Math \& Modeling:] Probability and statistics, linear algebra, optimization, regression, time-series forecasting, feature engineering, experiment design and A/B testing, model evaluation and error analysis
+    \item[Deep Learning \& CV:] PyTorch, TensorFlow, CNNs, Vision Transformers, DINOv3, EfficientNet, YOLO, contrastive learning, GradCAM++, OpenCV
+    \item[LLM Systems:] Claude/GPT/DeepSeek APIs, tool-use agents, MCP, RAG, vision-language models, Hugging Face
+    \item[Math \& Modeling:] Probability and statistics, linear algebra, optimization, time-series forecasting, feature engineering, A/B testing, error analysis
     \item[Languages:] Python, C\#, C++, TypeScript, Kotlin
-    \item[Data \& Serving:] NumPy, pandas, scikit-learn, FastAPI, PostgreSQL, MongoDB, Redis, OHIF/DICOM
-    \item[Infrastructure:] CUDA, mixed-precision and multi-GPU training, model serving and monitoring, Docker, Kubernetes, GitHub Actions, AWS (S3, Lambda, Cognito), Azure
-    \item[Software:] ASP.NET Core, Node.js, Bun, NestJS, React, Next.js, Angular
+    \item[Data \& Serving:] NumPy, pandas, scikit-learn, FastAPI, PostgreSQL, SQL Server, MongoDB, Redis, OHIF/DICOM
+    \item[Infrastructure:] CUDA, mixed-precision and multi-GPU training, model serving and drift monitoring, Docker, Kubernetes, GitHub Actions, AWS, Azure
+    \item[Software:] ASP.NET Core, SignalR, Blazor, Node.js, Bun, NestJS, React, Next.js, Angular
 \end{description}
 
 %----------EDUCATION----------
@@ -143,25 +136,25 @@ Machine-learning engineer with three papers across computer vision, cell biology
 %----------PROFESSIONAL EXPERIENCE----------
 \section{Professional Experience}
 
-\experienceEntry{Senior AI/ML Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Present}
-% VERIFY -- drafted estimates, not measured: 1,200 residents, 0.81 AUC, 3 weeks lead time,
-% VERIFY -- 500 notes/day, 0.90 F1, 1/3 charting cut, nightly retrain, sub-200ms p95.
+\experienceEntry{Senior Software Engineer}{EmTech Care Labs}{Portland, ME}{Jan 2025 -- Present}
+% VERIFY -- 0.81 AUC and 0.90 F1 are drafted estimates, not measured. Confirm or remove before sending.
 \begin{itemize}
-    \item Built the machine-learning features for a HIPAA-compliant Alzheimer's care platform. The main one is a decline-risk model over daily activity and care-log data for roughly 1,200 residents; it holds 0.81 AUC and flags someone about three weeks before the care team escalates on its own.
-    \item Added an NLP pipeline that reads roughly 500 free-text clinical notes a day and pulls out structured details (symptoms, medications, care events) at about 0.90 F1 on a held-out set. Manual charting time for the care team dropped by roughly a third.
-    \item Stood up the ML infrastructure under HIPAA constraints: de-identified training data, nightly retraining, serving behind the API at sub-200\,ms p95, drift monitoring. The platform cleared an outside HIPAA readiness review with no critical findings.
+    \item Decline-risk model over daily activity and care-log data for Alzheimer's residents; 0.81 AUC on held-out data.
+    \item NLP pipeline extracting symptoms, medications, and care events from free-text clinical notes; 0.90 F1.
+    \item ML serving on de-identified data under HIPAA: nightly retraining, drift monitoring, encrypted PHI, audit logging.
+    \item Lead engineer on the platform itself (TypeScript monorepo, AWS); passed an outside HIPAA readiness review with no critical findings.
 \end{itemize}
 
-\experienceEntry{Machine Learning Engineer}{AllFactors}{Santa Clara, CA}{Oct 2021 -- Dec 2024}
-% VERIFY -- drafted estimates: 2M listings, 40+ metros, valuation error 9% -> 5%.
+\experienceEntry{Senior Software Engineer}{AllFactors}{Santa Clara, CA}{Oct 2021 -- Dec 2024}
+% VERIFY -- 2M listings, 40+ metros, 9% -> 5% are drafted estimates, not measured. Confirm or remove before sending.
 \begin{itemize}
-    \item Built property-valuation and market-forecasting models over roughly 2M listings across 40+ metros. Median absolute valuation error went from about 9\% to 5\% against the rules-based estimate the product shipped with.
-    \item Designed the real-time feature pipeline (SignalR + SQL Server change tracking) that fed live market data to the models and pushed updated predictions out to hundreds of concurrent users in under a second. The models retrained nightly on the day's transactions.
-    \item Productionized the models into the customer-facing dashboards and added automated tests around the data and prediction flows.
+    \item Property-valuation and market-forecast models over 2M listings in 40+ metros; median error 9\% to 5\% against the rules-based baseline.
+    \item Real-time feature pipeline on SignalR and SQL Server change tracking; nightly retraining on the day's transactions.
+    \item Served predictions into Blazor WebAssembly dashboards, with automated tests on the data and prediction flows.
 \end{itemize}
 
 \vspace{5pt}\noindent
-{\color{lighttext}\textit{Earlier:} Software Engineer at Smart Meal Service, Russia (2020 -- 2021), building C\#/.NET control software for self-service food kiosks and a robotic cashier. Game Developer at Pentalight Technology, Malaysia (2020 -- 2021), multiplayer networking and hand tracking for a VR smart-city simulation in Unity. Freelance Developer (2019 -- 2020), Python NLP and .NET applications. Game Developer at EC Dev Team, Uzbekistan (2016 -- 2019).}
+{\color{lighttext}\textit{Earlier:} Software Engineer, Smart Meal Service, Russia (2020 -- 2021), C\#/.NET control software for food kiosks and a robotic cashier. Game Developer, Pentalight Technology, Malaysia (2020 -- 2021), Unity networking and hand tracking for a VR simulation. Freelance Developer (2019 -- 2020), Python NLP and .NET. Game Developer, EC Dev Team, Uzbekistan (2016 -- 2019).}
 
 %----------FEATURED PROJECTS----------
 \section{Selected AI/ML Projects}
@@ -170,49 +163,52 @@ Machine-learning engineer with three papers across computer vision, cell biology
 {https://github.com/suxrobgm/morphoclip}
 {https://arxiv.org/abs/2608.22690}
 \begin{itemize}
-    \item Built a text-supervised contrastive model that matches Cell Painting microscopy images of drug- and gene-perturbed cells to descriptions of the treatment in ordinary language. The backbones (DINOv3, BioClinical ModernBERT) stay frozen and only small projection heads train, so it fits on one consumer GPU. Tested on CPJUMP1: 51 plates, 3M+ images. Published on arXiv, joint work with two Northeastern co-authors; I led the design, training, and evaluation.
+    \item Contrastive image-text model matching Cell Painting images of drug- and gene-perturbed cells to plain-language treatment descriptions.
+    \item Frozen DINOv3 and BioClinical ModernBERT backbones with trained projection heads; trains on one consumer GPU.
+    \item Evaluated on CPJUMP1 (51 plates, 3M+ images). First author; led design, training, and evaluation. On arXiv.
 \end{itemize}
 
 \projectEntry{Localize, Don't Beautify}{Image-editing APIs, inpainting, ArcFace, prompt engineering}
 {https://arxiv.org/abs/2608.02841}
 \begin{itemize}
-    \item Ask a commercial image editor to change one feature of a face and it beautifies the whole thing, a problem when the picture is meant to be a surgical preview. Tested how much of that can be fixed client-side, without touching the model: prompt-only steering, masked compositing, and model-based inpainting across six editors. Plain masking localized better. Published on arXiv.
+    \item Benchmarked prompt steering, masked compositing, and inpainting across six commercial image editors on 196 cosmetic-surgery preview edits.
+    \item Scored identity preservation (ArcFace) and edit localization; masked compositing localized best. Sole author. On arXiv.
 \end{itemize}
 
-\projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, GradCAM++, OpenCV}
+\projectEntryPaper{MelanomaNet}{PyTorch, EfficientNet V2, focal loss, GradCAM++, OpenCV, ISIC 2019}
 {https://github.com/suxrobgm/explainable-melanoma}
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
-    \item Trained a deep-learning model to classify skin lesions across nine diagnostic categories on a standard public dermatology dataset of 25K+ images. It reaches 0.86 weighted F1.
-    \item The interesting part is the interpretability. The model shows heatmaps of where it looked, broken down along the same ABCDE criteria (Asymmetry, Border, Color, Diameter, Evolution) dermatologists already work from, so a clinician can check the reasoning. Published on arXiv.
+    \item EfficientNet V2 with focal loss over nine ISIC 2019 categories, 25K images; 0.86 weighted F1.
+    \item GradCAM++ attention scored against ABCDE dermatology criteria measured from the lesion mask. Sole author. On arXiv.
 \end{itemize}
 
 \projectEntry{Med Image Scanner}{FastAPI, PyTorch, OpenCV, OHIF Viewer, DICOM, Next.js}
 {https://github.com/suxrobgm/med-image-scanner}
 \begin{itemize}
-    \item HIPAA-compliant platform that pulls X-ray, CT, and MRI scans straight from hospital imaging systems and runs PyTorch detection models over them. It flags pneumonia on chest X-rays and intracranial hemorrhage on head CTs.
-    \item Predictions render as overlays inside OHIF, the viewer radiologists already work in. De-identification happens on the fly, with audit logging and role-based access behind it.
+    \item Pulls X-ray, CT, and MRI from hospital imaging systems over DICOM and runs PyTorch detectors: pneumonia on chest X-ray, hemorrhage on head CT.
+    \item Renders predictions as overlays inside the OHIF viewer; on-the-fly de-identification, audit logging, and role-based access.
 \end{itemize}
 
-\projectEntryDual{LogisticsX}{Claude API, MCP, .NET 10, EF Core, SignalR, Angular 21, Kotlin KMP, PostgreSQL}
+\projectEntryDual{LogisticsX}{Claude API, MCP, .NET 10, EF Core, SignalR, Angular 21, Kotlin Multiplatform, PostgreSQL}
 {https://logisticsx.app}
 {https://github.com/suxrobgm/logistics-app}
 \begin{itemize}
-    \item Built an AI dispatcher that matches freight loads to trucks, checks the driver's federal hours-of-service, and plans the multi-stop route, no human in the loop. Runs on the Claude API through a custom tool-use agent. Assigning a load used to take about fifteen minutes; now it takes seconds.
-    \item Shipped the whole product around it: web portals for dispatchers, customers, and brokers, a cross-platform driver app, and a multi-tenant backend wired into the big freight load boards and tracking providers.
+    \item Claude tool-use agent that matches freight loads to trucks, checks federal hours-of-service, and plans multi-stop routes without a dispatcher.
+    \item Full product around it: multi-tenant .NET backend, Angular portals, Kotlin Multiplatform driver app, load-board and telematics integrations.
 \end{itemize}
 
-\projectEntry{Bookshelf Scanner}{YOLO, Moondream2 VLM, FastAPI, Angular}
+\projectEntry{Bookshelf Scanner}{YOLO, Moondream2 VLM, llama.cpp, FastAPI, Angular}
 {https://github.com/suxrobgm/bookshelf-scanner}
 \begin{itemize}
-    \item Point a camera at a bookshelf and get back a list of what is on it. A YOLO segmentation model cuts out each spine, then a vision-language model reads the title and author off it, with a web app for fixing misreads and exporting the library.
+    \item YOLO segmentation isolates each book spine; Moondream2 reads title and author; Angular UI for corrections and export. Course Outstanding Project Award.
 \end{itemize}
 
 \projectEntryDual{OGStack}{Next.js 16, ElysiaJS, Bun, Satori, Cloudflare R2, Stripe}
 {https://ogstack.dev}
 {https://github.com/suxrobgm/ogstack}
 \begin{itemize}
-    \item Built the multi-model layer that routes work across Claude, GPT, and DeepSeek to read a web page and pick up its branding, then generates the social-share image, backgrounds included. Runs as a SaaS serving cached images off a global CDN; 10K+ images during the beta.
+    \item Multi-model layer (Claude, GPT, DeepSeek) that reads a page's branding and generates its social-share image; 10K+ images in beta, served from a global CDN.
 \end{itemize}
 
 \end{document}
