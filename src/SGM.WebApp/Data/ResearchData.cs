@@ -54,12 +54,10 @@ public static class ResearchData
         "and client-side control of black-box image-editing models.";
 
     public const string ResearchStatement =
-        "I work on vision models that hold up outside the benchmark: in the clinic, in the lab, and " +
-        "behind APIs nobody gets to retrain. What interests me is interpretability a domain expert " +
-        "can actually act on, how learned representations transfer to scientific imaging where the " +
-        "data and labels look nothing like natural photographs, and how far a generative model can " +
-        "be steered when its weights are out of reach. I also build ML for a regulated clinical " +
-        "platform, which keeps those questions tied to decisions with real consequences.";
+        "I work on vision models that hold up outside the benchmark: interpretability a clinician " +
+        "can act on, representations that transfer to scientific imaging, and control over " +
+        "generative models that cannot be retrained. I also build ML for a regulated clinical " +
+        "platform, which keeps the questions tied to real decisions.";
 
     public static readonly IReadOnlyList<Publication> Publications =
     [
