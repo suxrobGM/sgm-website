@@ -50,7 +50,7 @@
 
 ## Research
 
-Three first-author papers in computer vision and multimodal ML.
+First-author research in computer vision and multimodal ML: explainable medical imaging, representation learning for scientific data, and control of black-box generative models.
 Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.net/research)** ·
 [Google Scholar](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en)
 
