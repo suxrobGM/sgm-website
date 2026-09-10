@@ -73,6 +73,9 @@ jobs:
     name: Deploy to VPS
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      contents: read
+      packages: read
     concurrency:
       group: deploy-prod
       cancel-in-progress: false
@@ -113,21 +116,28 @@ jobs:
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
           IMAGE_TAG: latest
+          REGISTRY_USER: ${{ github.actor }}
+          REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          envs: GITHUB_REPOSITORY,IMAGE_TAG
+          envs: GITHUB_REPOSITORY,IMAGE_TAG,REGISTRY_USER,REGISTRY_TOKEN
           script: |
+            set -e
             cd ${{ env.APP_DIR }}
 
             export GITHUB_REPOSITORY=$(echo "$GITHUB_REPOSITORY" | tr '[:upper:]' '[:lower:]')
             echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY" >> .env
             echo "IMAGE_TAG=$IMAGE_TAG" >> .env
 
+            echo "$REGISTRY_TOKEN" | docker login ${{ env.REGISTRY }} -u "$REGISTRY_USER" --password-stdin
+
             docker compose pull
             docker compose up -d --force-recreate --remove-orphans
             docker image prune -f
+
+            docker logout ${{ env.REGISTRY }}
 
             echo "=== Container Status ==="
             docker compose ps --format "table {{.Name}}\t{{.Status}}"
