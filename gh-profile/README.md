@@ -38,7 +38,7 @@
 
 ### Secondary Stack &nbsp;·&nbsp; Software Engineering
 
-<small>Nine years of production work, now mostly in service of shipping research.</small>
+<small>Nine years of production work. These days I mostly use it to ship research.</small>
 
 <img src="https://skillicons.dev/icons?i=cs,ts,cpp,kotlin,fastapi,nodejs,bun&theme=dark" alt="Languages and backend" width="330"/>
 <br/>
@@ -50,9 +50,9 @@
 
 ## Research
 
-First-author research in computer vision and multimodal ML: explainable medical imaging, representation learning for scientific data, and control of black-box generative models.
-Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.net/research)** ·
-[Google Scholar](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en)
+I do computer vision research, mostly for medicine and biology. Abstracts and BibTeX are on
+**[suxrobgm.net/research](https://suxrobgm.net/research)**, citations on
+[Google Scholar](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en).
 
 ### Publications
 
@@ -62,7 +62,7 @@ Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.
 > [![Code](https://img.shields.io/badge/-Code-181717?style=flat-square&logo=github)](https://github.com/suxrobgm/morphoclip)
 > [![Data](https://img.shields.io/badge/%F0%9F%A4%97_Data-FFD21E?style=flat-square)](https://huggingface.co/datasets/suxrobgm/cpjump1-dinov3-features)
 >
-> Matches microscopy of drug-perturbed cells to plain-language descriptions of the treatment. Encoders stay frozen and only projection heads train, so it fits one consumer GPU.
+> Matches microscope images of treated cells to a plain-language description of the drug or gene behind the change. The encoders stay frozen and only small heads train, so one consumer GPU is enough.
 >
 > <small>**CPJUMP1** · 51 plates · 3M+ images</small>
 >
@@ -74,7 +74,7 @@ Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.
 > [![arXiv](https://img.shields.io/badge/arXiv-2608.02841-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2608.02841)
 > [![Code](https://img.shields.io/badge/-Code-181717?style=flat-square&logo=github)](https://github.com/suxrobGM/localize-dont-beautify)
 >
-> Ask a commercial editor to change one facial feature and it beautifies the whole face. Benchmarks three localization strategies; plain masking beat prompt-only steering.
+> Commercial image editors asked to change one facial feature tend to retouch the whole face. I compared three ways to keep the edit local, and plain masking did better than prompt-only steering.
 >
 > <small>**6 editors** · 196 edits · identity scored</small>
 >
@@ -86,20 +86,18 @@ Full list with abstracts and BibTeX: **[suxrobgm.net/research](https://suxrobgm.
 > [![arXiv](https://img.shields.io/badge/arXiv-2512.09289-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2512.09289)
 > [![Code](https://img.shields.io/badge/-Code-181717?style=flat-square&logo=github)](https://github.com/suxrobgm/explainable-melanoma)
 >
-> Skin lesion classification across all nine ISIC 2019 classes. GradCAM++ attention is scored against the ABCDE criteria clinicians already use, so interpretability gets a number.
+> Sorts skin lesions into all nine ISIC 2019 classes, then checks the model's GradCAM++ attention against the ABCDE criteria dermatologists already use and scores how well the two agree.
 >
-> <small>**ISIC 2019** · 25,331 images · 0.856 F1</small>
+> <small>**ISIC 2019** · 25K images · 0.86 F1</small>
 >
 > ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 > ![GradCAM](https://img.shields.io/badge/GradCAM++-333?style=flat-square)
 
-### Applied Vision Work
-
-Models built against real inputs rather than a clean benchmark split.
+### Vision Projects
 
 > ### [Med Image Scanner](https://github.com/suxrobgm/med-image-scanner)
 >
-> Pulls studies straight from hospital PACS over DICOM and runs detection models over them. Predictions show up as overlays in the viewer, alongside measurement and segmentation tools. HIPAA-ready.
+> Pulls studies from a hospital's PACS over DICOM and runs detection models on them. Predictions appear as overlays in the viewer next to the usual measurement and segmentation tools, and the whole thing is built for HIPAA.
 >
 > ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 > ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
@@ -108,27 +106,23 @@ Models built against real inputs rather than a clean benchmark split.
 
 > ### [Bookshelf Scanner](https://github.com/suxrobgm/bookshelf-scanner)
 >
-> Point a camera at a bookshelf and get back a list of what is on it. YOLO segmentation cuts out each spine, then a vision-language model reads the title and author off it.
+> Snap a photo of a bookshelf and get back a list of the books. YOLO picks out each spine and a vision-language model reads the title and author.
 >
 > ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 > ![YOLO](https://img.shields.io/badge/YOLO-00FFFF?style=flat-square&logoColor=black)
 > ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
 > ![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
 
-### Graduate Coursework
-
-Kept separate from the published work above.
-
 > ### [LightDepth](https://github.com/suxrobgm/lightdepth)
 >
-> Lightweight monocular depth estimation. Holds accuracy at **14.3M params** where Depth Anything V2 needs 24.8M, runs **72% faster**, and comes out slightly ahead on relative error on NYU Depth V2.
+> Depth from a single image in **14.3M parameters**, against 24.8M for Depth Anything V2. It runs **72% faster** and has slightly lower relative error on NYU Depth V2.
 >
 > ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 > ![Model](https://img.shields.io/badge/ResNet18_+_UNet-333?style=flat-square)
 
 > ### [FSRCNN](https://github.com/suxrobgm/fsrcnn)
 >
-> Reproduction of FSRCNN (Dong et al., ECCV 2016) for super-resolution at 2x/3x/4x. Upsampling is learned end to end, which is where the **40x speedup** over SRCNN comes from (+1.78 dB PSNR on Set5).
+> My reimplementation of FSRCNN (Dong et al., ECCV 2016) for 2x/3x/4x super-resolution. Learning the upsampling end to end is what makes it **40x faster** than SRCNN, and it still gains +1.78 dB PSNR on Set5.
 >
 > ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
 > ![AMP](https://img.shields.io/badge/Mixed_Precision-333?style=flat-square)
@@ -149,7 +143,7 @@ Kept separate from the published work above.
 >
 > [![Source](https://img.shields.io/badge/-Source-181717?style=flat-square&logo=github)](https://github.com/suxrobgm/logistics-app)
 >
-> Multi-tenant TMS for intermodal trucking. Wired into the big load boards (DAT, Truckstop), with ELD/HOS compliance, Stripe Connect, route optimization, and live tracking. **DDD + CQRS architecture.**
+> Multi-tenant system for running an intermodal trucking company. A multi-provider LLM agent handles dispatch, and the platform plugs into DAT and Truckstop, tracks ELD hours-of-service, plans routes, shows trucks live, and handles payouts through Stripe Connect. Built on DDD and CQRS.
 >
 > ![C#](https://img.shields.io/badge/C%23-512BD4?style=flat-square&logo=dotnet&logoColor=white)
 > ![Angular](https://img.shields.io/badge/Angular-DD0031?style=flat-square&logo=angular&logoColor=white)
@@ -161,7 +155,7 @@ Kept separate from the published work above.
 >
 > `60K+ users` &nbsp; `1K+ DAU`
 >
-> Community platform for Counter-Strike 2 servers. Profiles and messaging, a shop running on Stripe, and a native plugin that lets admins ban, report, and moderate from inside the game.
+> Community site for Counter-Strike 2 servers, with profiles, messaging, and a Stripe shop. A native server plugin lets admins ban players, handle reports, and moderate without leaving the game.
 >
 > ![Next.js](https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white)
 > ![Bun](https://img.shields.io/badge/Bun-000?style=flat-square&logo=bun&logoColor=white)
@@ -173,7 +167,7 @@ Kept separate from the published work above.
 >
 > [![Source](https://img.shields.io/badge/-Source-181717?style=flat-square&logo=github)](https://github.com/suxrobGM/depvault)
 >
-> Scans a project's dependencies across **8+ ecosystems** for known vulnerabilities via OSV.dev, and doubles as an encrypted secrets vault: AES-256-GCM, one-time secret sharing, CI/CD token injection.
+> Checks a project's dependencies against OSV.dev for known vulnerabilities across **8+ ecosystems**. It's also an encrypted secrets vault (AES-256-GCM) with one-time sharing and a CLI that injects tokens into CI/CD.
 >
 > ![Next.js](https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white)
 > ![.NET](https://img.shields.io/badge/.NET_AOT-512BD4?style=flat-square&logo=dotnet&logoColor=white)
@@ -182,7 +176,7 @@ Kept separate from the published work above.
 
 > ### [Blazor Form Builder](https://github.com/suxrobgm/blazor-form-builder)
 >
-> Drag-and-drop form designer that outputs JSON schema with a runtime renderer, so admin dashboards stop needing hand-written forms.
+> Drag-and-drop form designer for Blazor. Forms are saved as JSON schema and rendered at runtime, so admin dashboards don't need hand-written forms.
 >
 > ![C#](https://img.shields.io/badge/C%23-512BD4?style=flat-square&logo=dotnet&logoColor=white)
 > ![Blazor](https://img.shields.io/badge/Blazor-512BD4?style=flat-square&logo=blazor&logoColor=white)
@@ -200,7 +194,7 @@ Kept separate from the published work above.
 
 **Hearts of Iron IV: Economic Crisis**
 
-Large-scale mod with custom mechanics, AI behaviors, and balance systems.
+Big overhaul mod I led, with its own mechanics, AI behavior, and balance changes.
 
 [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2000532465) · [Releases](https://github.com/Economic-Crisis/Public-releases)
 
@@ -211,7 +205,7 @@ Large-scale mod with custom mechanics, AI behaviors, and balance systems.
 
 **Chestnut (MMO)**
 
-Real-time MMO with authoritative server, custom physics, and sync for 100+ concurrent players. Web3 integration.
+Real-time MMO with an authoritative server and custom physics that keeps 100+ players in sync. Has Web3 integration.
 
 [Play](https://www.chest-nut.io)
 
@@ -281,9 +275,9 @@ Online chess with AI opponents and rated or friendly PvP matchmaking.
 
 <div align="center">
 
-### Let's Connect
+### Get in Touch
 
-Open to research collaborations and PhD-adjacent work. Happy to talk about **computer vision**, **multimodal ML**, and **explainable AI**, or about **.NET**, **TypeScript**, and **game dev**.
+I'm open to research collaborations and PhD-adjacent work. Also happy to talk computer vision, .NET, TypeScript, or game dev.
 
 [![Google Scholar](https://img.shields.io/badge/Google_Scholar-4285F4?style=for-the-badge&logo=googlescholar&logoColor=white)](https://scholar.google.com/citations?user=p7ujRHoAAAAJ&hl=en)
 [![Hugging Face](https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black)](https://huggingface.co/suxrobgm)
