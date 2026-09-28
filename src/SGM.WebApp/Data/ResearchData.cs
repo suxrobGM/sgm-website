@@ -25,7 +25,7 @@ public sealed record Publication
 }
 
 /// <summary>
-/// Coursework and applied work. Kept separate from <see cref="Publication"/> on purpose;
+/// Projects that are not papers. Kept separate from <see cref="Publication"/> on purpose;
 /// which list an entry sits in is what distinguishes the two kinds.
 /// </summary>
 public sealed record Project
@@ -49,15 +49,15 @@ public static class ResearchData
     public const string Email = "ilyosbekov.s@northeastern.edu";
 
     public const string PageDescription =
-        "Sukhrob Ilyosbekov: computer vision and deep learning research. Papers on explainable " +
-        "medical imaging, text-supervised representation learning for Cell Painting microscopy, " +
-        "and client-side control of black-box image-editing models.";
+        "Computer vision research by Sukhrob Ilyosbekov: explainable skin-lesion classification, " +
+        "image-text models for cell microscopy, and controlling commercial image editors from the " +
+        "client side.";
 
     public const string ResearchStatement =
-        "I work on vision models that hold up outside the benchmark: interpretability a clinician " +
-        "can act on, representations that transfer to scientific imaging, and control over " +
-        "generative models that cannot be retrained. I also build ML for a regulated clinical " +
-        "platform, which keeps the questions tied to real decisions.";
+        "I work on computer vision, mostly for medicine and biology. What ties my papers together is " +
+        "wanting models that are still useful off the benchmark: explanations a dermatologist can " +
+        "check, image-text models that work on cell microscopy, and ways to control image editors " +
+        "you can't retrain. My day job is building ML for a HIPAA-regulated care platform.";
 
     public static readonly IReadOnlyList<Publication> Publications =
     [
@@ -69,14 +69,14 @@ public static class ResearchData
             ArxivId = "2608.22690",
             RepoUrl = "https://github.com/suxrobgm/morphoclip",
             Summary =
-                "MorphoCLIP matches Cell Painting microscopy images of drug- and gene-perturbed cells to " +
-                "descriptions of the treatment written in ordinary language. The vision and language backbones " +
-                "stay frozen (DINOv3, BioClinical ModernBERT) and only small projection heads train on top, " +
-                "which is what lets the whole thing run on one consumer GPU. We tested retrieval in both " +
-                "directions on the CPJUMP1 benchmark: 51 plates, over 3 million cell images, 303 drugs, 160 " +
-                "genes. Plate-to-plate variation is corrected in the embedding space, so the model is not just " +
-                "learning which plate an image came from. Joint work with two Northeastern co-authors; I led " +
-                "the model design, training, and evaluation.",
+                "Cell Painting images show how cells change after a drug or a genetic perturbation. " +
+                "MorphoCLIP learns to match those images to a plain-language description of the treatment, " +
+                "in either direction. The image and text encoders (DINOv3 and BioClinical ModernBERT) stay " +
+                "frozen and only small projection heads are trained, so it fits on one consumer GPU. We " +
+                "evaluated it on CPJUMP1, which has 51 plates, over 3 million images, 303 compounds, and 160 " +
+                "genes. Plate effects are corrected in the embedding space so the model can't score well " +
+                "just by recognizing which plate an image came from. I led the design, training, and " +
+                "evaluation, working with two co-authors at Northeastern.",
             BibTex =
                 """
                 @article{ilyosbekov2026morphoclip,
@@ -98,13 +98,13 @@ public static class ResearchData
             ArxivId = "2608.02841",
             RepoUrl = null,
             Summary =
-                "Ask a commercial image editor to change one feature of a face and it tends to beautify the " +
-                "whole thing, which is a real problem when the picture is meant to be a surgical preview. The " +
-                "question here is how much of that you can fix from the client side, without touching the " +
-                "model. I compared prompt-only steering, masked compositing, and model-based inpainting across " +
-                "six commercial editors and one inpainting model, over 196 facelift and rhinoplasty edits, " +
-                "scoring how well identity survived (ArcFace) and how well the edit stayed where it was asked " +
-                "to stay. Plain masked compositing localized better than model-based inpainting.",
+                "Ask a commercial image editor to change someone's nose and it will often retouch the whole " +
+                "face, which defeats the point of a surgical preview. This paper tests how much of that a " +
+                "client can fix without access to the model. I compared prompt-only steering, masked " +
+                "compositing, and model-based inpainting across six commercial editors and one inpainting " +
+                "model on 196 facelift and rhinoplasty edits. Identity preservation was measured with " +
+                "ArcFace, along with whether each edit stayed where it was asked to. The simplest method, " +
+                "masked compositing, kept edits in place better than inpainting did.",
             BibTex =
                 """
                 @article{ilyosbekov2026localize,
@@ -126,14 +126,13 @@ public static class ResearchData
             ArxivId = "2512.09289",
             RepoUrl = "https://github.com/suxrobgm/explainable-melanoma",
             Summary =
-                "An EfficientNet V2 classifier over all nine ISIC 2019 diagnostic categories at 384x384, " +
-                "trained with focal loss to cope with the heavy class imbalance, reaching 85.6% accuracy and " +
-                "0.856 weighted F1 on 25,331 dermoscopic images. The more interesting part is what happens " +
-                "after the prediction. GradCAM++ attention is broken down along the ABCDE criteria " +
-                "dermatologists already use, with asymmetry, border irregularity, color variation (K-means), " +
-                "and diameter measured straight off the lesion mask. Because those clinical features come out " +
-                "as numbers, how well they line up with the model's attention can be scored, so the " +
-                "interpretability claim rests on a metric instead of a few good-looking heatmaps.",
+                "A skin-lesion classifier covering all nine ISIC 2019 categories: EfficientNet V2 at 384x384, " +
+                "trained with focal loss because some classes are rare. It reaches about 86% accuracy (0.86 " +
+                "weighted F1) on roughly 25,000 dermoscopic images. The other half of the paper is about " +
+                "explanations. GradCAM++ attention is split along the ABCDE criteria dermatologists already " +
+                "use, and asymmetry, border irregularity, color variation (via K-means), and diameter are all " +
+                "measured from the lesion mask. Since those features are numbers, the paper can score how " +
+                "well the model's attention matches them instead of showing a few hand-picked heatmaps.",
             BibTex =
                 """
                 @article{ilyosbekov2025melanomanet,
@@ -149,15 +148,15 @@ public static class ResearchData
         },
     ];
 
-    public static readonly IReadOnlyList<Project> CourseProjects =
+    public static readonly IReadOnlyList<Project> OtherProjects =
     [
         new Project
         {
             Title = "LightDepth: Lightweight Monocular Depth Estimation",
             Summary =
-                "A ResNet18 encoder with a U-Net decoder and skip connections for monocular depth. 42% fewer " +
-                "parameters than Depth Anything V2 (14.3M against 24.8M), 72% faster inference, and lower " +
-                "relative error on NYU Depth V2.",
+                "Depth from a single image, using a ResNet18 encoder and a U-Net decoder with skip " +
+                "connections. Compared with Depth Anything V2 it has 42% fewer parameters (14.3M vs. 24.8M), " +
+                "runs 72% faster, and has lower relative error on NYU Depth V2.",
             RepoUrl = "https://github.com/suxrobgm/lightdepth",
             Tags = ["PyTorch", "ResNet18", "U-Net", "NYU Depth V2"],
         },
@@ -165,9 +164,9 @@ public static class ResearchData
         {
             Title = "FSRCNN: Accelerating Super-Resolution CNN",
             Summary =
-                "A reproduction of FSRCNN (Dong et al., ECCV 2016) for single-image super-resolution at 2x, " +
-                "3x, and 4x. The paper's gains over SRCNN held up on Set5 (+1.78 dB PSNR) and Set14 (+1.26 dB), " +
-                "with added ablations on the shrinking and mapping layers.",
+                "My reimplementation of FSRCNN (Dong et al., ECCV 2016) for single-image super-resolution at " +
+                "2x, 3x, and 4x. It matched the paper's gains over SRCNN on Set5 (+1.78 dB PSNR) and Set14 " +
+                "(+1.26 dB). I also ran ablations on the shrinking and mapping layers.",
             RepoUrl = "https://github.com/suxrobgm/fsrcnn",
             Tags = ["PyTorch", "Mixed-Precision Training", "Set5/Set14/DIV2K"],
         },
@@ -175,10 +174,10 @@ public static class ResearchData
         {
             Title = "Bookshelf Scanner: Multi-Modal Book Detection and Recognition",
             Summary =
-                "Point a camera at a bookshelf and get back a list of what is on it. YOLO instance " +
-                "segmentation isolates each spine, then Moondream2 (via llama.cpp) reads the title and author. " +
-                "FastAPI backend, Angular UI for corrections and export. Outstanding Project Award in the " +
-                "graduate Computer Vision course.",
+                "Take a photo of a bookshelf and get a list of the books on it. YOLO instance segmentation " +
+                "finds each spine, and Moondream2, running through llama.cpp, reads the title and author. " +
+                "FastAPI on the back end, with an Angular UI for fixing mistakes and exporting. Won an " +
+                "Outstanding Project Award at Northeastern.",
             RepoUrl = "https://github.com/suxrobgm/bookshelf-scanner",
             Tags = ["YOLO", "Moondream2 VLM", "llama.cpp", "FastAPI"],
         },
@@ -190,10 +189,11 @@ public static class ResearchData
         {
             Title = "Med Image Scanner",
             Summary =
-                "Pulls X-ray, CT, and MRI studies from hospital PACS over DICOM and runs PyTorch detectors " +
-                "over them: pneumonia on chest X-ray, intracranial hemorrhage on head CT. Predictions render " +
-                "as overlays inside OHIF, the viewer radiologists already work in, with on-the-fly " +
-                "de-identification, audit logging, and role-based access. FastAPI backend, Next.js frontend.",
+                "Connects to a hospital's PACS over DICOM, pulls X-ray, CT, and MRI studies, and runs PyTorch " +
+                "detectors on them, such as pneumonia on chest X-rays and intracranial hemorrhage on head " +
+                "CTs. Findings appear as overlays in OHIF, the viewer radiologists already work in. Studies " +
+                "are de-identified on the fly, and every access is role-checked and logged. FastAPI on the " +
+                "back end, Next.js on the front.",
             RepoUrl = "https://github.com/suxrobgm/med-image-scanner",
             Tags = ["FastAPI", "PyTorch", "OpenCV", "OHIF", "DICOM", "Next.js"],
         },
@@ -201,13 +201,14 @@ public static class ResearchData
         {
             Title = "LogisticsX",
             Summary =
-                "A Claude tool-use agent that matches freight loads to trucks, checks federal hours-of-service " +
-                "for the driver, and plans multi-stop routes without a dispatcher in the loop. It sits inside " +
-                "a full transportation management system: multi-tenant .NET backend, Angular portals, Kotlin " +
-                "Multiplatform driver app, and load-board and telematics integrations.",
+                "A trucking management system where a multi-provider LLM agent with custom tools handles " +
+                "dispatch. It matches loads to trucks, checks each driver's federal hours-of-service limits, " +
+                "and plans multi-stop routes. Around it is the rest of the product: a multi-tenant .NET backend, " +
+                "Angular portals, a Kotlin Multiplatform driver app, and integrations with load boards and " +
+                "telematics providers.",
             SiteUrl = "https://logisticsx.app",
             RepoUrl = "https://github.com/suxrobgm/logistics-app",
-            Tags = ["Claude API", "MCP", "Tool-Use Agents", ".NET 10", "Angular", "Kotlin Multiplatform"],
+            Tags = ["Multi-Provider LLMs", "MCP", "Tool-Use Agents", ".NET 10", "Angular", "Kotlin Multiplatform"],
         },
     ];
 }

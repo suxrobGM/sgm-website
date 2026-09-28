@@ -9,9 +9,9 @@ namespace SGM.WebApp.Components.Pages;
 public abstract class HomePageBase : ComponentBase
 {
     protected const string Description =
-        "Machine learning engineer and computer vision researcher working on explainable medical " +
-        "imaging, representation learning, and LLM systems, with nine years building production " +
-        "software. M.S. in Computer Science from Northeastern University.";
+        "Sukhrob Ilyosbekov builds software and does computer vision research. Nine years of " +
+        "full-stack and ML work, an M.S. in Computer Science from Northeastern, and papers on " +
+        "medical imaging and cell microscopy.";
 
     [Inject]
     protected IOptions<GoogleRecaptchaOptions> RecaptchaOptions { get; set; } = null!;
