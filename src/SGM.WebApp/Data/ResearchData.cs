@@ -53,12 +53,9 @@ public static class ResearchData
         "papers, code, and BibTeX.";
 
     public const string ResearchStatement =
-        "I'm interested in the gap between a vision model that scores well and one people can " +
-        "actually rely on. I first ran into it in medical imaging, where a skin-lesion classifier " +
-        "can be accurate and still be looking at the wrong part of the image, with no easy way for " +
-        "a clinician to notice. The same question has stayed with me as I moved into cell " +
-        "microscopy and generative image editing, and I deal with it at work too, building models " +
-        "that feed into patient care.";
+        "My research is in computer vision for medicine and biology. I'm most interested in " +
+        "models whose decisions an expert can check, and in representations that carry over to " +
+        "images the model wasn't trained on.";
 
     public static readonly IReadOnlyList<Publication> Publications =
     [
