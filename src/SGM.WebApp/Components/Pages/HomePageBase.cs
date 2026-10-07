@@ -9,9 +9,8 @@ namespace SGM.WebApp.Components.Pages;
 public abstract class HomePageBase : ComponentBase
 {
     protected const string Description =
-        "Sukhrob Ilyosbekov builds software and does computer vision research. Nine years of " +
-        "full-stack and ML work, an M.S. in Computer Science from Northeastern, and papers on " +
-        "medical imaging and cell microscopy.";
+        "Sukhrob Ilyosbekov is a software engineer and computer vision researcher in Portland, " +
+        "Maine. Projects, papers, and a way to get in touch.";
 
     [Inject]
     protected IOptions<GoogleRecaptchaOptions> RecaptchaOptions { get; set; } = null!;

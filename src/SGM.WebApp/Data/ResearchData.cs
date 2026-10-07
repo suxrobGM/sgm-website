@@ -49,15 +49,16 @@ public static class ResearchData
     public const string Email = "ilyosbekov.s@northeastern.edu";
 
     public const string PageDescription =
-        "Computer vision research by Sukhrob Ilyosbekov: explainable skin-lesion classification, " +
-        "image-text models for cell microscopy, and controlling commercial image editors from the " +
-        "client side.";
+        "Sukhrob Ilyosbekov's computer vision research on medical and scientific images, with " +
+        "papers, code, and BibTeX.";
 
     public const string ResearchStatement =
-        "I work on computer vision, mostly for medicine and biology. What ties my papers together is " +
-        "wanting models that are still useful off the benchmark: explanations a dermatologist can " +
-        "check, image-text models that work on cell microscopy, and ways to control image editors " +
-        "you can't retrain. My day job is building ML for a HIPAA-regulated care platform.";
+        "I'm interested in the gap between a vision model that scores well and one people can " +
+        "actually rely on. I first ran into it in medical imaging, where a skin-lesion classifier " +
+        "can be accurate and still be looking at the wrong part of the image, with no easy way for " +
+        "a clinician to notice. The same question has stayed with me as I moved into cell " +
+        "microscopy and generative image editing, and I deal with it at work too, building models " +
+        "that feed into patient care.";
 
     public static readonly IReadOnlyList<Publication> Publications =
     [
