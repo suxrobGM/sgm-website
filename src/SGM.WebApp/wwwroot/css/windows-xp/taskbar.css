@@ -1,8 +1,3 @@
-/* ==========================================================================
-   Windows XP Theme - Taskbar
-   Start Button, Quick Launch, Task Area, System Tray, Clock
-   ========================================================================== */
-
 .xp-taskbar {
   position: fixed;
   bottom: 0;
@@ -41,8 +36,6 @@
   align-items: center;
   gap: 3px;
   height: 30px;
-  border: none;
-  cursor: pointer;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.35),
     inset 0 -1px 0 rgba(0, 0, 0, 0.15),
@@ -54,7 +47,6 @@
   overflow: hidden;
 }
 
-/* Glossy highlight on top half */
 .xp-start-btn::before {
   content: '';
   position: absolute;
@@ -111,12 +103,10 @@
 
 .xp-start-text {
   font-style: italic;
-  font-weight: bold;
   letter-spacing: 0.5px;
   line-height: 1;
 }
 
-/* Quick Launch */
 .xp-quick-launch {
   display: flex;
   align-items: center;
@@ -143,7 +133,6 @@
   background: rgba(255, 255, 255, 0.2);
 }
 
-/* Task Area */
 .xp-task-area {
   flex: 1;
   display: flex;
@@ -161,7 +150,6 @@
   padding: 2px 12px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 2px;
-  cursor: pointer;
   white-space: nowrap;
   display: flex;
   align-items: center;
@@ -178,16 +166,16 @@
   background: linear-gradient(180deg, #4e8ae1, #3a6bb3);
 }
 
-.xp-task-btn.active {
-  background: linear-gradient(180deg, #1a3a80, #0a2a6a);
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+/* Taskbar links stay white; the global a:hover would turn them link blue. */
+.xp-start-btn:hover,
+.xp-task-btn:hover {
+  color: white;
 }
 
 .xp-task-btn i {
   font-size: 12px;
 }
 
-/* System Tray */
 .xp-system-tray {
   display: flex;
   align-items: center;

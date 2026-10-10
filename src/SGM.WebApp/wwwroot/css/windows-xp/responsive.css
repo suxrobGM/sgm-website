@@ -1,13 +1,7 @@
-/* ==========================================================================
-   Windows XP Theme - Responsive Design
-   ========================================================================== */
-
-/* === Responsive: Tablet === */
 @media (max-width: 992px) {
   .xp-desktop {
     max-height: none;
     flex-direction: row;
-    flex-wrap: wrap;
     justify-content: center;
     min-height: auto;
     padding: 20px 15px;
@@ -17,7 +11,9 @@
     padding: 10px 15px 60px 15px;
   }
 
-  .xp-explorer-layout {
+  .xp-explorer-layout,
+  .xp-dialog-body,
+  .xp-education-grid {
     grid-template-columns: 1fr;
   }
 
@@ -25,7 +21,6 @@
     border-right: none;
     border-bottom: 1px solid var(--xp-btn-shadow);
     max-height: 200px;
-    overflow-y: auto;
   }
 
   .xp-about-grid {
@@ -41,22 +36,10 @@
     justify-content: center;
   }
 
-  .xp-dialog-body {
-    grid-template-columns: 1fr;
-  }
-
   .xp-folder-grid {
     grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
     gap: 10px;
     padding: 12px;
-  }
-
-  .xp-education-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .xp-task-area {
-    overflow-x: auto;
   }
 
   .xp-task-btn {
@@ -65,7 +48,6 @@
   }
 }
 
-/* === Responsive: Mobile === */
 @media (max-width: 768px) {
   html {
     font-size: 13px;
@@ -119,7 +101,6 @@
     padding: 10px;
   }
 
-  /* Simplified taskbar */
   .xp-taskbar {
     height: 32px;
   }
@@ -130,15 +111,10 @@
     padding: 2px 8px 2px 4px;
   }
 
-  .xp-start-text {
-    display: none;
-  }
-
-  .xp-quick-launch {
-    display: none;
-  }
-
-  .xp-task-area {
+  .xp-start-text,
+  .xp-quick-launch,
+  .xp-task-area,
+  .xp-explorer-sidebar {
     display: none;
   }
 
@@ -150,24 +126,9 @@
     font-size: 10px;
   }
 
-  /* Explorer sidebar hidden on mobile */
-  .xp-explorer-sidebar {
-    display: none;
-  }
-
-  .xp-explorer-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .xp-about-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
   .xp-about-image {
     width: 100px;
     height: 100px;
-    margin: 0 auto;
   }
 
   .xp-stats-row {
@@ -194,24 +155,54 @@
     font-size: 36px;
   }
 
-  .xp-dialog-body {
-    grid-template-columns: 1fr;
-  }
-
-  .xp-awards-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .xp-education-grid {
-    grid-template-columns: 1fr;
-  }
-
   .xp-social-links {
     gap: 8px;
   }
+
+  .xp-hire-body {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .xp-hire-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .xp-hire-buttons .xp-btn {
+    justify-content: center;
+  }
+
+  .xp-services-list {
+    justify-content: center;
+  }
+
+  .xp-project-detail {
+    flex-direction: column;
+  }
+
+  .xp-project-detail-img {
+    width: 100%;
+    min-width: unset;
+    height: 150px;
+  }
+
+  .theme-switcher {
+    bottom: 40px;
+    padding: 6px 10px;
+  }
+
+  .theme-switcher-label {
+    display: none;
+  }
+
+  .theme-switcher-link {
+    font-size: 0.65rem;
+    padding: 3px 6px;
+  }
 }
 
-/* === Responsive: Small Mobile === */
 @media (max-width: 480px) {
   .xp-desktop-icon {
     width: 60px;
@@ -247,13 +238,10 @@
   }
 }
 
-/* === Print styles === */
 @media print {
-  .xp-taskbar {
-    display: none;
-  }
-
-  .xp-bliss-bg {
+  .xp-taskbar,
+  .xp-bliss-bg,
+  .xp-desktop {
     display: none;
   }
 
@@ -267,52 +255,4 @@
     border: 1px solid #ccc;
     break-inside: avoid;
   }
-
-  .xp-desktop {
-    display: none;
-  }
-}
-
-/* Hire Me responsive */
-@media (max-width: 768px) {
-    .xp-hire-body {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-    .xp-hire-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-    .xp-hire-buttons .xp-btn {
-        justify-content: center;
-    }
-    .xp-services-list {
-        justify-content: center;
-    }
-    .xp-project-detail {
-        flex-direction: column;
-    }
-    .xp-project-detail-img {
-        width: 100%;
-        min-width: unset;
-        height: 150px;
-    }
-}
-
-/* Theme Switcher responsive */
-@media (max-width: 768px) {
-    .theme-switcher {
-        bottom: 40px;
-        left: 10px;
-        padding: 6px 10px;
-        gap: 4px;
-    }
-    .theme-switcher-label {
-        display: none;
-    }
-    .theme-switcher-link {
-        font-size: 0.65rem;
-        padding: 3px 6px;
-    }
 }

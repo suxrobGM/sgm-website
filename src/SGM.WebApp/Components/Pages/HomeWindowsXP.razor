@@ -61,10 +61,8 @@
 
 @* Startup sound and taskbar clock are started from site.js when #xpClock is on the page. *@
 
-<!-- Bliss Wallpaper Background -->
 <div class="xp-bliss-bg"></div>
 
-<!-- Desktop Area (Hero) -->
 <div class="xp-desktop" id="home">
   <div class="xp-desktop-icon">
     <img src="images/about.jpg" class="xp-icon-img" alt="Profile">
@@ -80,10 +78,7 @@
   }
 </div>
 
-<!-- Main Content Area -->
 <div class="xp-content-area">
-
-  <!-- About - System Properties -->
   <XpWindow Id="about" Icon="fas fa-user" Title="About Me - System Properties" Menu="@(["General", "Computer Name", "Hardware", "Advanced"])">
     <ChildContent>
       <div class="xp-window-body">
@@ -134,7 +129,6 @@
     </Status>
   </XpWindow>
 
-  <!-- Hire Me - Windows Update -->
   <XpWindow Id="hire" Class="xp-hire-window" Icon="fas fa-shield-halved" Title="Windows Update - Available for Work">
     <div class="xp-window-body xp-hire-body">
       <div class="xp-hire-icon">
@@ -161,7 +155,6 @@
     </div>
   </XpWindow>
 
-  <!-- Skills - Add or Remove Programs -->
   <XpWindow Id="skills" Icon="fas fa-code" Title="Tech Stack - Add or Remove Programs"
             Menu="@(["Change or Remove Programs", "Add New Programs", "Add/Remove Windows Components"])">
     <ChildContent>
@@ -203,7 +196,6 @@
     </Status>
   </XpWindow>
 
-  <!-- Experience - Windows Explorer -->
   <XpWindow Id="experience" Icon="fas fa-briefcase" Title="Work Experience - Windows Explorer" Menu="ExplorerMenu">
     <ChildContent>
       <div class="xp-toolbar">
@@ -285,7 +277,6 @@
     </Status>
   </XpWindow>
 
-  <!-- Research - Scientific Tools -->
   <XpWindow Id="research" Icon="fas fa-microscope" Title="Research & Projects - Scientific Tools">
     <ChildContent>
       <div class="xp-window-body" style="padding: 0;">
@@ -330,7 +321,6 @@
     </Status>
   </XpWindow>
 
-  <!-- Projects - My Documents -->
   <XpWindow Id="projects" Icon="fas fa-folder" Title="Featured Projects - My Documents" Menu="ExplorerMenu">
     <ChildContent>
       <div class="xp-toolbar">
@@ -398,7 +388,6 @@
     </Status>
   </XpWindow>
 
-  <!-- Education - Academic Records -->
   <XpWindow Id="education" Icon="fas fa-graduation-cap" Title="Education - Academic Records">
     <ChildContent>
       <div class="xp-window-body">
@@ -426,7 +415,6 @@
     </Status>
   </XpWindow>
 
-  <!-- Contact - Send Message dialog -->
   <XpWindow Id="contact" Icon="fas fa-envelope" Title="Get In Touch - Send Message">
     <div class="xp-window-body">
       <div class="xp-welcome-banner">
@@ -465,7 +453,6 @@
     </div>
   </XpWindow>
 
-  <!-- Footer -->
   <div class="xp-footer">
     <div class="xp-footer-logo">SUKHROB.DEV</div>
     <div class="xp-social-links">
@@ -480,7 +467,6 @@
 
 <ThemeSwitcher CurrentTheme="xp" />
 
-<!-- Taskbar (replaces a traditional navbar) -->
 <div class="xp-taskbar">
   <a href="#home" class="xp-start-btn" aria-label="Back to top">
     <img src="images/windows-xp-icon.png" alt="" class="xp-start-icon" />

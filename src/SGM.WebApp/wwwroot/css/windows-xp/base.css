@@ -1,7 +1,3 @@
-/* ==========================================================================
-   Windows XP Theme - Reset, Base, Typography, Scrollbar, Selection
-   ========================================================================== */
-
 *,
 *::before,
 *::after {
@@ -38,7 +34,6 @@ img {
   height: auto;
 }
 
-/* === Scrollbar (XP-style) === */
 ::-webkit-scrollbar {
   width: 16px;
   height: 16px;
@@ -52,7 +47,6 @@ img {
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(90deg, #ece9d8, #d4d0c8);
   border: 1px solid #aca899;
-  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -66,7 +60,6 @@ img {
   height: 16px;
 }
 
-/* === Selection === */
 ::selection {
   background: var(--xp-selection);
   color: white;
