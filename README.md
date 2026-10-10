@@ -14,7 +14,6 @@ Sukhrob Ilyosbekov's personal portfolio — live at [suxrobgm.net](https://suxro
 | Route  | Theme                              |
 | ------ | ---------------------------------- |
 | `/`    | GTA Vice City 1980s retro          |
-| `/cli` | Terminal / Matrix with CRT effects |
 | `/xp`  | Windows XP desktop (interactive)   |
 
 ## Develop
