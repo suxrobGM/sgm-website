@@ -1,5 +1,4 @@
-/* Palette + page surface. The variables live on .pay-wrap so they cascade to the
-   page-specific markup each consumer renders into ChildContent. */
+/* Variables live on .pay-wrap so they cascade into the ChildContent each page renders. */
 .pay-wrap {
   --pay-bg: #14161c;
   --pay-card: #1d2029;

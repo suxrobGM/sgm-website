@@ -3,14 +3,11 @@ using System.Text;
 
 namespace SGM.WebApp.Utils;
 
-/// <summary>Hashing and constant-time comparison helpers used by the payment signing flows.</summary>
 public static class CryptoUtils
 {
-    /// <summary>Lowercase hex MD5 of the UTF-8 bytes of <paramref name="input"/>.</summary>
     public static string Md5Hex(string input)
         => Convert.ToHexStringLower(MD5.HashData(Encoding.UTF8.GetBytes(input)));
 
-    /// <summary>Lowercase hex HMAC-SHA256 of <paramref name="input"/> keyed by <paramref name="key"/>.</summary>
     public static string HmacSha256Hex(string input, string key)
         => Convert.ToHexStringLower(
             HMACSHA256.HashData(Encoding.UTF8.GetBytes(key), Encoding.UTF8.GetBytes(input)));
@@ -28,7 +25,7 @@ public static class CryptoUtils
         return CryptographicOperations.FixedTimeEquals(a, b);
     }
 
-    /// <summary>Constant-time comparison of two strings by their UTF-8 bytes (exact match).</summary>
+    /// <summary>Constant-time exact comparison; false when either side is empty.</summary>
     public static bool FixedTimeEquals(string? a, string? b)
     {
         if (string.IsNullOrEmpty(a) || string.IsNullOrEmpty(b))

@@ -17,36 +17,22 @@ public sealed class RecaptchaEnterpriseService(IOptions<GoogleRecaptchaOptions> 
     private readonly string _projectId = options.Value.ProjectId;
     private readonly string _siteKey = options.Value.SiteKey;
 
-    public async Task<bool> VerifyCaptchaAsync(string token)
+    public async Task<bool> VerifyCaptchaAsync(string? token)
     {
-        var assessment = new Assessment
+        if (string.IsNullOrEmpty(token))
         {
-            Event = new Event
-            {
-                SiteKey = _siteKey,
-                Token = token
-            }
-        };
+            return false;
+        }
 
         var response = await _client.CreateAssessmentAsync(new CreateAssessmentRequest
         {
             Parent = $"projects/{_projectId}",
-            Assessment = assessment
+            Assessment = new Assessment { Event = new Event { SiteKey = _siteKey, Token = token } }
         });
 
-        // Check that Google accepted the token
-        if (!response.TokenProperties.Valid)
-        {
-            return false;
-        }
-
-        // Make sure it was generated for this action
-        if (response.TokenProperties.Action != "contact")
-        {
-            return false;
-        }
-
-        // Decide to use the risk score (0.0-1.0). 0.1-0.3 ≈ likely bot.
-        return response.RiskAnalysis.Score >= 0.5;
+        // The token must be valid and issued for the contact form's action. Scores of 0.1-0.3 are likely bots.
+        return response.TokenProperties.Valid &&
+               response.TokenProperties.Action == "contact" &&
+               response.RiskAnalysis.Score >= 0.5;
     }
 }

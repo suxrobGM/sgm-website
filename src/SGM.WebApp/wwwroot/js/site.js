@@ -1,14 +1,9 @@
 "use strict";
 
-/** @type {HTMLAudioElement | null} Vice City theme music audio instance */
+/** @type {HTMLAudioElement | null} */
 let vcAudio = null;
 
-/**
- * Toggles Vice City theme music playback.
- * Lazily creates the audio element on first invocation.
- * Updates the cassette player UI (spinning reels, play/pause icon).
- * Called via inline `onclick` on the cassette button in ViceCity/CassettePlayer.razor.
- */
+/** Plays or pauses the Vice City theme music. Called from the inline onclick in ViceCity/CassettePlayer.razor. */
 function toggleVcMusic() {
   const btn = document.getElementById("cassetteBtnIcon");
   const player = document.getElementById("cassettePlayer");
@@ -18,10 +13,6 @@ function toggleVcMusic() {
     vcAudio = new Audio("sounds/vc-theme-music.m4a");
     vcAudio.volume = 0.4;
     vcAudio.loop = true;
-    vcAudio.addEventListener("ended", () => {
-      btn.className = "fas fa-play";
-      player?.classList.remove("playing");
-    });
   }
 
   if (vcAudio.paused) {
@@ -72,12 +63,7 @@ document.addEventListener(
   true,
 );
 
-/**
- * Shows the sending state on the contact form's submit button.
- * Blazor re-renders the form after the post, which resets it.
- * @param {HTMLFormElement} form
- * @param {boolean} busy
- */
+/** Blazor re-renders the form after the post, which resets the busy state. */
 function setFormBusy(form, busy) {
   const button = form.querySelector('button[type="submit"]');
   button.disabled = busy;
@@ -85,11 +71,7 @@ function setFormBusy(form, busy) {
   button.querySelector(".btn-label").textContent = busy ? "Sending..." : "Send Message";
 }
 
-/**
- * Registers event listeners to play the Windows XP startup sound
- * on the user's first click or keydown interaction.
- * @returns {void}
- */
+/** Browsers block autoplay, so the startup sound waits for the first click or keypress. */
 function playXpStartupSound() {
   let played = false;
 
@@ -105,16 +87,8 @@ function playXpStartupSound() {
   document.addEventListener("keydown", play, { once: true });
 }
 
-/**
- * Starts the Windows XP taskbar clock, updating the `#xpClock` element
- * with the current time in 12-hour format every 30 seconds.
- * @returns {void}
- */
-function startXpClock() {
-  const clockEl = document.getElementById("xpClock");
-  if (!clockEl || clockEl.dataset.started) return;
-  clockEl.dataset.started = "true";
-
+/** @param {HTMLElement} clockEl */
+function startXpClock(clockEl) {
   const update = () => {
     const now = new Date();
     const minutes = now.getMinutes().toString().padStart(2, "0");
@@ -128,15 +102,12 @@ function startXpClock() {
   setInterval(update, 30000);
 }
 
-/**
- * Windows XP page setup: starts the taskbar clock and arms the startup sound.
- * Runs on full loads and after Blazor enhanced navigation; a no-op on other pages.
- * @returns {void}
- */
+/** Runs on full loads and after enhanced navigation; a no-op off the XP page or once started. */
 function initXpPage() {
   const clockEl = document.getElementById("xpClock");
   if (!clockEl || clockEl.dataset.started) return;
-  startXpClock();
+  clockEl.dataset.started = "true";
+  startXpClock(clockEl);
   playXpStartupSound();
 }
 

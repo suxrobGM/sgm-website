@@ -36,7 +36,7 @@
   border-top: 1px solid var(--pay-border);
 }
 
-/* Overrides the shared .pay-btn (styled in PaymentLayout.razor.css via ::deep). */
+/* Overrides the shared .pay-btn from PaymentLayout.razor.css. */
 .pay-btn.secondary {
   margin-top: 12px;
   border: 1px solid var(--pay-border);

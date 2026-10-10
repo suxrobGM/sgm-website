@@ -1,5 +1,4 @@
 using System.Net.Http.Json;
-using System.Text;
 using Microsoft.Extensions.Options;
 using SGM.WebApp.Options;
 using SGM.WebApp.Utils;
@@ -14,15 +13,6 @@ public sealed class FreeKassaService(
 {
     private readonly FreeKassaOptions _options = options.Value;
 
-    // FreeKassa notification source IPs (https://docs.freekassa.net).
-    private static readonly HashSet<string> FreeKassaIps =
-    [
-        "168.119.157.136",
-        "168.119.60.227",
-        "178.154.197.79",
-        "51.250.54.238",
-    ];
-
     public string SignProxyRedirect(string order, string amount, string currency, string ret)
         => CryptoUtils.HmacSha256Hex($"{order}:{amount}:{currency}:{ret}", _options.ProxySecret);
 
@@ -35,17 +25,15 @@ public sealed class FreeKassaService(
     {
         // FreeKassa SCI form signature: md5("merchantId:amount:secret1:currency:order").
         var sign = CryptoUtils.Md5Hex($"{_options.MerchantId}:{amount}:{_options.Secret1}:{currency}:{order}");
+        var separator = _options.PayUrl.Contains('?') ? '&' : '?';
 
-        var sb = new StringBuilder(_options.PayUrl);
-        sb.Append(_options.PayUrl.Contains('?') ? '&' : '?');
-        sb.Append("m=").Append(Uri.EscapeDataString(_options.MerchantId));
-        sb.Append("&oa=").Append(Uri.EscapeDataString(amount));
-        sb.Append("&currency=").Append(Uri.EscapeDataString(currency));
-        sb.Append("&o=").Append(Uri.EscapeDataString(order));
-        sb.Append("&s=").Append(sign);
-        // Custom param round-trips through FreeKassa to the success/fail redirect.
-        sb.Append("&us_ret=").Append(Uri.EscapeDataString(returnUrl));
-        return sb.ToString();
+        // us_ret is a custom param that FreeKassa round-trips to the success/fail redirect.
+        return $"{_options.PayUrl}{separator}m={Uri.EscapeDataString(_options.MerchantId)}" +
+            $"&oa={Uri.EscapeDataString(amount)}" +
+            $"&currency={Uri.EscapeDataString(currency)}" +
+            $"&o={Uri.EscapeDataString(order)}" +
+            $"&s={sign}" +
+            $"&us_ret={Uri.EscapeDataString(returnUrl)}";
     }
 
     public bool VerifyNotification(string merchantId, string amount, string orderId, string sign)
@@ -60,8 +48,6 @@ public sealed class FreeKassaService(
         var expected = CryptoUtils.Md5Hex($"{merchantId}:{amount}:{_options.Secret2}:{orderId}");
         return CryptoUtils.FixedTimeEqualsHex(expected, sign);
     }
-
-    public bool IsFreeKassaIp(string? ip) => ip is not null && FreeKassaIps.Contains(ip);
 
     public async Task<bool> RelayToMeatAsync(
         string orderId, string amount, string externalId, CancellationToken ct = default)

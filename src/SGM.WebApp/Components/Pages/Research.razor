@@ -127,11 +127,11 @@
 
   private const string Title = "Sukhrob Ilyosbekov | Computer Vision Research";
 
-  /// <summary>Inputs are static, never user data.</summary>
+  // Safe as raw markup: author lists are static, never user data.
   private static MarkupString BoldSelf(string authors) =>
       (MarkupString)authors.Replace("S. Ilyosbekov", "<strong>S. Ilyosbekov</strong>");
 
-  /// <summary>JsonSerializer escapes &lt; and &gt;, so the payload cannot break out.</summary>
+  // JsonSerializer escapes < and >, so the payload cannot break out of the script tag.
   private static MarkupString JsonLdScript { get; } = (MarkupString)(
       """<script type="application/ld+json">""" + BuildJsonLd() + "</script>");
 

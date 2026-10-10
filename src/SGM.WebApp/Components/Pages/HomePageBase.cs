@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Options;
-using Microsoft.JSInterop;
 using SGM.WebApp.Options;
 using SGM.WebApp.Services;
 
@@ -14,9 +13,6 @@ public abstract class HomePageBase : ComponentBase
 
     [Inject]
     protected IOptions<GoogleRecaptchaOptions> RecaptchaOptions { get; set; } = null!;
-
-    [Inject]
-    protected IJSRuntime JS { get; set; } = null!;
 
     [Inject]
     protected StaticAssetVersion AssetVersion { get; set; } = null!;

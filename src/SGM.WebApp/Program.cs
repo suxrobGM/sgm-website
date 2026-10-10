@@ -1,7 +1,6 @@
 using Serilog;
 using SGM.WebApp;
 
-
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
     .CreateBootstrapLogger();
@@ -17,10 +16,7 @@ try
         .Enrich.FromLogContext()
         .ReadFrom.Configuration(ctx.Configuration));
 
-    var app = builder
-        .ConfigureServices()
-        .ConfigurePipeline();
-    app.Run();
+    builder.ConfigureServices().ConfigurePipeline().Run();
 }
 catch (Exception ex) when (ex.GetType().Name is not "StopTheHostException")
 {

@@ -19,12 +19,9 @@ public partial class Pay
 
     protected override void OnInitialized()
     {
-        var hasRequiredParams = !string.IsNullOrEmpty(Order) && !string.IsNullOrEmpty(Amount) &&
-            !string.IsNullOrEmpty(Currency) && !string.IsNullOrEmpty(Ret) && !string.IsNullOrEmpty(Sign);
-
-        if (!hasRequiredParams)
+        var missingParam = new[] { Order, Amount, Currency, Ret, Sign }.Any(string.IsNullOrEmpty);
+        if (missingParam)
         {
-            valid = false;
             return;
         }
 

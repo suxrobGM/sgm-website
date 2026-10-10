@@ -4,8 +4,7 @@ using SGM.WebApp.Services;
 namespace SGM.WebApp.Controllers;
 
 /// <summary>
-/// Endpoints for the FreeKassa payment proxy. suxrobgm.net is the registered FreeKassa merchant
-/// and relays verified confirmations to meat.gg.
+/// suxrobgm.net is the registered FreeKassa merchant and relays verified confirmations to meat.gg.
 /// </summary>
 [ApiController]
 [Route("api/freekassa")]
@@ -14,9 +13,8 @@ public sealed class FreeKassaController(
     ILogger<FreeKassaController> logger) : ControllerBase
 {
     /// <summary>
-    /// FreeKassa notification (webhook) handler. Verifies the FreeKassa signature, relays a
-    /// signed confirmation to meat.gg, and answers "YES" so FreeKassa marks the order paid.
-    /// Accepts both GET and POST since the notification method is configurable in the dashboard.
+    /// FreeKassa notification webhook. Answering "YES" marks the order paid. Accepts GET and POST
+    /// because the notification method is configurable in the FreeKassa dashboard.
     /// </summary>
     [HttpGet("notify")]
     [HttpPost("notify")]
@@ -28,15 +26,10 @@ public sealed class FreeKassaController(
         var amount = Field(form, "AMOUNT");
         var orderId = Field(form, "MERCHANT_ORDER_ID");
         var sign = Field(form, "SIGN");
-        var externalId = Field(form, "intid") ?? string.Empty;
+        var externalId = Field(form, "intid");
 
-        if (merchantId is null || amount is null || orderId is null || sign is null)
-        {
-            return Content("NO");
-        }
-
-        var isSignatureValid = freeKassa.VerifyNotification(merchantId, amount, orderId, sign);
-        if (!isSignatureValid)
+        // A missing field reads as "" and fails the signature check.
+        if (!freeKassa.VerifyNotification(merchantId, amount, orderId, sign))
         {
             return Content("NO");
         }
@@ -46,21 +39,23 @@ public sealed class FreeKassaController(
         if (orderId.StartsWith("gen-", StringComparison.Ordinal))
         {
             logger.LogInformation("FreeKassa notify: generic link paid (order {Order})", orderId);
-            return Content("YES");
+        }
+        else
+        {
+            await freeKassa.RelayToMeatAsync(orderId, amount, externalId);
         }
 
-        await freeKassa.RelayToMeatAsync(orderId, amount, externalId);
         return Content("YES");
     }
 
     /// <summary>Reads a field from the posted form, falling back to the query string.</summary>
-    private string? Field(IFormCollection? form, string key)
+    private string Field(IFormCollection? form, string key)
     {
         if (form is not null && form.TryGetValue(key, out var formValue))
         {
             return formValue.ToString();
         }
 
-        return Request.Query.TryGetValue(key, out var queryValue) ? queryValue.ToString() : null;
+        return Request.Query.TryGetValue(key, out var queryValue) ? queryValue.ToString() : "";
     }
 }

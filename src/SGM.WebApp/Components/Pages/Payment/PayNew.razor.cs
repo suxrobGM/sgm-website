@@ -44,8 +44,7 @@ public partial class PayNew
             return;
         }
 
-        if (!decimal.TryParse(amount, NumberStyles.Number, CultureInfo.InvariantCulture, out var value) ||
-            value <= 0)
+        if (!decimal.TryParse(amount, NumberStyles.Number, CultureInfo.InvariantCulture, out var value) || value <= 0)
         {
             formError = "Enter a valid amount greater than zero.";
             return;

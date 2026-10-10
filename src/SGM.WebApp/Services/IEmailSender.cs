@@ -1,16 +1,7 @@
 namespace SGM.WebApp.Services;
 
-/// <summary>
-/// Email service
-/// </summary>
 public interface IEmailSender
 {
-    /// <summary>
-    /// Sends mail to a specified address.
-    /// </summary>
-    /// <param name="receiverMail">Receiver email address</param>
-    /// <param name="subject">Mail subject</param>
-    /// <param name="htmlBody">Mail html body</param>
-    /// <returns>True if mail has been sent successfully, otherwise false</returns>
+    /// <summary>Returns false instead of throwing when delivery fails.</summary>
     Task<bool> SendMailAsync(string receiverMail, string subject, string htmlBody);
 }

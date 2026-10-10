@@ -11,7 +11,6 @@ public sealed class StaticAssetVersion(IWebHostEnvironment env)
 {
     private readonly ConcurrentDictionary<string, (DateTime Modified, string Hash)> _cache = new();
 
-    /// <param name="relativePath">Path under wwwroot, e.g. <c>resume.pdf</c>.</param>
     public string Url(string relativePath)
     {
         var file = env.WebRootFileProvider.GetFileInfo(relativePath);

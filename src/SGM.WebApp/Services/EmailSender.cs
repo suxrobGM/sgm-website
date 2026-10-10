@@ -34,9 +34,7 @@ public sealed class EmailSender(
         }
         catch (Exception ex)
         {
-            logger.LogWarning(
-                "Could not send email to {Mail}, subject: '{Subject}'. \nThrown exception: {Exception}",
-                receiverMail, subject, ex.ToString());
+            logger.LogWarning(ex, "Could not send email to {Mail}, subject: '{Subject}'", receiverMail, subject);
             return false;
         }
     }

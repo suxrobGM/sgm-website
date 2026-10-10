@@ -9,17 +9,6 @@ body {
   background: #fbfaf8;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #16171a;
-  }
-}
-
-/* App.razor loads reCAPTCHA on every page; this one has no form to protect. */
-.grecaptcha-badge {
-  visibility: hidden;
-}
-
 .rp {
   --rp-bg: #fbfaf8;
   --rp-surface: #ffffff;
@@ -54,19 +43,11 @@ body {
   margin: 0 auto;
 }
 
-/* ---------- header ---------- */
-
 .rp-head h1 {
   margin: 0;
   font-size: 2.1rem;
   font-weight: 700;
   letter-spacing: -0.015em;
-}
-
-/* FocusOnNavigate focuses this heading on navigation. Chromium matches :focus-visible even
- for that, and tabindex="-1" means nothing keyboard-reachable loses a ring. */
-.rp-head h1:focus {
-  outline: none;
 }
 
 .rp-sub {
@@ -136,8 +117,6 @@ body {
   color: #fff;
 }
 
-/* ---------- statement ---------- */
-
 .rp-statement {
   margin: 30px 0 8px;
   padding: 18px 22px;
@@ -148,8 +127,6 @@ body {
 .rp-statement p {
   margin: 0;
 }
-
-/* ---------- sections ---------- */
 
 .rp h2 {
   margin: 42px 0 6px;
@@ -212,8 +189,6 @@ body {
   color: var(--rp-muted);
 }
 
-/* ---------- tags ---------- */
-
 .rp-tags {
   display: flex;
   flex-wrap: wrap;
@@ -233,8 +208,6 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* ---------- actions ---------- */
-
 .rp .rp-actions {
   display: flex;
   flex-wrap: wrap;
@@ -251,8 +224,6 @@ body {
 .rp-actions a:hover {
   text-decoration: underline;
 }
-
-/* ---------- disclosures (work with JS disabled) ---------- */
 
 .rp-details {
   margin-top: 6px;
@@ -292,8 +263,6 @@ body {
   white-space: pre;
 }
 
-/* ---------- footer ---------- */
-
 .rp-foot {
   margin-top: 48px;
   padding-top: 18px;
@@ -316,8 +285,6 @@ body {
   font-size: 0.82rem;
 }
 
-/* ---------- responsive ---------- */
-
 @media (max-width: 640px) {
   .rp {
     padding: 32px 18px 56px;
@@ -329,9 +296,11 @@ body {
   }
 }
 
-/* ---------- dark mode ---------- */
-
 @media (prefers-color-scheme: dark) {
+  body {
+    background: #16171a;
+  }
+
   .rp {
     --rp-bg: #16171a;
     --rp-surface: #1d1f23;
@@ -353,8 +322,6 @@ body {
     color: #14161a;
   }
 }
-
-/* ---------- print ---------- */
 
 @media print {
   .rp {

@@ -19,11 +19,6 @@
   [CascadingParameter]
   private HttpContext? HttpContext { get; set; }
 
-  private string? RequestId { get; set; }
-
-  protected override void OnInitialized()
-  {
-    RequestId = Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
-  }
+  private string? RequestId => Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
 
 }

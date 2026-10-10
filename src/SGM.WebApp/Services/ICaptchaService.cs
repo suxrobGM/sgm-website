@@ -2,5 +2,5 @@ namespace SGM.WebApp.Services;
 
 public interface ICaptchaService
 {
-    Task<bool> VerifyCaptchaAsync(string captchaValue);
+    Task<bool> VerifyCaptchaAsync(string? token);
 }

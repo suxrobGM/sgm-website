@@ -22,14 +22,13 @@ public partial class ContactForm
     private string? StatusMessage { get; set; }
     private bool IsError { get; set; }
 
-    protected override void OnInitialized() => EmailInput ??= new EmailInputModel();
+    protected override void OnInitialized() => EmailInput ??= new();
 
     private async Task HandleSubmit()
     {
         var input = EmailInput!;
 
-        if (string.IsNullOrEmpty(input.RecaptchaToken) ||
-            !await CaptchaService.VerifyCaptchaAsync(input.RecaptchaToken))
+        if (!await CaptchaService.VerifyCaptchaAsync(input.RecaptchaToken))
         {
             SetStatus("Error: failed reCAPTCHA check. Please try again.", isError: true);
             return;
@@ -50,7 +49,7 @@ public partial class ContactForm
         }
 
         SetStatus("Your message has been sent successfully", isError: false);
-        EmailInput = new EmailInputModel();
+        EmailInput = new();
     }
 
     private void SetStatus(string message, bool isError)
