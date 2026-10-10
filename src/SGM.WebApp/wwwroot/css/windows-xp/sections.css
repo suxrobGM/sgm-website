@@ -415,6 +415,12 @@
   margin-bottom: 6px;
 }
 
+.xp-research-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
 .xp-research-links a {
   font-size: 12px;
   display: inline-flex;
