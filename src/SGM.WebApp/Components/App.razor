@@ -1,6 +1,7 @@
 @using Microsoft.Extensions.Options
 @using SGM.WebApp.Options
 @inject IOptions<GoogleRecaptchaOptions> RecaptchaOptions
+@inject StaticAssetVersion AssetVersion
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -34,13 +35,21 @@
   <!-- Scoped (CSS-isolated) component styles -->
   <link rel="stylesheet" href="SGM.WebApp.styles.css"/>
 
+  <style>
+    /* FocusOnNavigate moves focus to the h1 for screen readers; it isn't interactive, so no ring. */
+    h1:focus { outline: none; }
+    /* Hidden so it can't cover fixed UI; ContactForm shows the attribution Google requires instead. */
+    .grecaptcha-badge { visibility: hidden; }
+  </style>
+
   <HeadOutlet/>
 </head>
 
 <body>
 <Routes/>
 <script src="_framework/blazor.web.js"></script>
-<script src="js/site.js"></script>
+<script src="@AssetVersion.Url("js/site.js")"></script>
+<script type="module" src="@AssetVersion.Url("js/vice-city.js")"></script>
 <script src="https://www.google.com/recaptcha/enterprise.js?render=@RecaptchaOptions.Value.SiteKey" async
         defer></script>
 <script>

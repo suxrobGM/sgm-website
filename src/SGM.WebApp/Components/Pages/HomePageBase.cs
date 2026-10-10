@@ -19,7 +19,7 @@ public abstract class HomePageBase : ComponentBase
     protected IJSRuntime JS { get; set; } = null!;
 
     [Inject]
-    protected StaticAssetVersion Assets { get; set; } = null!;
+    protected StaticAssetVersion AssetVersion { get; set; } = null!;
 
     protected string CaptchaSiteKey => RecaptchaOptions.Value.SiteKey;
 

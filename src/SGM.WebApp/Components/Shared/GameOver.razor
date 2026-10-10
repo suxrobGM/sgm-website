@@ -1,0 +1,31 @@
+@* Full-screen "WASTED"/"BUSTED" screen shared by the 404 and error pages. *@
+<HeadContent>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/game-over.css" />
+</HeadContent>
+
+<main class="game-over">
+  <div class="game-over-bg" aria-hidden="true"></div>
+  <div class="game-over-content">
+    <h1 class="game-over-title">@Title</h1>
+    <p class="game-over-message">@Message</p>
+    @ChildContent
+    <nav class="game-over-actions" aria-label="Where to next">
+      <a href="/" data-enhance-nav="false" class="game-over-btn">Respawn at home</a>
+      <a href="/research" class="game-over-link">Research page</a>
+    </nav>
+  </div>
+</main>
+
+@code {
+
+  [Parameter, EditorRequired]
+  public required string Title { get; set; }
+
+  [Parameter, EditorRequired]
+  public required string Message { get; set; }
+
+  [Parameter]
+  public RenderFragment? ChildContent { get; set; }
+
+}

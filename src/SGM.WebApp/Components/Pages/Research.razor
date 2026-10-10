@@ -1,6 +1,6 @@
 @page "/research"
 @using System.Text.Json
-@inject StaticAssetVersion Assets
+@inject StaticAssetVersion AssetVersion
 
 <PageTitle>@Title</PageTitle>
 
@@ -35,10 +35,10 @@
         </a>
       </nav>
       <div class="rp-cvs">
-        <a class="rp-btn rp-btn-primary" href="@Assets.Url("resume-phd.pdf")" target="_blank">
+        <a class="rp-btn rp-btn-primary" href="@AssetVersion.Url("resume-phd.pdf")" target="_blank" rel="noopener">
           <i class="fas fa-file-pdf" aria-hidden="true"></i> Research CV
         </a>
-        <a class="rp-btn" href="@Assets.Url("resume-aiml.pdf")" target="_blank">
+        <a class="rp-btn" href="@AssetVersion.Url("resume-aiml.pdf")" target="_blank" rel="noopener">
           <i class="fas fa-file-pdf" aria-hidden="true"></i> ML Engineering Résumé
         </a>
       </div>
