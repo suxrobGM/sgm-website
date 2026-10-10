@@ -2,38 +2,44 @@
 
 [![Build and Deploy](https://github.com/suxrobGM/sgm-website/actions/workflows/deploy-ssh.yml/badge.svg)](https://github.com/suxrobGM/sgm-website/actions/workflows/deploy-ssh.yml)
 [![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
-[![Blazor Server](https://img.shields.io/badge/Blazor-Server-512BD4?logo=blazor&logoColor=white)](https://learn.microsoft.com/aspnet/core/blazor/)
+[![Blazor](https://img.shields.io/badge/Blazor-SSR-512BD4?logo=blazor&logoColor=white)](https://learn.microsoft.com/aspnet/core/blazor/)
 [![Docker](https://img.shields.io/badge/Docker-GHCR-2496ED?logo=docker&logoColor=white)](https://github.com/suxrobGM/sgm-website/pkgs/container/sgm-website%2Fweb)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Live site](https://img.shields.io/website?url=https%3A%2F%2Fsuxrobgm.net&label=suxrobgm.net)](https://suxrobgm.net)
 
-Sukhrob Ilyosbekov's personal portfolio — live at [suxrobgm.net](https://suxrobgm.net). ASP.NET Core Blazor Server on .NET 10 with three themed homepage variants and a Resend-backed contact form.
+My personal site, live at [suxrobgm.net](https://suxrobgm.net). It's a Blazor app on .NET 10 with
+two themes that render the same content, a research page, and a contact form.
 
-## Themes
+| Route       | What it is                                                                      |
+| ----------- | ------------------------------------------------------------------------------- |
+| `/`         | Vice City: a 1980s Miami game, with a HUD, radar, pause menu and mission log    |
+| `/xp`       | Windows XP: the portfolio as desktop windows                                    |
+| `/research` | Papers, summaries and BibTeX                                                    |
 
-| Route  | Theme                              |
-| ------ | ---------------------------------- |
-| `/`    | GTA Vice City 1980s retro          |
-| `/xp`  | Windows XP desktop (interactive)   |
-
-## Develop
+## Run it
 
 ```bash
 dotnet run --project src/SGM.WebApp
 ```
 
-Local-only settings go in `src/SGM.WebApp/appsettings.Development.json` (gitignored).
+## Editing content
+
+Jobs, projects, skills, research and the about text live in
+[`Data/PortfolioData.cs`](src/SGM.WebApp/Data/PortfolioData.cs); papers for the research page
+are in [`Data/ResearchData.cs`](src/SGM.WebApp/Data/ResearchData.cs). Both themes pick up
+changes automatically.
 
 ## Deploy
 
-Push to `prod` → image built and pushed to GHCR → pulled onto the VPS via docker compose. See [`docs/deployment.md`](docs/deployment.md).
+Pushing to `prod` builds a Docker image, pushes it to GHCR, and restarts it on the VPS with
+docker compose. See [`docs/deployment.md`](docs/deployment.md).
 
-## Layout
+## Repository
 
 ```text
-src/SGM.WebApp/     Blazor app + Dockerfile
-deploy/             docker-compose.yml, .env.example
-docs/               Documentation
-resume/             LaTeX resume sources
-gh-profile/         GitHub profile assets
+src/SGM.WebApp/   the site (Blazor app and Dockerfile)
+deploy/           docker-compose.yml, .env.example and the nginx site config
+docs/             deployment notes
+resume/           LaTeX resumes; build.ps1 copies the PDFs into the site
+gh-profile/       source of my GitHub profile README
 ```

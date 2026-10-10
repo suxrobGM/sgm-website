@@ -1,29 +1,77 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## What this is
 
-## Project Overview
+Sukhrob Ilyosbekov's portfolio, live at <https://suxrobgm.net>. ASP.NET Core Blazor on .NET 10,
+rendered as static SSR (no interactive circuit except the admin `/pay/new` page). The repo also
+holds the LaTeX resumes (`resume/`) and the source of the GitHub profile README (`gh-profile/`).
 
-Personal portfolio website for Sukhrob Ilyosbekov built with ASP.NET Core Blazor Server targeting .NET 10. Deployed to <https://suxrobgm.net> via GitHub Actions SSH deployment. The repo also contains resume files and GitHub profile assets.
-
-## Build & Run Commands
+## Commands
 
 ```bash
-# Build
-dotnet build
-
-# Run locally (development)
-dotnet run --project src/SGM.WebApp
-
-# Publish for production (matches CI pipeline)
-dotnet publish src/SGM.WebApp/SGM.WebApp.csproj -c Release -r linux-x64 -p:PublishSingleFile=true --output ./publish
+dotnet run --project src/SGM.WebApp     # local dev
+dotnet build                            # fails if a running instance locks bin/; stop it or build with -o <dir>
 ```
 
-### Resumes (LaTeX)
+Local-only settings go in `src/SGM.WebApp/appsettings.Development.json` (gitignored).
+
+## Layout
+
+```text
+src/SGM.WebApp/
+  Program.cs, Setup.cs        services and middleware pipeline
+  Data/                       site content as C# records (edit copy here, not in markup)
+    PortfolioData.cs          jobs, skills, research highlights, projects, education, about, contacts
+    ResearchData.cs           papers with summaries and BibTeX for /research
+  Components/
+    Pages/                    HomeViceCity (/), HomeWindowsXP (/xp), Research, NotFound, Error, Payment/*
+    ViceCity/                 Vice City sections, HUD, pause menu; ViceCityStations.cs lists the sections
+    WindowsXP/XpWindow.razor  XP window chrome
+    Shared/                   ContactForm, ThemeSwitcher, GameOver, ProjectCard, TagList
+  Services/                   email (Resend), reCAPTCHA Enterprise, FreeKassa, StaticAssetVersion
+  Controllers/                FreeKassa webhook (api/freekassa/notify)
+  wwwroot/
+    css/vice-city/, css/windows-xp/   per-theme stylesheets, pulled in by vice-city.css / windows-xp.css
+    js/site.js                classic script: cassette music, XP clock/sound, contact form submit
+    js/vice-city.js           ES module: HUD, radar, station banner, pause menu, reveals
+    images/vc/                Vice City art (WebP), named by each item's Slug
+resume/                       LaTeX resumes and build script
+gh-profile/                   mirror of the suxrobGM/suxrobGM profile repo
+deploy/, docs/                docker-compose and deployment notes
+```
+
+## Pages and themes
+
+- **`/` Vice City** (default). `HomeViceCity.razor` only composes components from `Components/ViceCity/`.
+  Each section is a radio "station" in `ViceCityStations.cs`, which drives the pause menu (Esc),
+  the radar blips and the station banner. Radar blip positions (`60 + i * 100`) must stay in sync
+  between `Hud.razor` and `vice-city.js`.
+- **`/xp` Windows XP.** One page built from `XpWindow` blocks; `initXpPage()` in `site.js` starts
+  the taskbar clock and the startup sound.
+- **`/research`.** Plain academic page for PhD applications, fed by `ResearchData`.
+- **404 and errors.** Unknown URLs re-execute to `/not-found` ("Wasted"); exceptions go to
+  `/Error` ("Busted"). Both use `Shared/GameOver.razor`.
+- **Payments.** `/pay/freekassa`, `/pay/status` and the passphrase-locked `/pay/new` link
+  generator proxy FreeKassa checkouts for meat.gg; the webhook relays confirmations back.
+
+To add a theme, add a page that inherits `HomePageBase`, reads `PortfolioData`, and a link in `ThemeSwitcher`.
+
+## Things that are easy to get wrong
+
+- **Contact form** is a static form with an enhanced POST. `site.js` catches the submit in the
+  capture phase, fetches a reCAPTCHA token into the hidden field, then resubmits. The server
+  verifies the token and HTML-encodes the message. Don't give it an interactive render mode.
+- **reCAPTCHA badge** is hidden in `App.razor`; `ContactForm` shows the required notice instead.
+- **Caching.** Theme stylesheets load their parts through unversioned `@import` URLs, so
+  `Setup.cs` forces revalidation of `.css`, `.js` and `.pdf`. Pages and `App.razor` version their
+  top-level assets with `StaticAssetVersion.Url()` (injected as `AssetVersion`; `Assets` would hide
+  `ComponentBase.Assets`).
+- **Resume PDFs** are served from `wwwroot/`, so always rebuild them with the script below.
+
+## Resumes (LaTeX)
 
 `resume/build.ps1` compiles the `.tex` resumes with latexmk and copies each PDF into
-`src/SGM.WebApp/wwwroot/`, which is where the site serves them from. Compiling without
-that copy is how the site ends up serving a stale PDF.
+`src/SGM.WebApp/wwwroot/`. Compiling without that copy leaves the site serving a stale PDF.
 
 ```powershell
 ./resume/build.ps1              # all three resumes, then sync to wwwroot
@@ -31,72 +79,40 @@ that copy is how the site ends up serving a stale PDF.
 ./resume/build.ps1 aiml -NoSync # compile without touching wwwroot
 ```
 
-### GitHub profile activity chart
+## Vice City art
+
+Generated with Codex CLI's `imagegen` skill (`codex exec -i <reference image> -` with a prompt on
+stdin), using `images/myself-vc.jpg` as the character reference and an existing image as the style
+reference. Convert the PNG output to WebP before committing (missions 640px, properties 1000px,
+hero about 1536px) and don't commit the PNGs.
+
+## GitHub profile
+
+`gh-profile/` mirrors the `suxrobGM/suxrobGM` repo; `.github/workflows/sync-profile.yml` copies it
+there on every push to `master` that touches it (needs the `PROFILE_SYNC_TOKEN` secret).
 
 `gh-profile/scripts/activity_chart.py` renders four charts from the GraphQL API as
-`assets/<name>-{light,dark}.svg`: `activity` (per month, one row per year),
-`cumulative`, `mix` (by contribution type) and `languages` (by project start year).
-Drawing code lives in `scripts/charts/`, one module per chart plus `theme`, `svg`
-and `github`. The profile repo reruns it daily. Locally: `$env:GITHUB_TOKEN = gh auth token` then
-`python gh-profile/scripts/activity_chart.py --user suxrobGM --out gh-profile/assets`
-(`--charts mix,languages` for a subset).
-The README uses one-column blockquote cards, not multi-column tables, so it reads on
-phones; use `<small>` not `<sub>` for captions that may wrap.
+`assets/<name>-{light,dark}.svg`: `activity`, `cumulative`, `mix` and `languages`. Drawing code
+lives in `scripts/charts/`. The profile repo reruns it daily. Locally:
 
-## Architecture
+```powershell
+$env:GITHUB_TOKEN = gh auth token
+python gh-profile/scripts/activity_chart.py --user suxrobGM --out gh-profile/assets   # --charts mix,languages for a subset
+```
 
-**Entry point flow:** `Program.cs` → `Setup.ConfigureServices()` → `Setup.ConfigurePipeline()`
+The profile README uses one-column blockquote cards so it reads on phones; use `<small>`, not
+`<sub>`, for captions that may wrap.
 
-**Key directories:**
+## Configuration
 
-- `src/SGM.WebApp/Components/` - Blazor components (Pages, Layout, Shared, ViceCity, WindowsXP)
-- `src/SGM.WebApp/Data/` - Content as C# records: `PortfolioData.cs` (jobs, skills, research
-  highlights, projects, education, reviews, contacts) feeds both home pages;
-  `ResearchData.cs` (papers with BibTeX) feeds `/research`. Edit copy here, not in markup.
-- `src/SGM.WebApp/Services/` - Business logic services (email sender, captcha verification)
-- `src/SGM.WebApp/Options/` - Strongly-typed configuration classes bound from appsettings
-- `resume/` - LaTeX resume source files and GitHub profile markdown
-- `gh-profile/` - Source of truth for the `suxrobGM/suxrobGM` profile repo, same
-  layout (`README.md`, `assets/`, `scripts/`, `.github/workflows/`).
-  `sync-profile.yml` copies it there on every push to `master` that touches
-  `gh-profile/` (needs the `PROFILE_SYNC_TOKEN` secret).
+`appsettings.json` holds non-secret config; secrets come from env vars (`Section__Key`):
 
-**Pages (themed portfolio variants, all inherit `HomePageBase`, all static SSR):**
-
-- `/` → `HomeViceCity.razor` - 1980s Miami game theme (default). The page only composes
-  sections from `Components/ViceCity/` (Hud, PauseMenu, Hero, StatsSection, MissionsSection, ...).
-  `ViceCityStations.cs` lists the sections as radio stations and drives the pause menu, radar
-  and station banner. Behavior lives in `wwwroot/js/vice-city.js`; styles in
-  `wwwroot/css/vice-city/*.css`; art in `wwwroot/images/vc/` (WebP, named by `Slug`).
-- `/xp` → `HomeWindowsXP.razor` - Windows XP desktop UI theme; window chrome is `WindowsXP/XpWindow.razor`.
-  Clock and startup sound are started by `initXpPage()` in `site.js`.
-- `/research` → `Research.razor` - Plain academic page for PhD applications
-- `/not-found` → `NotFound.razor` and `/Error` → `Error.razor` - "Wasted"/"Busted" screens via `Shared/GameOver.razor`.
-  Unknown URLs reach `/not-found` through `UseStatusCodePagesWithReExecute`.
-
-All theme pages share a `ContactForm` component (InteractiveServer) with reCAPTCHA and a
-`ThemeSwitcher` component for navigating between themes. The reCAPTCHA badge is hidden
-globally in `App.razor`; `ContactForm` shows the attribution text Google requires instead.
-
-### Vice City art
-
-Generated with Codex CLI's `imagegen` skill (`codex exec -i <reference> -`), using
-`images/myself-vc.jpg` as the character reference and the hero image as the style reference.
-Convert PNG output to WebP before committing (missions 640px, properties 1000px, hero ~1536px).
-
-**Services:**
-
-- `IEmailSender` / `EmailSender` - Email delivery via Resend API for contact form submissions
-- `ICaptchaService` / `RecaptchaEnterpriseService` - Google reCAPTCHA Enterprise validation with risk scoring (threshold >= 0.5)
-
-Both services are registered as scoped in `Setup.ConfigureServices()`.
-
-**Configuration sections in appsettings.json:**
-
-- `EmailConfig` → `EmailSenderOptions` (SenderMail, SenderName, ApiKey)
-- `GoogleRecaptcha` → `GoogleRecaptchaOptions` (SiteKey, ProjectId, KeyPath for service account)
-- `Serilog` → structured logging to console
+- `EmailConfig` (SenderMail, SenderName, ApiKey) for Resend
+- `GoogleRecaptcha` (SiteKey, ProjectId, KeyPath to the service-account JSON); scores below 0.5 fail
+- `FreeKassa` (merchant, secrets, meat.gg callback URL, admin key for `/pay/new`)
+- `Serilog` writes compact JSON logs to `logs/`
 
 ## Deployment
 
-Automated via `.github/workflows/deploy-ssh.yml` on push to `prod`. Deploys as a single-file executable to Linux server running as `sgm-main.service` systemd unit.
+Push to `prod`. `.github/workflows/deploy-ssh.yml` builds the Docker image, pushes it to GHCR, and
+runs `docker compose up -d` on the VPS behind nginx. Details in `docs/deployment.md`.
