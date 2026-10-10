@@ -49,7 +49,10 @@ phones; use `<small>` not `<sub>` for captions that may wrap.
 
 **Key directories:**
 
-- `src/SGM.WebApp/Components/` - Blazor components (Pages, Layout, Shared)
+- `src/SGM.WebApp/Components/` - Blazor components (Pages, Layout, Shared, ViceCity, WindowsXP)
+- `src/SGM.WebApp/Data/` - Content as C# records: `PortfolioData.cs` (jobs, skills, research
+  highlights, projects, education, reviews, contacts) feeds both home pages;
+  `ResearchData.cs` (papers with BibTeX) feeds `/research`. Edit copy here, not in markup.
 - `src/SGM.WebApp/Services/` - Business logic services (email sender, captcha verification)
 - `src/SGM.WebApp/Options/` - Strongly-typed configuration classes bound from appsettings
 - `resume/` - LaTeX resume source files and GitHub profile markdown
@@ -58,14 +61,28 @@ phones; use `<small>` not `<sub>` for captions that may wrap.
   `sync-profile.yml` copies it there on every push to `master` that touches
   `gh-profile/` (needs the `PROFILE_SYNC_TOKEN` secret).
 
-**Pages (themed portfolio variants, all inherit `HomePageBase`):**
+**Pages (themed portfolio variants, all inherit `HomePageBase`, all static SSR):**
 
-- `/` → `HomeViceCity.razor` - GTA Vice City 1980s retro theme (default)
-- `/cli` → `HomeTerminal.razor` - Terminal/Matrix hacker theme with CRT effects and scanlines
-- `/xp` → `HomeWindowsXP.razor` - Windows XP desktop UI theme (InteractiveServer render mode)
-- `/Error` → `Error.razor` - Standard error page
+- `/` → `HomeViceCity.razor` - 1980s Miami game theme (default). The page only composes
+  sections from `Components/ViceCity/` (Hud, PauseMenu, Hero, StatsSection, MissionsSection, ...).
+  `ViceCityStations.cs` lists the sections as radio stations and drives the pause menu, radar
+  and station banner. Behavior lives in `wwwroot/js/vice-city.js`; styles in
+  `wwwroot/css/vice-city/*.css`; art in `wwwroot/images/vc/` (WebP, named by `Slug`).
+- `/xp` → `HomeWindowsXP.razor` - Windows XP desktop UI theme; window chrome is `WindowsXP/XpWindow.razor`.
+  Clock and startup sound are started by `initXpPage()` in `site.js`.
+- `/research` → `Research.razor` - Plain academic page for PhD applications
+- `/not-found` → `NotFound.razor` and `/Error` → `Error.razor` - "Wasted"/"Busted" screens via `Shared/GameOver.razor`.
+  Unknown URLs reach `/not-found` through `UseStatusCodePagesWithReExecute`.
 
-All theme pages share a `ContactForm` component with reCAPTCHA and a `ThemeSwitcher` component for navigating between themes.
+All theme pages share a `ContactForm` component (InteractiveServer) with reCAPTCHA and a
+`ThemeSwitcher` component for navigating between themes. The reCAPTCHA badge is hidden
+globally in `App.razor`; `ContactForm` shows the attribution text Google requires instead.
+
+### Vice City art
+
+Generated with Codex CLI's `imagegen` skill (`codex exec -i <reference> -`), using
+`images/myself-vc.jpg` as the character reference and the hero image as the style reference.
+Convert PNG output to WebP before committing (missions 640px, properties 1000px, hero ~1536px).
 
 **Services:**
 
