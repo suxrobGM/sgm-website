@@ -1,0 +1,36 @@
+@* About, as the player stats screen. *@
+<StationSection Id="about" Class="stats-section" Title="About Me">
+  <div class="stats-layout">
+    <figure class="player-card reveal">
+      <img src="images/myself-vc.jpg" alt="Sukhrob Ilyosbekov" width="596" height="736" loading="lazy" />
+      <figcaption><span>Player 1</span> Sukhrob</figcaption>
+    </figure>
+    <div class="menu-panel stats-panel reveal">
+      <h3>Hi, I'm Sukhrob</h3>
+      @foreach (var paragraph in PortfolioData.About)
+      {
+        <p>@((MarkupString)paragraph)</p>
+      }
+      <dl class="stats-list">
+        @foreach (var (label, value) in Stats)
+        {
+          <div><dt>@label</dt><dd>@value</dd></div>
+        }
+      </dl>
+    </div>
+  </div>
+</StationSection>
+
+@code {
+
+  private static readonly (string Label, string Value)[] Stats =
+  [
+    ("Years in the game", "9+"),
+    ("Projects completed", "50+"),
+    ("Papers on arXiv", ResearchData.Publications.Count.ToString()),
+    ("Main stack", ".NET, TS, Python"),
+    ("Home turf", "Portland, ME"),
+    ("Highest degree", "M.S. CS, 4.0 GPA"),
+  ];
+
+}

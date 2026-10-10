@@ -1,0 +1,23 @@
+@* Education, as save game slots. *@
+<StationSection Id="education" Class="saves-section" Title="Education">
+  <ol class="save-list menu-panel">
+    @for (var i = 0; i < PortfolioData.Education.Count; i++)
+    {
+      var degree = PortfolioData.Education[i];
+      <li class="save reveal">
+        <span class="save-slot"><i class="fa-solid fa-floppy-disk"></i> Save @(i + 1)</span>
+        <div class="save-main">
+          <h3>@degree.Title</h3>
+          <p>@degree.School</p>
+        </div>
+        <div class="save-side">
+          <span class="save-date">@degree.Period</span>
+          @if (degree.Note is not null)
+          {
+            <span class="save-badge">@degree.Note</span>
+          }
+        </div>
+      </li>
+    }
+  </ol>
+</StationSection>

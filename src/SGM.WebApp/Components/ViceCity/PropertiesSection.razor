@@ -1,0 +1,43 @@
+@* Featured projects, as properties you own. Hovering a card brings up the real screenshot. *@
+<StationSection Id="projects" Class="property-section" Title="Featured Projects">
+  <div class="property-grid">
+    @foreach (var project in PortfolioData.Projects)
+    {
+      <article class="property reveal">
+        <div class="property-art">
+          <img src="images/vc/property-@(project.Slug).webp" alt="" loading="lazy" width="1536" height="1024" />
+          @if (project.Screenshot is not null)
+          {
+            <img class="property-shot" src="@project.Screenshot" alt="@project.Title screenshot" loading="lazy" />
+          }
+          <span class="property-badge">
+            @if (project.Award)
+            {
+              <i class="fa-solid fa-trophy"></i> <text>Award</text>
+            }
+            else
+            {
+              <i class="fa-solid fa-house"></i> <text>Owned</text>
+            }
+          </span>
+        </div>
+        <div class="property-body">
+          <h3 class="property-title">@project.Title</h3>
+          <p class="property-stat">@project.Highlight</p>
+          <p class="property-desc">@project.Summary</p>
+          <Chips Items="project.Tags" Small />
+          <div class="links">
+            @if (project.RepoUrl is not null)
+            {
+              <a href="@project.RepoUrl" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+            }
+            @if (project.SiteUrl is not null)
+            {
+              <a href="@project.SiteUrl" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Live App</a>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</StationSection>

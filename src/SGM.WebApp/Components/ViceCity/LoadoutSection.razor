@@ -1,0 +1,15 @@
+@* Tech stack, as weapon slots. *@
+<StationSection Id="skills" Class="loadout-section" Title="Tech Stack">
+  <div class="loadout-grid">
+    @for (var i = 0; i < PortfolioData.Skills.Count; i++)
+    {
+      var group = PortfolioData.Skills[i];
+      <div class="loadout-card reveal">
+        <span class="loadout-slot">@(i + 1)</span>
+        <div class="loadout-icon"><i class="@group.Icon"></i></div>
+        <h3>@group.Name</h3>
+        <Chips Items="group.Skills" />
+      </div>
+    }
+  </div>
+</StationSection>

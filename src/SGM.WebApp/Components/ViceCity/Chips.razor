@@ -1,0 +1,16 @@
+<div class="chips @(Small ? "chips-small" : null)">
+  @foreach (var item in Items)
+  {
+    <span>@item</span>
+  }
+</div>
+
+@code {
+
+  [Parameter, EditorRequired]
+  public required string[] Items { get; set; }
+
+  [Parameter]
+  public bool Small { get; set; }
+
+}

@@ -1,0 +1,42 @@
+@* Work experience, as a mission log. vice-city.js stamps "Mission Passed!" and pays out data-reward. *@
+<StationSection Id="experience" Class="missions-section" Title="Work Experience">
+  <ol class="mission-list">
+    @for (var i = 0; i < Jobs.Count; i++)
+    {
+      var job = Jobs[i];
+      var number = Jobs.Count - i;
+      <li class="mission reveal @(job.Current ? "mission-current" : null)" data-reward="@(job.Current ? 0 : number * 750_000)">
+        <div class="mission-art">
+          <img src="images/vc/mission-@(job.Slug).webp" alt="" loading="lazy" width="1024" height="1024" />
+        </div>
+        <div class="mission-body">
+          <div class="mission-meta">
+            <span class="mission-no">Mission @number.ToString("00")</span>
+            <span class="mission-date">@job.Period</span>
+          </div>
+          <h3 class="mission-title">@job.Title</h3>
+          <p class="mission-giver">@job.Company | @job.Location</p>
+          <p class="mission-desc">@job.Summary</p>
+        </div>
+        <div class="mission-stamp" aria-hidden="true">
+          @if (job.Current)
+          {
+            <span class="stamp-main">In Progress</span>
+            <span class="stamp-sub">Objective: keep shipping</span>
+          }
+          else
+          {
+            <span class="stamp-main">Mission Passed!</span>
+            <span class="stamp-sub">Respect +</span>
+          }
+        </div>
+      </li>
+    }
+  </ol>
+</StationSection>
+
+@code {
+
+  private static IReadOnlyList<Job> Jobs => PortfolioData.Jobs;
+
+}

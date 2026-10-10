@@ -1,0 +1,34 @@
+@* Contact, as a ringing payphone next to the message form. *@
+<StationSection Id="contact" Class="payphone-section" Title="Get In Touch">
+  <div class="payphone-layout">
+    <div class="payphone reveal">
+      <div class="payphone-sign"><i class="fa-solid fa-phone-volume"></i> Payphone</div>
+      <div class="payphone-ring" aria-hidden="true"><i class="fa-solid fa-phone"></i></div>
+      <h3>Other Ways to Reach Me</h3>
+      <ul class="phonebook">
+        @foreach (var link in PortfolioData.Contacts)
+        {
+          var external = link.Url.StartsWith("http");
+          <li>
+            <span class="phonebook-icon"><i class="@link.Icon"></i></span>
+            <span>
+              <small>@link.Label</small>
+              <a href="@link.Url" target="@(external ? "_blank" : null)" rel="@(external ? "noopener" : null)">@link.Display</a>
+            </span>
+          </li>
+        }
+      </ul>
+    </div>
+    <div class="call-panel menu-panel reveal">
+      <p class="call-status"><span class="call-dot"></span> Incoming call: leave a message</p>
+      <ContactForm CaptchaSiteKey="@CaptchaSiteKey" />
+    </div>
+  </div>
+</StationSection>
+
+@code {
+
+  [Parameter, EditorRequired]
+  public required string CaptchaSiteKey { get; set; }
+
+}

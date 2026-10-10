@@ -6,7 +6,23 @@
 .cassette-player {
   cursor: pointer;
   display: inline-block;
+  padding: 0;
   transition: transform 0.3s ease;
+}
+
+/* Built from spans so it can live inside a <button>; low specificity so the rules below win */
+:where(.cassette-player) span {
+  display: block;
+}
+
+.cassette-floating {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+  transform: scale(0.65);
+  transform-origin: bottom right;
 }
 
 .cassette-player:hover {
@@ -23,7 +39,7 @@
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 4px 12px rgba(0, 0, 0, 0.6),
-    0 0 15px rgba(232, 115, 74, 0.08);
+    0 0 15px rgba(255, 79, 160, 0.08);
 }
 
 /* Corner screws */
@@ -70,7 +86,7 @@
 
 /* Label area */
 .cassette-label {
-  background: linear-gradient(180deg, #f5e6c8 0%, #e8d4a8 45%, var(--vc-coral) 45%, var(--vc-sunset-orange) 100%);
+  background: linear-gradient(180deg, #f5e6c8 0%, #e8d4a8 45%, var(--pink) 45%, var(--sunset) 100%);
   border-radius: 4px;
   padding: 6px 10px 8px;
   text-align: center;
@@ -106,8 +122,9 @@
 }
 
 .cassette-side {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.38rem;
+  font-family: var(--font-cond);
+  font-weight: 700;
+  font-size: 0.5rem;
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -202,7 +219,7 @@
 .cassette-controls {
   text-align: center;
   margin-top: 4px;
-  color: var(--vc-teal);
+  color: var(--aqua);
   font-size: 0.6rem;
   opacity: 0.7;
   transition: all 0.3s ease;
@@ -210,14 +227,14 @@
 
 .cassette-player:hover .cassette-controls {
   opacity: 1;
-  color: var(--vc-coral);
-  text-shadow: 0 0 8px rgba(232, 115, 74, 0.5);
+  color: var(--pink);
+  text-shadow: 0 0 8px rgba(255, 79, 160, 0.5);
 }
 
 .cassette-player.playing .cassette-controls {
   opacity: 1;
-  color: var(--vc-coral);
-  text-shadow: 0 0 8px rgba(232, 115, 74, 0.5);
+  color: var(--pink);
+  text-shadow: 0 0 8px rgba(255, 79, 160, 0.5);
   animation: neonPulse 2s ease-in-out infinite;
 }
 
@@ -240,13 +257,13 @@
 
 /* Playing state glow */
 .cassette-player.playing .cassette-body {
-  border-color: rgba(232, 115, 74, 0.4);
+  border-color: rgba(255, 79, 160, 0.4);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 4px 12px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(232, 115, 74, 0.15);
+    0 0 20px rgba(255, 79, 160, 0.15);
 }
 
 .cassette-player.playing .cassette-label {
-  box-shadow: 0 0 10px rgba(232, 115, 74, 0.2);
+  box-shadow: 0 0 10px rgba(255, 79, 160, 0.2);
 }

@@ -1,0 +1,44 @@
+@* Research, as a shelf of mixtapes. *@
+<StationSection Id="research" Class="tapes-section" Title="Research & Projects">
+  <div class="tape-grid">
+    @for (var i = 0; i < PortfolioData.Research.Count; i++)
+    {
+      var item = PortfolioData.Research[i];
+      <article class="tape reveal" style="--label: var(@LabelColors[i % LabelColors.Length])">
+        <div class="tape-shell" aria-hidden="true">
+          <div class="tape-label">
+            <span class="tape-side">@(i % 2 == 0 ? "A" : "B")</span>
+            <span class="tape-name">@item.ShortName</span>
+          </div>
+          <div class="tape-window"><span class="tape-reel"></span><span class="tape-reel"></span></div>
+        </div>
+        <div class="tape-insert">
+          <h3>@item.Title</h3>
+          <p>@item.Summary</p>
+          <Chips Items="item.Tags" Small />
+          <div class="links">
+            @if (item.RepoUrl is not null)
+            {
+              <a href="@item.RepoUrl" target="_blank" rel="noopener"><i class="fab fa-github"></i> Repository</a>
+            }
+            @if (item.PaperUrl is not null)
+            {
+              <a href="@item.PaperUrl" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> arXiv Paper</a>
+            }
+          </div>
+        </div>
+      </article>
+    }
+    <a class="tape tape-more reveal" href="/research">
+      <span class="tape-more-icon"><i class="fa-solid fa-flask"></i></span>
+      <span class="tape-more-title">Full research page</span>
+      <span class="tape-more-sub">Papers, summaries and BibTeX</span>
+    </a>
+  </div>
+</StationSection>
+
+@code {
+
+  private static readonly string[] LabelColors = ["--pink-soft", "--aqua-soft", "--sunset-soft", "--lavender", "--gold-soft"];
+
+}

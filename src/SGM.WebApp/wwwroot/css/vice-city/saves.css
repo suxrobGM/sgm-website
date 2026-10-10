@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Vice City Theme - Load Game (Education)
+   ========================================================================== */
+
+.saves-section {
+  background:
+    radial-gradient(circle at 50% 120%, rgba(255, 79, 160, 0.3), transparent 55%),
+    linear-gradient(180deg, var(--navy-900), var(--navy-950));
+}
+
+.save-list {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.save {
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 20px;
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.save + .save {
+  border-top: 1px dashed rgba(255, 255, 255, 0.14);
+}
+
+.save:hover {
+  background: linear-gradient(90deg, rgba(255, 79, 160, 0.18), transparent);
+}
+
+.save-slot {
+  font-family: var(--font-game);
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--aqua);
+}
+
+.save-slot i {
+  margin-right: 6px;
+  color: var(--pink);
+}
+
+.save-main h3 {
+  font-family: var(--font-game);
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.save-main p {
+  color: var(--text-light-muted);
+}
+
+.save-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  text-align: right;
+}
+
+.save-date {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-light);
+}
+
+.save-badge {
+  font-family: var(--font-cond);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  color: var(--ink);
+  background: var(--gold);
+}

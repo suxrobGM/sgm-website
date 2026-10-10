@@ -1,0 +1,51 @@
+@* Fixed game chrome: logo + menu button, clock/money/wanted readout, station banner, radar. *@
+
+<header class="vc-topbar">
+  <a href="#home" class="vc-logo" aria-label="Back to top">Sukhrob</a>
+  <button type="button" class="menu-btn" id="pauseBtn" aria-controls="pauseMenu" aria-expanded="false">
+    <span class="menu-btn-key">Esc</span>
+    <span class="menu-btn-label">Menu</span>
+    <span class="menu-btn-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
+</header>
+
+<div class="hud" aria-hidden="true">
+  <div class="hud-weapon"><i class="fa-solid fa-laptop-code"></i></div>
+  <div class="hud-readout">
+    <div class="hud-clock" id="hudClock">00:00</div>
+    <div class="hud-money" id="hudMoney">$00000000</div>
+    <div class="hud-stars" id="hudStars">
+      <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+    </div>
+  </div>
+</div>
+
+<div class="station-banner" id="stationBanner" aria-hidden="true">
+  <span class="station-freq" id="stationFreq"></span>
+  <span class="station-name" id="stationName"></span>
+</div>
+
+<nav class="radar" aria-label="Minimap">
+  <div class="radar-map" id="radarMap">
+    <svg class="radar-land" viewBox="0 0 200 1100" preserveAspectRatio="none" aria-hidden="true">
+      <rect width="200" height="1100" fill="var(--radar-sea)" />
+      <path d="M30 0 L170 0 L178 90 L150 160 L168 240 L120 300 L60 280 L22 200 L40 120 Z" fill="var(--radar-land)" />
+      <path d="M70 330 L160 320 L190 410 L170 520 L110 560 L50 520 L35 430 Z" fill="var(--radar-land)" />
+      <path d="M20 600 L120 590 L130 680 L90 760 L30 740 L10 670 Z" fill="var(--radar-land)" />
+      <path d="M140 610 L195 600 L198 760 L150 790 L128 700 Z" fill="var(--radar-land)" />
+      <path d="M40 820 L180 810 L190 940 L150 1020 L60 1040 L20 940 Z" fill="var(--radar-land)" />
+      <path d="M95 160 L120 175 L110 210 L85 200 Z M120 420 L150 430 L140 470 L112 460 Z M60 880 L100 870 L110 920 L70 930 Z" fill="var(--radar-park)" />
+      <path d="M100 0 L100 1100 M30 140 L170 140 M60 450 L180 450 M20 680 L130 680 M40 900 L185 900 M150 300 L130 330 M110 560 L90 600 M100 790 L110 815"
+            stroke="var(--radar-road)" stroke-width="4" fill="none" />
+    </svg>
+    @for (var i = 0; i < ViceCityStations.All.Count; i++)
+    {
+      var station = ViceCityStations.All[i];
+      <a class="radar-blip @station.BlipClass" href="#@station.Id" style="--y: @(60 + i * 100)" aria-label="@station.Label">
+        <i class="@station.Icon"></i>
+      </a>
+    }
+  </div>
+  <div class="radar-player" aria-hidden="true"></div>
+  <span class="radar-north" aria-hidden="true">N</span>
+</nav>

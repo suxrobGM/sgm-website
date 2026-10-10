@@ -1,0 +1,34 @@
+@* The site navigation, styled as the game's pause menu. Opened by the Esc key or the Menu button. *@
+@inject StaticAssetVersion AssetVersion
+
+<div class="pause-menu" id="pauseMenu" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+  <div class="pause-backdrop" data-close-menu></div>
+  <div class="pause-panel">
+    <div class="pause-head">
+      <span class="pause-title">Paused</span>
+      <button type="button" class="pause-close" data-close-menu aria-label="Resume game">
+        Resume <span class="menu-btn-key">Esc</span>
+      </button>
+    </div>
+    <ol class="pause-list">
+      @foreach (var station in ViceCityStations.All)
+      {
+        <li>
+          <a href="#@station.Id">
+            <span class="pause-freq">@station.Freq</span>
+            <span class="pause-label">@station.Label</span>
+            <span class="pause-game">@station.GameName</span>
+          </a>
+        </li>
+      }
+    </ol>
+    <div class="pause-foot">
+      <div class="pause-links">
+        <a href="/research"><i class="fa-solid fa-flask"></i> Research page</a>
+        <a href="@AssetVersion.Url("resume.pdf")" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Industry resume</a>
+        <a href="@AssetVersion.Url("resume-phd.pdf")" target="_blank" rel="noopener"><i class="fa-solid fa-file-pdf"></i> Research CV</a>
+      </div>
+      <ThemeSwitcher CurrentTheme="vice-city" />
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+@* Title screen: box-art key visual, logo lockup, start menu and a loading bar with rotating tips. *@
+@inject StaticAssetVersion AssetVersion
+
+<section class="hero" id="home" data-station="88.1" data-station-name="Vice City">
+  <picture class="hero-art">
+    <source media="(max-width: 768px) and (orientation: portrait)" srcset="images/vc/vc-hero-mobile.webp" />
+    <img src="images/vc/vc-hero-desktop.webp" alt="" fetchpriority="high" />
+  </picture>
+  <div class="hero-shade" aria-hidden="true"></div>
+
+  <div class="hero-title-block">
+    <p class="hero-kicker">Welcome to Vice City</p>
+    <h1 class="hero-name">
+      <span class="hero-first">Sukhrob</span>
+      <span class="hero-last">Ilyosbekov</span>
+    </h1>
+    <p class="hero-tagline">@PortfolioData.Tagline</p>
+
+    <nav class="title-menu" id="titleMenu" aria-label="Start menu">
+      <a href="#about" class="title-menu-item">Start Game</a>
+      <a href="@AssetVersion.Url("resume.pdf")" class="title-menu-item" target="_blank" rel="noopener">Industry Resume</a>
+      <a href="@AssetVersion.Url("resume-phd.pdf")" class="title-menu-item" target="_blank" rel="noopener">Research CV</a>
+      <a href="#contact" class="title-menu-item">Contact</a>
+    </nav>
+  </div>
+
+  <div class="loading" aria-hidden="true">
+    <p class="loading-tip" id="loadingTip">Tip: Press Esc anytime to open the menu.</p>
+    <div class="loading-track"><div class="loading-fill"></div></div>
+  </div>
+</section>

@@ -1,0 +1,300 @@
+/* ==========================================================================
+   Vice City Theme - HUD
+   Top bar, clock / money / wanted level, radar minimap, station banner
+   ========================================================================== */
+
+/* Top bar (logo + menu button) */
+.vc-topbar {
+  position: fixed;
+  top: 16px;
+  left: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.vc-logo {
+  font-family: var(--font-script);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--pink);
+  text-decoration: none;
+  text-shadow: var(--outline-ink), var(--glow-pink);
+  padding: 0 6px 4px 0;
+}
+
+.vc-logo:hover {
+  color: var(--pink-soft);
+}
+
+.menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 8px;
+  border-radius: 999px;
+  background: rgba(11, 18, 56, 0.78);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  font-family: var(--font-cond);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.menu-btn:hover {
+  border-color: var(--pink);
+  background: rgba(28, 42, 114, 0.9);
+}
+
+.menu-btn-key {
+  font-family: var(--font-cond);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  padding: 2px 7px;
+  border-radius: 5px;
+  background: var(--text-light);
+  color: var(--ink);
+  box-shadow: 0 2px 0 var(--pink);
+}
+
+.menu-btn-bars {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menu-btn-bars span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* HUD readout, top right */
+.hud {
+  position: fixed;
+  top: 14px;
+  right: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  pointer-events: none;
+}
+
+.hud-weapon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  color: var(--ink);
+  background: radial-gradient(circle at 35% 30%, #fff, #dfe8ff 60%, #b6c4f0);
+  border: 3px solid var(--ink);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85), 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+.hud-readout {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1;
+  font-family: var(--font-game);
+}
+
+.hud-clock {
+  font-size: 1.9rem;
+  color: #bfe6ff;
+  letter-spacing: 1px;
+  text-shadow: var(--outline-ink);
+}
+
+.hud-money {
+  margin-top: 4px;
+  font-size: 1.6rem;
+  color: var(--money);
+  letter-spacing: 1px;
+  text-shadow: var(--outline-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-money.bump {
+  animation: moneyBump 0.5s ease;
+}
+
+.hud-stars {
+  margin-top: 6px;
+  display: flex;
+  gap: 3px;
+  font-size: 1.05rem;
+}
+
+.hud-stars i {
+  color: rgba(255, 255, 255, 0.18);
+  -webkit-text-stroke: 1.5px rgba(11, 8, 32, 0.8);
+  transition: color 0.3s;
+}
+
+.hud-stars i.on {
+  color: var(--gold);
+  -webkit-text-stroke: 1.5px var(--ink);
+}
+
+/* Flash the row as one, like an active wanted level */
+.hud-stars:has(i.on) {
+  animation: starBlink 1.2s steps(2, jump-none) infinite;
+}
+
+/* Radio station banner, bottom center between the radar and the cassette */
+.station-banner {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  transform: translate(-50%, 12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.station-banner.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.station-freq {
+  font-family: var(--font-game);
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-shadow: var(--outline-ink-thin);
+}
+
+.station-name {
+  margin-top: 2px;
+  font-family: var(--font-game);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--pink);
+  text-shadow: var(--outline-ink), var(--glow-pink);
+  white-space: nowrap;
+}
+
+/* Radar minimap, bottom left */
+.radar {
+  --size: 128px;
+  --map-scale: 0.64;
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--ink);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 10px 24px rgba(0, 0, 0, 0.45);
+  background: var(--radar-sea);
+}
+
+.radar-map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(1100px * var(--map-scale));
+  transform: translateY(var(--map-offset, 0px));
+  will-change: transform;
+}
+
+.radar-land {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.radar-blip {
+  position: absolute;
+  top: calc(var(--y) * var(--map-scale) * 1px);
+  left: var(--x, 50%);
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  background: var(--blip, #fff);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  font-size: 10px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.radar-blip:hover,
+.radar-blip:focus-visible {
+  transform: scale(1.25);
+  color: var(--ink);
+}
+
+.radar-blip:nth-child(odd) {
+  --x: 36%;
+}
+
+.radar-blip:nth-child(even) {
+  --x: 64%;
+}
+
+.blip-star {
+  --blip: var(--gold);
+}
+
+.blip-mission {
+  --blip: var(--pink-soft);
+}
+
+.blip-house {
+  --blip: var(--pink);
+  color: #fff;
+}
+
+.blip-phone {
+  --blip: var(--aqua);
+}
+
+.radar-player {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -60%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 16px solid #fff;
+  filter: drop-shadow(0 0 1px var(--ink)) drop-shadow(0 0 1px var(--ink));
+  pointer-events: none;
+}
+
+.radar-north {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-game);
+  font-size: 0.75rem;
+  color: #fff;
+  text-shadow: var(--outline-ink-thin);
+  pointer-events: none;
+}

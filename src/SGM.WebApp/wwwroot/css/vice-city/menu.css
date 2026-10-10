@@ -1,0 +1,223 @@
+/* ==========================================================================
+   Vice City Theme - Pause Menu (site navigation)
+   ========================================================================== */
+
+.pause-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+}
+
+.pause-menu[hidden] {
+  display: none;
+}
+
+.pause-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(7, 10, 36, 0.92) 0%, rgba(7, 10, 36, 0.55) 55%, rgba(255, 79, 160, 0.25) 100%),
+    url("/images/vc/vc-hero-desktop.webp") center / cover no-repeat;
+  filter: saturate(1.1);
+  animation: fadeIn 0.25s ease;
+}
+
+.pause-panel {
+  position: relative;
+  width: min(560px, 100%);
+  height: 100%;
+  overflow-y: auto;
+  padding: 28px 36px 32px;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, rgba(11, 18, 56, 0.96), rgba(29, 11, 54, 0.96));
+  border-right: 4px solid var(--pink);
+  box-shadow: 8px 0 0 var(--aqua), 30px 0 60px rgba(0, 0, 0, 0.5);
+  animation: slideIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.pause-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pause-title {
+  font-family: var(--font-script);
+  font-size: 3.2rem;
+  line-height: 1;
+  color: var(--pink);
+  text-shadow: var(--outline-ink), var(--glow-pink);
+}
+
+.pause-close {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-cond);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-light-muted);
+}
+
+.pause-close:hover {
+  color: #fff;
+}
+
+.pause-list {
+  flex: 1;
+  counter-reset: none;
+}
+
+.pause-list a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 7px 10px 7px 26px;
+  text-decoration: none;
+  color: var(--text-light);
+  border-radius: 6px;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.pause-list a::before {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  border-left: 10px solid var(--pink);
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  transform: translateY(-50%) scale(0);
+  transition: transform 0.15s;
+}
+
+.pause-list a:hover,
+.pause-list a:focus-visible,
+.pause-list a.current {
+  background: linear-gradient(90deg, rgba(255, 79, 160, 0.22), transparent);
+  transform: translateX(4px);
+  outline: none;
+}
+
+.pause-list a:hover::before,
+.pause-list a:focus-visible::before,
+.pause-list a.current::before {
+  transform: translateY(-50%) scale(1);
+}
+
+.pause-freq {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--aqua);
+  letter-spacing: 1px;
+}
+
+.pause-label {
+  font-family: var(--font-game);
+  font-size: 1.65rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: var(--outline-ink-thin);
+}
+
+.pause-list a:hover .pause-label,
+.pause-list a.current .pause-label {
+  color: var(--pink-soft);
+}
+
+.pause-game {
+  font-family: var(--font-script);
+  font-size: 1.35rem;
+  color: var(--gold);
+}
+
+.pause-foot {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pause-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+}
+
+.pause-links a {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  color: var(--text-light);
+  text-decoration: none;
+}
+
+.pause-links a i {
+  color: var(--pink);
+  margin-right: 4px;
+}
+
+.pause-links a:hover {
+  color: var(--aqua);
+}
+
+/* Theme switcher: inline pill row (pause menu and footer) */
+.vc .theme-switcher {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(7, 10, 36, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  align-self: flex-start;
+}
+
+.vc .theme-switcher-label {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-light-muted);
+  padding: 0 6px;
+}
+
+.vc .theme-switcher-link {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition: background 0.2s, color 0.2s;
+}
+
+.vc .theme-switcher-link i {
+  margin-right: 5px;
+}
+
+.vc .theme-switcher-link:hover {
+  background: rgba(47, 227, 212, 0.15);
+  color: var(--aqua);
+}
+
+.vc .theme-switcher-link.active {
+  background: var(--pink);
+  color: #fff;
+  border-color: var(--ink);
+}

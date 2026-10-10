@@ -1,107 +1,172 @@
 /* ==========================================================================
-   Vice City Theme - Footer
-   Miami Skyline Silhouette
+   Vice City Theme - Footer (end credits)
+   Sunset scene over the skyline, then a credits panel
    ========================================================================== */
 
 .footer {
-  background: var(--vc-bg-darker);
-  padding: 60px 0 30px;
   position: relative;
+  background: var(--navy-950);
+}
+
+/* ---------- Sunset scene ---------- */
+.footer-scene {
+  position: relative;
+  height: clamp(200px, 22vw, 300px);
   overflow: hidden;
+  background: linear-gradient(180deg, #4a1658 0%, #8a2470 35%, #ff5f7a 70%, #ffa45c 100%);
 }
 
-/* Miami skyline building silhouettes */
-.footer::before {
-  content: '';
+/* Striped retro sun sinking behind the skyline */
+.footer-sun {
   position: absolute;
-  top: 0;
+  left: 50%;
+  bottom: -20%;
+  width: clamp(170px, 19vw, 270px);
+  aspect-ratio: 1;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #fff3a8 0%, var(--gold) 35%, var(--sunset) 65%, var(--pink) 100%);
+  mask-image: linear-gradient(180deg, #000 0 48%, transparent 48% 53%, #000 53% 62%, transparent 62% 66%,
+      #000 66% 74%, transparent 74% 77%, #000 77% 85%, transparent 85% 87%, #000 87%);
+  filter: drop-shadow(0 0 40px rgba(255, 138, 61, 0.55));
+}
+
+.footer-skyline {
+  position: absolute;
   left: 0;
   right: 0;
-  height: 80px;
-  background: var(--vc-bg-darker);
-  clip-path: polygon(0% 100%,
-      0% 60%, 2% 60%, 2% 40%, 4% 40%, 4% 55%, 5% 55%, 5% 30%, 7% 30%, 7% 50%,
-      8% 50%, 8% 20%, 10% 20%, 10% 15%, 11% 15%, 11% 20%, 13% 20%, 13% 45%,
-      15% 45%, 15% 35%, 17% 35%, 17% 25%, 19% 25%, 19% 10%, 20% 10%, 20% 8%,
-      21% 8%, 21% 10%, 22% 10%, 22% 30%, 24% 30%, 24% 50%, 26% 50%, 26% 40%,
-      28% 40%, 28% 30%, 30% 30%, 30% 55%, 32% 55%, 32% 35%, 34% 35%, 34% 20%,
-      35% 20%, 35% 5%, 36% 5%, 36% 3%, 37% 3%, 37% 5%, 38% 5%, 38% 20%,
-      40% 20%, 40% 40%, 42% 40%, 42% 50%, 44% 50%, 44% 30%, 46% 30%, 46% 45%,
-      48% 45%, 48% 25%, 50% 25%, 50% 15%, 51% 15%, 51% 12%, 52% 12%, 52% 15%,
-      53% 15%, 53% 35%, 55% 35%, 55% 50%, 57% 50%, 57% 40%, 59% 40%, 59% 30%,
-      61% 30%, 61% 20%, 62% 20%, 62% 8%, 63% 8%, 63% 5%, 64% 5%, 64% 8%,
-      65% 8%, 65% 20%, 67% 20%, 67% 35%, 69% 35%, 69% 45%, 71% 45%, 71% 30%,
-      73% 30%, 73% 50%, 75% 50%, 75% 40%, 77% 40%, 77% 55%, 79% 55%, 79% 35%,
-      81% 35%, 81% 25%, 83% 25%, 83% 15%, 84% 15%, 84% 10%, 85% 10%, 85% 15%,
-      86% 15%, 86% 25%, 88% 25%, 88% 45%, 90% 45%, 90% 55%, 92% 55%, 92% 40%,
-      94% 40%, 94% 50%, 96% 50%, 96% 60%, 98% 60%, 98% 45%, 100% 45%, 100% 100%);
-  z-index: 1;
+  bottom: 14px;
+  height: 58%;
+  background: var(--navy-950);
+  mask: url("/images/vc/skyline.svg") bottom / 100% 100% no-repeat;
 }
 
-/* Warm sunset glow along skyline top */
-.footer::after {
-  content: '';
+/* Thin water band with neon reflections at the bottom of the scene */
+.footer-water {
   position: absolute;
-  top: 0;
   left: 0;
   right: 0;
-  height: 3px;
-  background: linear-gradient(90deg,
-      transparent, var(--vc-coral), var(--vc-teal), var(--vc-warm-pink),
-      var(--vc-teal), var(--vc-coral), transparent);
-  box-shadow: 0 0 8px rgba(232, 115, 74, 0.3),
-    0 0 16px rgba(64, 200, 184, 0.2);
-  z-index: 2;
+  bottom: 0;
+  height: 14px;
+  background:
+    radial-gradient(ellipse 160px 3px at 50% 40%, rgba(255, 204, 77, 0.7), transparent),
+    repeating-linear-gradient(90deg, transparent 0 40px, rgba(255, 79, 160, 0.22) 40px 70px, transparent 70px 120px,
+      rgba(47, 227, 212, 0.18) 120px 136px),
+    var(--navy-950);
+  filter: blur(0.6px);
 }
 
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-  position: relative;
-  z-index: 3;
+/* ---------- Credits panel ---------- */
+.footer-credits {
+  border-top: 2px solid rgba(255, 79, 160, 0.4);
+  padding: 48px 0 110px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 40px;
+}
+
+.footer-thanks {
+  font-family: var(--font-game);
+  font-size: 0.95rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
 }
 
 .footer-logo {
-  font-family: 'Bungee Shade', 'Orbitron', sans-serif;
-  font-size: 1.2rem;
-  color: var(--vc-coral);
-  text-shadow: var(--glow-coral);
-  letter-spacing: 2px;
+  font-family: var(--font-script);
+  font-size: clamp(3.2rem, 7vw, 4.4rem);
+  line-height: 1.05;
+  color: var(--pink);
+  padding-right: 0.2em;
+  text-shadow: var(--outline-ink), var(--glow-pink);
+}
+
+.footer-tagline {
+  margin: 4px 0 18px;
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: var(--text-light-muted);
 }
 
 .social-links {
   display: flex;
-  gap: 15px;
+  gap: 10px;
 }
 
 .social-links a {
-  width: 45px;
-  height: 45px;
-  background: rgba(28, 16, 53, 0.8);
-  border: 2px solid var(--vc-coral);
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--vc-coral);
+  font-size: 1.15rem;
+  color: var(--text-light);
   text-decoration: none;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  transition: background 0.2s, color 0.2s, transform 0.2s, border-color 0.2s;
 }
 
 .social-links a:hover {
-  background: var(--vc-coral);
-  color: var(--vc-bg-darker);
-  box-shadow: var(--glow-coral);
+  background: var(--pink);
+  border-color: var(--ink);
+  color: #fff;
   transform: translateY(-3px);
 }
 
+.footer-col h3 {
+  font-family: var(--font-game);
+  font-weight: 400;
+  font-size: 1.05rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--aqua);
+  margin-bottom: 14px;
+}
+
+.footer-col ul {
+  display: grid;
+  gap: 8px;
+}
+
+.footer-col a {
+  font-family: var(--font-cond);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.3px;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: color 0.15s, padding 0.15s;
+}
+
+.footer-col a:hover {
+  color: var(--pink-soft);
+  padding-left: 4px;
+}
+
+nav.footer-col ul {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 16px;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 24px;
+  margin-top: 40px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
 .footer-copyright {
-  color: var(--vc-text-muted);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 0.75rem;
-  letter-spacing: 0.5px;
+  font-size: 0.92rem;
+  color: var(--text-light-muted);
 }

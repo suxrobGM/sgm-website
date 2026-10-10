@@ -1,0 +1,51 @@
+@* End credits: sunset over the skyline, then a credits panel with links. *@
+@inject StaticAssetVersion AssetVersion
+
+<footer class="footer">
+  <div class="footer-scene" aria-hidden="true">
+    <div class="footer-sun"></div>
+    <div class="footer-skyline"></div>
+    <div class="footer-water"></div>
+  </div>
+
+  <div class="footer-credits">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <p class="footer-thanks">Thanks for playing</p>
+        <div class="footer-logo">Sukhrob</div>
+        <p class="footer-tagline">@PortfolioData.Tagline</p>
+        <div class="social-links">
+          @foreach (var link in PortfolioData.Socials)
+          {
+            <a href="@link.Url" target="_blank" rel="noopener" aria-label="@link.Label"><i class="@link.Icon"></i></a>
+          }
+        </div>
+      </div>
+
+      <nav class="footer-col" aria-label="Fast travel">
+        <h3>Fast Travel</h3>
+        <ul>
+          @foreach (var station in ViceCityStations.All.Skip(1))
+          {
+            <li><a href="#@station.Id">@station.Label</a></li>
+          }
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h3>Files</h3>
+        <ul>
+          <li><a href="/research">Research page</a></li>
+          <li><a href="@AssetVersion.Url("resume.pdf")" target="_blank" rel="noopener">Industry resume</a></li>
+          <li><a href="@AssetVersion.Url("resume-phd.pdf")" target="_blank" rel="noopener">Research CV</a></li>
+          <li><a href="@PortfolioData.UpworkUrl" target="_blank" rel="noopener">Hire on Upwork</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p class="footer-copyright">&copy; @DateTime.Now.Year @PortfolioData.FullName</p>
+      <ThemeSwitcher CurrentTheme="vice-city" />
+    </div>
+  </div>
+</footer>
