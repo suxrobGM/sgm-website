@@ -3,17 +3,15 @@
 
 Charts, each written as <out>/<name>-light.svg and <out>/<name>-dark.svg:
 
-    activity    contributions per month, one row per year, shared scale
-    cumulative  running total of contributions since the first charted year
-    mix         commits / pull requests / issues / reviews stacked per year
-    languages   share of code by language in repositories started each year
+    timeline    contributions per month as one run of columns, with yearly totals
+    languages   languages in the repositories started each year, each repo counted once
 
 Data comes from the GitHub GraphQL API; private contributions are counted when
 the token can see them. Standard library only. See charts/ for the drawing code.
 
 Usage:
     GITHUB_TOKEN=... python scripts/activity_chart.py --user suxrobGM --out assets
-    python scripts/activity_chart.py --user suxrobGM --charts activity,mix
+    python scripts/activity_chart.py --user suxrobGM --charts timeline
 """
 
 import argparse

@@ -1,0 +1,40 @@
+<svg width="420" height="520" viewBox="0 0 420 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Sukhrob Ilyosbekov: computer vision and multimodal ML researcher, MS CS at Northeastern, software engineer</title>
+
+  <!-- Window -->
+  <rect width="420" height="520" rx="12" fill="#0d1117"/>
+  <rect x="0.5" y="0.5" width="419" height="519" rx="12" fill="none" stroke="#30363d"/>
+
+  <!-- Title bar -->
+  <path d="M0,40 V12 Q0,0 12,0 H408 Q420,0 420,12 V40 Z" fill="#161b22"/>
+  <line x1="0" y1="40" x2="420" y2="40" stroke="#30363d"/>
+  <circle cx="24" cy="20" r="7" fill="#ff5f57"/>
+  <circle cx="48" cy="20" r="7" fill="#febc2e"/>
+  <circle cx="72" cy="20" r="7" fill="#28c840"/>
+  <text x="210" y="25" font-family="'JetBrains Mono', 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="13" fill="#8b949e" text-anchor="middle">sukhrob@dev: ~</text>
+
+  <g font-family="'JetBrains Mono', 'SF Mono', 'Cascadia Code', Consolas, monospace" font-size="15">
+    <text x="20" y="76"><tspan fill="#7ee787">~</tspan><tspan fill="#8b949e"> $ </tspan><tspan fill="#e6edf3">whoami</tspan></text>
+    <text x="20" y="101" fill="#79c0ff">sukhrob ilyosbekov</text>
+    <text x="20" y="126" fill="#79c0ff">computer vision · multimodal ml</text>
+
+    <text x="20" y="163"><tspan fill="#7ee787">~</tspan><tspan fill="#8b949e"> $ </tspan><tspan fill="#e6edf3">cat </tspan><tspan fill="#a5d6ff">research.txt</tspan></text>
+    <text x="20" y="188"><tspan fill="#e6edf3">MS CS @ Northeastern </tspan><tspan fill="#7ee787" font-weight="bold">(4.0 GPA)</tspan></text>
+    <text x="20" y="213"><tspan fill="#e6edf3">first-author papers on </tspan><tspan fill="#ff7b72">arXiv</tspan></text>
+    <text x="20" y="238" fill="#d2a8ff">vlms · explainable ai</text>
+    <text x="20" y="263" fill="#d2a8ff">medical imaging</text>
+
+    <text x="20" y="300"><tspan fill="#7ee787">~</tspan><tspan fill="#8b949e"> $ </tspan><tspan fill="#e6edf3">cat </tspan><tspan fill="#a5d6ff">engineering.txt</tspan></text>
+    <text x="20" y="325" fill="#e6edf3">9+ years of production software</text>
+    <text x="20" y="350" fill="#ffa657">100% Upwork JSS</text>
+
+    <text x="20" y="387"><tspan fill="#7ee787">~</tspan><tspan fill="#8b949e"> $ </tspan><tspan fill="#e6edf3">ls </tspan><tspan fill="#a5d6ff">stack/</tspan></text>
+    <text x="20" y="412"><tspan fill="#8b949e">ml&#160;&#160;&#160;</tspan><tspan fill="#e6edf3">pytorch&#160;&#160;hf&#160;&#160;cuda&#160;&#160;opencv</tspan></text>
+    <text x="20" y="437"><tspan fill="#8b949e">eng&#160;&#160;</tspan><tspan fill="#e6edf3">c#&#160;&#160;typescript&#160;&#160;kotlin</tspan></text>
+
+    <text x="20" y="480"><tspan fill="#7ee787">~</tspan><tspan fill="#8b949e"> $ </tspan></text>
+    <rect x="56" y="466" width="9" height="18" fill="#58a6ff">
+      <animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.1s" repeatCount="indefinite"/>
+    </rect>
+  </g>
+</svg>

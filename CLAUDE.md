@@ -91,17 +91,19 @@ hero about 1536px) and don't commit the PNGs.
 `gh-profile/` mirrors the `suxrobGM/suxrobGM` repo; `.github/workflows/sync-profile.yml` copies it
 there on every push to `master` that touches it (needs the `PROFILE_SYNC_TOKEN` secret).
 
-`gh-profile/scripts/activity_chart.py` renders four charts from the GraphQL API as
-`assets/<name>-{light,dark}.svg`: `activity`, `cumulative`, `mix` and `languages`. Drawing code
+`gh-profile/scripts/activity_chart.py` renders two charts from the GraphQL API as
+`assets/<name>-{light,dark}.svg`: `timeline` and `languages`. Drawing code
 lives in `scripts/charts/`. The profile repo reruns it daily. Locally:
 
 ```powershell
 $env:GITHUB_TOKEN = gh auth token
-python gh-profile/scripts/activity_chart.py --user suxrobGM --out gh-profile/assets   # --charts mix,languages for a subset
+python gh-profile/scripts/activity_chart.py --user suxrobGM --out gh-profile/assets   # --charts timeline for a subset
 ```
 
 The profile README uses one-column blockquote cards so it reads on phones; use `<small>`, not
-`<sub>`, for captions that may wrap.
+`<sub>`, for captions that may wrap. Card thumbnails float with `align="right"`, so each card's
+last line ends in `<br clear="right"/>` to keep the image from spilling into the next card. The
+intro terminal has a phone variant picked by `<picture media="(max-width: 600px)">`.
 
 ## Configuration
 
