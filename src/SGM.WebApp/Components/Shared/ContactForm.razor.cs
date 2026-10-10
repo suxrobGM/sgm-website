@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.Net;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using SGM.WebApp.Services;
 
 namespace SGM.WebApp.Components.Shared;
@@ -13,67 +13,52 @@ public partial class ContactForm
     [Inject]
     private ICaptchaService CaptchaService { get; set; } = null!;
 
-    [Inject]
-    private IJSRuntime JSRuntime { get; set; } = null!;
-
     [Parameter]
     public string CaptchaSiteKey { get; set; } = string.Empty;
 
-    private EmailInputModel EmailInput { get; set; } = new();
+    [SupplyParameterFromForm(FormName = "contact")]
+    private EmailInputModel? EmailInput { get; set; }
+
     private string? StatusMessage { get; set; }
-    private string RecaptchaToken { get; set; } = string.Empty;
-    private bool IsSubmitting { get; set; }
+    private bool IsError { get; set; }
+
+    protected override void OnInitialized() => EmailInput ??= new EmailInputModel();
 
     private async Task HandleSubmit()
     {
-        IsSubmitting = true;
-        StatusMessage = null;
+        var input = EmailInput!;
 
-        try
+        if (string.IsNullOrEmpty(input.RecaptchaToken) ||
+            !await CaptchaService.VerifyCaptchaAsync(input.RecaptchaToken))
         {
-            // Get reCAPTCHA token from JavaScript
-            try
-            {
-                RecaptchaToken = await JSRuntime.InvokeAsync<string>("getRecaptchaToken", CaptchaSiteKey);
-            }
-            catch (Exception ex)
-            {
-                StatusMessage = $"Error: reCAPTCHA failed - {ex.Message}";
-                return;
-            }
-
-            if (string.IsNullOrEmpty(RecaptchaToken))
-            {
-                StatusMessage = "Error: Could not verify reCAPTCHA";
-                return;
-            }
-
-            var isHuman = await CaptchaService.VerifyCaptchaAsync(RecaptchaToken);
-
-            if (!isHuman)
-            {
-                StatusMessage = "Error: failed reCAPTCHA check";
-                return;
-            }
-
-            var message = $"""
-                           <p><b>{EmailInput.Name}</b> - {EmailInput.Email}</p>
-                           <p>{EmailInput.Message}</p>
-                           """;
-
-            var sentMail = await EmailSender.SendMailAsync("suxrobgm@gmail.com", EmailInput.Subject!, message);
-
-            StatusMessage = sentMail ? "Your message has been sent successfully" : "Error: could not send email";
-
-            if (sentMail)
-            {
-                EmailInput = new EmailInputModel();
-            }
+            SetStatus("Error: failed reCAPTCHA check. Please try again.", isError: true);
+            return;
         }
-        finally
+
+        // Visitor input goes into an HTML email body, so encode it.
+        var message = $"""
+                       <p><b>{WebUtility.HtmlEncode(input.Name)}</b> - {WebUtility.HtmlEncode(input.Email)}</p>
+                       <p>{WebUtility.HtmlEncode(input.Message)}</p>
+                       """;
+
+        var sent = await EmailSender.SendMailAsync("suxrobgm@gmail.com", input.Subject!, message);
+
+        if (!sent)
         {
-            IsSubmitting = false;
+            SetStatus("Error: could not send email", isError: true);
+            return;
         }
+
+        SetStatus("Your message has been sent successfully", isError: false);
+        EmailInput = new EmailInputModel();
+    }
+
+    private void SetStatus(string message, bool isError)
+    {
+        StatusMessage = message;
+        IsError = isError;
+        // Tokens are single use; the next submit fetches a fresh one.
+        EmailInput!.RecaptchaToken = null;
     }
 
     public class EmailInputModel
@@ -90,5 +75,7 @@ public partial class ContactForm
 
         [Required(ErrorMessage = "Message is required")]
         public string? Message { get; set; }
+
+        public string? RecaptchaToken { get; set; }
     }
 }

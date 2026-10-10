@@ -254,3 +254,7 @@
 .xp-contact-form-wrapper .form-field {
   margin-bottom: 10px;
 }
+
+.xp-contact-form-wrapper .btn-loading[hidden] {
+  display: none;
+}

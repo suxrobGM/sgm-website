@@ -1,57 +1,54 @@
-@rendermode InteractiveServer
-
+@* Plain server-rendered form (enhanced POST), so there is no live circuit to drop.
+   site.js fills the hidden reCAPTCHA token on submit; the server verifies it in HandleSubmit. *@
 <div class="contact-form">
-  <EditForm Model="EmailInput" OnValidSubmit="HandleSubmit" FormName="contact-form" method="post">
+  <EditForm Model="EmailInput" OnValidSubmit="HandleSubmit" FormName="contact" method="post" Enhance
+            data-recaptcha-key="@CaptchaSiteKey">
     <DataAnnotationsValidator/>
 
     @if (!string.IsNullOrEmpty(StatusMessage))
     {
-      var isError = StatusMessage.StartsWith("Error");
-      <div class="status-message @(isError ? "error" : "success")">
-        <span class="status-icon">@(isError ? "✗" : "✓")</span>
+      <div class="status-message @(IsError ? "error" : "success")" role="status">
+        <span class="status-icon">@(IsError ? "✗" : "✓")</span>
         @StatusMessage
       </div>
     }
 
     <div class="form-row">
       <div class="form-group">
-        <label class="form-label">Name</label>
-        <InputText @bind-Value="EmailInput.Name" class="form-input" placeholder="Your name..." aria-label="Your name" autocomplete="name"/>
-        <ValidationMessage For="@(() => EmailInput.Name)" class="validation-error"/>
+        <label class="form-label" for="contact-name">Name</label>
+        <InputText @bind-Value="EmailInput!.Name" id="contact-name" class="form-input" placeholder="Your name..." autocomplete="name"/>
+        <ValidationMessage For="@(() => EmailInput!.Name)" class="validation-error"/>
       </div>
       <div class="form-group">
-        <label class="form-label">Email</label>
-        <InputText @bind-Value="EmailInput.Email" class="form-input" placeholder="Your email..."
-                   aria-label="Your email" type="email" autocomplete="email"/>
-        <ValidationMessage For="@(() => EmailInput.Email)" class="validation-error"/>
+        <label class="form-label" for="contact-email">Email</label>
+        <InputText @bind-Value="EmailInput!.Email" id="contact-email" class="form-input" placeholder="Your email..." type="email" autocomplete="email"/>
+        <ValidationMessage For="@(() => EmailInput!.Email)" class="validation-error"/>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="form-label">Subject</label>
-      <InputText @bind-Value="EmailInput.Subject" class="form-input" placeholder="Subject..." aria-label="Subject" autocomplete="off"/>
-      <ValidationMessage For="@(() => EmailInput.Subject)" class="validation-error"/>
+      <label class="form-label" for="contact-subject">Subject</label>
+      <InputText @bind-Value="EmailInput!.Subject" id="contact-subject" class="form-input" placeholder="Subject..." autocomplete="off"/>
+      <ValidationMessage For="@(() => EmailInput!.Subject)" class="validation-error"/>
     </div>
 
     <div class="form-group">
-      <label class="form-label">Message</label>
-      <InputTextArea @bind-Value="EmailInput.Message" class="form-input form-textarea" rows="5"
-                     placeholder="Your message..."/>
-      <ValidationMessage For="@(() => EmailInput.Message)" class="validation-error"/>
+      <label class="form-label" for="contact-message">Message</label>
+      <InputTextArea @bind-Value="EmailInput!.Message" id="contact-message" class="form-input form-textarea" rows="5" placeholder="Your message..."/>
+      <ValidationMessage For="@(() => EmailInput!.Message)" class="validation-error"/>
     </div>
 
-    <input type="hidden" id="recaptcha_token" name="recaptcha_token" @bind="RecaptchaToken"/>
+    <InputText type="hidden" @bind-Value="EmailInput!.RecaptchaToken" data-recaptcha-token/>
 
-    <button type="submit" class="btn btn-primary btn-glow" disabled="@IsSubmitting">
-      @if (IsSubmitting)
-      {
-        <span class="btn-loading"></span>
-        <span>Sending...</span>
-      }
-      else
-      {
-        <span>Send Message</span>
-      }
+    <button type="submit" class="btn btn-primary btn-glow">
+      <span class="btn-loading" aria-hidden="true" hidden></span>
+      <span class="btn-label">Send Message</span>
     </button>
+
+    <p class="recaptcha-note">
+      This site is protected by reCAPTCHA and the Google
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms of Service</a> apply.
+    </p>
   </EditForm>
 </div>
