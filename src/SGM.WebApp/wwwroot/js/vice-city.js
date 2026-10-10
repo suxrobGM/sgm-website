@@ -1,10 +1,6 @@
 /**
- * Vice City theme behavior: HUD clock and money, wanted level, radar minimap, station banner,
- * pause menu, scroll reveals with mission stamps and loading tips.
- *
- * Loaded on every page from App.razor as a module (strict and deferred, nothing leaks to window).
- * It does nothing unless the page has a `[data-vc]` root, and re-runs after Blazor enhanced
- * navigation, tearing down the previous run first.
+ * Vice City theme behavior. Loaded on every page as a module from App.razor; it does nothing unless
+ * the page has a `[data-vc]` root, and re-runs after Blazor enhanced navigation, tearing down the previous run.
  */
 const TIPS = [
   "Tip: Press Esc anytime to open the menu.",
@@ -60,43 +56,34 @@ function createGame(cleanups) {
     starTimers.forEach(clearTimeout);
   });
 
-  const renderMoney = (value) => {
-    if (moneyEl) moneyEl.textContent = `$${String(Math.round(value)).padStart(8, "0")}`;
-  };
-
   return {
     addMoney(amount) {
       const from = shown;
-      money += amount;
-      const to = money;
+      const to = (money += amount);
       const start = performance.now();
       cancelAnimationFrame(moneyFrame);
-      moneyEl?.classList.remove("bump");
-      void moneyEl?.offsetWidth;
-      moneyEl?.classList.add("bump");
+      moneyEl.classList.remove("bump");
+      void moneyEl.offsetWidth; // reflow so the bump animation restarts
+      moneyEl.classList.add("bump");
       const step = (now) => {
         const t = Math.min(1, (now - start) / 1200);
         shown = from + (to - from) * (1 - Math.pow(1 - t, 3));
-        renderMoney(shown);
+        moneyEl.textContent = `$${String(Math.round(shown)).padStart(8, "0")}`;
         if (t < 1) moneyFrame = requestAnimationFrame(step);
       };
       moneyFrame = requestAnimationFrame(step);
     },
 
-    /** Lights stars one by one, like the wanted level climbing. */
     setWanted(level) {
       starTimers.forEach(clearTimeout);
       starTimers = [];
-      wantedSection?.classList.toggle("alarm", level > 0);
-      [hudStars, bannerStars].forEach((stars) =>
+      wantedSection.classList.toggle("alarm", level > 0);
+      for (const stars of [hudStars, bannerStars]) {
         stars.forEach((star, i) => {
-          if (i >= level) {
-            star.classList.remove("on");
-            return;
-          }
-          starTimers.push(setTimeout(() => star.classList.add("on"), i * 180));
-        }),
-      );
+          if (i < level) starTimers.push(setTimeout(() => star.classList.add("on"), i * 180));
+          else star.classList.remove("on");
+        });
+      }
     },
   };
 }
@@ -104,8 +91,6 @@ function createGame(cleanups) {
 /** Game clock: starts at the visitor's local time and runs one minute per second. */
 function startClock(cleanups) {
   const el = document.getElementById("hudClock");
-  if (!el) return;
-
   const now = new Date();
   let minutes = now.getHours() * 60 + now.getMinutes();
   const render = () => {
@@ -125,8 +110,6 @@ function startClock(cleanups) {
 /** Rotates the hero tips once the loading bar has filled. */
 function startLoadingTips(cleanups) {
   const el = document.getElementById("loadingTip");
-  if (!el) return;
-
   let index = 0;
   let swapTimer = 0;
   let rotateTimer = 0;
@@ -153,8 +136,6 @@ function startLoadingTips(cleanups) {
 
 /** Fades sections in, stamps missions as passed and raises the wanted level at the hire banner. */
 function setupReveals(root, game, cleanups) {
-  const items = [...root.querySelectorAll(".reveal")];
-
   const onReveal = (el) => {
     el.classList.add("is-revealed");
 
@@ -182,7 +163,7 @@ function setupReveals(root, game, cleanups) {
     { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
   );
 
-  items.forEach((el) => observer.observe(el));
+  root.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
   cleanups.push(() => observer.disconnect());
 }
 
@@ -198,7 +179,6 @@ function setupStations(root, cleanups, signal) {
   const freqEl = document.getElementById("stationFreq");
   const nameEl = document.getElementById("stationName");
   const menuLinks = [...document.querySelectorAll(".pause-list a")];
-  if (!sections.length) return;
 
   /** @type {number[]} */
   let tops = [];
@@ -212,9 +192,8 @@ function setupStations(root, cleanups, signal) {
   };
 
   const showBanner = (section) => {
-    if (!banner || !freqEl || !nameEl) return;
-    freqEl.textContent = section.dataset.station ?? "";
-    nameEl.textContent = section.dataset.stationName ?? "";
+    freqEl.textContent = section.dataset.station;
+    nameEl.textContent = section.dataset.stationName;
     banner.classList.add("show");
     clearTimeout(bannerTimer);
     bannerTimer = setTimeout(() => banner.classList.remove("show"), 2200);
@@ -236,14 +215,12 @@ function setupStations(root, cleanups, signal) {
       menuLinks.forEach((a, i) => a.classList.toggle("current", i === index));
     }
 
-    if (radar && map) {
-      const style = getComputedStyle(radar);
-      const size = parseFloat(style.getPropertyValue("--size"));
-      const scale = parseFloat(style.getPropertyValue("--map-scale"));
-      // Blips sit at y = 60 + i * 100 in map units (see Hud.razor).
-      const y = 60 + (index + fraction - 0.5) * 100;
-      map.style.setProperty("--map-offset", `${size / 2 - y * scale}px`);
-    }
+    const style = getComputedStyle(radar);
+    const size = parseFloat(style.getPropertyValue("--size"));
+    const scale = parseFloat(style.getPropertyValue("--map-scale"));
+    // Blips sit at y = 60 + i * 100 in map units (see Hud.razor).
+    const y = 60 + (index + fraction - 0.5) * 100;
+    map.style.setProperty("--map-offset", `${size / 2 - y * scale}px`);
   };
 
   const schedule = () => {
@@ -269,16 +246,13 @@ function setupStations(root, cleanups, signal) {
 function setupPauseMenu(signal, cleanups) {
   const menu = document.getElementById("pauseMenu");
   const button = document.getElementById("pauseBtn");
-  if (!menu || !button) return;
-
-  const focusables = () => [...menu.querySelectorAll("a[href], button")];
   const isOpen = () => !menu.hidden;
 
   const open = () => {
     menu.hidden = false;
     button.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
-    (menu.querySelector(".pause-list a.current") ?? menu.querySelector(".pause-list a"))?.focus();
+    (menu.querySelector(".pause-list a.current") ?? menu.querySelector(".pause-list a")).focus();
   };
 
   const close = (restoreFocus = true) => {
@@ -313,7 +287,7 @@ function setupPauseMenu(signal, cleanups) {
       }
 
       if (e.key === "Tab" && isOpen()) {
-        const items = focusables();
+        const items = [...menu.querySelectorAll("a[href], button")];
         const first = items[0];
         const last = items[items.length - 1];
         if (e.shiftKey && document.activeElement === first) {
@@ -332,8 +306,6 @@ function setupPauseMenu(signal, cleanups) {
 /** Start menu: arrow keys move between items, and hover or focus moves the highlight. */
 function setupTitleMenu(signal) {
   const menu = document.getElementById("titleMenu");
-  if (!menu) return;
-
   const items = [...menu.querySelectorAll(".title-menu-item")];
   const select = (item) => items.forEach((i) => i.classList.toggle("selected", i === item));
   select(items[0]);

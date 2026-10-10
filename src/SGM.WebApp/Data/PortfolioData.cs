@@ -52,7 +52,6 @@ public sealed record Showcase
     public string? Screenshot { get; init; }
     public string? RepoUrl { get; init; }
     public string? SiteUrl { get; init; }
-    public bool Award { get; init; }
 }
 
 public sealed record Degree
@@ -339,7 +338,6 @@ public static class PortfolioData
             Title = "Bookshelf Scanner",
             Slug = "bookshelf",
             Highlight = "Outstanding Project Award, Northeastern",
-            Award = true,
             Summary =
                 "Snap a photo of a bookshelf and get back a list of the books. YOLO picks out each spine, Moondream2 " +
                 "(via llama.cpp) reads the title and author, and an Angular UI lets you fix mistakes and export. " +

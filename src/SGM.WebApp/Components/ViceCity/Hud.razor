@@ -1,5 +1,3 @@
-@* Fixed game chrome: logo + menu button, clock/money/wanted readout, station banner, radar. *@
-
 <header class="vc-topbar">
   <a href="#home" class="vc-logo" aria-label="Back to top">Sukhrob</a>
   <button type="button" class="menu-btn" id="pauseBtn" aria-controls="pauseMenu" aria-expanded="false">
@@ -38,6 +36,7 @@
       <path d="M100 0 L100 1100 M30 140 L170 140 M60 450 L180 450 M20 680 L130 680 M40 900 L185 900 M150 300 L130 330 M110 560 L90 600 M100 790 L110 815"
             stroke="var(--radar-road)" stroke-width="4" fill="none" />
     </svg>
+    @* vice-city.js assumes this 60 + i * 100 spacing when it scrolls the map. *@
     @for (var i = 0; i < ViceCityStations.All.Count; i++)
     {
       var station = ViceCityStations.All[i];

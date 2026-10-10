@@ -1,9 +1,3 @@
-/* ==========================================================================
-   Vice City Theme - HUD
-   Top bar, clock / money / wanted level, radar minimap, station banner
-   ========================================================================== */
-
-/* Top bar (logo + menu button) */
 .vc-topbar {
   position: fixed;
   top: 16px;
@@ -75,7 +69,6 @@
   border-radius: 2px;
 }
 
-/* HUD readout, top right */
 .hud {
   position: fixed;
   top: 14px;
@@ -151,7 +144,6 @@
   animation: starBlink 1.2s steps(2, jump-none) infinite;
 }
 
-/* Radio station banner, bottom center between the radar and the cassette */
 .station-banner {
   position: fixed;
   bottom: 30px;
@@ -191,7 +183,6 @@
   white-space: nowrap;
 }
 
-/* Radar minimap, bottom left */
 .radar {
   --size: 128px;
   --map-scale: 0.64;

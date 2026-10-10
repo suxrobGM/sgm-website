@@ -1,4 +1,3 @@
-@* Featured projects, as properties you own. Hovering a card brings up the real screenshot. *@
 <StationSection Id="projects" Class="property-section" Title="Featured Projects">
   <div class="property-grid">
     @foreach (var project in PortfolioData.Projects)
@@ -10,16 +9,6 @@
           {
             <img class="property-shot" src="@project.Screenshot" alt="@project.Title screenshot" loading="lazy" />
           }
-          <span class="property-badge">
-            @if (project.Award)
-            {
-              <i class="fa-solid fa-trophy"></i> <text>Award</text>
-            }
-            else
-            {
-              <i class="fa-solid fa-house"></i> <text>Owned</text>
-            }
-          </span>
         </div>
         <div class="property-body">
           <h3 class="property-title">@project.Title</h3>

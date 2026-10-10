@@ -1,8 +1,3 @@
-/* ==========================================================================
-   Vice City Theme - Stats (About), Wanted Level (Hire), Loadout (Skills)
-   ========================================================================== */
-
-/* ---------- Stats ---------- */
 .stats-section {
   background:
     radial-gradient(circle at 85% 0%, rgba(255, 138, 61, 0.35), transparent 40%),
@@ -19,6 +14,7 @@
 
 .player-card {
   position: relative;
+  /* The rotate property, not transform, so it composes with the .reveal transform */
   rotate: -2.5deg;
   border: 4px solid var(--ink);
   border-radius: 6px;
@@ -72,7 +68,6 @@
 }
 
 .stats-panel p {
-  color: var(--text-light);
   margin-bottom: 14px;
 }
 
@@ -112,7 +107,6 @@
   white-space: nowrap;
 }
 
-/* ---------- Wanted level ---------- */
 .wanted-section {
   color: var(--text-dark);
   text-align: center;
@@ -234,7 +228,6 @@
   box-shadow: 3px 3px 0 var(--ink);
 }
 
-/* ---------- Loadout ---------- */
 .loadout-section {
   background:
     radial-gradient(circle at 50% 0%, rgba(47, 227, 212, 0.14), transparent 50%),

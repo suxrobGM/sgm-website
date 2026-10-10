@@ -1,12 +1,4 @@
-/* ==========================================================================
-   Vice City Theme - Cassette Music Player
-   Retro Tape Style Component
-   ========================================================================== */
-
 .cassette-player {
-  cursor: pointer;
-  display: inline-block;
-  padding: 0;
   transition: transform 0.3s ease;
 }
 
@@ -42,7 +34,6 @@
     0 0 15px rgba(255, 79, 160, 0.08);
 }
 
-/* Corner screws */
 .cassette-screw {
   position: absolute;
   width: 6px;
@@ -84,7 +75,6 @@
   right: 5px;
 }
 
-/* Label area */
 .cassette-label {
   background: linear-gradient(180deg, #f5e6c8 0%, #e8d4a8 45%, var(--pink) 45%, var(--sunset) 100%);
   border-radius: 4px;
@@ -101,23 +91,17 @@
   left: 12px;
   right: 12px;
   height: 15px;
-  background: repeating-linear-gradient(180deg,
-      transparent 0px,
-      transparent 5px,
-      rgba(0, 0, 0, 0.08) 5px,
-      rgba(0, 0, 0, 0.08) 6px);
+  background: repeating-linear-gradient(180deg, transparent 0 5px, rgba(0, 0, 0, 0.08) 5px 6px);
 }
 
 .cassette-title {
-  font-family: 'Permanent Marker', cursive;
+  font-family: var(--font-marker);
   font-size: 0.72rem;
   font-weight: 400;
   color: #1a0a2e;
   letter-spacing: 2px;
   position: relative;
   z-index: 1;
-  text-shadow: none;
-  display: block;
   margin-top: 2px;
 }
 
@@ -128,11 +112,9 @@
   color: rgba(255, 255, 255, 0.85);
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  display: block;
   margin-top: 3px;
 }
 
-/* Tape window */
 .cassette-window {
   background: #1a1210;
   border-radius: 16px;
@@ -140,14 +122,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0;
   position: relative;
   border: 2px solid #2a1e16;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8);
   margin: 0 14px;
 }
 
-/* Reels */
 .cassette-reel {
   width: 26px;
   height: 26px;
@@ -184,7 +164,6 @@
   z-index: 1;
 }
 
-/* Tape between reels */
 .cassette-tape {
   flex: 1;
   height: 12px;
@@ -204,18 +183,10 @@
   border-radius: 1px;
 }
 
-/* Reel spin animation when playing */
 .cassette-player.playing .cassette-reel {
   animation: reelSpin 2s linear infinite;
 }
 
-@keyframes reelSpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Play/pause indicator */
 .cassette-controls {
   text-align: center;
   margin-top: 4px;
@@ -225,20 +196,13 @@
   transition: all 0.3s ease;
 }
 
-.cassette-player:hover .cassette-controls {
-  opacity: 1;
-  color: var(--pink);
-  text-shadow: 0 0 8px rgba(255, 79, 160, 0.5);
-}
-
+.cassette-player:hover .cassette-controls,
 .cassette-player.playing .cassette-controls {
   opacity: 1;
   color: var(--pink);
   text-shadow: 0 0 8px rgba(255, 79, 160, 0.5);
-  animation: neonPulse 2s ease-in-out infinite;
 }
 
-/* Bottom holes */
 .cassette-holes {
   display: flex;
   justify-content: center;
@@ -255,7 +219,6 @@
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-/* Playing state glow */
 .cassette-player.playing .cassette-body {
   border-color: rgba(255, 79, 160, 0.4);
   box-shadow:

@@ -1,14 +1,8 @@
-/* ==========================================================================
-   Vice City Theme - Footer (end credits)
-   Sunset scene over the skyline, then a credits panel
-   ========================================================================== */
-
 .footer {
   position: relative;
   background: var(--navy-950);
 }
 
-/* ---------- Sunset scene ---------- */
 .footer-scene {
   position: relative;
   height: clamp(200px, 22vw, 300px);
@@ -41,7 +35,6 @@
   mask: url("/images/vc/skyline.svg") bottom / 100% 100% no-repeat;
 }
 
-/* Thin water band with neon reflections at the bottom of the scene */
 .footer-water {
   position: absolute;
   left: 0;
@@ -56,10 +49,9 @@
   filter: blur(0.6px);
 }
 
-/* ---------- Credits panel ---------- */
 .footer-credits {
   border-top: 2px solid rgba(255, 79, 160, 0.4);
-  padding: 48px 0 110px;
+  padding: 48px 0 32px;
 }
 
 .footer-grid {

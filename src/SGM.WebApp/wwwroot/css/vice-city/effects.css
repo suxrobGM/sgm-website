@@ -1,9 +1,4 @@
-/* ==========================================================================
-   Vice City Theme - Effects
-   Film grain, halftone and scroll reveal
-   ========================================================================== */
-
-/* Light grain and scanlines, kept faint so text stays crisp */
+/* Kept faint so text stays crisp */
 .vc-grain {
   position: fixed;
   inset: 0;
@@ -15,13 +10,7 @@
     radial-gradient(ellipse at center, transparent 60%, rgba(7, 10, 36, 0.35) 100%);
 }
 
-/* Halftone dots used on daytime sections */
-.halftone {
-  background-image: radial-gradient(rgba(26, 18, 64, 0.12) 1.2px, transparent 1.4px);
-  background-size: 12px 12px;
-}
-
-/* Scroll reveal. Content is visible without JS; the script adds .vc-js first. */
+/* Content stays visible without JS; vice-city.js adds .vc-js before observing. */
 .vc-js .reveal {
   opacity: 0;
   transform: translateY(28px);

@@ -1,6 +1,9 @@
-/* ==========================================================================
-   Vice City Theme - Responsive
-   ========================================================================== */
+/* Below this width the content column reaches the fixed radar and cassette, so clear them. */
+@media (max-width: 1460px) {
+  .footer-credits {
+    padding-bottom: 120px;
+  }
+}
 
 @media (max-width: 1100px) {
   .loadout-grid,
@@ -133,7 +136,6 @@
     bottom: 8px;
     transform: scale(0.5);
   }
-
 
   .hero-title-block {
     padding: 0 16px 128px;
