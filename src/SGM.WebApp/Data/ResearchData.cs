@@ -38,8 +38,8 @@ public sealed record Project
 }
 
 /// <summary>
-/// Source of truth for research content. The themed home pages still duplicate it as
-/// hardcoded markup and should be migrated onto these lists.
+/// Source of truth for the research page. The themed home pages show shorter blurbs of the
+/// same work from <see cref="PortfolioData.Research"/>; keep the two in step when a paper changes.
 /// </summary>
 public static class ResearchData
 {

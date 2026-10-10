@@ -1,9 +1,52 @@
 @page "/xp"
-@rendermode InteractiveServer
 @inherits HomePageBase
 @code {
   // Rendered twice below, as <PageTitle> and as og:title.
   private const string Title = "Sukhrob Ilyosbekov | ML Engineer (Windows XP)";
+
+  private static readonly string[] ExplorerMenu = ["File", "Edit", "View", "Favorites", "Tools", "Help"];
+
+  private sealed record DesktopIcon(string Label, string Href, string Icon, string? Color = null, bool External = false);
+
+  private DesktopIcon[] DesktopIcons =>
+  [
+    new("About Me", "#about", "fas fa-user"),
+    new("Industry Resume", AssetVersion.Url("resume.pdf"), "fas fa-file-pdf", "#e74c3c", true),
+    new("Research CV", AssetVersion.Url("resume-phd.pdf"), "fas fa-file-pdf", "#e74c3c", true),
+    new("My Skills", "#skills", "fas fa-code"),
+    new("Experience", "#experience", "fas fa-briefcase", "#f0c040"),
+    new("Research", "#research", "fas fa-microscope", "#a0d0f0"),
+    new("My Projects", "#projects", "fas fa-folder", "#f0c040"),
+    new("Education", "#education", "fas fa-graduation-cap", "#a0d0f0"),
+    new("Hire Me", "#hire", "fas fa-shield-halved", "#316ac5"),
+    new("Contact Me", "#contact", "fas fa-envelope", "#f0f0f0"),
+    new("GitHub", "https://github.com/suxrobgm", "fab fa-github", External: true),
+    new("LinkedIn", "https://linkedin.com/in/suxrobgm", "fab fa-linkedin", "#0077b5", true),
+  ];
+
+  /// <summary>"Add or Remove Programs" progress bars, by skill group name.</summary>
+  private static readonly Dictionary<string, int> Proficiency = new()
+  {
+    ["AI & Deep Learning"] = 90,
+    ["Backend Development"] = 95,
+    ["Frontend Development"] = 92,
+    ["Mobile & Desktop"] = 85,
+    ["Game Development"] = 80,
+    ["Cloud & DevOps"] = 88,
+  };
+
+  /// <summary>Folder icon and color per project slug.</summary>
+  private static readonly Dictionary<string, (string Icon, string Color)> FolderIcons = new()
+  {
+    ["logisticsx"] = ("fas fa-truck", "#3a6ea5"),
+    ["jobpilot"] = ("fas fa-paper-plane", "#ff6a3d"),
+    ["meatgg"] = ("fas fa-gamepad", "#7b4bd8"),
+    ["depvault"] = ("fas fa-lock", "#d4a017"),
+    ["medscanner"] = ("fas fa-heartbeat", "#d9342b"),
+    ["bookshelf"] = ("fas fa-book", "#2e9e44"),
+  };
+
+  private static int PaperCount => PortfolioData.Research.Count(r => r.PaperUrl is not null);
 }
 
 <PageTitle>@Title</PageTitle>
@@ -13,8 +56,10 @@
   <meta property="og:title" content="@Title" />
   <meta property="og:description" content="@Description" />
   <meta property="og:url" content="https://suxrobgm.net/xp" />
-  <link rel="stylesheet" href="css/windows-xp.css" />
+  <link rel="stylesheet" href="@AssetVersion.Url("css/windows-xp.css")" />
 </HeadContent>
+
+@* Startup sound and taskbar clock are started from site.js when #xpClock is on the page. *@
 
 <!-- Bliss Wallpaper Background -->
 <div class="xp-bliss-bg"></div>
@@ -23,1089 +68,445 @@
 <div class="xp-desktop" id="home">
   <div class="xp-desktop-icon">
     <img src="images/about.jpg" class="xp-icon-img" alt="Profile">
-    <span class="xp-icon-label">Sukhrob Ilyosbekov</span>
+    <span class="xp-icon-label">@PortfolioData.FullName</span>
   </div>
-  <a href="/xp#about" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-user xp-icon-graphic"></i>
-    <span class="xp-icon-label">About Me</span>
-  </a>
-  <a href="@Assets.Url("resume.pdf")" target="_blank" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-file-pdf xp-icon-graphic" style="color:#e74c3c;"></i>
-    <span class="xp-icon-label">Industry Resume</span>
-  </a>
-  <a href="@Assets.Url("resume-phd.pdf")" target="_blank" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-file-pdf xp-icon-graphic" style="color:#e74c3c;"></i>
-    <span class="xp-icon-label">Research CV</span>
-  </a>
-  <a href="/xp#skills" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-code xp-icon-graphic"></i>
-    <span class="xp-icon-label">My Skills</span>
-  </a>
-  <a href="/xp#experience" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-briefcase xp-icon-graphic" style="color:#f0c040;"></i>
-    <span class="xp-icon-label">Experience</span>
-  </a>
-  <a href="/xp#research" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-microscope xp-icon-graphic" style="color:#a0d0f0;"></i>
-    <span class="xp-icon-label">Research</span>
-  </a>
-  <a href="/xp#projects" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-folder xp-icon-graphic" style="color:#f0c040;"></i>
-    <span class="xp-icon-label">My Projects</span>
-  </a>
-  <a href="/xp#education" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-graduation-cap xp-icon-graphic" style="color:#a0d0f0;"></i>
-    <span class="xp-icon-label">Education</span>
-  </a>
-  <a href="/xp#hire" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-shield-halved xp-icon-graphic" style="color:#316ac5;"></i>
-    <span class="xp-icon-label">Hire Me</span>
-  </a>
-  <a href="/xp#testimonials" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-envelope-open xp-icon-graphic" style="color:#e8b030;"></i>
-    <span class="xp-icon-label">Reviews</span>
-  </a>
-  <a href="/xp#contact" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fas fa-envelope xp-icon-graphic" style="color:#f0f0f0;"></i>
-    <span class="xp-icon-label">Contact Me</span>
-  </a>
-  <a href="https://github.com/suxrobgm" target="_blank" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fab fa-github xp-icon-graphic"></i>
-    <span class="xp-icon-label">GitHub</span>
-  </a>
-  <a href="https://linkedin.com/in/suxrobgm" target="_blank" class="xp-desktop-icon" style="text-decoration:none;">
-    <i class="fab fa-linkedin xp-icon-graphic" style="color:#0077b5;"></i>
-    <span class="xp-icon-label">LinkedIn</span>
-  </a>
+  @foreach (var icon in DesktopIcons)
+  {
+    <a href="@icon.Href" target="@(icon.External ? "_blank" : null)" rel="@(icon.External ? "noopener" : null)"
+       class="xp-desktop-icon" style="text-decoration:none;">
+      <i class="@icon.Icon xp-icon-graphic" style="@(icon.Color is null ? null : $"color:{icon.Color};")"></i>
+      <span class="xp-icon-label">@icon.Label</span>
+    </a>
+  }
 </div>
 
 <!-- Main Content Area -->
 <div class="xp-content-area">
 
-  <!-- ============================================================ -->
-  <!-- About Section - System Properties Window -->
-  <!-- ============================================================ -->
-  <section class="xp-window" id="about">
-    <div class="xp-titlebar">
-      <div class="xp-titlebar-left">
-        <div class="xp-titlebar-icon"><i class="fas fa-user"></i></div>
-        <span class="xp-titlebar-text">About Me - System Properties</span>
-      </div>
-      <div class="xp-window-controls">
-        <span class="xp-btn-minimize">_</span>
-        <span class="xp-btn-maximize">&#9723;</span>
-        <span class="xp-btn-close">&#10005;</span>
-      </div>
-    </div>
-    <div class="xp-menubar">
-      <span class="xp-menu-item">General</span>
-      <span class="xp-menu-item">Computer Name</span>
-      <span class="xp-menu-item">Hardware</span>
-      <span class="xp-menu-item">Advanced</span>
-    </div>
-    <div class="xp-window-body">
-      <div class="xp-about-grid">
-        <div>
-          <img src="images/about.jpg" alt="Sukhrob Ilyosbekov" class="xp-about-image">
-        </div>
-        <div class="xp-about-content">
-          <h3>Hi, I'm Sukhrob</h3>
-          <p>
-            I write software for a living, mostly web products in .NET and TypeScript, and I do computer
-            vision research alongside it, mainly in medical imaging. I live in Portland, Maine, and have a Master's in Computer Science from Northeastern.
-          </p>
-          <p>
-            Right now I work on software and machine learning for Alzheimer's care. It has taught me that a model
-            nobody trusts doesn't get used, no matter how good its numbers look. Papers and code are on the <a href="/research">research page</a>.
-          </p>
-          <div class="xp-system-info">
-            <div class="xp-system-info-row">
-              <span class="xp-system-info-label">System:</span>
-              <span class="xp-system-info-value">Sukhrob Ilyosbekov v9.0</span>
-            </div>
-            <div class="xp-system-info-row">
-              <span class="xp-system-info-label">Role:</span>
-              <span class="xp-system-info-value">Senior Full Stack Developer | AI Researcher</span>
-            </div>
-            <div class="xp-system-info-row">
-              <span class="xp-system-info-label">Location:</span>
-              <span class="xp-system-info-value">Portland, ME</span>
-            </div>
-            <div class="xp-system-info-row">
-              <span class="xp-system-info-label">Education:</span>
-              <span class="xp-system-info-value">M.S. Computer Science, Northeastern University</span>
-            </div>
+  <!-- About - System Properties -->
+  <XpWindow Id="about" Icon="fas fa-user" Title="About Me - System Properties" Menu="@(["General", "Computer Name", "Hardware", "Advanced"])">
+    <ChildContent>
+      <div class="xp-window-body">
+        <div class="xp-about-grid">
+          <div>
+            <img src="images/about.jpg" alt="Sukhrob Ilyosbekov" class="xp-about-image">
           </div>
-          <div class="xp-stats-row">
-            <div class="xp-stat-item">
-              <div class="xp-stat-number">9+</div>
-              <div class="xp-stat-label">Years Experience</div>
+          <div class="xp-about-content">
+            <h3>Hi, I'm Sukhrob</h3>
+            @foreach (var paragraph in PortfolioData.About)
+            {
+              <p>@((MarkupString)paragraph)</p>
+            }
+            <div class="xp-system-info">
+              <div class="xp-system-info-row">
+                <span class="xp-system-info-label">System:</span>
+                <span class="xp-system-info-value">@PortfolioData.FullName v9.0</span>
+              </div>
+              <div class="xp-system-info-row">
+                <span class="xp-system-info-label">Role:</span>
+                <span class="xp-system-info-value">@PortfolioData.Tagline</span>
+              </div>
+              <div class="xp-system-info-row">
+                <span class="xp-system-info-label">Location:</span>
+                <span class="xp-system-info-value">Portland, ME</span>
+              </div>
+              <div class="xp-system-info-row">
+                <span class="xp-system-info-label">Education:</span>
+                <span class="xp-system-info-value">M.S. Computer Science, Northeastern University</span>
+              </div>
             </div>
-            <div class="xp-stat-item">
-              <div class="xp-stat-number">50+</div>
-              <div class="xp-stat-label">Projects Completed</div>
+            <div class="xp-stats-row">
+              <div class="xp-stat-item">
+                <div class="xp-stat-number">9+</div>
+                <div class="xp-stat-label">Years Experience</div>
+              </div>
+              <div class="xp-stat-item">
+                <div class="xp-stat-number">50+</div>
+                <div class="xp-stat-label">Projects Completed</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="xp-statusbar">
+    </ChildContent>
+    <Status>
       <span class="xp-statusbar-section"><i class="fas fa-info-circle"></i> System Properties loaded successfully</span>
-    </div>
-  </section>
+    </Status>
+  </XpWindow>
 
-  <!-- ============================================================ -->
-  <!-- Hire Me CTA - Windows Update Window -->
-  <!-- ============================================================ -->
-  <section class="section" id="hire">
-    <div class="xp-window xp-hire-window">
-      <div class="xp-titlebar">
-        <div class="xp-titlebar-text">
-          <img src="/images/windows-xp-icon.png" alt="" class="xp-titlebar-icon" /> Windows Update - Available for Work
-        </div>
-        <div class="xp-titlebar-controls">
-          <button class="xp-btn-minimize">_</button>
-          <button class="xp-btn-maximize">□</button>
-          <button class="xp-btn-close">×</button>
-        </div>
+  <!-- Hire Me - Windows Update -->
+  <XpWindow Id="hire" Class="xp-hire-window" Icon="fas fa-shield-halved" Title="Windows Update - Available for Work">
+    <div class="xp-window-body xp-hire-body">
+      <div class="xp-hire-icon">
+        <i class="fa-solid fa-shield-halved" style="font-size: 48px; color: #316ac5;"></i>
       </div>
-      <div class="xp-window-body xp-hire-body">
-        <div class="xp-hire-icon">
-          <i class="fa-solid fa-shield-halved" style="font-size: 48px; color: #316ac5;"></i>
+      <div class="xp-hire-content">
+        <div class="xp-availability-badge">
+          <span class="xp-status-dot"></span> Available for Work
         </div>
-        <div class="xp-hire-content">
-          <div class="xp-availability-badge">
-            <span class="xp-status-dot"></span> Available for Work
-          </div>
-          <h3>Have a project in mind?</h3>
-          <div class="xp-services-list">
-            <span class="xp-service-item">✓ Full-Stack Development</span>
-            <span class="xp-service-item">✓ Machine Learning</span>
-            <span class="xp-service-item">✓ Game Development</span>
-          </div>
-          <div class="xp-hire-buttons">
-            <a href="/xp#contact" class="xp-btn xp-btn-primary">
-              <i class="fa-solid fa-envelope"></i> Get In Touch
-            </a>
-            <a href="https://www.upwork.com/freelancers/suxrobgm" target="_blank" class="xp-btn xp-btn-default">
-              <i class="fa-brands fa-upwork"></i> Hire on Upwork
-            </a>
-          </div>
+        <h3>Have a project in mind?</h3>
+        <div class="xp-services-list">
+          @foreach (var service in PortfolioData.Services)
+          {
+            <span class="xp-service-item">✓ @service</span>
+          }
+        </div>
+        <div class="xp-hire-buttons">
+          <a href="#contact" class="xp-btn xp-btn-primary"><i class="fa-solid fa-envelope"></i> Get In Touch</a>
+          <a href="@PortfolioData.UpworkUrl" target="_blank" rel="noopener" class="xp-btn xp-btn-default">
+            <i class="fa-brands fa-upwork"></i> Hire on Upwork
+          </a>
         </div>
       </div>
     </div>
-  </section>
+  </XpWindow>
 
-  <!-- ============================================================ -->
-  <!-- Skills Section - Add/Remove Programs Window -->
-  <!-- ============================================================ -->
-  <section class="xp-window" id="skills">
-    <div class="xp-titlebar">
-      <div class="xp-titlebar-left">
-        <div class="xp-titlebar-icon"><i class="fas fa-code"></i></div>
-        <span class="xp-titlebar-text">Tech Stack - Add or Remove Programs</span>
-      </div>
-      <div class="xp-window-controls">
-        <span class="xp-btn-minimize">_</span>
-        <span class="xp-btn-maximize">&#9723;</span>
-        <span class="xp-btn-close">&#10005;</span>
-      </div>
-    </div>
-    <div class="xp-menubar">
-      <span class="xp-menu-item">Change or Remove Programs</span>
-      <span class="xp-menu-item">Add New Programs</span>
-      <span class="xp-menu-item">Add/Remove Windows Components</span>
-    </div>
-    <div class="xp-window-body" style="padding: 0;">
-      <div class="xp-infobar">
-        <i class="fas fa-info-circle"></i>
-        Currently installed programs. To change or remove a program, click its entry.
-      </div>
-      <div class="xp-list-header">
-        <div class="xp-list-header-item" style="flex: 1;">Name</div>
-        <div class="xp-list-header-item" style="width: 200px;">Technologies</div>
-        <div class="xp-list-header-item" style="width: 120px;">Proficiency</div>
-      </div>
-      <div class="xp-program-list">
-        <!-- AI & Deep Learning -->
-        <div class="xp-program-item">
-          <div class="xp-program-icon"><i class="fas fa-brain"></i></div>
-          <div class="xp-program-info">
-            <div class="xp-program-name">AI & Deep Learning</div>
-            <div class="xp-program-tags">
-              <span>PyTorch</span>
-              <span>TensorFlow</span>
-              <span>OpenCV</span>
-              <span>YOLO</span>
-              <span>CNNs</span>
-              <span>Vision Transformers</span>
-              <span>GradCAM++</span>
-            </div>
-          </div>
-          <div class="xp-progress-bar xp-progress-animated">
-            <div class="xp-progress-fill" style="width: 90%;"></div>
-          </div>
+  <!-- Skills - Add or Remove Programs -->
+  <XpWindow Id="skills" Icon="fas fa-code" Title="Tech Stack - Add or Remove Programs"
+            Menu="@(["Change or Remove Programs", "Add New Programs", "Add/Remove Windows Components"])">
+    <ChildContent>
+      <div class="xp-window-body" style="padding: 0;">
+        <div class="xp-infobar">
+          <i class="fas fa-info-circle"></i>
+          Currently installed programs. To change or remove a program, click its entry.
         </div>
-        <!-- Backend Development -->
-        <div class="xp-program-item">
-          <div class="xp-program-icon"><i class="fas fa-server"></i></div>
-          <div class="xp-program-info">
-            <div class="xp-program-name">Backend Development</div>
-            <div class="xp-program-tags">
-              <span>ASP.NET Core</span>
-              <span>Node.js</span>
-              <span>NestJS</span>
-              <span>FastAPI</span>
-              <span>Spring Boot</span>
-              <span>Bun</span>
-              <span>ElysiaJS</span>
-              <span>Prisma</span>
-            </div>
-          </div>
-          <div class="xp-progress-bar xp-progress-animated">
-            <div class="xp-progress-fill" style="width: 95%;"></div>
-          </div>
+        <div class="xp-list-header">
+          <div class="xp-list-header-item" style="flex: 1;">Name</div>
+          <div class="xp-list-header-item" style="width: 200px;">Technologies</div>
+          <div class="xp-list-header-item" style="width: 120px;">Proficiency</div>
         </div>
-        <!-- Frontend Development -->
-        <div class="xp-program-item">
-          <div class="xp-program-icon"><i class="fas fa-laptop-code"></i></div>
-          <div class="xp-program-info">
-            <div class="xp-program-name">Frontend Development</div>
-            <div class="xp-program-tags">
-              <span>React</span>
-              <span>Angular</span>
-              <span>Next.js</span>
-              <span>Blazor</span>
-              <span>TypeScript</span>
-              <span>Tailwind</span>
+        <div class="xp-program-list">
+          @foreach (var group in PortfolioData.Skills)
+          {
+            <div class="xp-program-item">
+              <div class="xp-program-icon"><i class="@group.Icon"></i></div>
+              <div class="xp-program-info">
+                <div class="xp-program-name">@group.Name</div>
+                <div class="xp-program-tags">
+                  @foreach (var skill in group.Skills)
+                  {
+                    <span>@skill</span>
+                  }
+                </div>
+              </div>
+              <div class="xp-progress-bar xp-progress-animated">
+                <div class="xp-progress-fill" style="width: @(Proficiency[group.Name])%;"></div>
+              </div>
             </div>
-          </div>
-          <div class="xp-progress-bar xp-progress-animated">
-            <div class="xp-progress-fill" style="width: 92%;"></div>
-          </div>
-        </div>
-        <!-- Mobile & Desktop -->
-        <div class="xp-program-item">
-          <div class="xp-program-icon"><i class="fas fa-mobile-alt"></i></div>
-          <div class="xp-program-info">
-            <div class="xp-program-name">Mobile & Desktop</div>
-            <div class="xp-program-tags">
-              <span>MAUI</span>
-              <span>React Native</span>
-              <span>WPF</span>
-              <span>Avalonia</span>
-            </div>
-          </div>
-          <div class="xp-progress-bar xp-progress-animated">
-            <div class="xp-progress-fill" style="width: 85%;"></div>
-          </div>
-        </div>
-        <!-- Game Development -->
-        <div class="xp-program-item">
-          <div class="xp-program-icon"><i class="fas fa-gamepad"></i></div>
-          <div class="xp-program-info">
-            <div class="xp-program-name">Game Development</div>
-            <div class="xp-program-tags">
-              <span>Unity</span>
-              <span>Godot</span>
-              <span>PhaserJS</span>
-              <span>Colyseus</span>
-            </div>
-          </div>
-          <div class="xp-progress-bar xp-progress-animated">
-            <div class="xp-progress-fill" style="width: 80%;"></div>
-          </div>
-        </div>
-        <!-- Cloud & DevOps -->
-        <div class="xp-program-item">
-          <div class="xp-program-icon"><i class="fas fa-cloud"></i></div>
-          <div class="xp-program-info">
-            <div class="xp-program-name">Cloud & DevOps</div>
-            <div class="xp-program-tags">
-              <span>AWS</span>
-              <span>Azure</span>
-              <span>Docker</span>
-              <span>Kubernetes</span>
-              <span>CI/CD</span>
-            </div>
-          </div>
-          <div class="xp-progress-bar xp-progress-animated">
-            <div class="xp-progress-fill" style="width: 88%;"></div>
-          </div>
+          }
         </div>
       </div>
-    </div>
-    <div class="xp-statusbar">
-      <span class="xp-statusbar-section">6 programs installed</span>
+    </ChildContent>
+    <Status>
+      <span class="xp-statusbar-section">@PortfolioData.Skills.Count programs installed</span>
       <span class="xp-statusbar-section">Total: All systems operational</span>
-    </div>
-  </section>
+    </Status>
+  </XpWindow>
 
-  <!-- ============================================================ -->
-  <!-- Experience Section - Windows Explorer Window -->
-  <!-- ============================================================ -->
-  <section class="xp-window" id="experience">
-    <div class="xp-titlebar">
-      <div class="xp-titlebar-left">
-        <div class="xp-titlebar-icon"><i class="fas fa-briefcase"></i></div>
-        <span class="xp-titlebar-text">Work Experience - Windows Explorer</span>
+  <!-- Experience - Windows Explorer -->
+  <XpWindow Id="experience" Icon="fas fa-briefcase" Title="Work Experience - Windows Explorer" Menu="ExplorerMenu">
+    <ChildContent>
+      <div class="xp-toolbar">
+        <span class="xp-toolbar-btn"><i class="fas fa-arrow-left"></i> Back</span>
+        <span class="xp-toolbar-btn"><i class="fas fa-arrow-right"></i></span>
+        <span class="xp-toolbar-btn"><i class="fas fa-arrow-up"></i></span>
+        <span class="xp-toolbar-separator"></span>
+        <span class="xp-toolbar-btn"><i class="fas fa-search"></i> Search</span>
+        <span class="xp-toolbar-btn"><i class="fas fa-folder"></i> Folders</span>
       </div>
-      <div class="xp-window-controls">
-        <span class="xp-btn-minimize">_</span>
-        <span class="xp-btn-maximize">&#9723;</span>
-        <span class="xp-btn-close">&#10005;</span>
+      <div class="xp-addressbar">
+        <span class="xp-addressbar-label">Address</span>
+        <div class="xp-addressbar-icon"><i class="fas fa-briefcase"></i></div>
+        <span class="xp-addressbar-input">C:\Career\Work Experience</span>
       </div>
-    </div>
-    <div class="xp-menubar">
-      <span class="xp-menu-item">File</span>
-      <span class="xp-menu-item">Edit</span>
-      <span class="xp-menu-item">View</span>
-      <span class="xp-menu-item">Favorites</span>
-      <span class="xp-menu-item">Tools</span>
-      <span class="xp-menu-item">Help</span>
-    </div>
-    <div class="xp-toolbar">
-      <span class="xp-toolbar-btn"><i class="fas fa-arrow-left"></i> Back</span>
-      <span class="xp-toolbar-btn"><i class="fas fa-arrow-right"></i></span>
-      <span class="xp-toolbar-btn"><i class="fas fa-arrow-up"></i></span>
-      <span class="xp-toolbar-separator"></span>
-      <span class="xp-toolbar-btn"><i class="fas fa-search"></i> Search</span>
-      <span class="xp-toolbar-btn"><i class="fas fa-folder"></i> Folders</span>
-    </div>
-    <div class="xp-addressbar">
-      <span class="xp-addressbar-label">Address</span>
-      <div class="xp-addressbar-icon"><i class="fas fa-briefcase"></i></div>
-      <span class="xp-addressbar-input">C:\Career\Work Experience</span>
-    </div>
-    <div class="xp-explorer-layout">
-      <!-- Tree View Sidebar -->
-      <div class="xp-explorer-sidebar">
-        <ul class="xp-tree">
-          <li>
-            <div class="xp-tree-item">
-              <span class="xp-tree-toggle">-</span>
-              <i class="fas fa-desktop xp-tree-icon" style="color:#3a6ea5;"></i>
-              <span class="xp-tree-label">My Computer</span>
-            </div>
-            <ul>
-              <li>
-                <div class="xp-tree-item">
-                  <span class="xp-tree-toggle">-</span>
-                  <i class="fas fa-hdd xp-tree-icon" style="color:#888;"></i>
-                  <span class="xp-tree-label">C:\Career</span>
-                </div>
-                <ul>
-                  <li>
-                    <div class="xp-tree-item selected">
-                      <span class="xp-tree-toggle">-</span>
-                      <i class="fas fa-folder-open xp-tree-icon"></i>
-                      <span class="xp-tree-label">Work Experience</span>
-                    </div>
-                    <ul>
-                      <li>
-                        <div class="xp-tree-item"><i class="fas fa-folder xp-tree-icon"></i> <span
-                          class="xp-tree-label">EmTech Care Labs</span></div>
-                        </li>
-                        <li>
-                          <div class="xp-tree-item"><i class="fas fa-folder xp-tree-icon"></i> <span
-                            class="xp-tree-label">AllFactors</span></div>
-                          </li>
+      <div class="xp-explorer-layout">
+        <div class="xp-explorer-sidebar">
+          <ul class="xp-tree">
+            <li>
+              <div class="xp-tree-item">
+                <span class="xp-tree-toggle">-</span>
+                <i class="fas fa-desktop xp-tree-icon" style="color:#3a6ea5;"></i>
+                <span class="xp-tree-label">My Computer</span>
+              </div>
+              <ul>
+                <li>
+                  <div class="xp-tree-item">
+                    <span class="xp-tree-toggle">-</span>
+                    <i class="fas fa-hdd xp-tree-icon" style="color:#888;"></i>
+                    <span class="xp-tree-label">C:\Career</span>
+                  </div>
+                  <ul>
+                    <li>
+                      <div class="xp-tree-item selected">
+                        <span class="xp-tree-toggle">-</span>
+                        <i class="fas fa-folder-open xp-tree-icon"></i>
+                        <span class="xp-tree-label">Work Experience</span>
+                      </div>
+                      <ul>
+                        @foreach (var job in PortfolioData.Jobs)
+                        {
                           <li>
-                            <div class="xp-tree-item"><i class="fas fa-folder xp-tree-icon"></i> <span
-                              class="xp-tree-label">Smart Meal</span></div>
-                            </li>
-                            <li>
-                              <div class="xp-tree-item"><i class="fas fa-folder xp-tree-icon"></i> <span
-                                class="xp-tree-label">Pentalight</span></div>
-                              </li>
-                            </ul>
+                            <div class="xp-tree-item"><i class="fas fa-folder xp-tree-icon"></i> <span class="xp-tree-label">@job.Company</span></div>
                           </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-              <!-- Detail Pane -->
-              <div class="xp-explorer-main">
-                <!-- Job 1 -->
-                <div class="xp-detail-pane">
-                  <div class="xp-job-header">
-                    <div>
-                      <div class="xp-job-title">Senior Software Engineer</div>
-                      <div class="xp-job-company">EmTech Care Labs | Portland, ME</div>
-                    </div>
-                    <span class="xp-job-date">Jan 2025 - Present</span>
-                  </div>
-                  <div class="xp-job-description">
-                    Lead engineer on an Alzheimer's care platform on AWS, where 200+ caregivers and patients
-                    message each other and share care plans. I folded three web and mobile codebases into one
-                    TypeScript monorepo and did the security work (encryption, audit logs, access control) that
-                    got us through an outside HIPAA readiness review with no critical findings. The ML features
-                    are mine too: a decline-risk model and an NLP pipeline for clinical notes. I also mentor two
-                    junior engineers.
-                  </div>
-                </div>
-                <hr class="xp-job-separator">
-
-                <!-- Job 2 -->
-                <div class="xp-detail-pane">
-                  <div class="xp-job-header">
-                    <div>
-                      <div class="xp-job-title">Senior Software Engineer</div>
-                      <div class="xp-job-company">AllFactors | Santa Clara, CA</div>
-                    </div>
-                    <span class="xp-job-date">Oct 2021 - Dec 2024</span>
-                  </div>
-                  <div class="xp-job-description">
-                    Moved an old ASP.NET Web Forms real-estate analytics app to Blazor WebAssembly, and pages
-                    got about twice as fast. I built the live pricing feed (SignalR plus SQL Server change
-                    tracking) that pushed updates to hundreds of users in under a second, along with the
-                    component library all the dashboards were built from. The valuation and forecast models
-                    behind those dashboards retrained every night on the day's transactions.
-                  </div>
-                </div>
-                <hr class="xp-job-separator">
-
-                <!-- Job 3 -->
-                <div class="xp-detail-pane">
-                  <div class="xp-job-header">
-                    <div>
-                      <div class="xp-job-title">Software Engineer</div>
-                      <div class="xp-job-company">Smart Meal Service | Russia</div>
-                    </div>
-                    <span class="xp-job-date">Sep 2020 - Jul 2021</span>
-                  </div>
-                  <div class="xp-job-description">
-                    Wrote the C# software that ran a self-service food kiosk and a robotic cashier, payment
-                    terminal and hardware protocols included. I also built the customer ordering app (Xamarin)
-                    and the admin dashboard (ASP.NET Core and Angular). A hardware abstraction layer let the
-                    same code run on all three machine models, and orders went to the right kitchen station
-                    automatically.
-                  </div>
-                </div>
-                <hr class="xp-job-separator">
-
-                <!-- Job 4 -->
-                <div class="xp-detail-pane">
-                  <div class="xp-job-header">
-                    <div>
-                      <div class="xp-job-title">Game Developer</div>
-                      <div class="xp-job-company">Pentalight Technology | Malaysia</div>
-                    </div>
-                    <span class="xp-job-date">Mar 2020 - Feb 2021</span>
-                  </div>
-                  <div class="xp-job-description">
-                    Built multiplayer networking, spatial audio, hand tracking, and the in-world UI for a VR
-                    smart-city simulation in Unity, plus a desktop client for anyone without a headset. Scene
-                    builds used to take hours of hands-on work. After I automated the art pipeline (model
-                    import, LODs, light baking), an artist could start one and walk away.
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="xp-statusbar">
-              <span class="xp-statusbar-section">4 objects</span>
-              <span class="xp-statusbar-section"><i class="fas fa-briefcase"></i> Work Experience</span>
-            </div>
-          </section>
-
-          <!-- ============================================================ -->
-          <!-- Testimonials Section - Outlook Express Window -->
-          <!-- ============================================================ -->
-          <section class="section" id="testimonials">
-            <div class="xp-window">
-              <div class="xp-titlebar">
-                <div class="xp-titlebar-text">
-                  <img src="/images/windows-xp-icon.png" alt="" class="xp-titlebar-icon" /> Inbox - Outlook Express
-                </div>
-                <div class="xp-titlebar-controls">
-                  <button class="xp-btn-minimize">_</button>
-                  <button class="xp-btn-maximize">□</button>
-                  <button class="xp-btn-close">×</button>
-                </div>
-              </div>
-              <div class="xp-window-body">
-                <div class="xp-menu-bar">
-                  <span>File</span><span>Edit</span><span>View</span><span>Tools</span><span>Message</span><span>Help</span>
-                </div>
-                <div class="xp-inbox-list">
-                  <div class="xp-email-item">
-                    <div class="xp-email-header">
-                      <div class="xp-email-from">
-                        <i class="fa-solid fa-envelope-open" style="color: #e8b030;"></i>
-                        <strong>David Chen</strong> — CEO at NovaBridge Solutions
-                      </div>
-                      <div class="xp-email-rating">★★★★★</div>
-                    </div>
-                    <div class="xp-email-body">
-                      "Sukhrob is one of the most versatile developers I've worked with. He took a vague product idea and turned
-                      it into a polished, production-ready application in just 8 weeks. His ability to handle everything from
-                      database design to pixel-perfect UI is genuinely impressive. Already planning our next project together."
-                    </div>
-                  </div>
-                  <div class="xp-email-item">
-                    <div class="xp-email-header">
-                      <div class="xp-email-from">
-                        <i class="fa-solid fa-envelope-open" style="color: #e8b030;"></i>
-                        <strong>Amira Patel</strong> — Head of Engineering at CloudVantage
-                      </div>
-                      <div class="xp-email-rating">★★★★★</div>
-                    </div>
-                    <div class="xp-email-body">
-                      "We brought Sukhrob on to rescue a project that was falling behind. He quickly identified the
-                      architectural bottlenecks, refactored the core systems, and delivered a stable release two weeks ahead of
-                      our revised deadline. Clear communicator, great problem solver, zero drama."
-                    </div>
-                  </div>
-                  <div class="xp-email-item">
-                    <div class="xp-email-header">
-                      <div class="xp-email-from">
-                        <i class="fa-solid fa-envelope-open" style="color: #e8b030;"></i>
-                        <strong>James Whitfield</strong> — Founder of Orbital Games
-                      </div>
-                      <div class="xp-email-rating">★★★★★</div>
-                    </div>
-                    <div class="xp-email-body">
-                      "Finding a developer who understands both game networking and web infrastructure is nearly impossible —
-                      Sukhrob is that rare find. He built our entire multiplayer backend and admin dashboard from scratch. The
-                      codebase he left us is clean, well-documented, and easy to maintain."
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- ============================================================ -->
-          <!-- Research Section - Research Lab Window -->
-          <!-- ============================================================ -->
-          <section class="xp-window" id="research">
-            <div class="xp-titlebar">
-              <div class="xp-titlebar-left">
-                <div class="xp-titlebar-icon"><i class="fas fa-microscope"></i></div>
-                <span class="xp-titlebar-text">Research &amp; Projects - Scientific Tools</span>
-              </div>
-              <div class="xp-window-controls">
-                <span class="xp-btn-minimize">_</span>
-                <span class="xp-btn-maximize">&#9723;</span>
-                <span class="xp-btn-close">&#10005;</span>
-              </div>
-            </div>
-            <div class="xp-window-body" style="padding: 0;">
-              <div class="xp-infobar">
-                <i class="fas fa-flask"></i>
-                Papers and projects in computer vision and medical imaging.
-              </div>
-              <ul class="xp-research-list">
-                <!-- Research 1 -->
-                <li class="xp-research-item">
-                  <div class="xp-research-icon"><i class="fas fa-dna"></i></div>
-                  <div class="xp-research-content">
-                    <div class="xp-research-title">MorphoCLIP: Text-Supervised Cell Painting Retrieval</div>
-                    <div class="xp-research-desc">
-                      Matches microscope images of treated cells to a plain-language description of the drug or
-                      gene behind the change. The DINOv3 and BioClinical ModernBERT encoders stay frozen and
-                      only small heads are trained, so one consumer GPU is enough. Tested on CPJUMP1 (51 plates,
-                      3M+ images).
-                    </div>
-                    <div class="xp-research-tags">
-                      <span>PyTorch</span>
-                      <span>DINOv3</span>
-                      <span>BioClinical ModernBERT</span>
-                      <span>Contrastive Learning</span>
-                    </div>
-                    <div class="xp-research-links">
-                      <a href="https://github.com/suxrobgm/morphoclip" target="_blank">
-                        <i class="fab fa-github"></i> View Repository
-                      </a>
-                      <a href="https://arxiv.org/abs/2608.22690" target="_blank">
-                        <i class="fas fa-file-alt"></i> arXiv Paper
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <!-- Research 2 -->
-                <li class="xp-research-item">
-                  <div class="xp-research-icon"><i class="fas fa-image"></i></div>
-                  <div class="xp-research-content">
-                    <div class="xp-research-title">Localize, Don't Beautify: Controlling Image-Editing APIs</div>
-                    <div class="xp-research-desc">
-                      Image editors asked to change one facial feature tend to retouch the whole face, which
-                      ruins a surgical preview. I tried three client-side fixes across six commercial editors
-                      and 196 edits, checking identity with ArcFace and whether each edit stayed put. Plain
-                      masked compositing worked best.
-                    </div>
-                    <div class="xp-research-tags">
-                      <span>Image-Editing APIs</span>
-                      <span>Inpainting</span>
-                      <span>ArcFace</span>
-                    </div>
-                    <div class="xp-research-links">
-                      <a href="https://arxiv.org/abs/2608.02841" target="_blank">
-                        <i class="fas fa-file-alt"></i> arXiv Paper
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <!-- Research 3 -->
-                <li class="xp-research-item">
-                  <div class="xp-research-icon"><i class="fas fa-microscope"></i></div>
-                  <div class="xp-research-content">
-                    <div class="xp-research-title">MelanomaNet: Explainable Skin Lesion Classification</div>
-                    <div class="xp-research-desc">
-                      A nine-class skin-lesion classifier (EfficientNet V2, focal loss) with 0.86 weighted F1 on
-                      25K ISIC 2019 images. Its GradCAM++ heatmaps are broken down by the ABCDE criteria
-                      dermatologists already use, so a clinician can see what the model was looking at.
-                    </div>
-                    <div class="xp-research-tags">
-                      <span>PyTorch</span>
-                      <span>EfficientNet V2</span>
-                      <span>GradCAM++</span>
-                      <span>OpenCV</span>
-                    </div>
-                    <div class="xp-research-links">
-                      <a href="https://github.com/suxrobgm/explainable-melanoma" target="_blank">
-                        <i class="fab fa-github"></i> View Repository
-                      </a>
-                      <a href="https://arxiv.org/abs/2512.09289" target="_blank">
-                        <i class="fas fa-file-alt"></i> arXiv Paper
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <!-- Research 4 -->
-                <li class="xp-research-item">
-                  <div class="xp-research-icon"><i class="fas fa-eye"></i></div>
-                  <div class="xp-research-content">
-                    <div class="xp-research-title">LightDepth: Lightweight Monocular Depth Estimation</div>
-                    <div class="xp-research-desc">
-                      Estimates depth from one image with a ResNet18 encoder and U-Net decoder. Next to Depth
-                      Anything V2 it has 42% fewer parameters (14.3M vs. 24.8M), runs 72% faster, and makes
-                      smaller errors on NYU Depth V2.
-                    </div>
-                    <div class="xp-research-tags">
-                      <span>PyTorch</span>
-                      <span>ResNet18</span>
-                      <span>U-Net</span>
-                      <span>Depth Estimation</span>
-                    </div>
-                    <div class="xp-research-links">
-                      <a href="https://github.com/suxrobgm/lightdepth" target="_blank">
-                        <i class="fab fa-github"></i> View Repository
-                      </a>
-                    </div>
-                  </div>
-                </li>
-                <!-- Research 5 -->
-                <li class="xp-research-item">
-                  <div class="xp-research-icon"><i class="fas fa-expand"></i></div>
-                  <div class="xp-research-content">
-                    <div class="xp-research-title">FSRCNN: Super-Resolution Neural Network</div>
-                    <div class="xp-research-desc">
-                      Rebuilt FSRCNN (Dong et al., ECCV 2016) from the paper at 2x, 3x, and 4x. My version
-                      reproduced its gains over SRCNN on Set5 (+1.78 dB PSNR) and Set14 (+1.26 dB), and I added
-                      ablations on the shrinking and mapping layers.
-                    </div>
-                    <div class="xp-research-tags">
-                      <span>PyTorch</span>
-                      <span>Super-Resolution</span>
-                      <span>Mixed Precision</span>
-                    </div>
-                    <div class="xp-research-links">
-                      <a href="https://github.com/suxrobgm/fsrcnn" target="_blank">
-                        <i class="fab fa-github"></i> View Repository
-                      </a>
-                    </div>
-                  </div>
+                        }
+                      </ul>
+                    </li>
+                  </ul>
                 </li>
               </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="xp-explorer-main">
+          @for (var i = 0; i < PortfolioData.Jobs.Count; i++)
+          {
+            var job = PortfolioData.Jobs[i];
+            if (i > 0)
+            {
+              <hr class="xp-job-separator">
+            }
+            <div class="xp-detail-pane">
+              <div class="xp-job-header">
+                <div>
+                  <div class="xp-job-title">@job.Title</div>
+                  <div class="xp-job-company">@job.Company | @job.Location</div>
+                </div>
+                <span class="xp-job-date">@job.Period</span>
+              </div>
+              <div class="xp-job-description">@job.Summary</div>
             </div>
-            <div class="xp-statusbar">
-              <span class="xp-statusbar-section">3 publications, 2 projects</span>
-              <span class="xp-statusbar-section"><i class="fas fa-microscope"></i> Active Research</span>
-            </div>
-          </section>
+          }
+        </div>
+      </div>
+    </ChildContent>
+    <Status>
+      <span class="xp-statusbar-section">@PortfolioData.Jobs.Count objects</span>
+      <span class="xp-statusbar-section"><i class="fas fa-briefcase"></i> Work Experience</span>
+    </Status>
+  </XpWindow>
 
-          <!-- ============================================================ -->
-          <!-- Projects Section - My Documents Window -->
-          <!-- ============================================================ -->
-          <section class="xp-window" id="projects">
-            <div class="xp-titlebar">
-              <div class="xp-titlebar-left">
-                <div class="xp-titlebar-icon"><i class="fas fa-folder"></i></div>
-                <span class="xp-titlebar-text">Featured Projects - My Documents</span>
+  <!-- Research - Scientific Tools -->
+  <XpWindow Id="research" Icon="fas fa-microscope" Title="Research & Projects - Scientific Tools">
+    <ChildContent>
+      <div class="xp-window-body" style="padding: 0;">
+        <div class="xp-infobar">
+          <i class="fas fa-flask"></i>
+          Papers and projects in computer vision and medical imaging.
+          <a href="/research">Open the full research page</a>
+        </div>
+        <ul class="xp-research-list">
+          @foreach (var item in PortfolioData.Research)
+          {
+            <li class="xp-research-item">
+              <div class="xp-research-icon"><i class="@item.Icon"></i></div>
+              <div class="xp-research-content">
+                <div class="xp-research-title">@item.Title</div>
+                <div class="xp-research-desc">@item.Summary</div>
+                <div class="xp-research-tags">
+                  @foreach (var tag in item.Tags)
+                  {
+                    <span>@tag</span>
+                  }
+                </div>
+                <div class="xp-research-links">
+                  @if (item.RepoUrl is not null)
+                  {
+                    <a href="@item.RepoUrl" target="_blank" rel="noopener"><i class="fab fa-github"></i> View Repository</a>
+                  }
+                  @if (item.PaperUrl is not null)
+                  {
+                    <a href="@item.PaperUrl" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> arXiv Paper</a>
+                  }
+                </div>
               </div>
-              <div class="xp-window-controls">
-                <span class="xp-btn-minimize">_</span>
-                <span class="xp-btn-maximize">&#9723;</span>
-                <span class="xp-btn-close">&#10005;</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </ChildContent>
+    <Status>
+      <span class="xp-statusbar-section">@PaperCount publications, @(PortfolioData.Research.Count - PaperCount) projects</span>
+      <span class="xp-statusbar-section"><i class="fas fa-microscope"></i> Active Research</span>
+    </Status>
+  </XpWindow>
+
+  <!-- Projects - My Documents -->
+  <XpWindow Id="projects" Icon="fas fa-folder" Title="Featured Projects - My Documents" Menu="ExplorerMenu">
+    <ChildContent>
+      <div class="xp-toolbar">
+        <span class="xp-toolbar-btn"><i class="fas fa-arrow-left"></i> Back</span>
+        <span class="xp-toolbar-btn"><i class="fas fa-arrow-right"></i></span>
+        <span class="xp-toolbar-separator"></span>
+        <span class="xp-toolbar-btn"><i class="fas fa-th-large"></i> Icons</span>
+        <span class="xp-toolbar-btn"><i class="fas fa-list"></i> Details</span>
+      </div>
+      <div class="xp-addressbar">
+        <span class="xp-addressbar-label">Address</span>
+        <div class="xp-addressbar-icon"><i class="fas fa-folder"></i></div>
+        <span class="xp-addressbar-input">C:\Users\Sukhrob\My Documents\Projects</span>
+      </div>
+      <div class="xp-window-body" style="padding: 0;">
+        <div class="xp-folder-grid">
+          @foreach (var project in PortfolioData.Projects)
+          {
+            var (icon, color) = FolderIcons[project.Slug];
+            <a href="@(project.SiteUrl ?? project.RepoUrl)" target="_blank" rel="noopener" class="xp-folder-item" style="text-decoration:none;">
+              <i class="@icon xp-folder-icon" style="color:@color;"></i>
+              <span class="xp-folder-label">@project.Title</span>
+            </a>
+          }
+        </div>
+        @for (var i = 0; i < PortfolioData.Projects.Count; i++)
+        {
+          var project = PortfolioData.Projects[i];
+          if (i > 0)
+          {
+            <hr class="xp-divider" style="margin: 0;">
+          }
+          <div class="xp-project-detail">
+            @if (project.Screenshot is not null)
+            {
+              <img src="@project.Screenshot" alt="@project.Title" class="xp-project-detail-img" loading="lazy" />
+            }
+            <div class="xp-project-detail-body">
+              <div class="xp-project-detail-title">@project.Title</div>
+              <div class="xp-project-detail-desc">@project.Summary</div>
+              <div class="xp-project-tech-tags">
+                @foreach (var tag in project.Tags)
+                {
+                  <span>@tag</span>
+                }
+              </div>
+              <div class="xp-research-links">
+                @if (project.SiteUrl is not null)
+                {
+                  <a href="@project.SiteUrl" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live Site</a>
+                }
+                @if (project.RepoUrl is not null)
+                {
+                  <a href="@project.RepoUrl" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                }
               </div>
             </div>
-            <div class="xp-menubar">
-              <span class="xp-menu-item">File</span>
-              <span class="xp-menu-item">Edit</span>
-              <span class="xp-menu-item">View</span>
-              <span class="xp-menu-item">Favorites</span>
-              <span class="xp-menu-item">Tools</span>
-              <span class="xp-menu-item">Help</span>
+          </div>
+        }
+      </div>
+    </ChildContent>
+    <Status>
+      <span class="xp-statusbar-section">@PortfolioData.Projects.Count objects</span>
+      <span class="xp-statusbar-section"><i class="fas fa-folder"></i> My Documents</span>
+    </Status>
+  </XpWindow>
+
+  <!-- Education - Academic Records -->
+  <XpWindow Id="education" Icon="fas fa-graduation-cap" Title="Education - Academic Records">
+    <ChildContent>
+      <div class="xp-window-body">
+        <div class="xp-education-grid">
+          @foreach (var degree in PortfolioData.Education)
+          {
+            <div class="xp-education-card">
+              <div class="xp-education-degree">
+                <i class="fas fa-university" style="color: var(--xp-title-blue-light); margin-right: 6px;"></i>@degree.Title
+              </div>
+              <div class="xp-education-school">@degree.School</div>
+              <div class="xp-education-date">@degree.Period</div>
+              @if (degree.Note is not null)
+              {
+                <span class="xp-education-gpa">@degree.Note</span>
+              }
             </div>
-            <div class="xp-toolbar">
-              <span class="xp-toolbar-btn"><i class="fas fa-arrow-left"></i> Back</span>
-              <span class="xp-toolbar-btn"><i class="fas fa-arrow-right"></i></span>
-              <span class="xp-toolbar-separator"></span>
-              <span class="xp-toolbar-btn"><i class="fas fa-th-large"></i> Icons</span>
-              <span class="xp-toolbar-btn"><i class="fas fa-list"></i> Details</span>
-            </div>
-            <div class="xp-addressbar">
-              <span class="xp-addressbar-label">Address</span>
-              <div class="xp-addressbar-icon"><i class="fas fa-folder"></i></div>
-              <span class="xp-addressbar-input">C:\Users\Sukhrob\My Documents\Projects</span>
-            </div>
-            <div class="xp-window-body" style="padding: 0;">
-              <div class="xp-folder-grid">
-                <!-- Project 1 -->
-                <a href="https://logisticsx.app" target="_blank" class="xp-folder-item" style="text-decoration:none;">
-                  <i class="fas fa-truck xp-folder-icon blue"></i>
-                  <span class="xp-folder-label">LogisticsX</span>
-                </a>
-                <!-- Project 2 -->
-                <a href="https://meat.gg" target="_blank" class="xp-folder-item" style="text-decoration:none;">
-                  <span class="xp-folder-icon" style="font-size:2rem;">&#127918;</span>
-                  <span class="xp-folder-label">Meat.gg</span>
-                </a>
-                <!-- Project 3 -->
-                <a href="https://depvault.com" target="_blank" class="xp-folder-item" style="text-decoration:none;">
-                  <span class="xp-folder-icon" style="font-size:2rem;">&#128272;</span>
-                  <span class="xp-folder-label">DepVault</span>
-                </a>
-                <!-- Project 4 -->
-                <a href="https://github.com/suxrobgm/med-image-scanner" target="_blank" class="xp-folder-item"
-                   style="text-decoration:none;">
-                  <i class="fas fa-heartbeat xp-folder-icon red"></i>
-                  <span class="xp-folder-label">Med Image Scanner</span>
-                </a>
-                <!-- Project 5 -->
-                <a href="https://github.com/suxrobgm/online-chess" target="_blank" class="xp-folder-item"
-                   style="text-decoration:none;">
-                  <i class="fas fa-chess xp-folder-icon" style="color:#8b4513;"></i>
-                  <span class="xp-folder-label">ChessMate</span>
-                </a>
-                <!-- Project 6 -->
-                <a href="https://github.com/suxrobgm/bookshelf-scanner" target="_blank" class="xp-folder-item"
-                   style="text-decoration:none;">
-                  <i class="fas fa-book xp-folder-icon green"></i>
-                  <span class="xp-folder-label">Bookshelf Scanner</span>
-                </a>
-              </div>
-              <!-- Project details panel -->
-              <div class="xp-project-detail">
-                <img src="/images/portfolio/logisticsx.jpg" alt="LogisticsX" class="xp-project-detail-img" loading="lazy" />
-                <div class="xp-project-detail-body">
-                  <div class="xp-project-detail-title">LogisticsX</div>
-                  <div class="xp-project-detail-desc">
-                    Software for running a trucking company. A multi-provider LLM agent with custom tools matches loads to
-                    trucks, checks drivers' federal hours-of-service limits, and plans multi-stop routes. The
-                    rest of the system is four web portals, a Kotlin Multiplatform driver app, a multi-tenant
-                    .NET backend (DDD/CQRS), Stripe payments, and integrations with DAT, Truckstop, Samsara, and
-                    Motive.
-                  </div>
-                  <div class="xp-project-tech-tags">
-                    <span>ASP.NET Core</span><span>Angular</span><span>Blazor</span><span>Kotlin Multiplatform</span><span>SignalR</span><span>LLM Agents</span>
-                  </div>
-                  <div class="xp-research-links">
-                    <a href="https://logisticsx.app" target="_blank"><i class="fas fa-external-link-alt"></i> Live Site</a>
-                    <a href="https://github.com/suxrobgm/logistics-app" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                  </div>
-                </div>
-              </div>
-              <hr class="xp-divider" style="margin: 0;">
-              <div class="xp-project-detail">
-                <img src="/images/portfolio/meatgg.jpg" alt="Meat.gg" class="xp-project-detail-img" loading="lazy" />
-                <div class="xp-project-detail-body">
-                  <div class="xp-project-detail-title">Meat.gg</div>
-                  <div class="xp-project-detail-desc">
-                    Community site for Counter-Strike 2 servers, with 50K+ registered players and over 1K active
-                    on a typical day. Players get profiles, friends, messaging, and a cosmetics shop (Stripe). A
-                    C++ Metamod:Source 2 plugin ties the game servers to the backend, so admins can ban, handle
-                    reports, and moderate without leaving the game.
-                  </div>
-                  <div class="xp-project-tech-tags">
-                    <span>ElysiaJS</span><span>Next.js</span><span>PostgreSQL</span><span>Prisma</span><span>Bun</span><span>Docker</span><span>Stripe</span>
-                  </div>
-                  <div class="xp-research-links">
-                    <a href="https://meat.gg" target="_blank"><i class="fas fa-external-link-alt"></i> Live Site</a>
-                  </div>
-                </div>
-              </div>
-              <hr class="xp-divider" style="margin: 0;">
-              <div class="xp-project-detail">
-                <img src="/images/portfolio/depvault.jpg" alt="DepVault" class="xp-project-detail-img" loading="lazy" />
-                <div class="xp-project-detail-body">
-                  <div class="xp-project-detail-title">DepVault</div>
-                  <div class="xp-project-detail-desc">
-                    Checks your dependencies against OSV.dev for known vulnerabilities in eight ecosystems,
-                    including npm, PyPI, NuGet, Cargo, and Maven, and gets through 1,000+ of them in seconds.
-                    It's also an encrypted secrets vault (AES-256-GCM) with one-time sharing and a .NET AOT CLI
-                    that injects tokens into CI/CD pipelines.
-                  </div>
-                  <div class="xp-project-tech-tags">
-                    <span>Next.js</span><span>ElysiaJS</span><span>PostgreSQL</span><span>Prisma</span><span>Bun</span><span>.NET
-                    AOT</span><span>Docker</span>
-                  </div>
-                  <div class="xp-research-links">
-                    <a href="https://depvault.com" target="_blank"><i class="fas fa-external-link-alt"></i> Live Site</a>
-                    <a href="https://github.com/suxrobGM/depvault" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                  </div>
-                </div>
-              </div>
-              <hr class="xp-divider" style="margin: 0;">
-              <div class="xp-project-detail">
-                <img src="/images/portfolio/med-image-scanner.jpg" alt="Med Image Scanner" class="xp-project-detail-img"
-                     loading="lazy" />
-                <div class="xp-project-detail-body">
-                  <div class="xp-project-detail-title">Med Image Scanner</div>
-                  <div class="xp-project-detail-desc">
-                    Pulls X-ray, CT, and MRI studies from hospital PACS over DICOM and runs PyTorch detectors on
-                    them, for example pneumonia on chest X-rays and brain bleeds on head CTs. Results show up as
-                    overlays in the OHIF viewer. Scans are de-identified on the fly, and access is role-based
-                    and logged. Built with FastAPI and Next.js.
-                  </div>
-                  <div class="xp-project-tech-tags">
-                    <span>Python</span><span>FastAPI</span><span>Next.js</span><span>PyTorch</span><span>OHIF</span>
-                  </div>
-                  <div class="xp-research-links">
-                    <a href="https://github.com/suxrobgm/med-image-scanner" target="_blank"><i class="fab fa-github"></i>
-                      GitHub</a>
-                    </div>
-                  </div>
-                </div>
-                <hr class="xp-divider" style="margin: 0;">
-                <div class="xp-project-detail">
-                  <img src="/images/portfolio/chessmate.jpg" alt="ChessMate" class="xp-project-detail-img" loading="lazy" />
-                  <div class="xp-project-detail-body">
-                    <div class="xp-project-detail-title">ChessMate</div>
-                    <div class="xp-project-detail-desc">
-                      Online chess against people or an AI, rated or casual. Moves travel over WebSockets, so
-                      both players' boards stay in sync.
-                    </div>
-                    <div class="xp-project-tech-tags">
-                      <span>Spring Boot</span><span>Angular</span><span>WebSocket</span><span>Auth0</span>
-                    </div>
-                    <div class="xp-research-links">
-                      <a href="https://github.com/suxrobgm/online-chess" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-                    </div>
-                  </div>
-                </div>
-                <hr class="xp-divider" style="margin: 0;">
-                <div class="xp-project-detail">
-                  <div class="xp-project-detail-body">
-                    <div class="xp-project-detail-title">Bookshelf Scanner</div>
-                    <div class="xp-project-detail-desc">
-                      Snap a photo of a bookshelf and get back a list of the books. YOLO picks out each spine,
-                      Moondream2 (via llama.cpp) reads the title and author, and an Angular UI lets you fix
-                      mistakes and export. It won an Outstanding Project Award at Northeastern.
-                    </div>
-                    <div class="xp-project-tech-tags">
-                      <span>Python</span><span>YOLO</span><span>Moondream2</span><span>FastAPI</span>
-                    </div>
-                    <div class="xp-research-links">
-                      <a href="https://github.com/suxrobgm/bookshelf-scanner" target="_blank"><i class="fab fa-github"></i>
-                        GitHub</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="xp-statusbar">
-                  <span class="xp-statusbar-section">6 objects</span>
-                  <span class="xp-statusbar-section"><i class="fas fa-folder"></i> My Documents</span>
-                </div>
-              </section>
+          }
+        </div>
+      </div>
+    </ChildContent>
+    <Status>
+      <span class="xp-statusbar-section">@PortfolioData.Education.Count records</span>
+      <span class="xp-statusbar-section"><i class="fas fa-graduation-cap"></i> Academic Records</span>
+    </Status>
+  </XpWindow>
 
-              <!-- ============================================================ -->
-              <!-- Education Section - School Records Window -->
-              <!-- ============================================================ -->
-              <section class="xp-window" id="education">
-                <div class="xp-titlebar">
-                  <div class="xp-titlebar-left">
-                    <div class="xp-titlebar-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <span class="xp-titlebar-text">Education - Academic Records</span>
+  <!-- Contact - Send Message dialog -->
+  <XpWindow Id="contact" Icon="fas fa-envelope" Title="Get In Touch - Send Message">
+    <div class="xp-window-body">
+      <div class="xp-welcome-banner">
+        <i class="fas fa-envelope-open-text" style="font-size: 28px;"></i>
+        <div>
+          <h3>Say Hello</h3>
+          <p>Use the form, or reach me by email, LinkedIn, or Telegram.</p>
+        </div>
+      </div>
+      <div class="xp-dialog-body">
+        <div class="xp-contact-info-column">
+          <div class="xp-groupbox">
+            <span class="xp-groupbox-title">Contact Information</span>
+            <ul class="xp-contact-info-list">
+              @foreach (var link in PortfolioData.Contacts)
+              {
+                var external = link.Url.StartsWith("http");
+                <li class="xp-contact-info-item">
+                  <div class="xp-contact-info-icon"><i class="@link.Icon"></i></div>
+                  <div class="xp-contact-info-text">
+                    <p>@link.Label</p>
+                    <a href="@link.Url" target="@(external ? "_blank" : null)" rel="@(external ? "noopener" : null)">@link.Display</a>
                   </div>
-                  <div class="xp-window-controls">
-                    <span class="xp-btn-minimize">_</span>
-                    <span class="xp-btn-maximize">&#9723;</span>
-                    <span class="xp-btn-close">&#10005;</span>
-                  </div>
-                </div>
-                <div class="xp-window-body">
-                  <div class="xp-education-grid">
-                    <div class="xp-education-card">
-                      <div class="xp-education-degree"><i class="fas fa-university"
-                                                            style="color: var(--xp-title-blue-light); margin-right: 6px;"></i>M.S.
-                        Computer Science
-                      </div>
-                      <div class="xp-education-school">Northeastern University, Boston, MA</div>
-                      <div class="xp-education-date">January 2024 - May 2026</div>
-                      <span class="xp-education-gpa">GPA: 4.0/4.0</span>
-                    </div>
-                    <div class="xp-education-card">
-                      <div class="xp-education-degree"><i class="fas fa-university"
-                                                            style="color: var(--xp-title-blue-light); margin-right: 6px;"></i>B.S.
-                        Computer Science
-                      </div>
-                      <div class="xp-education-school">Suffolk University, Boston, MA</div>
-                      <div class="xp-education-date">September 2021 - May 2023</div>
-                      <span class="xp-education-gpa">Cum Laude | GPA: 3.5/4.0</span>
-                    </div>
-                    <div class="xp-education-card">
-                      <div class="xp-education-degree"><i class="fas fa-university"
-                                                            style="color: var(--xp-title-blue-light); margin-right: 6px;"></i>B.S.
-                        Computer Science
-                      </div>
-                      <div class="xp-education-school">INTI International College, Malaysia</div>
-                      <div class="xp-education-date">September 2019 - July 2021</div>
-                    </div>
-                    <div class="xp-education-card">
-                      <div class="xp-education-degree"><i class="fas fa-university"
-                                                            style="color: var(--xp-title-blue-light); margin-right: 6px;"></i>B.S.
-                        Software Engineering
-                      </div>
-                      <div class="xp-education-school">TUIT, Uzbekistan</div>
-                      <div class="xp-education-date">September 2017 - June 2019</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="xp-statusbar">
-                  <span class="xp-statusbar-section">4 records</span>
-                  <span class="xp-statusbar-section"><i class="fas fa-graduation-cap"></i> Academic Records</span>
-                </div>
-              </section>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+        <div class="xp-contact-form-wrapper">
+          <div class="xp-groupbox">
+            <span class="xp-groupbox-title">Send a Message</span>
+            <ContactForm CaptchaSiteKey="@CaptchaSiteKey" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </XpWindow>
 
-              <!-- ============================================================ -->
-              <!-- Contact Section - Dialog Box Window -->
-              <!-- ============================================================ -->
-              <section class="xp-window" id="contact">
-                <div class="xp-titlebar">
-                  <div class="xp-titlebar-left">
-                    <div class="xp-titlebar-icon"><i class="fas fa-envelope"></i></div>
-                    <span class="xp-titlebar-text">Get In Touch - Send Message</span>
-                  </div>
-                  <div class="xp-window-controls">
-                    <span class="xp-btn-minimize">_</span>
-                    <span class="xp-btn-maximize">&#9723;</span>
-                    <span class="xp-btn-close">&#10005;</span>
-                  </div>
-                </div>
-                <div class="xp-window-body">
-                  <div class="xp-welcome-banner">
-                    <i class="fas fa-envelope-open-text" style="font-size: 28px;"></i>
-                    <div>
-                      <h3>Say Hello</h3>
-                      <p>Use the form, or reach me by email, LinkedIn, or Telegram.</p>
-                    </div>
-                  </div>
-                  <div class="xp-dialog-body">
-                    <div class="xp-contact-info-column">
-                      <div class="xp-groupbox">
-                        <span class="xp-groupbox-title">Contact Information</span>
-                        <ul class="xp-contact-info-list">
-                          <li class="xp-contact-info-item">
-                            <div class="xp-contact-info-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="xp-contact-info-text">
-                              <p>Email</p>
-                              <a href="mailto:silyosbekov@gmail.com">silyosbekov@gmail.com</a>
-                            </div>
-                          </li>
-                          <li class="xp-contact-info-item">
-                            <div class="xp-contact-info-icon"><i class="fab fa-linkedin"></i></div>
-                            <div class="xp-contact-info-text">
-                              <p>LinkedIn</p>
-                              <a href="https://linkedin.com/in/suxrobgm" target="_blank">linkedin.com/in/suxrobgm</a>
-                            </div>
-                          </li>
-                          <li class="xp-contact-info-item">
-                            <div class="xp-contact-info-icon"><i class="fab fa-github"></i></div>
-                            <div class="xp-contact-info-text">
-                              <p>GitHub</p>
-                              <a href="https://github.com/suxrobgm" target="_blank">github.com/suxrobgm</a>
-                            </div>
-                          </li>
-                          <li class="xp-contact-info-item">
-                            <div class="xp-contact-info-icon"><i class="fab fa-telegram"></i></div>
-                            <div class="xp-contact-info-text">
-                              <p>Telegram</p>
-                              <a href="https://t.me/suxrobgm" target="_blank">@@suxrobgm</a>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="xp-contact-form-wrapper">
-                      <div class="xp-groupbox">
-                        <span class="xp-groupbox-title">Send a Message</span>
-                        <ContactForm CaptchaSiteKey="@CaptchaSiteKey" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
+  <!-- Footer -->
+  <div class="xp-footer">
+    <div class="xp-footer-logo">SUKHROB.DEV</div>
+    <div class="xp-social-links">
+      @foreach (var link in PortfolioData.Socials)
+      {
+        <a href="@link.Url" target="_blank" rel="noopener" aria-label="@link.Label"><i class="@link.Icon"></i></a>
+      }
+    </div>
+    <p class="xp-footer-copyright">&copy; @CurrentYear @PortfolioData.FullName. All rights reserved.</p>
+  </div>
+</div>
 
-              <!-- ============================================================ -->
-              <!-- Footer -->
-              <!-- ============================================================ -->
-              <div class="xp-footer">
-                <div class="xp-footer-logo">SUKHROB.DEV</div>
-                <div class="xp-social-links">
-                  <a href="https://github.com/suxrobgm" target="_blank" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                  </a>
-                  <a href="https://linkedin.com/in/suxrobgm" target="_blank" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
-                  <a href="https://instagram.com/suxrob_gm" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i>
-                  </a>
-                  <a href="https://t.me/suxrobgm" target="_blank" aria-label="Telegram">
-                    <i class="fab fa-telegram"></i>
-                  </a>
-                </div>
-                <p class="xp-footer-copyright">&copy; @CurrentYear Sukhrob Ilyosbekov. All rights reserved.</p>
-              </div>
+<ThemeSwitcher CurrentTheme="xp" />
 
-            </div>
-
-            <ThemeSwitcher CurrentTheme="xp" />
-
-            <!-- ============================================================ -->
-            <!-- XP Taskbar (replaces traditional navbar) -->
-            <!-- ============================================================ -->
-            <div class="xp-taskbar">
-              <div class="xp-start-btn" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'})">
-                <img src="images/windows-xp-icon.png" alt="Windows XP Icon" class="xp-start-icon" />
-                <span class="xp-start-text">start</span>
-              </div>
-              <div class="xp-quick-launch">
-                <a href="/xp#about" title="About Me"><i class="fas fa-user"></i></a>
-                <a href="/xp#skills" title="Skills"><i class="fas fa-code"></i></a>
-                <a href="/xp#experience" title="Experience"><i class="fas fa-briefcase"></i></a>
-                <a href="/xp#hire" title="Hire Me"><i class="fas fa-shield-halved"></i></a>
-                <a href="/xp#research" title="Research"><i class="fas fa-microscope"></i></a>
-                <a href="/xp#testimonials" title="Reviews"><i class="fas fa-envelope-open"></i></a>
-                <a href="/xp#projects" title="Projects"><i class="fas fa-folder"></i></a>
-                <a href="/xp#contact" title="Contact"><i class="fas fa-envelope"></i></a>
-              </div>
-              <div class="xp-task-area">
-                <a href="/xp#about" class="xp-task-btn"><i class="fas fa-user"></i> System Properties</a>
-                <a href="/xp#skills" class="xp-task-btn"><i class="fas fa-code"></i> Add/Remove Programs</a>
-                <a href="/xp#hire" class="xp-task-btn"><i class="fas fa-shield-halved"></i> Windows Update</a>
-                <a href="/xp#experience" class="xp-task-btn"><i class="fas fa-briefcase"></i> Explorer</a>
-                <a href="/xp#testimonials" class="xp-task-btn"><i class="fas fa-envelope-open"></i> Outlook Express</a>
-                <a href="/xp#projects" class="xp-task-btn"><i class="fas fa-folder"></i> My Documents</a>
-                <a href="/xp#contact" class="xp-task-btn"><i class="fas fa-envelope"></i> Send Message</a>
-              </div>
-              <div class="xp-system-tray">
-                <a href="https://github.com/suxrobgm" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/suxrobgm" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <span class="xp-clock" id="xpClock">12:00 PM</span>
-              </div>
-            </div>
+<!-- Taskbar (replaces a traditional navbar) -->
+<div class="xp-taskbar">
+  <a href="#home" class="xp-start-btn" aria-label="Back to top">
+    <img src="images/windows-xp-icon.png" alt="" class="xp-start-icon" />
+    <span class="xp-start-text">start</span>
+  </a>
+  <div class="xp-quick-launch">
+    <a href="#about" title="About Me"><i class="fas fa-user"></i></a>
+    <a href="#skills" title="Skills"><i class="fas fa-code"></i></a>
+    <a href="#experience" title="Experience"><i class="fas fa-briefcase"></i></a>
+    <a href="#hire" title="Hire Me"><i class="fas fa-shield-halved"></i></a>
+    <a href="#research" title="Research"><i class="fas fa-microscope"></i></a>
+    <a href="#projects" title="Projects"><i class="fas fa-folder"></i></a>
+    <a href="#education" title="Education"><i class="fas fa-graduation-cap"></i></a>
+    <a href="#contact" title="Contact"><i class="fas fa-envelope"></i></a>
+  </div>
+  <div class="xp-task-area">
+    <a href="#about" class="xp-task-btn"><i class="fas fa-user"></i> System Properties</a>
+    <a href="#skills" class="xp-task-btn"><i class="fas fa-code"></i> Add/Remove Programs</a>
+    <a href="#hire" class="xp-task-btn"><i class="fas fa-shield-halved"></i> Windows Update</a>
+    <a href="#experience" class="xp-task-btn"><i class="fas fa-briefcase"></i> Explorer</a>
+    <a href="#projects" class="xp-task-btn"><i class="fas fa-folder"></i> My Documents</a>
+    <a href="#contact" class="xp-task-btn"><i class="fas fa-envelope"></i> Send Message</a>
+  </div>
+  <div class="xp-system-tray">
+    <a href="https://github.com/suxrobgm" target="_blank" rel="noopener" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://linkedin.com/in/suxrobgm" target="_blank" rel="noopener" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <span class="xp-clock" id="xpClock">12:00 PM</span>
+  </div>
+</div>

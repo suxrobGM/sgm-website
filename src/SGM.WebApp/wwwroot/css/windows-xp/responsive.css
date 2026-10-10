@@ -273,7 +273,7 @@
   }
 }
 
-/* Hire Me + Testimonials responsive */
+/* Hire Me responsive */
 @media (max-width: 768px) {
     .xp-hire-body {
         flex-direction: column;
@@ -289,11 +289,6 @@
     }
     .xp-services-list {
         justify-content: center;
-    }
-    .xp-email-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
     }
     .xp-project-detail {
         flex-direction: column;

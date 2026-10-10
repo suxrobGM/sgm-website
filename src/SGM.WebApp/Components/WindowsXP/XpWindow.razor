@@ -1,0 +1,55 @@
+@* XP window chrome: title bar with icon and (decorative) controls, optional menu bar and status bar.
+   ChildContent goes between the menu bar and the status bar, so callers add their own toolbars and body. *@
+<section class="xp-window @Class" id="@Id">
+  <div class="xp-titlebar">
+    <div class="xp-titlebar-left">
+      <div class="xp-titlebar-icon"><i class="@Icon"></i></div>
+      <span class="xp-titlebar-text">@Title</span>
+    </div>
+    <div class="xp-window-controls" aria-hidden="true">
+      <span class="xp-btn-minimize">_</span>
+      <span class="xp-btn-maximize">&#9723;</span>
+      <span class="xp-btn-close">&#10005;</span>
+    </div>
+  </div>
+  @if (Menu is { Length: > 0 })
+  {
+    <div class="xp-menubar">
+      @foreach (var item in Menu)
+      {
+        <span class="xp-menu-item">@item</span>
+      }
+    </div>
+  }
+  @ChildContent
+  @if (Status is not null)
+  {
+    <div class="xp-statusbar">@Status</div>
+  }
+</section>
+
+@code {
+
+  [Parameter, EditorRequired]
+  public required string Id { get; set; }
+
+  [Parameter, EditorRequired]
+  public required string Title { get; set; }
+
+  /// <summary>Font Awesome classes for the title bar icon.</summary>
+  [Parameter, EditorRequired]
+  public required string Icon { get; set; }
+
+  [Parameter]
+  public string? Class { get; set; }
+
+  [Parameter]
+  public string[]? Menu { get; set; }
+
+  [Parameter]
+  public RenderFragment? Status { get; set; }
+
+  [Parameter]
+  public RenderFragment? ChildContent { get; set; }
+
+}
