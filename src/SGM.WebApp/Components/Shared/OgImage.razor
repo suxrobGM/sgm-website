@@ -1,0 +1,19 @@
+@* Link-preview image for a page; render it inside <HeadContent>. The ?v= hash makes
+   social sites refetch the card when the file changes. *@
+@inject StaticAssetVersion AssetVersion
+
+<meta property="og:image" content="https://suxrobgm.net/@AssetVersion.Url(Path)" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="@Alt" />
+
+@code {
+
+  /// <summary>Path under wwwroot of a 1200x630 image.</summary>
+  [Parameter, EditorRequired]
+  public required string Path { get; set; }
+
+  [Parameter, EditorRequired]
+  public required string Alt { get; set; }
+
+}

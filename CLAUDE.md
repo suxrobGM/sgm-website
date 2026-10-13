@@ -86,6 +86,10 @@ stdin), using `images/myself-vc.jpg` as the character reference and an existing 
 reference. Convert the PNG output to WebP before committing (missions 640px, properties 1000px,
 hero about 1536px) and don't commit the PNGs.
 
+Link-preview cards live in `wwwroot/images/og/` (`home`, `xp`, `research`) as 1200x630 JPGs, since
+some scrapers skip WebP. Each page adds them with `<OgImage>` inside `<HeadContent>`. Generate at
+1536x1024 with text kept out of the top and bottom 110px, then crop to 1.91:1 with ffmpeg.
+
 ## GitHub profile
 
 `gh-profile/` mirrors the `suxrobGM/suxrobGM` repo; `.github/workflows/sync-profile.yml` copies it
