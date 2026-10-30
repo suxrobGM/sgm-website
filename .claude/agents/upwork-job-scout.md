@@ -113,12 +113,12 @@ Score each remaining job from 0 to 10:
 
 - **Fit (0–4):** how close it is to work he's done, matched to a specific item.
   - Computer vision and medical imaging → Med Image Scanner, MelanomaNet, MorphoCLIP
-  - LLM agents and RAG → LogisticsX dispatch agent, JobPilot, OGStack
+  - LLM agents and RAG → LogisticsX dispatch agent, JobPilot
   - GenAI images → his current Upwork image-generation contracts, the Localize Don't Beautify paper
   - .NET + AI → AllFactors, LogisticsX
   - Healthcare/HIPAA → EmTech Care Labs
   - .NET backend, Blazor, legacy migrations → AllFactors (Web Forms to Blazor WebAssembly, SignalR live feed), LogisticsX (multi-tenant .NET 10, DDD/CQRS)
-  - Full-stack TypeScript → Meat.gg (ElysiaJS, Next.js, 50K+ players), DepVault, OGStack, EmTech monorepo on AWS
+  - Full-stack TypeScript → Meat.gg (ElysiaJS, Next.js, 50K+ players), DepVault, EmTech monorepo on AWS
   - Angular → LogisticsX portals, Bookshelf Scanner, Smart Meal admin dashboard
   - Python backend → Med Image Scanner (FastAPI), the EmTech ML services
   - Kiosk, hardware or point-of-sale → Smart Meal Service (C# kiosk and robotic cashier)
