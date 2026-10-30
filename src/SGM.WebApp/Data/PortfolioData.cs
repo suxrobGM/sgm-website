@@ -96,18 +96,33 @@ public static class PortfolioData
     [
         new Job
         {
+            Title = "Generative AI Engineer",
+            Company = "Sidebench",
+            Location = "Los Angeles, CA",
+            Period = "Jun 2026 - Present",
+            Slug = "sidebench",
+            Current = true,
+            Summary =
+                "I build the proofs of concept that tell a client whether off-the-shelf models can do the job " +
+                "before they commit to building it. One previews cosmetic surgery on a face photo with about ten " +
+                "image-editing models, using landmark masks so the edit stays on the treated area and ArcFace to " +
+                "check the person still looks like themselves. Another compared image models and LLMs for " +
+                "illustrating and writing social stories for autistic children, with every result shown in the " +
+                "report, failures included.",
+        },
+        new Job
+        {
             Title = "Software Engineer",
             Company = "EmTech Care Labs",
             Location = "Portland, ME",
-            Period = "Jan 2025 - Present",
+            Period = "Jan 2025 - Jun 2025",
             Slug = "emtech",
-            Current = true,
             Summary =
                 "Lead engineer on an Alzheimer's care platform on AWS, where 200+ caregivers and patients message " +
                 "each other and share care plans. I folded three web and mobile codebases into one TypeScript " +
                 "monorepo and did the security work (encryption, audit logs, access control) that got us through an " +
-                "outside HIPAA readiness review with no critical findings. The ML features are mine too: a " +
-                "decline-risk model and an NLP pipeline for clinical notes. I also mentor two junior engineers.",
+                "outside HIPAA readiness review with no critical findings. The ML features were mine too: a " +
+                "decline-risk model and an NLP pipeline for clinical notes. I also mentored two junior engineers.",
         },
         new Job
         {
