@@ -104,7 +104,7 @@ public static class PortfolioData
             Current = true,
             Summary =
                 "I build the proofs of concept that tell a client whether off-the-shelf models can do the job " +
-                "before they commit to building it. One previews cosmetic surgery on a face photo with about ten " +
+                "before they commit to building it. One previews cosmetic surgery on a face photo with several " +
                 "image-editing models, using landmark masks so the edit stays on the treated area and ArcFace to " +
                 "check the person still looks like themselves. Another compared image models and LLMs for " +
                 "illustrating and writing social stories for autistic children, with every result shown in the " +
