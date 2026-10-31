@@ -79,17 +79,6 @@ To add a theme, add a page that inherits `HomePageBase`, reads `PortfolioData`, 
 ./resume/build.ps1 aiml -NoSync # compile without touching wwwroot
 ```
 
-## Vice City art
-
-Generated with Codex CLI's `imagegen` skill (`codex exec -i <reference image> -` with a prompt on
-stdin), using `images/myself-vc.jpg` as the character reference and an existing image as the style
-reference. Convert the PNG output to WebP before committing (missions 640px, properties 1000px,
-hero about 1536px) and don't commit the PNGs.
-
-Link-preview cards live in `wwwroot/images/og/` (`home`, `xp`, `research`) as 1200x630 JPGs, since
-some scrapers skip WebP. Each page adds them with `<OgImage>` inside `<HeadContent>`. Generate at
-1536x1024 with text kept out of the top and bottom 110px, then crop to 1.91:1 with ffmpeg.
-
 ## GitHub profile
 
 `gh-profile/` mirrors the `suxrobGM/suxrobGM` repo; `.github/workflows/sync-profile.yml` copies it
