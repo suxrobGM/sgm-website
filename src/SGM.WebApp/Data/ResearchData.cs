@@ -63,7 +63,7 @@ public static class ResearchData
         {
             Title = "MorphoCLIP: Text-Supervised Contrastive Learning for Perturbation Matching in Cell Painting Images",
             Authors = "S. Ilyosbekov, S. Gajjar, R. Jin",
-            Venue = "arXiv preprint, 2026",
+            Venue = "Under review, MELBA, 2026",
             ArxivId = "2608.22690",
             RepoUrl = "https://github.com/suxrobgm/morphoclip",
             Summary =
