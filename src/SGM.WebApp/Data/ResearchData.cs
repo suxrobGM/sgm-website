@@ -54,10 +54,10 @@ public static class ResearchData
 
     public const string ResearchStatement =
         "I work on computer vision for medicine and biology. I'm most interested in models whose " +
-        "reasoning a clinician or biologist can check against what they already know, and in " +
-        "image-text representations that hold up on data from new sites. Specifically, I want to " +
-        "study how shifts in staining, scanners, or imaging sites degrade learned representations, " +
-        "and how to detect that shift at test time so the model flags its prediction instead of guessing.";
+        "reasoning a clinician or biologist can check against what they already know. I also want " +
+        "to study why learned representations degrade when images come from a new lab, scanner, " +
+        "or hospital, and how a model can detect that shift at test time and flag its prediction " +
+        "instead of guessing.";
 
     public static readonly IReadOnlyList<Publication> Publications =
     [

@@ -84,9 +84,9 @@ public static class PortfolioData
     public static readonly string[] About =
     [
         "I'm a software engineer and ML researcher. I build web products in .NET and TypeScript and train models in " +
-        "PyTorch, and I like owning both halves so the model actually ships instead of staying in a notebook.",
-        "My research is in computer vision for medicine and biology, focused on models experts can check. Papers and " +
-        "code are on the <a href=\"/research\">research page</a>.",
+        "PyTorch, and I like owning both halves so the model ships instead of staying in a notebook.",
+        "My research is in computer vision for medicine and biology, focused on models whose decisions a doctor or " +
+        "biologist can verify. Papers and code are on the <a href=\"/research\">research page</a>.",
     ];
 
     public static readonly string[] Services = ["Full-Stack Development", "Machine Learning", "Game Development"];
