@@ -53,9 +53,11 @@ public static class ResearchData
         "papers, code, and BibTeX.";
 
     public const string ResearchStatement =
-        "My research is in computer vision for medicine and biology. I'm most interested in " +
-        "models whose decisions an expert can check, and in representations that carry over to " +
-        "images the model wasn't trained on.";
+        "I work on computer vision for medicine and biology. I'm most interested in models whose " +
+        "reasoning a clinician or biologist can check against what they already know, and in " +
+        "image-text representations that hold up on data from new sites. Specifically, I want to " +
+        "study how shifts in staining, scanners, or imaging sites degrade learned representations, " +
+        "and how to detect that shift at test time so the model flags its prediction instead of guessing.";
 
     public static readonly IReadOnlyList<Publication> Publications =
     [

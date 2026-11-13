@@ -83,11 +83,10 @@ public static class PortfolioData
     /// <summary>About-me paragraphs shown by every theme. Trusted HTML (the last one links to /research).</summary>
     public static readonly string[] About =
     [
-        "I'm a software developer and ML engineer. My main stack is .NET, TypeScript, and Python: C# and ASP.NET Core " +
-        "on the backend, React, Angular, or Next.js on the frontend, and PyTorch whenever there's a model to train.",
-        "I like owning both halves of a project, the model and the product around it, so the ML part ships instead of " +
-        "staying in a notebook. My research is in computer vision for medical images, and the papers and code are on " +
-        "the <a href=\"/research\">research page</a>.",
+        "I'm a software engineer and ML researcher. I build web products in .NET and TypeScript and train models in " +
+        "PyTorch, and I like owning both halves so the model actually ships instead of staying in a notebook.",
+        "My research is in computer vision for medicine and biology, focused on models experts can check. Papers and " +
+        "code are on the <a href=\"/research\">research page</a>.",
     ];
 
     public static readonly string[] Services = ["Full-Stack Development", "Machine Learning", "Game Development"];
