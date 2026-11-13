@@ -174,8 +174,7 @@ public static class ResearchData
             Summary =
                 "Take a photo of a bookshelf and get a list of the books on it. YOLO instance segmentation " +
                 "finds each spine, and Moondream2, running through llama.cpp, reads the title and author. " +
-                "FastAPI on the back end, with an Angular UI for fixing mistakes and exporting. Won an " +
-                "Outstanding Project Award at Northeastern.",
+                "FastAPI on the back end, with an Angular UI for fixing mistakes and exporting.",
             RepoUrl = "https://github.com/suxrobgm/bookshelf-scanner",
             Tags = ["YOLO", "Moondream2 VLM", "llama.cpp", "FastAPI"],
         },

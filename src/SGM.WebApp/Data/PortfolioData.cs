@@ -352,11 +352,10 @@ public static class PortfolioData
         {
             Title = "Bookshelf Scanner",
             Slug = "bookshelf",
-            Highlight = "Outstanding Project Award, Northeastern",
+            Highlight = "Spine detection + VLM title reading",
             Summary =
                 "Snap a photo of a bookshelf and get back a list of the books. YOLO picks out each spine, Moondream2 " +
-                "(via llama.cpp) reads the title and author, and an Angular UI lets you fix mistakes and export. " +
-                "It won an Outstanding Project Award at Northeastern.",
+                "(via llama.cpp) reads the title and author, and an Angular UI lets you fix mistakes and export.",
             Tags = ["Python", "YOLO", "Moondream2", "FastAPI"],
             RepoUrl = "https://github.com/suxrobgm/bookshelf-scanner",
         },
