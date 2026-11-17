@@ -32,19 +32,6 @@ I do computer vision research, mostly for medicine and biology. Abstracts and Bi
 > Matches microscope images of treated cells to a plain-language description of the drug or gene behind the change. The encoders stay frozen and only small heads train, so one consumer GPU is enough.
 >
 > <small>**CPJUMP1** · 51 plates · 3M+ images</small><br clear="right"/>
-
-> <img align="right" width="38%" src="./assets/paper-localize.webp" alt="One face edited three ways: input, prompt only, and masked composite"/>
->
-> ### [Localize, Don't Beautify](https://arxiv.org/abs/2608.02841)
->
-> [![arXiv](https://img.shields.io/badge/arXiv-2608.02841-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2608.02841)
-> [![Code](https://img.shields.io/badge/-Code-181717?style=flat-square&logo=github)](https://github.com/suxrobGM/localize-dont-beautify)
->
-> Commercial image editors asked to change one facial feature tend to retouch the whole face. I compared three ways to keep the edit local, and plain masking did better than prompt-only steering.
->
-> <small>**6 editors** · 196 edits · identity scored</small><br clear="right"/>
-
-> <img align="right" width="38%" src="./assets/paper-melanoma.webp" alt="A skin lesion with its GradCAM++ heatmap and ABCDE criteria checks"/>
 >
 > ### [MelanomaNet](https://arxiv.org/abs/2512.09289)
 >
