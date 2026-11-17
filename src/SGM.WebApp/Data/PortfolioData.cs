@@ -222,19 +222,6 @@ public static class PortfolioData
         },
         new ResearchHighlight
         {
-            Title = "Localize, Don't Beautify: Controlling Image-Editing APIs",
-            ShortName = "Localize, Don't Beautify",
-            Icon = "fas fa-image",
-            Summary =
-                "Image editors asked to change one facial feature tend to retouch the whole face, which ruins a " +
-                "surgical preview. I tried three client-side fixes across six commercial editors and 196 edits, " +
-                "checking identity with ArcFace and whether each edit stayed put. Plain masked compositing worked " +
-                "best.",
-            Tags = ["Image-Editing APIs", "Inpainting", "ArcFace"],
-            PaperUrl = "https://arxiv.org/abs/2608.02841",
-        },
-        new ResearchHighlight
-        {
             Title = "MelanomaNet: Explainable Skin Lesion Classification",
             ShortName = "MelanomaNet",
             Icon = "fas fa-microscope",
