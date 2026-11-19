@@ -111,7 +111,7 @@
 
 %----------RESEARCH INTERESTS----------
 \section{Research Interests}
-I work on computer vision for medicine and biology. I'm most interested in models whose reasoning a clinician or biologist can check against what they already know. I also want to study why learned representations degrade when images come from a new lab, scanner, or hospital, and how a model can detect that shift at test time and flag its prediction instead of guessing.
+My research is in computer vision for medicine and biology. I want to build models clinicians and biologists can trust: models whose reasoning they can check against what they already know, and that recognize when images come from a new lab, scanner, or hospital and say so instead of failing silently.
 
 %----------EDUCATION----------
 \section{Education}
@@ -142,10 +142,9 @@ I work on computer vision for medicine and biology. I'm most interested in model
 
 %----------AWARDS & HONORS----------
 \section{Awards \& Honors}
-% TODO: add the year to each award so the list is consistent.
 \begin{itemize}[itemsep=2pt]
     \item \textbf{Associate Member,} Sigma Xi, The Scientific Research Honor Society, 2026
-    \item \textbf{National Physics Olympiad, 1st Place,} Uzbekistan; first student from my high school to win nationally
+    \item \textbf{National Physics Olympiad, 1st Place,} Uzbekistan, 2012
 \end{itemize}
 
 %----------RESEARCH----------
@@ -158,7 +157,7 @@ I work on computer vision for medicine and biology. I'm most interested in model
     \item Learns a shared space for Cell Painting images and text, so a compound or gene perturbation can be retrieved from a written description of it, and the other way round.
     \item DINOv3 and BioClinical ModernBERT stay frozen and only the projection heads train, which fits on a single consumer GPU.
     \item Evaluated on CPJUMP1: 51 plates, 3M+ images, 303 compounds, and 160 genes. Batch correction in embedding space keeps the model from simply recognizing plates.
-    \item First author, with S.\ Gajjar and R.\ Jin. I led model design, training, and evaluation.
+    \item Led model design, training, and evaluation.
 \end{itemize}
 
 \projectEntryPaperOnly{Localize, Don't Beautify: Client-Side Control of Image-Editing APIs}{Image-editing APIs, inpainting models, ArcFace, prompt engineering}
@@ -166,7 +165,7 @@ I work on computer vision for medicine and biology. I'm most interested in model
 \begin{itemize}
     \item Studies how far a client can control a black-box editing API, using cosmetic-surgery previews as the test case.
     \item I ran prompt steering, masked compositing, and model-based inpainting through six commercial editors on 196 facelift and rhinoplasty edits.
-    \item Masked compositing, the simplest of the three, kept edits localized best, with identity preservation scored by ArcFace. Sole author.
+    \item Masked compositing, the simplest of the three, kept edits localized best, with identity preservation scored by ArcFace.
 \end{itemize}
 
 \projectEntryPaper{MelanomaNet: Explainable Deep Learning for Skin Lesion Classification}{PyTorch, EfficientNet V2, focal loss, GradCAM++, OpenCV, ISIC 2019}
@@ -174,7 +173,7 @@ I work on computer vision for medicine and biology. I'm most interested in model
 {https://arxiv.org/abs/2512.09289}
 \begin{itemize}
     \item EfficientNet V2 (384$\times$384, focal loss) over all nine ISIC 2019 classes, reaching 0.86 weighted F1 on 25K dermoscopic images.
-    \item Splits GradCAM++ attention along the ABCDE criteria. Asymmetry, border irregularity, color variation (K-means), and diameter come straight from the lesion mask, and the paper scores how closely the model's attention agrees with each one. Sole author.
+    \item Splits GradCAM++ attention along the ABCDE criteria. Asymmetry, border irregularity, color variation (K-means), and diameter come straight from the lesion mask, and the paper scores how closely the model's attention agrees with each one.
 \end{itemize}
 
 %----------PROJECTS----------
