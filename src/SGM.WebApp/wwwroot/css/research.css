@@ -128,6 +128,13 @@ body {
   margin: 0;
 }
 
+.rp-statement .rp-keywords {
+  margin-top: 8px;
+  color: var(--rp-muted);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 .rp h2 {
   margin: 42px 0 6px;
   padding-bottom: 6px;

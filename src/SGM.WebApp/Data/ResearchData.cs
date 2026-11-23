@@ -53,10 +53,18 @@ public static class ResearchData
         "papers, code, and BibTeX.";
 
     public const string ResearchStatement =
-        "My research is in computer vision for medicine and biology. I want to build models " +
-        "clinicians and biologists can trust: models whose reasoning they can check against what " +
-        "they already know, and that recognize when images come from a new lab, scanner, or " +
-        "hospital and say so instead of failing silently.";
+        "My research is in computer vision for medicine and biology, focused on models that experts " +
+        "can trust: predictions they can check against domain knowledge, and models that notice when " +
+        "images come from an unfamiliar lab, scanner, or hospital instead of failing silently.";
+
+    /// <summary>Topic keywords shown under the research statement.</summary>
+    public static readonly string[] ResearchKeywords =
+    [
+        "Interpretability",
+        "Distribution shift and OOD detection",
+        "Image-text representation learning",
+        "Medical imaging",
+    ];
 
     public static readonly IReadOnlyList<Publication> Publications =
     [
@@ -154,7 +162,7 @@ public static class ResearchData
             Title = "LightDepth: Lightweight Monocular Depth Estimation",
             Summary =
                 "Depth from a single image, using a ResNet18 encoder and a U-Net decoder with skip " +
-                "connections. Compared with Depth Anything V2 it has 42% fewer parameters (14.3M vs. 24.8M), " +
+                "connections. Compared with Depth Anything V2 Small it has 42% fewer parameters (14.3M vs. 24.8M), " +
                 "runs 72% faster, and has lower relative error on NYU Depth V2.",
             RepoUrl = "https://github.com/suxrobgm/lightdepth",
             Tags = ["PyTorch", "ResNet18", "U-Net", "NYU Depth V2"],

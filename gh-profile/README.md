@@ -85,7 +85,7 @@ I do computer vision research, mostly for medicine and biology. Abstracts and Bi
 
 - **[Med Image Scanner](https://github.com/suxrobgm/med-image-scanner)** pulls studies from a hospital's PACS over DICOM, runs detection models on them, and overlays the predictions in the viewer. Built for HIPAA.
 - **[Bookshelf Scanner](https://github.com/suxrobgm/bookshelf-scanner)** turns a photo of a bookshelf into a list of books. YOLO finds each spine and a vision-language model reads the title and author.
-- **[LightDepth](https://github.com/suxrobgm/lightdepth)** estimates depth from a single image with about half the parameters of Depth Anything V2, runs 72% faster, and has slightly lower error on NYU Depth V2.
+- **[LightDepth](https://github.com/suxrobgm/lightdepth)** estimates depth from a single image with 42% fewer parameters than Depth Anything V2 Small, runs 72% faster, and has slightly lower error on NYU Depth V2.
 - **[FSRCNN](https://github.com/suxrobgm/fsrcnn)** is my reimplementation of FSRCNN (Dong et al., ECCV 2016) for 2x, 3x and 4x super-resolution.
 
 **Engineering**

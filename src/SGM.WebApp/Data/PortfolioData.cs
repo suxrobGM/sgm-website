@@ -240,7 +240,7 @@ public static class PortfolioData
             Icon = "fas fa-eye",
             Summary =
                 "Estimates depth from one image with a ResNet18 encoder and U-Net decoder. Next to Depth Anything V2 " +
-                "it has 42% fewer parameters (14.3M vs. 24.8M), runs 72% faster, and makes smaller errors on NYU " +
+                "Small it has 42% fewer parameters (14.3M vs. 24.8M), runs 72% faster, and makes smaller errors on NYU " +
                 "Depth V2.",
             Tags = ["PyTorch", "ResNet18", "U-Net", "Depth Estimation"],
             RepoUrl = "https://github.com/suxrobgm/lightdepth",
