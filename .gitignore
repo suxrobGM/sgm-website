@@ -377,3 +377,5 @@ BlazorApp1/
 
 # Private notes (not committed)
 notes/
+
+.env
