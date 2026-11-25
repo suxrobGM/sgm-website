@@ -68,6 +68,7 @@ public static class ResearchData
 
     public static readonly IReadOnlyList<Publication> Publications =
     [
+        /* TEMP: MorphoCLIP hidden for now, restore later
         new Publication
         {
             Title = "MorphoCLIP: Text-Supervised Contrastive Learning for Perturbation Matching in Cell Painting Images",
@@ -97,6 +98,7 @@ public static class ResearchData
                 """,
             Tags = ["PyTorch", "DINOv3", "BioClinical ModernBERT", "Contrastive Learning", "CPJUMP1"],
         },
+        */
         new Publication
         {
             Title = "Localize, Don't Beautify: Client-Side Control of Image-Editing APIs for Cosmetic Surgery Previews",

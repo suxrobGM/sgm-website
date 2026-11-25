@@ -207,6 +207,7 @@ public static class PortfolioData
 
     public static readonly IReadOnlyList<ResearchHighlight> Research =
     [
+        /* TEMP: MorphoCLIP hidden for now, restore later
         new ResearchHighlight
         {
             Title = "MorphoCLIP: Text-Supervised Cell Painting Retrieval",
@@ -220,6 +221,7 @@ public static class PortfolioData
             RepoUrl = "https://github.com/suxrobgm/morphoclip",
             PaperUrl = "https://arxiv.org/abs/2608.22690",
         },
+        */
         new ResearchHighlight
         {
             Title = "MelanomaNet: Explainable Skin Lesion Classification",

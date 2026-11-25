@@ -6,7 +6,8 @@ const TIPS = [
   "Tip: Press Esc anytime to open the menu.",
   "Tip: Click the blips on the radar to fast travel.",
   "Tip: The cassette in the corner plays music.",
-  "Tip: MorphoCLIP trains on a single consumer GPU.",
+  // TEMP: MorphoCLIP hidden for now, restore later
+  // "Tip: MorphoCLIP trains on a single consumer GPU.",
   "Tip: Meat.gg has 50K+ registered players.",
   "Tip: Want the academic version? The research page has papers and BibTeX.",
 ];

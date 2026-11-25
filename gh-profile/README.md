@@ -21,6 +21,7 @@
 I do computer vision research, mostly for medicine and biology. Abstracts and BibTeX are on
 **[suxrobgm.net/research](https://suxrobgm.net/research)**.
 
+<!-- TEMP: MorphoCLIP card hidden for now, restore later
 > <img align="right" width="38%" src="./assets/paper-morphoclip.webp" alt="PCA of MorphoCLIP image features, colored by microscopy channel"/>
 >
 > ### [MorphoCLIP](https://arxiv.org/abs/2608.22690)
@@ -33,6 +34,7 @@ I do computer vision research, mostly for medicine and biology. Abstracts and Bi
 >
 > <small>**CPJUMP1** · 51 plates · 3M+ images</small><br clear="right"/>
 >
+-->
 > ### [MelanomaNet](https://arxiv.org/abs/2512.09289)
 >
 > [![arXiv](https://img.shields.io/badge/arXiv-2512.09289-b31b1b?style=flat-square&logo=arxiv)](https://arxiv.org/abs/2512.09289)

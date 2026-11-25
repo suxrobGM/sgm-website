@@ -132,7 +132,8 @@ Computer vision for medicine and biology, focused on models that experts can tru
 %----------PUBLICATIONS----------
 \section{Publications}
 \begin{enumerate}[leftmargin=1.4em, itemsep=2pt, label={[\arabic*]}]
-    \item \textbf{S.\ Ilyosbekov}, S.\ Gajjar, and R.\ Jin, ``MorphoCLIP: Text-Supervised Contrastive Learning for Perturbation Matching in Cell Painting Images,'' \textit{under review, MELBA}, 2026. \href{https://arxiv.org/abs/2608.22690}{\color{linkcolor}[Paper]}
+    % TEMP: MorphoCLIP hidden for now, restore later
+    % \item \textbf{S.\ Ilyosbekov}, S.\ Gajjar, and R.\ Jin, ``MorphoCLIP: Text-Supervised Contrastive Learning for Perturbation Matching in Cell Painting Images,'' \textit{under review, MELBA}, 2026. \href{https://arxiv.org/abs/2608.22690}{\color{linkcolor}[Paper]}
     \item \textbf{S.\ Ilyosbekov}, ``Localize, Don't Beautify: Client-Side Control of Image-Editing APIs for Cosmetic Surgery Previews,'' \textit{arXiv preprint}, arXiv:2608.02841, 2026. \href{https://arxiv.org/abs/2608.02841}{\color{linkcolor}[Paper]}
     % ON SUBMISSION: targets: CVPR/ICCV generative-eval workshop, WACV.
     % \item \textbf{S.\ Ilyosbekov}, ``Localize, Don't Beautify: Client-Side Control of Image-Editing APIs for Cosmetic Surgery Previews,'' \textit{under review}, VENUE 2027. \href{https://arxiv.org/abs/2608.02841}{\color{linkcolor}[Paper]}
@@ -151,15 +152,16 @@ Computer vision for medicine and biology, focused on models that experts can tru
 %----------RESEARCH----------
 \section{Research}
 
-\projectEntryPaper{MorphoCLIP: Text-Supervised Cell Painting Retrieval}{PyTorch, DINOv3, BioClinical ModernBERT, contrastive learning, CPJUMP1}
-{https://github.com/suxrobgm/morphoclip}
-{https://arxiv.org/abs/2608.22690}
-\begin{itemize}
-    \item Learns a shared space for Cell Painting images and text, so a compound or gene perturbation can be retrieved from a written description of it, and the other way round.
-    \item DINOv3 and BioClinical ModernBERT stay frozen and only the projection heads train, which fits on a single consumer GPU.
-    \item Evaluated on CPJUMP1: 51 plates, 3M+ images, 303 compounds, and 160 genes. Batch correction in embedding space keeps the model from simply recognizing plates.
-    \item Led model design, training, and evaluation.
-\end{itemize}
+% TEMP: MorphoCLIP hidden for now, restore later
+% \projectEntryPaper{MorphoCLIP: Text-Supervised Cell Painting Retrieval}{PyTorch, DINOv3, BioClinical ModernBERT, contrastive learning, CPJUMP1}
+% {https://github.com/suxrobgm/morphoclip}
+% {https://arxiv.org/abs/2608.22690}
+% \begin{itemize}
+%     \item Learns a shared space for Cell Painting images and text, so a compound or gene perturbation can be retrieved from a written description of it, and the other way round.
+%     \item DINOv3 and BioClinical ModernBERT stay frozen and only the projection heads train, which fits on a single consumer GPU.
+%     \item Evaluated on CPJUMP1: 51 plates, 3M+ images, 303 compounds, and 160 genes. Batch correction in embedding space keeps the model from simply recognizing plates.
+%     \item Led model design, training, and evaluation.
+% \end{itemize}
 
 \projectEntryPaperOnly{Localize, Don't Beautify: Client-Side Control of Image-Editing APIs}{Image-editing APIs, inpainting models, ArcFace, prompt engineering}
 {https://arxiv.org/abs/2608.02841}
